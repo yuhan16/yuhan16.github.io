@@ -1,0 +1,1172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HuskyDev</title>
+    <description>HuskDev is Yuhan's personal blog.</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 24 Mar 2022 21:02:46 -0400</pubDate>
+    <lastBuildDate>Thu, 24 Mar 2022 21:02:46 -0400</lastBuildDate>
+    <generator>Jekyll v4.2.1</generator>
+    
+      <item>
+        <title>Learning Jelly Part 1: Basic Elements</title>
+        <description>&lt;p&gt;In this learning notes, I will introduce the basic elements of Jekyll including the directory structure, front matter, and Liquid templating language. Understanding the elements is the first step towards learning Jekyll.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;jekyll&quot;&gt;Jekyll&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; is one of the most popular SSGs. It is written in &lt;a href=&quot;https://www.ruby-lang.org/en/&quot;&gt;Ruby&lt;/a&gt; and is supported by &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, which is also one of the reasons I choose Jekyll to write my blog.&lt;/p&gt;
+
+&lt;p&gt;The Jekyll document is comprehensive and instructive. So I do encourage people to read the documentation if they decide to use it. Here, I will introduce Jekyll from my perspective and provide a general idea of how Jekyll works.&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisites-and-installation&quot;&gt;Prerequisites and Installation&lt;/h3&gt;
+
+&lt;p&gt;Since jekyll is software written in Ruby, we first need to make sure the Ruby programming language is installed in our computer. It comes with Linux distrirbutions. We can check it using the command&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;	&lt;span class=&quot;c&quot;&gt;# display ruby version info&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can also follow the &lt;a href=&quot;https://jekyllrb.com/docs/&quot;&gt;Quickstart&lt;/a&gt; in Jekyll documentation to create a quick jekyll project and view it in the browser.&lt;/p&gt;
+
+&lt;h3 id=&quot;directory-structure&quot;&gt;Directory Structure&lt;/h3&gt;
+
+&lt;p&gt;Jekyll creates a series of directories. So it is important to understand the use of each directory so that we can create the pages we want. A typical jekyll directory is like the following (from Jekyll documentation):&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+|-- _config.yml
+|-- _data
+│   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; members.yml
+|-- _drafts
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; on-simplicity-in-technology.md
+|-- _includes
+|   |-- footer.html
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; header.html
+|-- _layouts
+|   |-- default.html
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; post.html
+|-- _posts
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; 2007-10-29-why-every-programmer-should-play-nethack.md
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; 2009-04-26-barcamp-boston-4-roundup.md
+|-- _sass
+|   |-- _base.scss
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; _layout.scss
+|-- _site
+|-- .jekyll-cache
+|-- .jekyll-metadata
+|-- index.html    &lt;span class=&quot;c&quot;&gt;# can also be an 'index.md' with valid front matter&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; is the directory where we write our blog contents. The content is usually written with &lt;a href=&quot;https://www.markdownguide.org/&quot;&gt;Markdown&lt;/a&gt;. Each file corresponds to an individual post page and each filename should follow the convention &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.md&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_draft&lt;/code&gt; is the directory to store the drafts. We can understand it as the unpublished &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_post&lt;/code&gt; directory. The files in this directory will not be translated into HTML file.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The above two directories are the most frequently edited ones after we set page templates.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layout&lt;/code&gt; directory stores all template layouts. It is written in HTML and is the skeleton for web pages. We can specify multiple templates for different use. Normally, we have a basic layout named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt;. It has to be a complete HTML file. Other templates (for example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post.html&lt;/code&gt;) can inherit from it and does not need to be a complete HTML file.&lt;/p&gt;
+
+    &lt;p&gt;We show an example of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt; as follows. The template has to include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;html&amp;gt;&lt;/code&gt; element to show it is a complete HTML file. However, the template does not need to include every detail. We can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;include&lt;/code&gt; command to make the template more consise.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+{% include head.html %}
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+      
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    {% include header.html %}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;page-content wrapper&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      {{ content }}
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    {% include footer.html %}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+      
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;Other template files can inherit from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt;. They add more details to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt; to form the new template. An example of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post.html&lt;/code&gt; template is shown in the following. They do &lt;strong&gt;not&lt;/strong&gt; need to be a complete HTML file.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+layout: default
+---
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;header&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-header&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ page.title }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;article&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-content&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; 
+    {{ content }}
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/article&amp;gt;&lt;/span&gt;
+  
+  {% if page.comments %}
+  {% include comments.html %}
+  {% endif %}
+  
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_include&lt;/code&gt; directory stores the frequently used HTML snippets which are used by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;include&lt;/code&gt; command. For example, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;footer.html&lt;/code&gt; can be the following.&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;footer&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;site-footer&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Copyright &lt;span class=&quot;ni&quot;&gt;&amp;amp;copy;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/freshman21-v2/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;HuskyDev&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Powered by &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://github.com/jekyll/jekyll&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Jekyll&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt; 
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass&lt;/code&gt; directory stores the style sheets (CSS files) for HTML files. These files determine the display format of HTML file. We refer to &lt;a href=&quot;https://www.w3schools.com/css/&quot;&gt;CSS Tutorial&lt;/a&gt; to learn more about the CSS basics.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The above three directories are related to web page templates and display style. After completing the template, we can simple call which template to use in each post file. Jekyll will generate the corresponding HTML file with the desired template for us.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; is the configuration file for Jekyll. We can define user-defined variables in this file.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.html&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.md&lt;/code&gt; is the index page. For web server, there is always an index page for each directory. By default, the web server will send the index page back to the user if the user does not specify in detail which HTML file to look for.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory stores all the generated web pages. We can put &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory to the server, for example GitHub. Then the blog website is ready to view.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;templating-language&quot;&gt;Templating Language&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A templating language basically is a language which allows defining placeholders that should later on be replaced for the purpose of implementing designs. Obviously modern template languages not only support placeholders, but also loops and conditions which are often necessary for designing a web page.&lt;/p&gt;
+
+  &lt;p&gt;&lt;em&gt;—From &lt;a href=&quot;https://stackoverflow.com/questions/4026597/what-is-a-templating-language&quot;&gt;Stack Overflow: What is a templating language?&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Jekyll uses the &lt;a href=&quot;https://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt; templating language to process templates. We can think the templating language as a “scripting language” in HTML files. It defines how Jekyll process the HTML files and generate the final version.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The templating language is different from other real scripting language such as JavaScript and Python. The browser cannot read it. All the template statements will be replaced by HTML after Jekyll process them. So in the final versions of the generated HTML file, there is no templating Language.&lt;/p&gt;
+
+&lt;p&gt;Liquid has ample functions such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;include&lt;/code&gt; function and other string processing functions, which facilitate the static web page writing.&lt;/p&gt;
+
+&lt;h3 id=&quot;front-matter-and-variables&quot;&gt;Front Matter and Variables&lt;/h3&gt;
+
+&lt;p&gt;The front matter is specified by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;---&lt;/code&gt; block at the front of each file. If we add the front matter to a file, it means that we want Jekyll to process this file. The process can be including other HTML snippets, or replacing template statements.&lt;/p&gt;
+
+&lt;p&gt;The front matter specifies variables for processing. For example, in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post.html&lt;/code&gt;  layout, we add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout&lt;/code&gt; variable to the front matter. So Jekyll will first substitute the HTML snippets and then put every thing to back to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt; template to generate the final HTML file.&lt;/p&gt;
+
+&lt;p&gt;Some global variables are reserved by Jekyll, for example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;content&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page&lt;/code&gt;. See &lt;a href=&quot;https://jekyllrb.com/docs/variables/&quot;&gt;Jekyll Variables&lt;/a&gt; for more information. These variables are useful when we write the template HTML files.&lt;/p&gt;
+
+&lt;p&gt;We can also define local variables (user-defined variables) in the front matter and reference it. For example, we define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mylogo-link&lt;/code&gt; variable in the following post file:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;mylogo_link&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://path/to/image/.png&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we can reference this variable in the file by writting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{ mylogo_link }}&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can also define variables in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;. The variables are in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site&lt;/code&gt; domain and can be accessed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{site.my_variable}}&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;We have introduced the general framework of Jekyll and the idea of how Jekyll works. In the future posts, I will write more details about Jekyll usage and the problems I have met when I use Jekyll.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 24 Dec 2021 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2021/12/jekyll-1-elements.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/12/jekyll-1-elements.html</guid>
+        
+        <category>web programming</category>
+        
+        <category>jekyll</category>
+        
+        <category>templating language</category>
+        
+        
+        <category>Programming</category>
+        
+        <category>Web</category>
+        
+      </item>
+    
+      <item>
+        <title>Static Site Generators</title>
+        <description>&lt;p&gt;I have discussed the difference between static and dynamic web pages in [xxx]. In this post, I will write some of my understanding of Jekyll and static site generators.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;static-site-generators&quot;&gt;Static Site Generators&lt;/h2&gt;
+
+&lt;p&gt;Static site generators (SSGs) are the software that generates and publish static HTML files from dynamic writing. In other words, they achieve two goals:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;automate static web page generation;&lt;/li&gt;
+  &lt;li&gt;publish the generated web pages locally for preview.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;some-background-of-html&quot;&gt;Some Background of HTML&lt;/h3&gt;
+
+&lt;p&gt;Every static web page is a complete HTML file. A simple example of a complete HTML file is like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Page Title&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;This is a Heading&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This is a paragraph.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The web page title and the style sheet for display are defined in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt;, and the content is written in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt;. In short, an HTML file has to follow some rules to be displayed by the browser correctly. We refer to &lt;a href=&quot;https://www.w3schools.com/html/&quot;&gt;HTML Tutorial&lt;/a&gt; to learn more about the HTML basics.&lt;/p&gt;
+
+&lt;h3 id=&quot;ssg-as-a-tool&quot;&gt;SSG as a Tool&lt;/h3&gt;
+
+&lt;p&gt;It can be tedious and troublesome to write HTML files directly, especially when the page content is long. There are so many types of websites. In blogging, what we need is the blog content. The interactions with the website and other fancy components are less required. The primary objective is to display the blog content nicely on a web page. Now SSGs can help. So the idea behind SSGs is simple: use templates to facilitate blog writing and automate web page generation.&lt;/p&gt;
+
+&lt;p&gt;In SSGs, we can first create some templates for future display. Then we only need to focus on writing the content (usually in markdown files). SSGs will put the content to the template and generate a complete HTML file for display. After SSGs generate all the page files, we can put them to some web server, for example, GitHub, so that people can access your pages from the Internet.&lt;/p&gt;
+
+&lt;p&gt;Another advantage of SSGs is that they can publish the web pages locally. It turns your computer to a local server so that you can view the web pages through the browser as if you view the page from a real server. It is extremely helpful for debugging.&lt;/p&gt;
+
+&lt;p&gt;There are many SSGs available. For example, &lt;a href=&quot;[https://nextjs.org](https://nextjs.org/)&quot;&gt;Next.js&lt;/a&gt;, &lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;, &lt;a href=&quot;https://gohugo.io/&quot;&gt;Hugo&lt;/a&gt;. &lt;a href=&quot;https://www.gatsbyjs.com/&quot;&gt;Gatsby&lt;/a&gt;, &lt;a href=&quot;https://nuxtjs.org/&quot;&gt;Nuxt&lt;/a&gt;. Any of them does a good job.&lt;/p&gt;
+
+&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
+
+&lt;p&gt;There are some resources discussing the functions of SSGs:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://about.gitlab.com/blog/2016/06/10/ssg-overview-gitlab-pages-part-2/&quot;&gt;GitLab SSGs Part 2: What are modern static site generators&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 23 Dec 2021 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2021/12/static-site-generators.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/12/static-site-generators.html</guid>
+        
+        <category>SSG</category>
+        
+        <category>static site generator</category>
+        
+        <category>html</category>
+        
+        <category>css</category>
+        
+        <category>github pages</category>
+        
+        
+        <category>Web</category>
+        
+      </item>
+    
+      <item>
+        <title>Static vs Dynamic Web Pages</title>
+        <description>&lt;p&gt;When we send HTTP requests to the web server, the web server responds to the request and sends the page file (usually with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.html&lt;/code&gt; extension) back so that we can view the entire web page in the browser. The way the web server processes and generates the web pages categorizes the web pages into &lt;strong&gt;static&lt;/strong&gt; and &lt;strong&gt;dynamic&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;static-web-pages&quot;&gt;Static Web Pages&lt;/h2&gt;
+
+&lt;p&gt;A static web page is a page file stored in the web server. Normally, static web pages are stored with a  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.html&lt;/code&gt; file extension. Each web page has a unique URL (Uniform Resource Locator). When we request a static web page, the web server finds the page file in the file system and sends it back. The server will not do any processing of the page file.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/freshman21-v2/assets/images/blog/2021/2021-12-22-static.png&quot; height=&quot;130&quot; /&gt;
+    &lt;figcaption&gt;Fig.1: Static web pages served by the web server.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;dynamic-web-pages&quot;&gt;Dynamic Web Pages&lt;/h2&gt;
+
+&lt;p&gt;The web server responds to dynamic web pages after pre-processing. The dynamic web page is stored in a page file with code. The code instructs the web server to pre-process the page file, generates the corresponding HTML file, and then sends it back to the user.&lt;/p&gt;
+
+&lt;p&gt;The pre-processing depends on what code the web server uses. The most common programming language for web server development is &lt;a href=&quot;https://www.php.net/&quot;&gt;PHP&lt;/a&gt;. There are other server-side languages such as Python and C#.&lt;/p&gt;
+
+&lt;p&gt;We take PhP for example. A dynamic web page written with PhP language is stored in a page file with a  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.php&lt;/code&gt; extension. When we request a dynamic web page, the web server first processes the PHP page file and generates the HTML file. Then the server sends the HTML file back to the user.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/freshman21-v2/assets/images/blog/2021/2021-12-22-dynamic.png&quot; height=&quot;180&quot; /&gt;
+    &lt;figcaption&gt;Fig.2: Dynamic web pages served by the web server.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;A simple dynamic web page file with PHP looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This example shows PHP block and its processed output.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php
+            echo &quot;String Output from PHP Block.&quot;;
+        ?&amp;gt;&lt;/span&gt;
+         
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This PHP code prints addition of two number in the 
+        processed HTML output.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php
+            echo 1+1;
+        ?&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;static-vs-dynamic&quot;&gt;Static vs Dynamic&lt;/h2&gt;
+
+&lt;p&gt;The user can only view the existing page content on a static web page. Therefore, it is more suitable for blogs and news websites. In addition, it is also more secure because the user cannot modify anything on the web page.&lt;/p&gt;
+
+&lt;p&gt;A dynamic web page provides more interactions between the user and the website. The code adds more flexibility to the web server to process the web page. It is more suitable for interactive websites such as Google. Let’s consider two examples.&lt;/p&gt;
+
+&lt;p&gt;The first example is the stock price query. If we want to check the stock price right now, we request the web server. The web server receives the request and checks the latest database for the stock price. Then the server generates the HTML page file and sends it back. If the stock price web page is static, which means they are pre-generated and stored in the server, we either cannot find the latest stock price, or the web server has to constantly update the page file to ensure the data is in time. Either way, it is not convenient.&lt;/p&gt;
+
+&lt;p&gt;The second example is online computing. If we want to perform complex computation, for example, integration, on the web server, we need to input the data first on the website. The web page has to be dynamic. Otherwise, the web server cannot even know what we input on the page. Let along process the input.&lt;/p&gt;
+
+&lt;h2 id=&quot;resource&quot;&gt;Resource&lt;/h2&gt;
+
+&lt;p&gt;Some useful materials also introduce this topic:&lt;/p&gt;
+
+&lt;p&gt;[1] &lt;a href=&quot;https://elextutorial.com/learn-php/dynamic-vs-static-website-static-website-dynamic-website-definition/#:~:text=The%20dynamic%20web%20page%20code%20written%20in%20the%20PHP%20server,is%20served%20to%20the%20user.&quot;&gt;Elextutorial Tutorial: Dynamic vs Static Website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[2] &lt;a href=&quot;https://about.gitlab.com/blog/2016/06/03/ssg-overview-gitlab-pages-part-1-dynamic-x-static/&quot;&gt;GitLab SSGs Part 1: A Static vs Dynamic Website&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 22 Dec 2021 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2021/12/static-dynamic-web.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/12/static-dynamic-web.html</guid>
+        
+        <category>tutorial</category>
+        
+        <category>static web</category>
+        
+        <category>dynamic web</category>
+        
+        <category>php</category>
+        
+        
+        <category>Web</category>
+        
+      </item>
+    
+      <item>
+        <title>jekyll notes</title>
+        <description>&lt;h2 id=&quot;some-notes&quot;&gt;Some notes&lt;/h2&gt;
+
+&lt;p&gt;Make entire Div Clickable:&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://example.com&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;example&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; anything &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This is perfectly valid HTML.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;In liquid, we can use composite filter. The exection order is from left to right. For example.&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{% assign var = site.baseurl | append: &quot;/page&quot; | append: 2 | string %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{ int | string }&lt;/code&gt; convert integer to strings.&lt;/p&gt;
+
+&lt;p&gt;Also, we need to find a way to write liquid in code block.&lt;/p&gt;
+
+&lt;h2 id=&quot;publish-github-page-with-no-jekyll&quot;&gt;Publish github page with no jekyll&lt;/h2&gt;
+&lt;p&gt;Github page only accepts specific jekyll plugins. Some plugins such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll-paginate-v2&lt;/code&gt; cannot be recgnized by github pages. Therefore, one way to publish github page is to &lt;strong&gt;publish the generated pages to Github&lt;/strong&gt; instead of letting github complie pages online. The generated pages are in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;We should note two things when using jekyll to generate pages and publish to github:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yaml&lt;/code&gt;, set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;baseurl: /your-repo-name&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;include an empty file named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.nojekyll&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder&lt;/li&gt;
+  &lt;li&gt;change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docs&lt;/code&gt;. Or move everything out of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;set-z-index-to-overlay&quot;&gt;set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;z-index&lt;/code&gt; to overlay&lt;/h3&gt;
+&lt;p&gt;The dropdown menu has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;position: relative&lt;/code&gt;. However, the two column layout also have the same property. Therefore, the two column layout may overlay the dropdown menu. To solve the problem, we have two ways:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;position: static&lt;/code&gt; to the two column layout. (May not feasible in some scenarios)&lt;/li&gt;
+  &lt;li&gt;Set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;z-index&lt;/code&gt; of the dropdown menu higher than the two column layout.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The superscript can be written like this&lt;sup&gt;[1]&lt;/sup&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;font-matter-settings&quot;&gt;font matter settings&lt;/h3&gt;
+&lt;p&gt;Jekyll can distinguish plural. For example,&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;category:
+- ca
+- cb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;is equivalent to&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;categories: ca cb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; there is no comma &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;,&lt;/code&gt; when using the plural.&lt;/p&gt;
+
+&lt;p&gt;The same applies for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;link-in-markdown&quot;&gt;link in markdown&lt;/h3&gt;
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;for-excerpt&quot;&gt;For excerpt&lt;/h3&gt;
+&lt;p&gt;We have two ways to display partial posts in the blog pages:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;excerpt&lt;/code&gt; in the front matter&lt;/li&gt;
+  &lt;li&gt;use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;excerpt_separator&lt;/code&gt; in the front matter&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example,&lt;/p&gt;
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;excerpt&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;These&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;pre-written&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;contents&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;will&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;be&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;displayed&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;blog&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;instead&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;post.&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# or&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;excerpt_separator&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;lt;!--more--&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The second methods displays the post content before &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;!--more--&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;margin-collaps&quot;&gt;margin collaps&lt;/h3&gt;
+&lt;p&gt;when we use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container-all&lt;/code&gt; with 0 margin and 0 padding to cover the background, we may encounter a margin collapse. The container will automatically have margin. We can use a fack padding to solve this problem &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;padding: 0.1px&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&quot;https://cmichel.io/css-margin-top-not-working&quot;&gt;Collapsing Margins of Block Elements&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mathjax&quot;&gt;mathjax&lt;/h3&gt;
+&lt;p&gt;in jekyll we can use mathjax to nicely display latex math formula. Here is how to use mathjax: &lt;a href=&quot;http://zjuwhw.github.io/2017/06/04/MathJax.html&quot;&gt;Use MathJax to write Equations in Jekyll blogs&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that we need to add inline math &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ $&lt;/code&gt; so that mathjax can recognize it. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ $&lt;/code&gt; is not recognized by default.&lt;/p&gt;
+
+&lt;p&gt;We can also change the math font size with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTML-CSS&lt;/code&gt; option: &lt;a href=&quot;https://stackoverflow.com/questions/19086152/changing-mathjaxs-font-size&quot;&gt;Changing mathjax’s font size&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/x-mathjax-config&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;MathJax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;tex2jax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;inlineMath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;processEscapes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;HTML-CSS&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Note that we need &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.&lt;/code&gt; for different settings in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MathJax.Hub.Config&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;for-testing&quot;&gt;For testing&lt;/h3&gt;
+&lt;p&gt;&lt;i class=&quot;fa fa-car&quot; style=&quot;font-size:48px;&quot;&gt;&lt;/i&gt;&lt;/p&gt;
+
+&lt;p&gt;/freshman21-v2/2021/12/jekyll-notes.html&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;javascript:void(0)&quot;&gt;testlink&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;deeplearning&lt;/p&gt;
+</description>
+        <pubDate>Fri, 10 Dec 2021 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2021/12/jekyll-notes.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/12/jekyll-notes.html</guid>
+        
+        <category>jekyll</category>
+        
+        <category>html</category>
+        
+        
+        <category>Miscellaneous</category>
+        
+      </item>
+    
+      <item>
+        <title>Notes on CSS files</title>
+        <description>&lt;p&gt;This notes documents the usage of css classes.
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;container-all  &lt;span class=&quot;c&quot;&gt;# entire body&lt;/span&gt;
+|- header-container    &lt;span class=&quot;c&quot;&gt;# through header, format only&lt;/span&gt;
+|  &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;- navbar           &lt;span class=&quot;c&quot;&gt;# small header, container only with clearfix&lt;/span&gt;
+|- body-container      &lt;span class=&quot;c&quot;&gt;# through body, format only&lt;/span&gt;
+|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;- page-content    &lt;span class=&quot;c&quot;&gt;# small body page, container only with clearfix&lt;/span&gt;
+|- footer-container    &lt;span class=&quot;c&quot;&gt;# through footer, format only&lt;/span&gt;
+|  &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;- footer-content   &lt;span class=&quot;c&quot;&gt;# small footer, container only with clearfix&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There is only one &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page&lt;/code&gt; class: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page-content&lt;/code&gt;, which defines the format of the page content.&lt;/p&gt;
+
+&lt;p&gt;There is a series of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt; class:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt;: no css definition, only used to group things.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-header&lt;/code&gt;: contains &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-title&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-meta&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-title&lt;/code&gt;: defines post titile formats, including h1-h4&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-meta&lt;/code&gt;: defines meta information under post title&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-content&lt;/code&gt;: defines post content format.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-link:&lt;/code&gt;: defines link format in the post.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There is another css file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout_research.scss&lt;/code&gt;, which defines the formats of math related posts and publications.&lt;/p&gt;
+
+&lt;p&gt;There are two different &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt; classes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page-index&lt;/code&gt;: display current page and JS. not in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt; class.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-index&lt;/code&gt;: previous and next posts. not in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt; class.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 01 Nov 2021 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2021/11/scss-notes.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/11/scss-notes.html</guid>
+        
+        <category>css</category>
+        
+        
+        <category>Miscellaneous</category>
+        
+      </item>
+    
+      <item>
+        <title>Build Up My Own Website!</title>
+        <description>&lt;p&gt;Welcome!&lt;/p&gt;
+
+&lt;p&gt;I have always been eager to build my personal blog from sketch. Now it comes true! 
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;It is not as simple as I thought. So I thought it would be best to jot down what I learned along the way. Since I have zero background in web applications, some notes may be too obvious for an expert. Also, there are a lot of reserouces online, and I will refer to those that helped me along the way.&lt;/p&gt;
+
+&lt;p&gt;Also, I will write notes and blogs related to my research as a way to document and share ideas.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 11 Oct 2021 23:53:40 -0400</pubDate>
+        <link>http://localhost:4000/2021/10/wellcome.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/10/wellcome.html</guid>
+        
+        <category>welcome</category>
+        
+        
+        <category>Miscellaneous</category>
+        
+      </item>
+    
+      <item>
+        <title>Continuous Randon Variables</title>
+        <description>&lt;h2 id=&quot;probability-mass-functions&quot;&gt;Probability mass functions&lt;/h2&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 1.&lt;/b&gt; 
+The &lt;b&gt;(probability) mass function&lt;/b&gt; (p.m.f.) of a discrete random variable $X$ is the function $f: \mathbb{R} \to[0, 1]$ given by $f(x) = \mathbf{P}(X = x)$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice that $f(x)$ is not discontinuous. The distribution and mass functions are related by
+\(\begin{equation}
+    F(x) = \sum_{i: x_i \leq x} f(x_i), \quad f(x) = F(x) - \lim_{y\uparrow x} F(y).
+\end{equation}\)&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+The probability mass function $f: \mathbb{R} \to [0, 1]$ satisfies: 
+&lt;ol&gt;
+    &lt;li&gt;the set of $x$ such that $f(x) \neq 0$ is countable,&lt;/li&gt;
+    &lt;li&gt;$\sum_{i} f(x_i) = 1$, where $x_1, x_2, \dots$ are the values of $x$ such that $f(x)\neq 0$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+&lt;b&gt;Binomial distribution.&lt;/b&gt; A coin is tossed $n$ times, and a head turns up each time with probability $p (= 1 - q)$. Then $\Omega = \{H, T\}^n \}$. The total number $X$ of heads takes values in the set $\{0, 1, 2, \dots , n\}$ and is a discrete random variable. Its probability mass function $f(x) = \mathbf{P}(X = x)$ satisfies 
+$$\begin{equation}
+    f(k)= \binom{n}{k} p^{k}(1-p)^{n-k}, \quad k=0,1, \ldots, n.
+\end{equation}$$
+The random variable $X$ is said to have the &lt;b&gt;binomial distribution&lt;/b&gt; with parameters $n$ and $p$, It is the sum $X = Y_1 + Y_2 + \dots + Y_n$ of $n$ Bernoulli variables.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+&lt;b&gt;Poisson distribution.&lt;/b&gt; If a random variable $X$ takes values in the set $\{O, 1, 2, \dots \}$ with mass function
+$$\begin{equation}
+    f(k) = \frac{\lambda^k}{k!} e^{-\lambda}, \quad k = 0, 1, 2, \dots, 
+\end{equation}$$
+where $\lambda &amp;gt; 0$, then $X$ is said to have the &lt;b&gt;Poisson distribution&lt;/b&gt; with parameter $\lambda$. Figure 1. shows how p.m.f varies with $k$.
+&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;/freshman21-v2/assets/images/blog/2019/2019-10-16-poisson.png&quot; height=&quot;230&quot; /&gt;
+    &lt;figcaption&gt;Fig.1: p.m.f of Poisson distribution.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+The interpretation of Poisson distribution can be found via this link: &lt;a href=&quot;https://towardsdatascience.com/the-poisson-distribution-and-poisson-process-explained-4e2cb17d459&quot;&gt;The Poisson Distribution and Poisson Process Explained&lt;/a&gt;.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;independence-of-discrete-random-variables&quot;&gt;Independence of discrete random variables&lt;/h2&gt;
+&lt;p&gt;Recall that events $A$ and $B$ are called independent if and only if $\mathbf{P}(A \cap B) = \mathbf{P}(A)\mathbf{P}(B)$.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 2.&lt;/b&gt; 
+Discrete variables $X$ and $Y$ are &lt;b&gt;independent&lt;/b&gt; if the events $\{X = x\}$ and $\{Y = y\}$ are independent for &lt;b&gt;all&lt;/b&gt; $x$ and $y$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Let $A: = { \omega \;\vert\; X(\omega) = x }$ and $B:= { \omega \;\vert\; Y(\omega) = y }$. Then we can write $P(A) = f_X(x), P(B) = f_Y(y)$ and $P(A \cap B) = f(x, y)$. Therefore, $A$ and $B$ are independent if and only if $f(x,y) = f_X(x) f_Y(y)$ for all $x$ and $y$.&lt;/p&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+The equality $f(x,y) = f_X(x) f_Y(y)$ can be used as the criterion to determine whether two discrete random variables $X$ and $Y$ are independent or not. But &lt;b&gt;we need to be careful with it when dealing with continuous random variables&lt;/b&gt; as there will be additional assumptions to determine the independence of continuous random variables using this equality.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 1.&lt;/b&gt; 
+If $X$ and $Y$ are independent and $g, h: \mathbb{R} \to \mathbb{R}$, then $g(X)$ and $h(Y)$ are independent also. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;More generally, we say that a family ${ X_i \;\vert\; i \in I}$ of (discrete) random variables is independent if the events ${X_i = x_i }, i \in I$, are independent for all possible choices of the set ${x_i \;\vert\; i \in I}$ of the values of the $X_i$ . That is to say, ${X_i \;\vert\; i \in I }$ is an independent family if and only if 
+\(\begin{equation}
+    \mathbf{P}(X_i = x_i \text{ for all }i\in J) = \prod_{i\in J} \mathbf{P}(X_i = x_i)
+\end{equation}\)
+for all sets ${x_i \;\vert\; i \in I}$ and for all finite subsets $J$ of $I$.&lt;/p&gt;
+
+&lt;h2 id=&quot;probability-density-functions&quot;&gt;Probability density functions&lt;/h2&gt;
+&lt;p&gt;Recall that a random variable $X$ is continuous if its distribution function $F(x) = \mathbf{P}(X \leq x)$ can be written as\footnote{This is just a general integral, $f(u)$ may or may not be continuous.}
+\(\begin{equation}
+    F(x) = \int_{\infty}^x f(u)du
+\end{equation}\)
+for some integrable $f: \mathbb{R} \to [0, \infty)$.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 3.&lt;/b&gt; 
+The function $f$ is called the &lt;b&gt;(probability) density function&lt;/b&gt; (p.d.f.) of the continuous random variable $X$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+The function $f$ is &lt;b&gt;NOT&lt;/b&gt; unique. We can add some separate points or a countable set of points which has zero measure to $f$. This doesn't change the value of the integral. However, if $F$ is differentiable at $u$ then we shall normally set $f(u) = F'(u)$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, we assume $f$ is continuous, then from the basic theorem of calculus, $F$ must be differentiable. Recall 
+\(\begin{equation}
+    P(a &amp;lt; X(\omega) \leq b) = F(b) - F(a) = \int_{a}^b f(u)du.
+\end{equation}\)
+Then $P(X=x) = F(x) - \lim_{y \uparrow x} F(y)$. $F$ is &lt;strong&gt;absolutely continuous&lt;/strong&gt; for continuous random variables. Thus we have
+\(\begin{equation}
+    \lim_{y\uparrow x} F(y) = F(x) \quad \mathbb{R}ightarrow \quad P(X=x) = 0 \quad \forall x\in\mathbb{R}.
+\end{equation}\)
+This means &lt;strong&gt;the probability of a continuous random variable $X$ taking value at a certain point is 0&lt;/strong&gt;. Very roughly speaking, this lies in the observation that there are uncountably many possible values for $X$; this number is so large that the probability of $X$ taking any particular value cannot exceed zero.&lt;/p&gt;
+
+&lt;p&gt;The numerical value $f(x)$ is &lt;strong&gt;NOT&lt;/strong&gt; a probability. Check the probability $\mathbf{P}(x &amp;lt; X \leq x + dx)$ for a very small $dx$:
+\(\begin{equation}
+    \mathbf{P}(x &amp;lt; X \leq x + dx) = F(x + dx) - F(x) \approx f(x) dx. 
+\end{equation}\)
+Since $dx$ is a very small interval rather a number, we cannot say $f(x)$ is the probability of something.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+If $X$ has density function $f$, then
+&lt;ol&gt;
+    &lt;li&gt; $\int_{-\infty}^\infty f(x)dx = 1$,&lt;/li&gt;
+    &lt;li&gt; $\mathbf{P}(X=x) = 0$ for all $x \in \mathbb{R}$,&lt;/li&gt;
+    &lt;li&gt; $\mathbf{P}(a &amp;lt; X \leq b) = \int_a^b f(x)dx$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;independence-of-continuous-random-variables&quot;&gt;Independence of continuous random variables&lt;/h2&gt;
+&lt;h3 id=&quot;independence-of-general-random-variables&quot;&gt;Independence of general random variables&lt;/h3&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 4.&lt;/b&gt; 
+Random variables $X$ and $Y$ are called &lt;b&gt;independent&lt;/b&gt; if $\{ X \leq x\}$ and $\{Y \leq y\}$ are independent events for all $x, y \in \mathbb{R}$. 
+&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;Note that this definition is the general definition of the independence of any two variables $X$ and $Y$ regardless of their types. The independence of discrete random variables is included in this definition.&lt;/p&gt;
+
+&lt;p&gt;Recall the marginalization. If two random variables $X$ and $Y$ are independent, we have
+\(\begin{equation}
+    \mathbf{P}(X\leq x) = \lim_{y\to\infty}F(x, y) \equiv F_X(x), \quad 
+    \mathbf{P}(Y \leq y) = \lim_{x\to\infty}F(x, y) \equiv F_Y(y).
+\end{equation}\)
+Therefore,
+\(\begin{equation}
+    \tag{1}
+    F(x,y) = \mathbf{P}(X \leq x, Y \leq y) = \mathbf{P}(X\leq x) \mathbf{P}(Y \leq y) = F_X(x) F_Y(y). 
+\end{equation}\)
+Note that we are dealing with distribution function in Eq.(1). Eq.(1) can be used as the general criterion to determine whether two random variables are independent or not.&lt;/p&gt;
+
+&lt;h3 id=&quot;independence-of-continuous-variables&quot;&gt;Independence of continuous variables&lt;/h3&gt;
+&lt;p&gt;If $X, Y$ are continuous, then we have
+\(\begin{equation}
+    F(x, y) = \int_{-\infty}^x \int_{-\infty}^y f(x,y) dx dy.
+\end{equation}\)
+\(\begin{equation}
+    F_X(x) = \int_{-\infty}^x \int_{-\infty}^\infty f(x, y)dx dy \quad \mathbb{R}ightarrow \quad f_X(x) = \int_{-\infty}^\infty f(x,y)dy,
+\end{equation}\)
+where $f_X(x)$ is called the &lt;strong&gt;marginal probability density function&lt;/strong&gt; of $X$. Similarly, we can define $F_Y(y)$ and $f_Y(y)$.&lt;/p&gt;
+
+&lt;p&gt;Assume $f(x,y)$ is continuous, then $F(x,y)$ must be twice differentiable w.r.t. $x$ and $y$. Therefore, from \eqref{eq:&lt;em&gt;}, we can derive a *very practical criterion&lt;/em&gt; to determine the independence of two continuous random variables:
+\(\begin{equation}
+    \tag{2}
+    f(x,y) = \frac{\partial^2 F(x,y)}{\partial x \partial y} = \frac{\partial}{\partial x \partial y} F_X(x) F_Y(y) = f_X(x) f_Y(y).
+\end{equation}\)&lt;/p&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Note that the prerequisite of Eq.(2) is that $f(x,y)$ is continuous.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+&lt;b&gt;Uniform distribution.&lt;/b&gt; The random variable $X$ is uniform on $[a, b]$ if it has distribution function
+$$\begin{equation}
+    F(x) = \begin{cases} 
+        0 &amp;amp; x \leq x, \\ \frac{x-a}{b-a} &amp;amp; a &amp;lt; x \leq b, \\ 1 &amp;amp; x &amp;gt; b
+    \end{cases}.
+\end{equation}$$
+The density function is
+$$\begin{equation}
+    f(x) = \begin{cases} \frac{1}{b-a} &amp;amp; a &amp;lt; x \leq b \\ 0 &amp;amp; o.w. \end{cases}
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+&lt;b&gt;Exponential distribution&lt;/b&gt;. The random variable $X$ is exponential with parameter $\lambda(&amp;gt; 0)$ if it has distribution function 
+$$\begin{equation}
+    F(x) = 1 - e^{-\lambda x}, \quad x \geq 0.
+\end{equation}$$
+The density function is
+$$\begin{equation}
+    f(x) = \begin{cases} \lambda e^{-\lambda x} &amp;amp; x &amp;gt; 0 \\ 0 &amp;amp; o.w.
+    \end{cases}
+\end{equation}$$
+Note that $F(x)$ is not differentiable at $x=0$. This means $f$ has discontinuity at $x=0$. Thus we need to choose some value for $f(0)$. It doesn't matter what value we choose as it doesn't affect the integral. Figure \ref{fig:exponential} shows the p.d.f. of Exponential distribution.
+{plots/exponential.png}
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+The interpretation of Exponential distribution can be found via &lt;a href=&quot;https://www.probabilitycourse.com/chapter4/4_2_2_exponential.php&quot;&gt;Exponential distribution 1&lt;/a&gt; and &lt;a href=&quot;https://www.statlect.com/probability-distributions/exponential-distribution&quot;&gt;Exponential distribution 2&lt;/a&gt;. Pay attention to the connection between Exponential distribution and Poisson distribution.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+&lt;b&gt;Normal (or Gaussian) distribution.&lt;/b&gt; The most important continuous distribution, which has two parameters $\mu$ and $\sigma^2$ and density function
+$$\begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left( -\frac{(x-\mu)^2}{2\sigma^2} \right), \quad x\in\mathbb{R}. 
+\end{equation}$$
+It is denoted by $N(\mu, \sigma^2)$. If $\mu=0$ and $\sigma^2=1$, then
+$$\begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}x^2}, \quad x\in\mathbb{R}.
+\end{equation}$$
+is the density of the standard normal distribution. It is easy to generalize 2D case to multivariable case. Suppose $\mathbf{x} \in \mathbb{R}^n$, $\mathbf{\mu} \in \mathbb{R}^n$ is the mean vector and $\mathbf{\sigma}^2 \in \mathbb{R}^{n\times n}$ is the covariance matrix. Then
+$$\begin{equation}
+    f(\mathbf{x}) = \frac{1}{\sqrt{(2\pi)^n} \det(\mathbf{\sigma}^2)} \exp \left( -\frac{1}{2} (\mathbf{x}-\mathbf{\mu})^T (\mathbf{\sigma}^2)^{-1} (\mathbf{x}-\mathbf{\mu}) \right), \quad \mathbf{x} \in \mathbb{R}^n.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+For 2D case, if $\sigma^2$ is diagonal, then $f(x,y) = f(x)f(y)$. Therefore, $\sigma^2$ is a measure of independence. For multivariable cases, if $\sigma^2$ is diagonal, then all random variables are independent with each other.
+&lt;/p&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 16 Oct 2019 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2019/10/notes-3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/10/notes-3.html</guid>
+        
+        <category>notes</category>
+        
+        <category>math</category>
+        
+        
+        <category>Probability</category>
+        
+      </item>
+    
+      <item>
+        <title>Randon Variables</title>
+        <description>&lt;h2 id=&quot;random-variables&quot;&gt;Random variables&lt;/h2&gt;
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Definition 1.&lt;/b&gt; A &lt;b&gt;random variable&lt;/b&gt; is a function $X: \Omega \to \mathbb{R}$ with the property that $\{ \omega\in \Omega \;\vert\; X(\omega) \leq x\} \in \mathcal{F}$ for each $x \in \mathbb{R}$. Such a function is said to be $\mathbf{\mathcal{F}}$-measurable. 
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;remark-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Example 1.&lt;/b&gt; Tossing two dice. We define
+$$
+    X = \begin{cases} 1 &amp;amp; \text{get double ($i=j$)} \\ 0 &amp;amp; \text{not double $(i\neq j)$} \end{cases}.
+$$
+Then $X = (i,j) \in \mathbb{R}$.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;remark-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; We are interested in $g(x) = \mathbf{P}\{ \omega \;\vert\; X(\omega) = x \}$. But sometimes it doesn't work very well. Probability triplet is defined as $\{ \Omega, \mathcal{F}, \mathbf{P} \}$. If $\Omega$ is countable, then $g(x)$ is okay. But if $\Omega$ is uncountable like intervals, then $\mathbf{P}(X=x)$ doesn't make much sense because the cardinality is too large.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Definition 2.&lt;/b&gt; The &lt;b&gt;distribution function&lt;/b&gt; of a random variable $X$ is the function $F: \mathbb{R} \to 
+[0, 1]$ given by $F(x) = \mathbf{P}(X \leq x)$. &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;remark-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Example 2.&lt;/b&gt; The distribution function of preceeding example is
+$$
+    F(x) = \begin{cases} 0 &amp;amp; x \leq 0, \\ \frac{30}{36} &amp;amp; 0 &amp;lt; x \leq 1, \\ 1 &amp;amp; x &amp;gt; 1. \end{cases}
+$$
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Notice that ${ \omega \;\vert\; X(\omega) \leq x}$ defines an event. It is an element in the corresponding $\sigma$-field. Denote $A(x) = { \omega \;\vert\; X(\omega) \leq x }$. Along with $A(x)$, we can define
+\(A^c(x) = \{ \omega \;\vert\; X(\omega) &amp;gt; x \}, \quad A(x, y) = A^c(x) \cap A(y) = \{ \omega \;\vert\; x &amp;lt; X(\omega) \leq y \}.\)
+Tow points worth noting:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;$F$ must be defined for &lt;strong&gt;all&lt;/strong&gt; $x \in \mathbb{R}$.&lt;/li&gt;
+  &lt;li&gt;$A(x)$ should &lt;strong&gt;belongs to&lt;/strong&gt; $\mathcal{F}$. Otherwise, we cannot talk about the probability of $\mathbf{P}(A(x))$. Then the definition of distribution function is meaningless.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Lemma 1.&lt;/b&gt; A distribution function $F$ has the following properties:&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;$\lim_{x \to -\infty}F(x) = 0$, $\lim_{x\to\infty} F(x) = 1$,&lt;/li&gt;
+    &lt;li&gt;if $x &amp;lt; y$, then $F(x) \leq F(y)$,&lt;/li&gt;
+    &lt;li&gt;$F$ is right-continuous, that is $F(x+h) \to F(x)$ as $h \downarrow 0$. (left-continuous is not necessary)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;remark-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Example 3.&lt;/b&gt; &lt;b&gt;Indicator functions.&lt;/b&gt; A particular class of Bernoulli variables is very useful in probability theory. Let $A$ be an event and let $I_A : \Omega \to \mathbb{R}$ be the indicator function of $A$; that is,
+$$
+    I_A(\omega) = \begin{cases} 1 &amp;amp; \text{if $\omega \in A$}, \\ 0 &amp;amp; \text{if $\omega \in A^c$}. \end{cases}
+$$
+Then $I_A$ is a Bernoulli random variable taking the values 1 and 0 with probabilities $\mathbf{P}(A)$ and $\mathbf{P}(A^c)$ respectively. Suppose $\{B_i \;\vert\; i \in I\}$ is a family of disjoint events with $A \subseteq \bigcup_{i\in I} B_i$. Then
+$$
+    I_A = \sum_{i} = I_{A\cap B_i},
+$$
+an identity which is often useful.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Lemma 2.&lt;/b&gt; Let $F$ be the distribution function of $X$. Then&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt; $\mathbf{P}(X&amp;gt;x) = 1-F(x)$,&lt;/li&gt; 
+    &lt;li&gt; $\mathbf{P}(x &amp;lt; X \leq y) = F(y) - F(x)$,&lt;/li&gt;
+    &lt;li&gt; $\mathbf{P}(X = x) = F(x) - \lim_{y \uparrow x} F(y)$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A random variable $X$ with distribution function $F$ is said to have two “tails” given by 
+\(T_1 (X) = \mathbf{P}(X &amp;gt; x) = 1 - F(x), \quad T_2(X) = \mathbf{P}(X \leq -x) = F(-x),\)
+where $x$ is large and positive. The rates at which the $T_i$ decay to zero as $x\to\infty$ have a substantial effect on the existence or non-existence of certain associated quantities called the “moments” of the distribution.&lt;/p&gt;
+
+&lt;h2 id=&quot;different-random-variables&quot;&gt;Different random variables&lt;/h2&gt;
+&lt;h3 id=&quot;discrete-random-variables&quot;&gt;Discrete random variables&lt;/h3&gt;
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Definition 3.&lt;/b&gt; The random variable $X$ is called &lt;b&gt;discrete&lt;/b&gt; if it takes values in some &lt;b&gt;countable&lt;/b&gt; subset $\{ x_1, x_2, \dots \}$, only, of $\mathbb{R}$. The discrete random variable $X$ has &lt;b&gt;(probability) mass function&lt;/b&gt; $f : \mathbb{R} \to [0, 1]$ given by $f(x) = \mathbf{P}(X = x)$.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We shall see that the distribution function of a discrete variable has jump discontinuities 
+at the values $x_1 , x_2, \dots$ and is constant in between; such a distribution is called &lt;em&gt;atomic&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;continuous-random-variables&quot;&gt;Continuous random variables&lt;/h3&gt;
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Definition 4.&lt;/b&gt; The random variable $X$ is called &lt;b&gt;continuous&lt;/b&gt; if its distribution function can 
+be expressed as 
+$$
+    F(x) = \int_{-\infty}^x f(u) du \qquad x \in \mathbb{R}
+$$
+for some &lt;b&gt;integrable&lt;/b&gt; function $f : \mathbb{R} \to [0, \infty)$ called the **(probability) density function** of $X$.
+&lt;/p&gt; 
+&lt;/div&gt;
+
+&lt;p&gt;Some point worth noting:&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt; The density function $f(x)$ is not unique. We can add some separate points to $f$, and it doesn't affect the integration.&lt;/li&gt;
+    &lt;li&gt; $F$ must be **absolutely continuous**. This implies $F$ is continuous. We can also deduce that the probability at certain point must be zero. \emph{i.e.}, $\mathbf{P}(X=x) = 0$.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There is another sort of random variable, called “singular”.&lt;/p&gt;
+
+&lt;h2 id=&quot;random-vectors&quot;&gt;Random vectors&lt;/h2&gt;
+&lt;h3 id=&quot;definition&quot;&gt;Definition&lt;/h3&gt;
+&lt;p&gt;The random vector is a function $X : \Omega \to \mathbb{R}^n$. For example, $\mathbf{X} = (X, Y)$ for $n=2$. We can also define the distribution function for such $X$. But we need to first introduce the ordering in $\mathbb{R}^n$.&lt;/p&gt;
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Definition 5.&lt;/b&gt; 
+    By definition, $(x_1, y_1) &amp;lt; (x_2, y_2)$ if and only if $x_1 &amp;lt; x_2$  **AND**  $y_1 &amp;lt; y_2$.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;remark-block&quot;&gt; 
+&lt;p&gt;&lt;b&gt;Definition 6.&lt;/b&gt;
+The &lt;b&gt;joint distribution function&lt;/b&gt; of a random vector $\mathbf{X} = (X_1, X_2 \dots, X_n)$ on the probability space $\{ \Omega, \mathcal{F}, \mathbf{P} \}$ is the function $F_{\mathbf{X}} : \mathbb{R}^n \to [0, 1]$ given by $F_{\mathbf{X}}(x) = \mathbf{P}(\mathbf{X} \leq \mathbf{x})$ for $\mathbf{x} \in \mathbb{R}^n$. 
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;remark-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Remark .&lt;/b&gt; 
+The joint probability $\mathbf{P}(\mathbf{X} \leq \mathbf{x}) = \mathbf{P}(X_1 \leq x_1, \dots, X_n \leq x_n)$. $\{\mathbf{X} \leq \mathbf{x} \}$ is an abbreviation for the event $\{\omega \in \Omega \;\vert\; \mathbf{X}(w) \leq \mathbf{x}\}$.
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Lemma 3.&lt;/b&gt;
+The joint distribution function $F_{X, Y}$ of the random vector $(X, Y)$ has the following properties:&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt; $\lim_{x, y\to -\infty} F_{X, Y}(x, y) = 0, \lim_{x,y\to\infty} F_{X, Y}(x,y) = 1$,&lt;/li&gt;
+    &lt;li&gt; if $(x_1, y_1) \leq (x_2, y_2)$, then $F_{X,Y}(x_1, y_1) \leq F_{X, Y}(x_2, y_2)$,&lt;/li&gt;
+    &lt;li&gt; $F_{X,Y}$ is continuous from above, in that
+    $$
+        F_{X,Y}(x+u, y+v) \to F_{X,Y}(x,y) \quad as \quad u, v \downarrow 0.
+    $$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;marginalization&quot;&gt;Marginalization&lt;/h3&gt;
+&lt;p&gt;\(\begin{align}
+    \lim_{y\to\infty} F_{X,Y} &amp;amp;= F_X(x) = \mathbf{P}(X \leq x), \\
+    \lim_{x\to\infty} F_{X,Y} &amp;amp;= F_Y(y) = \mathbf{P}(Y \leq y).
+\end{align}\)&lt;/p&gt;
+
+&lt;p&gt;The functions $F_X$ and $F_Y$ are called the “marginal” distribution functions of $F_{X,Y}$. $F_{X,Y}$ can determine two marginals $F_X$ and $F_Y$, but &lt;strong&gt;converse is NOT true&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;discrete-and-continuous-distribution&quot;&gt;Discrete and continuous distribution&lt;/h3&gt;
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Definition 7.&lt;/b&gt; The random variables $X$ and $Y$ on the probability space $\{ \Omega, \mathcal{F}, \mathbf{P} \}$ are called **(jointly) discrete** if the vector $(X, Y)$ takes values in some **countable** subset of $\mathbb{R}^2$ only. The jointly discrete random variables $X, Y$ have **joint (probability) mass function** $f : \mathbb{R}^2 \to [0,1]$ given by $f(x, y) = \mathbf{P}(X = x, Y = y)$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Definition 8.&lt;/b&gt;
+The random variables $X$ and $Y$ on the probability space $\{ \Omega, \mathcal{F}, \mathbf{P} \}$ are called **(jointly) continuous** if their joint distribution function can be expressed as 
+$$
+    F_{X,Y}(x,y) = \int_{u = -\infty}^x \int_{v = -\infty}^y f(u,v)du dv \qquad x, y\in\mathbb{R},
+$$
+for some **integrable** function $f : \mathbb{R}^2 \to [0, \infty)$ called the **joint (probability) density function** of the pair $(X, Y)$. 
+&lt;/p&gt;&lt;/div&gt;
+</description>
+        <pubDate>Wed, 09 Oct 2019 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2019/10/notes-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/10/notes-2.html</guid>
+        
+        <category>notes</category>
+        
+        <category>math</category>
+        
+        
+        <category>Probability</category>
+        
+      </item>
+    
+      <item>
+        <title>Sets and Probability Measures</title>
+        <description>&lt;h2 id=&quot;event-as-sets&quot;&gt;Event as sets&lt;/h2&gt;
+&lt;p&gt;Probability studies the &lt;strong&gt;repeatable (or ideal) experiments&lt;/strong&gt;. The result of an experiment is called an &lt;strong&gt;outcome&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;theorem-block&quot;&gt;
+&lt;p&gt;&lt;b&gt;Definition 1.&lt;/b&gt; The set of all possible outcomes of an experiment is called the &lt;b&gt;sample space&lt;/b&gt; and is denoted by $\Omega$.&lt;/p&gt;  
+&lt;/div&gt;
+
+&lt;h3 id=&quot;cardinality-of-sets&quot;&gt;Cardinality of sets&lt;/h3&gt;
+&lt;p&gt;The cardinality of a set $\Omega$ refers to the number of the number of elements in this set, and is denoted by $\mathbf{carf}(\Omega)$ or $\vert \Omega \vert$.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;For finite sets, $\mathbf{card}(\Omega)$ is a natural number.&lt;/li&gt;
+  &lt;li&gt;For the integer set, $\mathbf{card}(\mathbb{Z}) = \aleph_0$, which is countable.&lt;/li&gt;
+  &lt;li&gt;For the real number set, $\mathbf{card}(\mathbb{R}) = \aleph_1 &amp;gt; \aleph_0$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;strong&gt;power set&lt;/strong&gt; of a set $\Omega$ is the set of all subsets, which is denoted by $2^\Omega$.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;For $\mathbb{Z}$, $\mathbf{card}(2^\mathbb{Z}) = \aleph_1 = \mathbf{card}(\mathbb{R})$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In practical, sets in probability are: &lt;strong&gt;finite&lt;/strong&gt;, &lt;strong&gt;countable&lt;/strong&gt;, &lt;strong&gt;reals&lt;/strong&gt; and their variants.&lt;/p&gt;
+
+&lt;p&gt;When we conduct an experiment, we want to know whether a subset occurs or not. For example, if we take a number from $\mathbb{R}$, the probability will be 0 because $\card(\mathbb{R})$ is very large. Therefore,
+\begin{center}
+\emph{we are interested in $A \subset \Omega$ in probability, where $A$ is a collection of subsets in probability.}
+\end{center}&lt;/p&gt;
+
+&lt;p&gt;\subsection{Events and fields}
+\begin{definition}
+The \textbf{events} are subsets of the sample space $\Omega$. 
+\end{definition}&lt;/p&gt;
+
+&lt;p&gt;\begin{remark}
+$\varnothing$ is called the \emph{impossible event}. The set $\Omega$ is called the \emph{certain event}. Events $A$ and $B$ are called \emph{disjoint} if their intersection is the empty set.
+\end{remark}&lt;/p&gt;
+
+&lt;p&gt;We do \textbf{NOT} need all the subsets of $\Omega$ be events. It suffices for us to think of the collection of events as a subcollection $\mathcal{F}$ of the set of all subsets of $\Omega$.
+\begin{definition}
+Any collection $\mathcal{F}$ of subsets of $\Omega$ which satisfies the following three conditions is called a field:
+\begin{enumerate}[(a)]
+    \item if $A, B \in \mathcal{F}$, then $A \cup B \in \mathcal{F}$ and $A \cap B \in \mathcal{F}$ (actually $A\cap B \in \mathcal{F}$ is redundant); 
+    \item if $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$;
+    \item the empty set $\varnothing$ belongs to $\mathcal{F}$.
+\end{enumerate}
+\end{definition}&lt;/p&gt;
+
+&lt;p&gt;\begin{remark}
+Some implications from the properties of a filed $\mathcal{F}$:
+\begin{itemize}
+    \item if $A_1, \dots, A_n \in \mathcal{F}$, then $\bigcup_{i=1}^n A_i \in \mathcal{F}$;
+    \item $\varnothing^C = \Omega \in \mathcal{F}$;
+    \item $A \cap B = (A^c \cup B^c)^C \in \mathcal{F}$.
+\end{itemize}
+\end{remark}&lt;/p&gt;
+
+&lt;p&gt;\begin{question}
+what if we have an $\Omega$ such that $\card(\Omega) = \aleph_0$? In this case, we may need $2^\Omega$ to study the probability. 
+\end{question}&lt;/p&gt;
+
+&lt;p&gt;\begin{definition}
+A collection $\mathcal{F}$ of subsets of $\Omega$ is called a $\sigma$-field if it satisfies the following conditions: 
+\begin{enumerate}[(a)]
+    \item $\varnothing \in \mathcal{F}$;
+    \item if $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$;
+    \item if $A_1, A_2, \dots \in \mathcal{F}$, then $\bigcup_{i=1}^\infty A_i \in \mathcal{F}$.
+\end{enumerate}
+\end{definition}&lt;/p&gt;
+
+&lt;p&gt;\begin{remark}
+$\sigma$-fields are closed under the operation of taking countable intersections.
+\end{remark}&lt;/p&gt;
+
+&lt;p&gt;\begin{example}
+The smallest $\sigma$-field associated with $\Omega$ is the collection $\mathcal{F} = {\varnothing, \Omega }$.
+\end{example}&lt;/p&gt;
+
+&lt;p&gt;\begin{example}
+If $A \subset \Omega$, then $\mathcal{F} = {\varnothing, A, A^c, \Omega }$ is a $\sigma$-field. 
+\end{example}&lt;/p&gt;
+
+&lt;p&gt;\begin{example}
+The power set of $\Omega$ is a $\sigma$-field.
+\end{example}&lt;/p&gt;
+
+&lt;p&gt;With any experiment we may associate a pair ${\Omega, \mathcal{F}}$, where $\Omega$ is the set of all possible outcomes or elementary events and $\mathcal{F}$ is a $\sigma$-field of subsets of $\Omega$ which contains \emph{all the events in whose occurrences we may be interested}; henceforth, to call a set $A$ an event is equivalent to asserting that $A$ belongs to the $\sigma$-field in question.&lt;/p&gt;
+
+&lt;p&gt;\section{Probability}
+Assume we have a ``repeatable” experiment and we repeat the experiment a large number $N$ of times. Let $A \in \Omega$ and $N(A)$ be the number of $A$ occurs in the $N$ trails. Intuitively, the ratio $N(A)/ N$ appears to converge to a constant limit as $N$ increases. In practice, we have 
+\begin{itemize}
+    \item $0 \leq N(A)/ N \leq 1$;
+    \item if $A, B$ are disjoint, then $N(A \cup B) = N(A) + N(B)$. (finite additive and countably additive)
+\end{itemize}&lt;/p&gt;
+
+&lt;p&gt;\begin{definition}
+A \textbf{probability measure} $\Prob$ on ${ \Omega, \mathcal{F} }$ is a function $\Prob : \mathcal{F} \to [0,1]$ satisfying
+\begin{enumerate}[(a)]
+    \item $\Prob(\varnothing) = 0$;
+    \item $\Prob(\Omega) = 1$;
+    \item  if $A_1, A2, \dots$ is a collection of disjoint members of $\mathcal{F}$, in that $A_i \cap A_j = \varnothing$ for all pairs $i, j$ satisfying $i \neq j$, then
+    \begin{equation&lt;em&gt;}
+        \Prob\left( \bigcup_{i=1}^\infty A_i \right) = \sum_{i=1}^\infty \Prob (A_i).
+    \end{equation&lt;/em&gt;}
+\end{enumerate}
+\end{definition}
+The triple ${ \Omega, \mathcal{F}, \Prob }$, comprising a set $\Omega$, a $\sigma$-field $\mathcal{F}$ of subsets of $\Omega$, and a probability measure $\Prob$ on ${\Omega, \mathcal{F}}$, is called a \textbf{probability space}. We can associate a probability space ${ \Omega, \mathcal{F}, \Prob }$ with any experiment, and all questions associated with the experiment can be reformulated in terms of this space.&lt;/p&gt;
+
+&lt;p&gt;\begin{remark}
+A probability measure is a special example of what is called a \emph{measure} on the pair ${\Omega, \mathcal{F}}$. A measure is a function $\mu: \mathcal{F} \to [0, \infty)$ satisfying $\mu(\varnothing) = 0$ together with (c) above. A measure $\mu$ is a probability measure if $\mu(\Omega) = 1$. 
+\end{remark}&lt;/p&gt;
+
+&lt;p&gt;\begin{lemma}
+We can deduce some lemmas from the definition.
+\begin{enumerate}[(a)]
+    \item $\Prob(A^c) = 1 - \Prob(A)$;
+    \item if $A \subseteq B$, then $\Prob(B) = \Prob(A) + \Prob(B\backslash A) \geq \Prob(A)$;
+    \item $\Prob(A \cup B) = \Prob(A) + \Prob(B) - \Prob(A \cap B)$;
+    \item more generally, if $A_1, A_2, \dots, A_n$ are events, then 
+    \begin{equation&lt;em&gt;}
+        \begin{split}
+        \Prob\left( \bigcup_{i=1}^n A_i \right) =&amp;amp; \sum_{i}\Prob(A_i) - \sum_{i &amp;lt; j} \Prob(A_i \cap A_j) + \sum_{i&amp;lt;j&amp;lt;k} \Prob(A_i \cap A_j \cap A_k) - \cdots &lt;br /&gt;
+        &amp;amp; +(-1)^{n+1} \Prob(A_1 \cap A_2 \cap \cdots \cap A_n)
+        \end{split}
+    \end{equation&lt;/em&gt;}
+\end{enumerate}
+\end{lemma}&lt;/p&gt;
+
+&lt;p&gt;\begin{lemma}
+Let $A_1, A_2, \dots$ be an increasing sequence of events, so that $A_1 \subset A_2 \subset A_3 \subset \cdots$, and write $A$ for their limit:
+\begin{equation&lt;em&gt;}
+    A = \bigcup_{i=1}^\infty A_i = \lim_{i \to \infty} A_i.
+\end{equation&lt;/em&gt;}
+Then $\Prob(A) = \lim_{i\to\infty} \Prob(A_i)$.&lt;/p&gt;
+
+&lt;p&gt;Similarly, if $B_1, B_2, \dots$ is a decreasing sequence of events, so that $B_1 \supseteq  B_2 \supseteq B_3 \supseteq \cdots$, then 
+\begin{equation&lt;em&gt;}
+    B = \bigcap_{i=1}^\infty B_i = \lim_{i \to \infty} B_i
+\end{equation&lt;/em&gt;}
+satisfies $\Prob(B) = \lim_{i\to\infty} \Prob(B_i)$
+\end{lemma}&lt;/p&gt;
+
+&lt;p&gt;\section{Some useful concepts}
+\subsection{Conditional probability}
+What if we only care how many times does $A$ occur only when $B$ occurs? $N(A\cap B) / N(B)$, the universe is changed. 
+\begin{definition}
+If $\Prob(B) &amp;gt; 0$, then the \textbf{conditional probability} that $A$ occurs given that $B$ occurs is defined to be
+\begin{equation&lt;em&gt;}
+    \Prob(A \spacevert B) = \frac{\Prob(A \cap B)}{\Prob(B)}.
+\end{equation&lt;/em&gt;}
+\end{definition}&lt;/p&gt;
+
+&lt;p&gt;\begin{definition}
+Suppose ${B_i}$ is a finite set. If $B_i$ are all disjoint and $\bigcup_{i=1}^n B_i = \Omega$, then ${B_i}$ is called a \textbf{partition} of $\Omega$.
+\end{definition}&lt;/p&gt;
+
+&lt;p&gt;\begin{lemma}
+For any events $A$ and $B$ such that $0 &amp;lt; \Prob(B) &amp;lt; 1$,
+\begin{equation&lt;em&gt;}
+    \Prob(A) = \Prob(A \spacevert B) \Prob(B) + \Prob(A \spacevert B^c) \Prob(B^c).
+\end{equation&lt;/em&gt;}
+More generally, let $B_1,  B_2, \dots, B_n$ be a partition of $\Omega$ such that $\Prob(B_i) &amp;gt; O$ for all $i$. Then 
+\begin{equation&lt;em&gt;}
+    \Prob(A) = \sum_i \Prob(A \spacevert B_i) \Prob(B_i).
+\end{equation&lt;/em&gt;}
+\end{lemma}&lt;/p&gt;
+
+&lt;p&gt;\subsection{Independence}
+Intuition: an event $A$ occurs doesn’t affect the probability of $A$ occurs when $B$ occurs, which means $\Prob(A) = \Prob(A\spacevert B)$.&lt;/p&gt;
+
+&lt;p&gt;\begin{definition}
+Events $A$ and $B$ are called \textbf{independent} if 
+\begin{equation&lt;em&gt;}
+    \Prob(A \cap B) = \Prob(A) \Prob(B).
+\end{equation&lt;/em&gt;}
+More generally, a family ${A_i \spacevert i \in I}$ is called independent if
+\begin{equation&lt;em&gt;}
+    \Prob \left( \bigcap_{i \in J} A_i \right) = \prod_{i\in J} \Prob(A_i)
+\end{equation&lt;/em&gt;}
+for all finite subsets $J$ of $I$. 
+\end{definition}&lt;/p&gt;
+
+&lt;p&gt;\begin{caution}
+A common \emph{student error} is to make the fallacious statement that $A$ and $B$ are independent if $A \cap B = \varnothing$.
+\end{caution}&lt;/p&gt;
+
+&lt;p&gt;\begin{remark}
+If the family ${A_i \spacevert i \in I}$ has the property that 
+for all 
+\begin{equation&lt;em&gt;}
+    \Prob(A_i \cap A_j) = \Prob(A_i) \Prob(A_j) \quad \forall i\neq j, 
+\end{equation&lt;/em&gt;}
+then it is called \emph{pairwise independent}. \textbf{Pairwise-independent families are not necessarily independent.} 
+\end{remark}&lt;/p&gt;
+
+&lt;p&gt;\section{Completeness and product space}
+\begin{lemma}
+If $\mathcal{F}$ and $\mathcal{G}$ are two $\sigma$-fields of subsets of $\Omega$, then their intersection $\mathcal{F} \cap \mathcal{G}$ is a $\sigma$-field also. More generally, if ${ \mathcal{F}&lt;em&gt;i \spacevert  i \in I }$ is a family of $\sigma$-fields of subsets of $\Omega$, then $\mathcal{G} = \bigcap&lt;/em&gt;{i\in I} \mathcal{F}_i $ is a $\sigma$-field also. 
+\end{lemma}&lt;/p&gt;
+
+&lt;p&gt;\begin{newnotion}{Completeness}
+Let ${\Omega, \mathcal{F}, \Prob}$ be a probability space. Any event $A$ which has zero probability, that is $\Prob(A) = 0$, is called \emph{null}. It may seem reasonable to suppose that any subset $B$ of a null set $A$ will itself be null, but this may be without meaning since $B$ may not be an event, and thus $\Prob(B)$ may not be defined. 
+\end{newnotion}&lt;/p&gt;
+
+&lt;p&gt;\begin{definition}
+A probability space ${\Omega, \mathcal{F}, \Prob}$ is called \textbf{complete} if all subsets of null sets are events. 
+\end{definition}&lt;/p&gt;
+
+&lt;p&gt;Any incomplete space can be completed thus. Let $\mathcal{N}$ be the collection of all subsets of null sets in $\mathcal{F}$ and let $\mathcal{G} = \sigma (\mathcal{F} \cup \mathcal{N})$ be the smallest $\sigma$-field which contains all sets in $\mathcal{F}$ 
+and $\mathcal{N}$. It can be shown that the domain of $\Prob$ may be extended in an obvious way from $\mathcal{F}$ to $\mathcal{G}$; ${\Omega, \mathcal{G}, \Prob}$ is called the completion of ${\Omega, \mathcal{F}, \Prob}$.&lt;/p&gt;
+
+&lt;p&gt;\begin{newnotion}{Product space}
+Suppose two experiments have associated probability spaces ${ \Omega_1, \mathcal{F}_1, \Prob_1 }$ and  ${ \Omega_2, \mathcal{F}_2, \Prob_2 }$ respectively. The sample space of the pair of experiments, considered jointly, is the collection $\Omega_1 \times \Omega_2 = { (\omega_1 , \omega_2) \spacevert w_1 \in \Omega_1, \omega_2 \in \Omega_2 }$ of ordered pairs. The appropriate $\sigma$-field of events is \textbf{more complicated} to construct. \textbf{The family of all such sets, $\mathcal{F}_1 \times \mathcal{F}_2 = {A_1 \times A_2 \spacevert A_1 \in \mathcal{F}_1 , A_1 \in \mathcal{F}_2 }$, is NOT in general a $\sigma$-field.}
+\end{newnotion}&lt;/p&gt;
+
+&lt;p&gt;\begin{remark}
+There exists a unique smallest $\sigma$-field $\mathcal{G} = \sigma(\mathcal{F}&lt;em&gt;1 \times \mathcal{F}_2)$ of subsets of $\Omega_1 \times \Omega_2$ which contains $\mathcal{F}_1 \times \mathcal{F}_2$. All we require now is a suitable probability function on $( \Omega1 \times \Omega_2, \mathcal{G} )$. Let $\Prob&lt;/em&gt;{12}: \mathcal{F}&lt;em&gt;1 \times \mathcal{F}_2 \to [0, 1]$ be given by: 
+\begin{equation*}
+    \Prob(A_1 \times A_2) = \Prob_1(A_1) \times \Prob_2(A_2) \quad \text{for $A_1 \in \mathcal{F}_1, A_2 \in \mathcal{F}_2$}.
+\end{equation*}
+It can be shown that the domain of $\Prob&lt;/em&gt;{12}$ can be extended from $\mathcal{F}_1 \times \mathcal{F}_2$ to the whole of $\mathcal{G} = \sigma(\mathcal{F}_1 \times \mathcal{F}_2)$.
+\end{remark}&lt;/p&gt;
+
+&lt;p&gt;\begin{definition}
+The probability space $(\mathcal{F}&lt;em&gt;1 \times \mathcal{F}_2, \mathcal{G}, \Prob&lt;/em&gt;{12})$ is called the \textbf{product space} of $(\Omega_1, \mathcal{F}&lt;em&gt;1, \Prob_1)$ and  $(\Omega_2, \mathcal{F}_2, \Prob_2)$. The measure $\Prob&lt;/em&gt;{12}$ is sometimes called the `product measure’. 
+\end{definition}&lt;/p&gt;
+
+&lt;p&gt;\end{document}&lt;/p&gt;
+</description>
+        <pubDate>Wed, 02 Oct 2019 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2019/10/notes-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/10/notes-1.html</guid>
+        
+        <category>notes</category>
+        
+        <category>math</category>
+        
+        
+        <category>Probability</category>
+        
+      </item>
+    
+      <item>
+        <title>Notes in Probability</title>
+        <description>&lt;p&gt;I will post a series of notes from the Elements of Probability course which I took in 2019. The notes review the basic concepts in probability. I write them for quick review prupose.&lt;/p&gt;
+
+&lt;p&gt;The notes are mainly based on the book xxx. There are also some other great books in probability theory. For example, xxx&lt;/p&gt;
+</description>
+        <pubDate>Wed, 25 Sep 2019 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2019/09/probability-intro.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/09/probability-intro.html</guid>
+        
+        <category>notes</category>
+        
+        
+        <category>Probability</category>
+        
+      </item>
+    
+  </channel>
+</rss>

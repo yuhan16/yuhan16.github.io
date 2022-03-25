@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Static vs Dynamic Web Pages">
+<title>Static vs Dynamic Web Pages</title>
+<meta property="og:description" content="When we send HTTP requests to the web server, the web server responds to the request and sends the page file (usually with a .html extension) back so that we...">
+<meta property="og:url" content="http://localhost:4000/2021/12/static-dynamic-web.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/freshman21-v2/assets/images/favicon.ico">
+<link rel="stylesheet" href="/freshman21-v2/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2021/12/static-dynamic-web.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/freshman21-v2/assets/css/github.min.css">
+<script src="/freshman21-v2/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/freshman21-v2/"><img src="/freshman21-v2/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/freshman21-v2/">Home</a></li>
+            <li><a href="/freshman21-v2/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/freshman21-v2/topics/probability">Probability</a></li>
+                    <li><a href="/freshman21-v2/topics/optimization">Optimization</a></li>
+                    <li><a href="/freshman21-v2/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/freshman21-v2/topics/web">Web</a></li>
+                    <li><a href="/freshman21-v2/topics/programming">Programming</a></li>
+                    <li><a href="/freshman21-v2/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/freshman21-v2/research">Research</a></li>
+            <li><a href="/freshman21-v2/projects">Projects</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/freshman21-v2/2021/12/static-dynamic-web.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "40px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Static vs Dynamic Web Pages</b></h1>
+    <meta itemprop="keywords" content="tutorial,static web,dynamic web,php" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2021-12-22">
+        Dec 22, 2021
+      </time>
+      &nbsp;in
+      
+        <a href="/freshman21-v2/categories/#Web"><b>Web</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <p>When we send HTTP requests to the web server, the web server responds to the request and sends the page file (usually with a <code class="language-plaintext highlighter-rouge">.html</code> extension) back so that we can view the entire web page in the browser. The way the web server processes and generates the web pages categorizes the web pages into <strong>static</strong> and <strong>dynamic</strong>.</p>
+
+<!--more-->
+
+<h2 id="static-web-pages">Static Web Pages</h2>
+
+<p>A static web page is a page file stored in the web server. Normally, static web pages are stored with a  <code class="language-plaintext highlighter-rouge">.html</code> file extension. Each web page has a unique URL (Uniform Resource Locator). When we request a static web page, the web server finds the page file in the file system and sends it back. The server will not do any processing of the page file.</p>
+
+<figure>
+    <img src="/freshman21-v2/assets/images/blog/2021/2021-12-22-static.png" height="130" />
+    <figcaption>Fig.1: Static web pages served by the web server.</figcaption>
+</figure>
+
+<h2 id="dynamic-web-pages">Dynamic Web Pages</h2>
+
+<p>The web server responds to dynamic web pages after pre-processing. The dynamic web page is stored in a page file with code. The code instructs the web server to pre-process the page file, generates the corresponding HTML file, and then sends it back to the user.</p>
+
+<p>The pre-processing depends on what code the web server uses. The most common programming language for web server development is <a href="https://www.php.net/">PHP</a>. There are other server-side languages such as Python and C#.</p>
+
+<p>We take PhP for example. A dynamic web page written with PhP language is stored in a page file with a  <code class="language-plaintext highlighter-rouge">.php</code> extension. When we request a dynamic web page, the web server first processes the PHP page file and generates the HTML file. Then the server sends the HTML file back to the user.</p>
+
+<figure>
+    <img src="/freshman21-v2/assets/images/blog/2021/2021-12-22-dynamic.png" height="180" />
+    <figcaption>Fig.2: Dynamic web pages served by the web server.</figcaption>
+</figure>
+
+<p>A simple dynamic web page file with PHP looks like this:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;p&gt;</span>This example shows PHP block and its processed output.<span class="nt">&lt;/p&gt;</span>
+        <span class="cp">&lt;?php
+            echo "String Output from PHP Block.";
+        ?&gt;</span>
+         
+        <span class="nt">&lt;p&gt;</span>This PHP code prints addition of two number in the 
+        processed HTML output.<span class="nt">&lt;/p&gt;</span>
+        <span class="cp">&lt;?php
+            echo 1+1;
+        ?&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h2 id="static-vs-dynamic">Static vs Dynamic</h2>
+
+<p>The user can only view the existing page content on a static web page. Therefore, it is more suitable for blogs and news websites. In addition, it is also more secure because the user cannot modify anything on the web page.</p>
+
+<p>A dynamic web page provides more interactions between the user and the website. The code adds more flexibility to the web server to process the web page. It is more suitable for interactive websites such as Google. Let’s consider two examples.</p>
+
+<p>The first example is the stock price query. If we want to check the stock price right now, we request the web server. The web server receives the request and checks the latest database for the stock price. Then the server generates the HTML page file and sends it back. If the stock price web page is static, which means they are pre-generated and stored in the server, we either cannot find the latest stock price, or the web server has to constantly update the page file to ensure the data is in time. Either way, it is not convenient.</p>
+
+<p>The second example is online computing. If we want to perform complex computation, for example, integration, on the web server, we need to input the data first on the website. The web page has to be dynamic. Otherwise, the web server cannot even know what we input on the page. Let along process the input.</p>
+
+<h2 id="resource">Resource</h2>
+
+<p>Some useful materials also introduce this topic:</p>
+
+<p>[1] <a href="https://elextutorial.com/learn-php/dynamic-vs-static-website-static-website-dynamic-website-definition/#:~:text=The%20dynamic%20web%20page%20code%20written%20in%20the%20PHP%20server,is%20served%20to%20the%20user.">Elextutorial Tutorial: Dynamic vs Static Website</a></p>
+
+<p>[2] <a href="https://about.gitlab.com/blog/2016/06/03/ssg-overview-gitlab-pages-part-1-dynamic-x-static/">GitLab SSGs Part 1: A Static vs Dynamic Website</a></p>
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/freshman21-v2/2021/12/jekyll-notes.html" title="jekyll notes">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/freshman21-v2/2021/12/static-site-generators.html" title="Static Site Generators">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+                </div>
+                <div class="col-sm-2">
+    <div class="sidebar-module">
+  <h4>Site Search</h4>
+  <input type="text"> &nbsp; <input type="submit">
+</div>
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/jekyll-1-elements.html" title="Learning Jelly Part 1: Basic Elements" rel="bookmark">Learning Jelly Part 1: Basic Elements</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/static-site-generators.html" title="Static Site Generators" rel="bookmark">Static Site Generators</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/static-dynamic-web.html" title="Static vs Dynamic Web Pages" rel="bookmark">Static vs Dynamic Web Pages</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/jekyll-notes.html" title="jekyll notes" rel="bookmark">jekyll notes</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/11/scss-notes.html" title="Notes on CSS files" rel="bookmark">Notes on CSS files</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/freshman21-v2/categories/#Miscellaneous" title="Miscellaneous" rel="6">Miscellaneous (6)</a></li>
+  
+    <li><a href="/freshman21-v2/categories/#Probability" title="Probability" rel="4">Probability (4)</a></li>
+  
+    <li><a href="/freshman21-v2/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/freshman21-v2/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/freshman21-v2/tags/#sample-post" title="sample-post" rel="1">sample-post</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#structure" title="structure" rel="1">structure</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#configure" title="configure" rel="1">configure</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#notes" title="notes" rel="4">notes</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#math" title="math" rel="3">math</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#jekyll" title="jekyll" rel="2">jekyll</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#html" title="html" rel="2">html</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2021" > <a href="/freshman21-v2/archives/#2021">2021</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/freshman21-v2/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2014" > <a href="/freshman21-v2/archives/#2014">2014</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; <a href="/freshman21-v2/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> on <a href="https://github.com/"><b>Github</b></a>
+                | Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/freshman21-v2/">Home</a> | 
+                <a href="/freshman21-v2/blog">Blog</a> | 
+                <a href="/freshman21-v2/categories">Topics</a> | 
+                <a href="/freshman21-v2/research">Research</a> | 
+                <a href="/freshman21-v2/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/freshman21-v2/2021/12/static-dynamic-web.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/freshman21-v2/2021/12/static-dynamic-web.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

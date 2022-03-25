@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Sets and Probability Measures">
+<title>Sets and Probability Measures</title>
+<meta property="og:description" content="This note reviews the definition of probability measures using the set theory. It also reviews the concept of conditional probability.">
+<meta property="og:url" content="http://localhost:4000/2019/10/notes-1.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/freshman21-v2/assets/images/favicon.ico">
+<link rel="stylesheet" href="/freshman21-v2/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2019/10/notes-1.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/freshman21-v2/assets/css/github.min.css">
+<script src="/freshman21-v2/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/freshman21-v2/"><img src="/freshman21-v2/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/freshman21-v2/">Home</a></li>
+            <li><a href="/freshman21-v2/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/freshman21-v2/topics/probability">Probability</a></li>
+                    <li><a href="/freshman21-v2/topics/optimization">Optimization</a></li>
+                    <li><a href="/freshman21-v2/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/freshman21-v2/topics/web">Web</a></li>
+                    <li><a href="/freshman21-v2/topics/programming">Programming</a></li>
+                    <li><a href="/freshman21-v2/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/freshman21-v2/research">Research</a></li>
+            <li><a href="/freshman21-v2/projects">Projects</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/freshman21-v2/2019/10/notes-1.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "40px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Sets and Probability Measures</b></h1>
+    <meta itemprop="keywords" content="notes,math" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2019-10-02">
+        Oct 2, 2019
+      </time>
+      &nbsp;in
+      
+        <a href="/freshman21-v2/categories/#Probability"><b>Probability</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <h2 id="event-as-sets">Event as sets</h2>
+<p>Probability studies the <strong>repeatable (or ideal) experiments</strong>. The result of an experiment is called an <strong>outcome</strong>.</p>
+
+<div class="theorem-block">
+<p><b>Definition 1.</b> The set of all possible outcomes of an experiment is called the <b>sample space</b> and is denoted by $\Omega$.</p>  
+</div>
+
+<h3 id="cardinality-of-sets">Cardinality of sets</h3>
+<p>The cardinality of a set $\Omega$ refers to the number of the number of elements in this set, and is denoted by $\mathbf{carf}(\Omega)$ or $\vert \Omega \vert$.</p>
+<ul>
+  <li>For finite sets, $\mathbf{card}(\Omega)$ is a natural number.</li>
+  <li>For the integer set, $\mathbf{card}(\mathbb{Z}) = \aleph_0$, which is countable.</li>
+  <li>For the real number set, $\mathbf{card}(\mathbb{R}) = \aleph_1 &gt; \aleph_0$.</li>
+</ul>
+
+<p>The <strong>power set</strong> of a set $\Omega$ is the set of all subsets, which is denoted by $2^\Omega$.</p>
+<ul>
+  <li>For $\mathbb{Z}$, $\mathbf{card}(2^\mathbb{Z}) = \aleph_1 = \mathbf{card}(\mathbb{R})$.</li>
+</ul>
+
+<p>In practical, sets in probability are: <strong>finite</strong>, <strong>countable</strong>, <strong>reals</strong> and their variants.</p>
+
+<p>When we conduct an experiment, we want to know whether a subset occurs or not. For example, if we take a number from $\mathbb{R}$, the probability will be 0 because $\card(\mathbb{R})$ is very large. Therefore,
+\begin{center}
+\emph{we are interested in $A \subset \Omega$ in probability, where $A$ is a collection of subsets in probability.}
+\end{center}</p>
+
+<p>\subsection{Events and fields}
+\begin{definition}
+The \textbf{events} are subsets of the sample space $\Omega$. 
+\end{definition}</p>
+
+<p>\begin{remark}
+$\varnothing$ is called the \emph{impossible event}. The set $\Omega$ is called the \emph{certain event}. Events $A$ and $B$ are called \emph{disjoint} if their intersection is the empty set.
+\end{remark}</p>
+
+<p>We do \textbf{NOT} need all the subsets of $\Omega$ be events. It suffices for us to think of the collection of events as a subcollection $\mathcal{F}$ of the set of all subsets of $\Omega$.
+\begin{definition}
+Any collection $\mathcal{F}$ of subsets of $\Omega$ which satisfies the following three conditions is called a field:
+\begin{enumerate}[(a)]
+    \item if $A, B \in \mathcal{F}$, then $A \cup B \in \mathcal{F}$ and $A \cap B \in \mathcal{F}$ (actually $A\cap B \in \mathcal{F}$ is redundant); 
+    \item if $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$;
+    \item the empty set $\varnothing$ belongs to $\mathcal{F}$.
+\end{enumerate}
+\end{definition}</p>
+
+<p>\begin{remark}
+Some implications from the properties of a filed $\mathcal{F}$:
+\begin{itemize}
+    \item if $A_1, \dots, A_n \in \mathcal{F}$, then $\bigcup_{i=1}^n A_i \in \mathcal{F}$;
+    \item $\varnothing^C = \Omega \in \mathcal{F}$;
+    \item $A \cap B = (A^c \cup B^c)^C \in \mathcal{F}$.
+\end{itemize}
+\end{remark}</p>
+
+<p>\begin{question}
+what if we have an $\Omega$ such that $\card(\Omega) = \aleph_0$? In this case, we may need $2^\Omega$ to study the probability. 
+\end{question}</p>
+
+<p>\begin{definition}
+A collection $\mathcal{F}$ of subsets of $\Omega$ is called a $\sigma$-field if it satisfies the following conditions: 
+\begin{enumerate}[(a)]
+    \item $\varnothing \in \mathcal{F}$;
+    \item if $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$;
+    \item if $A_1, A_2, \dots \in \mathcal{F}$, then $\bigcup_{i=1}^\infty A_i \in \mathcal{F}$.
+\end{enumerate}
+\end{definition}</p>
+
+<p>\begin{remark}
+$\sigma$-fields are closed under the operation of taking countable intersections.
+\end{remark}</p>
+
+<p>\begin{example}
+The smallest $\sigma$-field associated with $\Omega$ is the collection $\mathcal{F} = {\varnothing, \Omega }$.
+\end{example}</p>
+
+<p>\begin{example}
+If $A \subset \Omega$, then $\mathcal{F} = {\varnothing, A, A^c, \Omega }$ is a $\sigma$-field. 
+\end{example}</p>
+
+<p>\begin{example}
+The power set of $\Omega$ is a $\sigma$-field.
+\end{example}</p>
+
+<p>With any experiment we may associate a pair ${\Omega, \mathcal{F}}$, where $\Omega$ is the set of all possible outcomes or elementary events and $\mathcal{F}$ is a $\sigma$-field of subsets of $\Omega$ which contains \emph{all the events in whose occurrences we may be interested}; henceforth, to call a set $A$ an event is equivalent to asserting that $A$ belongs to the $\sigma$-field in question.</p>
+
+<p>\section{Probability}
+Assume we have a ``repeatable” experiment and we repeat the experiment a large number $N$ of times. Let $A \in \Omega$ and $N(A)$ be the number of $A$ occurs in the $N$ trails. Intuitively, the ratio $N(A)/ N$ appears to converge to a constant limit as $N$ increases. In practice, we have 
+\begin{itemize}
+    \item $0 \leq N(A)/ N \leq 1$;
+    \item if $A, B$ are disjoint, then $N(A \cup B) = N(A) + N(B)$. (finite additive and countably additive)
+\end{itemize}</p>
+
+<p>\begin{definition}
+A \textbf{probability measure} $\Prob$ on ${ \Omega, \mathcal{F} }$ is a function $\Prob : \mathcal{F} \to [0,1]$ satisfying
+\begin{enumerate}[(a)]
+    \item $\Prob(\varnothing) = 0$;
+    \item $\Prob(\Omega) = 1$;
+    \item  if $A_1, A2, \dots$ is a collection of disjoint members of $\mathcal{F}$, in that $A_i \cap A_j = \varnothing$ for all pairs $i, j$ satisfying $i \neq j$, then
+    \begin{equation<em>}
+        \Prob\left( \bigcup_{i=1}^\infty A_i \right) = \sum_{i=1}^\infty \Prob (A_i).
+    \end{equation</em>}
+\end{enumerate}
+\end{definition}
+The triple ${ \Omega, \mathcal{F}, \Prob }$, comprising a set $\Omega$, a $\sigma$-field $\mathcal{F}$ of subsets of $\Omega$, and a probability measure $\Prob$ on ${\Omega, \mathcal{F}}$, is called a \textbf{probability space}. We can associate a probability space ${ \Omega, \mathcal{F}, \Prob }$ with any experiment, and all questions associated with the experiment can be reformulated in terms of this space.</p>
+
+<p>\begin{remark}
+A probability measure is a special example of what is called a \emph{measure} on the pair ${\Omega, \mathcal{F}}$. A measure is a function $\mu: \mathcal{F} \to [0, \infty)$ satisfying $\mu(\varnothing) = 0$ together with (c) above. A measure $\mu$ is a probability measure if $\mu(\Omega) = 1$. 
+\end{remark}</p>
+
+<p>\begin{lemma}
+We can deduce some lemmas from the definition.
+\begin{enumerate}[(a)]
+    \item $\Prob(A^c) = 1 - \Prob(A)$;
+    \item if $A \subseteq B$, then $\Prob(B) = \Prob(A) + \Prob(B\backslash A) \geq \Prob(A)$;
+    \item $\Prob(A \cup B) = \Prob(A) + \Prob(B) - \Prob(A \cap B)$;
+    \item more generally, if $A_1, A_2, \dots, A_n$ are events, then 
+    \begin{equation<em>}
+        \begin{split}
+        \Prob\left( \bigcup_{i=1}^n A_i \right) =&amp; \sum_{i}\Prob(A_i) - \sum_{i &lt; j} \Prob(A_i \cap A_j) + \sum_{i&lt;j&lt;k} \Prob(A_i \cap A_j \cap A_k) - \cdots <br />
+        &amp; +(-1)^{n+1} \Prob(A_1 \cap A_2 \cap \cdots \cap A_n)
+        \end{split}
+    \end{equation</em>}
+\end{enumerate}
+\end{lemma}</p>
+
+<p>\begin{lemma}
+Let $A_1, A_2, \dots$ be an increasing sequence of events, so that $A_1 \subset A_2 \subset A_3 \subset \cdots$, and write $A$ for their limit:
+\begin{equation<em>}
+    A = \bigcup_{i=1}^\infty A_i = \lim_{i \to \infty} A_i.
+\end{equation</em>}
+Then $\Prob(A) = \lim_{i\to\infty} \Prob(A_i)$.</p>
+
+<p>Similarly, if $B_1, B_2, \dots$ is a decreasing sequence of events, so that $B_1 \supseteq  B_2 \supseteq B_3 \supseteq \cdots$, then 
+\begin{equation<em>}
+    B = \bigcap_{i=1}^\infty B_i = \lim_{i \to \infty} B_i
+\end{equation</em>}
+satisfies $\Prob(B) = \lim_{i\to\infty} \Prob(B_i)$
+\end{lemma}</p>
+
+<p>\section{Some useful concepts}
+\subsection{Conditional probability}
+What if we only care how many times does $A$ occur only when $B$ occurs? $N(A\cap B) / N(B)$, the universe is changed. 
+\begin{definition}
+If $\Prob(B) &gt; 0$, then the \textbf{conditional probability} that $A$ occurs given that $B$ occurs is defined to be
+\begin{equation<em>}
+    \Prob(A \spacevert B) = \frac{\Prob(A \cap B)}{\Prob(B)}.
+\end{equation</em>}
+\end{definition}</p>
+
+<p>\begin{definition}
+Suppose ${B_i}$ is a finite set. If $B_i$ are all disjoint and $\bigcup_{i=1}^n B_i = \Omega$, then ${B_i}$ is called a \textbf{partition} of $\Omega$.
+\end{definition}</p>
+
+<p>\begin{lemma}
+For any events $A$ and $B$ such that $0 &lt; \Prob(B) &lt; 1$,
+\begin{equation<em>}
+    \Prob(A) = \Prob(A \spacevert B) \Prob(B) + \Prob(A \spacevert B^c) \Prob(B^c).
+\end{equation</em>}
+More generally, let $B_1,  B_2, \dots, B_n$ be a partition of $\Omega$ such that $\Prob(B_i) &gt; O$ for all $i$. Then 
+\begin{equation<em>}
+    \Prob(A) = \sum_i \Prob(A \spacevert B_i) \Prob(B_i).
+\end{equation</em>}
+\end{lemma}</p>
+
+<p>\subsection{Independence}
+Intuition: an event $A$ occurs doesn’t affect the probability of $A$ occurs when $B$ occurs, which means $\Prob(A) = \Prob(A\spacevert B)$.</p>
+
+<p>\begin{definition}
+Events $A$ and $B$ are called \textbf{independent} if 
+\begin{equation<em>}
+    \Prob(A \cap B) = \Prob(A) \Prob(B).
+\end{equation</em>}
+More generally, a family ${A_i \spacevert i \in I}$ is called independent if
+\begin{equation<em>}
+    \Prob \left( \bigcap_{i \in J} A_i \right) = \prod_{i\in J} \Prob(A_i)
+\end{equation</em>}
+for all finite subsets $J$ of $I$. 
+\end{definition}</p>
+
+<p>\begin{caution}
+A common \emph{student error} is to make the fallacious statement that $A$ and $B$ are independent if $A \cap B = \varnothing$.
+\end{caution}</p>
+
+<p>\begin{remark}
+If the family ${A_i \spacevert i \in I}$ has the property that 
+for all 
+\begin{equation<em>}
+    \Prob(A_i \cap A_j) = \Prob(A_i) \Prob(A_j) \quad \forall i\neq j, 
+\end{equation</em>}
+then it is called \emph{pairwise independent}. \textbf{Pairwise-independent families are not necessarily independent.} 
+\end{remark}</p>
+
+<p>\section{Completeness and product space}
+\begin{lemma}
+If $\mathcal{F}$ and $\mathcal{G}$ are two $\sigma$-fields of subsets of $\Omega$, then their intersection $\mathcal{F} \cap \mathcal{G}$ is a $\sigma$-field also. More generally, if ${ \mathcal{F}<em>i \spacevert  i \in I }$ is a family of $\sigma$-fields of subsets of $\Omega$, then $\mathcal{G} = \bigcap</em>{i\in I} \mathcal{F}_i $ is a $\sigma$-field also. 
+\end{lemma}</p>
+
+<p>\begin{newnotion}{Completeness}
+Let ${\Omega, \mathcal{F}, \Prob}$ be a probability space. Any event $A$ which has zero probability, that is $\Prob(A) = 0$, is called \emph{null}. It may seem reasonable to suppose that any subset $B$ of a null set $A$ will itself be null, but this may be without meaning since $B$ may not be an event, and thus $\Prob(B)$ may not be defined. 
+\end{newnotion}</p>
+
+<p>\begin{definition}
+A probability space ${\Omega, \mathcal{F}, \Prob}$ is called \textbf{complete} if all subsets of null sets are events. 
+\end{definition}</p>
+
+<p>Any incomplete space can be completed thus. Let $\mathcal{N}$ be the collection of all subsets of null sets in $\mathcal{F}$ and let $\mathcal{G} = \sigma (\mathcal{F} \cup \mathcal{N})$ be the smallest $\sigma$-field which contains all sets in $\mathcal{F}$ 
+and $\mathcal{N}$. It can be shown that the domain of $\Prob$ may be extended in an obvious way from $\mathcal{F}$ to $\mathcal{G}$; ${\Omega, \mathcal{G}, \Prob}$ is called the completion of ${\Omega, \mathcal{F}, \Prob}$.</p>
+
+<p>\begin{newnotion}{Product space}
+Suppose two experiments have associated probability spaces ${ \Omega_1, \mathcal{F}_1, \Prob_1 }$ and  ${ \Omega_2, \mathcal{F}_2, \Prob_2 }$ respectively. The sample space of the pair of experiments, considered jointly, is the collection $\Omega_1 \times \Omega_2 = { (\omega_1 , \omega_2) \spacevert w_1 \in \Omega_1, \omega_2 \in \Omega_2 }$ of ordered pairs. The appropriate $\sigma$-field of events is \textbf{more complicated} to construct. \textbf{The family of all such sets, $\mathcal{F}_1 \times \mathcal{F}_2 = {A_1 \times A_2 \spacevert A_1 \in \mathcal{F}_1 , A_1 \in \mathcal{F}_2 }$, is NOT in general a $\sigma$-field.}
+\end{newnotion}</p>
+
+<p>\begin{remark}
+There exists a unique smallest $\sigma$-field $\mathcal{G} = \sigma(\mathcal{F}<em>1 \times \mathcal{F}_2)$ of subsets of $\Omega_1 \times \Omega_2$ which contains $\mathcal{F}_1 \times \mathcal{F}_2$. All we require now is a suitable probability function on $( \Omega1 \times \Omega_2, \mathcal{G} )$. Let $\Prob</em>{12}: \mathcal{F}<em>1 \times \mathcal{F}_2 \to [0, 1]$ be given by: 
+\begin{equation*}
+    \Prob(A_1 \times A_2) = \Prob_1(A_1) \times \Prob_2(A_2) \quad \text{for $A_1 \in \mathcal{F}_1, A_2 \in \mathcal{F}_2$}.
+\end{equation*}
+It can be shown that the domain of $\Prob</em>{12}$ can be extended from $\mathcal{F}_1 \times \mathcal{F}_2$ to the whole of $\mathcal{G} = \sigma(\mathcal{F}_1 \times \mathcal{F}_2)$.
+\end{remark}</p>
+
+<p>\begin{definition}
+The probability space $(\mathcal{F}<em>1 \times \mathcal{F}_2, \mathcal{G}, \Prob</em>{12})$ is called the \textbf{product space} of $(\Omega_1, \mathcal{F}<em>1, \Prob_1)$ and  $(\Omega_2, \mathcal{F}_2, \Prob_2)$. The measure $\Prob</em>{12}$ is sometimes called the `product measure’. 
+\end{definition}</p>
+
+<p>\end{document}</p>
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/freshman21-v2/2019/09/probability-intro.html" title="Notes in Probability">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/freshman21-v2/2019/10/notes-2.html" title="Randon Variables">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+                </div>
+                <div class="col-sm-2">
+    <div class="sidebar-module">
+  <h4>Site Search</h4>
+  <input type="text"> &nbsp; <input type="submit">
+</div>
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/jekyll-1-elements.html" title="Learning Jelly Part 1: Basic Elements" rel="bookmark">Learning Jelly Part 1: Basic Elements</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/static-site-generators.html" title="Static Site Generators" rel="bookmark">Static Site Generators</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/static-dynamic-web.html" title="Static vs Dynamic Web Pages" rel="bookmark">Static vs Dynamic Web Pages</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/jekyll-notes.html" title="jekyll notes" rel="bookmark">jekyll notes</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/11/scss-notes.html" title="Notes on CSS files" rel="bookmark">Notes on CSS files</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/freshman21-v2/categories/#Miscellaneous" title="Miscellaneous" rel="6">Miscellaneous (6)</a></li>
+  
+    <li><a href="/freshman21-v2/categories/#Probability" title="Probability" rel="4">Probability (4)</a></li>
+  
+    <li><a href="/freshman21-v2/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/freshman21-v2/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/freshman21-v2/tags/#sample-post" title="sample-post" rel="1">sample-post</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#structure" title="structure" rel="1">structure</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#configure" title="configure" rel="1">configure</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#notes" title="notes" rel="4">notes</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#math" title="math" rel="3">math</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#jekyll" title="jekyll" rel="2">jekyll</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#html" title="html" rel="2">html</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2021" > <a href="/freshman21-v2/archives/#2021">2021</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/freshman21-v2/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2014" > <a href="/freshman21-v2/archives/#2014">2014</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; <a href="/freshman21-v2/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> on <a href="https://github.com/"><b>Github</b></a>
+                | Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/freshman21-v2/">Home</a> | 
+                <a href="/freshman21-v2/blog">Blog</a> | 
+                <a href="/freshman21-v2/categories">Topics</a> | 
+                <a href="/freshman21-v2/research">Research</a> | 
+                <a href="/freshman21-v2/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/freshman21-v2/2019/10/notes-1.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/freshman21-v2/2019/10/notes-1.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

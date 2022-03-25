@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Notes on CSS files">
+<title>Notes on CSS files</title>
+<meta property="og:description" content="This notes documents the usage of css classes.">
+<meta property="og:url" content="http://localhost:4000/2021/11/scss-notes.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/freshman21-v2/assets/images/favicon.ico">
+<link rel="stylesheet" href="/freshman21-v2/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2021/11/scss-notes.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/freshman21-v2/assets/css/github.min.css">
+<script src="/freshman21-v2/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/freshman21-v2/"><img src="/freshman21-v2/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/freshman21-v2/">Home</a></li>
+            <li><a href="/freshman21-v2/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/freshman21-v2/topics/probability">Probability</a></li>
+                    <li><a href="/freshman21-v2/topics/optimization">Optimization</a></li>
+                    <li><a href="/freshman21-v2/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/freshman21-v2/topics/web">Web</a></li>
+                    <li><a href="/freshman21-v2/topics/programming">Programming</a></li>
+                    <li><a href="/freshman21-v2/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/freshman21-v2/research">Research</a></li>
+            <li><a href="/freshman21-v2/projects">Projects</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/freshman21-v2/2021/11/scss-notes.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "40px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Notes on CSS files</b></h1>
+    <meta itemprop="keywords" content="css" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2021-11-01">
+        Nov 1, 2021
+      </time>
+      &nbsp;in
+      
+        <a href="/freshman21-v2/categories/#Miscellaneous"><b>Miscellaneous</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <p>This notes documents the usage of css classes.
+<!--more--></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>container-all  <span class="c"># entire body</span>
+|- header-container    <span class="c"># through header, format only</span>
+|  <span class="sb">`</span>- navbar           <span class="c"># small header, container only with clearfix</span>
+|- body-container      <span class="c"># through body, format only</span>
+|   <span class="sb">`</span>- page-content    <span class="c"># small body page, container only with clearfix</span>
+|- footer-container    <span class="c"># through footer, format only</span>
+|  <span class="sb">`</span>- footer-content   <span class="c"># small footer, container only with clearfix</span>
+</code></pre></div></div>
+
+<p>There is only one <code class="language-plaintext highlighter-rouge">page</code> class: <code class="language-plaintext highlighter-rouge">page-content</code>, which defines the format of the page content.</p>
+
+<p>There is a series of <code class="language-plaintext highlighter-rouge">post</code> class:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">post</code>: no css definition, only used to group things.</li>
+  <li><code class="language-plaintext highlighter-rouge">post-header</code>: contains <code class="language-plaintext highlighter-rouge">post-title</code> and <code class="language-plaintext highlighter-rouge">post-meta</code></li>
+  <li><code class="language-plaintext highlighter-rouge">post-title</code>: defines post titile formats, including h1-h4</li>
+  <li><code class="language-plaintext highlighter-rouge">post-meta</code>: defines meta information under post title</li>
+  <li><code class="language-plaintext highlighter-rouge">post-content</code>: defines post content format.</li>
+  <li><code class="language-plaintext highlighter-rouge">post-link:</code>: defines link format in the post.</li>
+</ul>
+
+<p>There is another css file <code class="language-plaintext highlighter-rouge">layout_research.scss</code>, which defines the formats of math related posts and publications.</p>
+
+<p>There are two different <code class="language-plaintext highlighter-rouge">index</code> classes:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">page-index</code>: display current page and JS. not in <code class="language-plaintext highlighter-rouge">post</code> class.</li>
+  <li><code class="language-plaintext highlighter-rouge">post-index</code>: previous and next posts. not in <code class="language-plaintext highlighter-rouge">post</code> class.</li>
+</ul>
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/freshman21-v2/2021/10/wellcome.html" title="Build Up My Own Website!">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/freshman21-v2/2021/12/jekyll-notes.html" title="jekyll notes">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+                </div>
+                <div class="col-sm-2">
+    <div class="sidebar-module">
+  <h4>Site Search</h4>
+  <input type="text"> &nbsp; <input type="submit">
+</div>
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/jekyll-1-elements.html" title="Learning Jelly Part 1: Basic Elements" rel="bookmark">Learning Jelly Part 1: Basic Elements</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/static-site-generators.html" title="Static Site Generators" rel="bookmark">Static Site Generators</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/static-dynamic-web.html" title="Static vs Dynamic Web Pages" rel="bookmark">Static vs Dynamic Web Pages</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/12/jekyll-notes.html" title="jekyll notes" rel="bookmark">jekyll notes</a>
+  </li>
+  
+  <li>
+  <a href="/freshman21-v2/2021/11/scss-notes.html" title="Notes on CSS files" rel="bookmark">Notes on CSS files</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/freshman21-v2/categories/#Miscellaneous" title="Miscellaneous" rel="6">Miscellaneous (6)</a></li>
+  
+    <li><a href="/freshman21-v2/categories/#Probability" title="Probability" rel="4">Probability (4)</a></li>
+  
+    <li><a href="/freshman21-v2/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/freshman21-v2/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/freshman21-v2/tags/#sample-post" title="sample-post" rel="1">sample-post</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#structure" title="structure" rel="1">structure</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#configure" title="configure" rel="1">configure</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#notes" title="notes" rel="4">notes</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#math" title="math" rel="3">math</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#jekyll" title="jekyll" rel="2">jekyll</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#html" title="html" rel="2">html</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/freshman21-v2/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2021" > <a href="/freshman21-v2/archives/#2021">2021</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/freshman21-v2/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2014" > <a href="/freshman21-v2/archives/#2014">2014</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; <a href="/freshman21-v2/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> on <a href="https://github.com/"><b>Github</b></a>
+                | Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/freshman21-v2/">Home</a> | 
+                <a href="/freshman21-v2/blog">Blog</a> | 
+                <a href="/freshman21-v2/categories">Topics</a> | 
+                <a href="/freshman21-v2/research">Research</a> | 
+                <a href="/freshman21-v2/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/freshman21-v2/2021/11/scss-notes.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/freshman21-v2/2021/11/scss-notes.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

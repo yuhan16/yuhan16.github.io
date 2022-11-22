@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Markov Chain">
+<title>Markov Chain</title>
+<meta property="og:description" content="This note reviews the basics of Markov chains.">
+<meta property="og:url" content="http://localhost:4000/2020/11/notes-7.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2020/11/notes-7.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/topics/probability">Probability</a></li>
+                    <!--li><a href="/topics/optimization">Optimization</a></li-->
+                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/topics/web">Web</a></li>
+                    <li><a href="/topics/programming">Programming</a></li>
+                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/publications">Publications</a></li>
+            <!--li><a href="/projects">Projects</a></li-->
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/2020/11/notes-7.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "20px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Markov Chain</b></h1>
+    <meta itemprop="keywords" content="notes,math" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2020-11-13">
+        Nov 13, 2020
+      </time>
+      &nbsp;in
+      
+        <a href="/categories/#Probability"><b>Probability</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <p>Most of our study of probability has dealt with independent trials processes, in which we have i.i.d. random variables $X_i$. This is useful for modeling and sampling situations. But when study random dynamical systems, they are less useful. In these cases, ${X_i}$ are no longer independent because they are all part of the system, and they have to interact with each other. So one way to modeling this is to use conditional probability.</p>
+
+<h2 id="markov-chains-basic-definitions">Markov chains: basic definitions</h2>
+<p>Consider a countable sequence $X_1, X_2, \dots, X_n, \dots$ which</p>
+<ul>
+    <li> the subscript represents time, thus we have discrete time sequence;</li>
+    <li> each $X_i$ has finite outcomes.</li>
+</ul>
+<p>In other words, each $X_i$ is a discrete random variable that takes one of $N$ possible values, where 
+$N = \mathbf{card}(S)$ and $S$ is the outcome space; it may be the case that $N = \infty$.</p>
+
+<div class="theorem"><p><b>Definition.</b> 
+The process $X$ is a Markov chain if it satisfies the <b>Markov condition</b>:
+$$\begin{equation}
+    \mathbf{P}\left(X_{n}=s | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n-1}=x_{n-1}\right)=\mathbf{P}\left(X_{n}=s | X_{n-1}=x_{n-1}\right)
+\end{equation}$$
+for all $n\geq 1$ ans all $s, x_1, \dots, x_{n-1} \in S$.
+</p></div>
+<p>Since $S$ is assumed countable, it can be put in one-to-one correspondence with some subset $S’$ of the integers, and without loss of generality we can assume that $S$ is this set $S’$ of integers. Then the evolution of a chain is described by its <strong>transition probabilities</strong> 
+\(\begin{equation}
+    \label{eq:7.1}
+    \tag{7-1}
+    \mathbf{P}(X_{n} = j \;\vert\; X_{n-1} = i) := p_{ij}(n-1).
+\end{equation}\)</p>
+
+<div class="theorem"><p><b>Theorem.</b> 
+The transition matrix $P$ is a **stochastic matrix**, which is to say that: 
+<ol>
+    <li> $P$ has non-negative entries, or $p_{ij} \geq 0$ for all $i, j$,</li>
+    <li> $P$ has row sums equal to one, or $\sum_j p_{ij} = 1$ for all $i$.</li>
+</ol>
+</p></div>
+
+<p>%Note that the Markov property is equivalent to the following stipulation, which is also called <strong>$k$-step transition probabilities</strong>.</p>
+
+<div class="theorem"><p><b>Definition.</b> 
+The **$k$-step transition probabilities** is defined as
+$$\begin{equation}
+    \label{eq:7.2}
+    \tag{7-2}
+    \mathbf{P}(X_{n+k-1} = j \;\vert\; X_{n-1} = i) := p_{ij}^{(k)}(n-1) \quad \text{for any } n, k \geq 1.
+\end{equation}$$
+</p></div>
+
+<p>%Based on this, we can define</p>
+<div class="theorem"><p><b>Definition.</b> 
+The **transition matrix** $P(n-1) = (p_{ij}(n-1))$ is the $\left\vert S \right\vert \times \left\vert S \right\vert$ matrix of **transition probabilities** $p_{ij}(n-1)$. The **$k$-step transition matrix** $P^{(k)}(n-1) = (p_{ij}^{(k)}(n-1))$ is the matrix of **$k$-step transition probabilities** $p_{ij}^{(k)}(n-1)$.
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+We can check that the Markov property is equivalent to each of the following two stipulations: for each $s \in S$ and for every sequence $\{ x_i \;\vert\; i \geq 0\}$ in $S$,
+$$\begin{equation}
+    \label{eq:7.3a}
+    \tag{7-3a}
+    \begin{split}
+        \mathbf{P}\left(X_{n+1}=s | X_{n_{1}}=x_{n_{1}}, X_{n_{2}}=x_{n_{2}}, X_{n_{k}}=x_{n_{k}}\right)=\mathbf{P}\left(X_{n+1}=s | X_{n_{k}}=x_{n_{k}}\right) \\
+        \text{for all } n_1 &lt; n_2 &lt; \cdots &lt; n_k \leq n.
+    \end{split}
+\end{equation}$$
+$$\begin{equation}
+    \label{eq:7.3b}
+    \tag{7-3b}
+    \begin{split}
+        \mathbf{P}\left(X_{m+n}=s | X_{0}=x_{0}, X_{1}=x_{1}, \ldots, X_{m}=x_{m}\right)=\mathbf{P}\left(X_{m+n}=s | X_{m}=x_{m}\right) \\ 
+        \text{for any } m, n \geq 0.
+    \end{split}
+\end{equation}$$
+</p></div>
+
+<p>Next we introduce another assumption:</p>
+<div class="theorem"><p><b>Definition.</b> 
+The chain $X$ is called **homogeneous** if
+$$\begin{equation}
+    \mathbf{P}(X_n = j \;\vert\; X_{n-1} = i) = \mathbf{P}(X_2 = j \;\vert\; X_1 = i), \quad \text{for all } n, i, j.
+\end{equation}$$
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+Note the following two remarks.
+<ol>
+    <li> Markov property and homogeneity property are **independent**. There are also Markov chains which are not homogeneous.</li>
+    <li> If a Markov chain $X$ is homogeneous, then $p_{ij}(n-1)$ doesn't depends on the time $(n-1)$, i.e., the probability transition matrix $P$ is **fixed** at each step.</li>
+</ol>
+</p></div>
+
+<h2 id="properties-of-markov-chains">Properties of Markov chains</h2>
+<p>By the assumption of homogeneity, we know $P(n-1) = P$. That $P^{(k)}(n-1)$ doesn’t depend on $(n-1)$ is a consequence of the following important fact.</p>
+
+<div class="theorem"><p><b>Theorem.</b> [Chapman-Kolmogorov equations]
+$$\begin{equation}
+    p_{ij}^{(n+r)}(m) = \sum_{k} p_{ik}^{(n)}(m) p_{kj}^{(r)}(m+n).
+\end{equation}$$
+Therefore, 
+$$\begin{equation}
+    P^{(n+r)}(m) = P^{(n)}(m) P^{(r)}(m+n).
+\end{equation}$$
+Furthermore, if we have homogeneity, then 
+$$\begin{equation}
+    P^{n}(m) = P^n,
+\end{equation}$$
+the $n$th power of $P$.
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf1-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf1-content"><p>
+    $$\begin{equation}
+        \begin{split}
+            p_{ij}^{n+r}(m) &amp;= \mathbf{P}(X_{m+n+r} = j \;\vert\; X_m = i) \\ 
+            &amp;= \sum_{k} \mathbf{P}(X_{m+n+r} = j, X_{m+n} = k \;\vert\; X_m = i) \\
+            &amp;= \sum_{k} \mathbf{P}(X_{m+n+r} = j \;\vert\; X_{m+n} = k, X_m = i) \mathbf{P}(X_{m+n} = k \;\vert\; X_m = i) \quad \text{(marginalization)} \\
+            &amp;= \sum_{k} \mathbf{P}(X_{m+n+r} = j \;\vert\; X_{m+n} = k) \mathbf{P}(X_{m+n} = k \;\vert\; X_m = i) \quad \text{(Markov property)} \\
+            &amp;= \sum_{k} p_{kj}^{(r)}(m+n) p_{ik}^{(n)}(m) . 
+        \end{split}
+    \end{equation}$$
+    The marginalization step uses the fact that 
+    $$\begin{equation}
+        \mathbf{P}(A \cap B \;\vert\; C) = \mathbf{P}(A \;\vert\; B \cap C) \mathbf{P}(B \;\vert\; C).
+    \end{equation}$$
+    The Markov property step uses \eqref{eq:7.3a}. The $n$th power is obtained by iteration.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf1");</script>
+
+<p>One consequence of the preceding theorem is that $P^{(n)}(m) = P^{(n)}(0)$. Note that this consequence is obtained <strong>with homogeneous assumption</strong>. We write $P_n$ for $P^{(n)}(m)$ and $p_{ij}(n)$ for $p_{ij}^{(n)}(m)$. This theorem relates long-term development to short-term development, and tells us how $X_n$ depends on the initial variable $X_0$. Let $\mu_i^{(n)} = \mathbf{P}(X_n = i)$ be the mass function of $X_n$, and write $\mu^{(n)}$ for the <strong>row vector</strong> with entries $(\mu_i^{(n)} : i \in S)$. Then we have the following lemma.</p>
+
+<div class="theorem"><p><b>Lemma.</b> 
+$\mu^{(m+n)} = \mu^{(m)}P_n$, and hence $\mu^{(n)} = \mu^{(0)}P^n$.
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf2-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf2-content"><p>
+    We have that
+    $$\begin{equation}
+        \begin{split}
+            \mu_j^{(m+n)} &amp;= \mathbf{P}(X_{m+n} = j) \\
+            &amp;= \sum_{i} \mathbf{P}(X_{m+n} = j \;\vert\; X_m = i) \mathbf{P}(X_m = i) \\
+            &amp;= \sum_{i} \mu_i^{(m)} p_{ij}(n) \\
+            &amp;= (\mu^{(m)} P_n)_j
+        \end{split}
+    \end{equation}$$
+    and the result follows from the preceding theorem.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf2");</script>
+
+<p>The random evolution of the chain is determined by the transition matrix $P$ and the initial mass function $\mu^{(0)}$.</p>
+
+<h2 id="absorbing-markov-chains">Absorbing Markov chains</h2>
+<p>An absorbing Markov chain is a special type of Markov chains.</p>
+
+<div class="theorem"><p><b>Definition.</b> 
+A state $s_i$ of a Markov chain is called **absorbing** if it is impossible to leave it (i.e., $p_{ii} = 1$). A Markov chain is **absorbing** if it has at least one absorbing state, and if from every state it is possible to go to an absorbing state (not necessarily in one step).
+</p></div>
+
+<div class="theorem"><p><b>Definition.</b> 
+In an absorbing Markov chain, a state which is not absorbing is called **transient**.
+</p></div>
+
+<h3 id="canonical-form-of-absorbing-markov-chains">Canonical form of absorbing Markov chains</h3>
+<p>Consider an arbitrary absorbing Markov chain. Renumber the states so that the transient states come first. If there are $r$ absorbing states and $t$ transient states, the transition matrix will have the following canonical form
+\begin{equation}
+    P = 
+    \begin{blockarray}{rcc}
+        &amp; TR. &amp; ABS. <br />
+    \begin{block}{r[cc]}
+        TR. &amp; Q &amp;  R <br />
+        ABS. &amp; 0 &amp;  I <br />
+    \end{block}
+    \end{blockarray}
+\end{equation}
+Here $I$ is an $r\times r$ identity matrix, $0$ is an $r\times t$ zero matrix, $R$ is a nonzero $t\times r$ matrix, and $Q$ is an $t\times t$ matrix. The first $t$ states are transient and the last $r$ states are absorbing.</p>
+
+<p>A standard matrix algebra argument shows that $P^n$ is of the form
+\begin{equation}
+    P^n = 
+    \begin{blockarray}{rcc}
+        &amp; TR. &amp; ABS. <br />
+    \begin{block}{r[cc]}
+        TR. &amp; Q^n &amp;  * <br />
+        ABS. &amp; 0 &amp;  I <br />
+    \end{block}
+    \end{blockarray}
+\end{equation}
+where the asterisk $*$ stands for the $t\times r$ matrix in the upper right-hand corner of $P^n$.</p>
+
+<p>The entries of $Q_n$ give the probabilities for being in each of the transient states after $n$ steps for each possible transient starting state. The following theorem will show that every entry of $Q_n$ will approach zero as $n$ approaches infinity (i.e., $Q_n \to 0$).</p>
+
+<div class="theorem"><p><b>Theorem.</b> 
+In an absorbing Markov chain, the probability that the process will be absorbed is 1 (i.e., $Q_n \to 0$ as $n \to \infty$).
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf3-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf3-content"><p>
+From each non-absorbing state $s_j$ it is possible to reach an absorbing state. Let $m_j$ be the minimum number of steps required to reach an absorbing state, starting from $s_j$. Let $p_j$ be the probability that, starting from $s_j$, the process will not reach an absorbing state in $m_j$ steps. Then $p_j &lt; 1$. Let $m$ be the largest of the $m_j$ and let $p$ be the largest of $p_j$. The probability of not being absorbed in $m$ steps is less than or equal to $p$, in $2m$ steps less than or equal to $p^2$, etc. Since $p &lt; 1$, these probabilities tend to 0. Since the probability of not being absorbed in $n$ steps is monotone decreasing, these probabilities also tend to 0, hence $\lim_{n\to\infty} Q_n = 0$.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf3");</script>
+
+<h3 id="the-fundamental-matrix">The fundamental matrix</h3>
+<div class="theorem"><p><b>Definition.</b> 
+For an absorbing Markov chain $P$, the matrix $N = (I-Q)^{-1}$ is called the **fundamental matrix** for $P$. The entry $n_{ij}$ of $N$ gives the expected number of times that the process is in the transient state $s_j$ if it is started in the transient state $s_i$.
+</p></div>
+
+<div class="theorem"><p><b>Theorem.</b> 
+For an absorbing Markov chain the matrix $I-Q$ has an inverse $N$ and $N = I + Q + Q^2 + \cdots$. The $ij$-entry $n_{ij}$ of the matrix $N$ is the expected number of times the chain is in state $s_j$, given that it starts in state $s_i$. The initial state is counted if $i = j$.
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf4-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf4-content"><p>
+Let $(I-Q)x = 0$; that is $x = Qx$. Then, iterating this we see that $x = Q^n x$. Since $Q_n \to 0$, we have $Q_n x \to 0$, so $x = 0$. Thus $(I-Q)^{-1} = N$
+exists. Note next that
+$$\begin{equation}
+    (I-Q)(I+Q + Q^2 + \cdots + Q^n) = I - Q^{n+1}.
+\end{equation}$$
+Thus multiplying both sides by $N$ gives
+$$\begin{equation}
+    I + Q + Q^2 + \cdots + Q^n = N(I-Q^{n+1}) .
+\end{equation}$$
+Letting $n$ tend to infinity we have
+$$\begin{equation}
+    N = I + Q + Q^2 + \cdots .
+\end{equation}$$
+Let $s_i$ and $s_j$ be two transient states, and assume throughout the remainder of the proof that $i$ and $j$ are fixed. Let $X^{(k)}$ be a random variable which equals 1 if the chain is in state $s_j$ after $k$ steps, and equals 0 otherwise. For each $k$, this random variable depends upon both $i$ and $j$; we choose not to explicitly show this dependence in the interest of clarity. We have
+$$\begin{equation}
+    \mathbf{P} \left(X^{(k)}=1\right)=q_{i j}^{(k)},
+\end{equation}$$
+and 
+$$\begin{equation}
+    \mathbf{P} \left(X^{(k)}=0\right)=1-q_{i j}^{(k)},
+\end{equation}$$
+where $q_{i j}^{(k)}$ is the $ij$th entry of $Q^k$. These equations hold for $k = 0$ since $Q^0 = I$. Therefore, since $X^{(k)}$ is a 0-1 random variable, $\mathbf{E}(X^{(k)}) = q_{i j}^{(k)}$.
+
+The expected number of times the chain is in state $s_j$ in the first $n$ steps, given that it starts in state $s_i$, is clearly
+$$\begin{equation}
+    \mathbf{E}\left(X^{(0)}+X^{(1)}+\cdots+X^{(n)}\right)=q_{i j}^{(0)}+q_{i j}^{(1)}+\cdots+q_{i j}^{(n)}.
+\end{equation}$$
+Letting $n$ tend to infinity we have
+$$\begin{equation}
+    \mathbf{E}\left(X^{(0)}+X^{(1)}+\cdots\right)=q_{i j}^{(0)}+q_{i j}^{(1)}+\cdots=n_{i j}.
+\end{equation}$$
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf4");</script>
+
+<h3 id="time-to-absorption">Time to absorption</h3>
+<p>Given that the chain starts in state $s_i$, what is the expected number of steps before the chain is absorbed? The following theorem gives the answer.</p>
+<div class="theorem"><p><b>Theorem.</b> 
+Let $t_i$ be the expected number of steps before the chain is absorbed, given that the chain starts in state $s_i$, and let $t$ be the **column vector** whose $i$th entry is $t_i$. Then
+$$\begin{equation}
+    t = N \mathbf{1}
+\end{equation}$$
+where $\mathbf{1}$ is a column vector all of whose entries are 1.
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf5-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf5-content"><p>
+If we add all the entries in the $i$th row of $N$, we will have the expected number of times in any of the transient states for a given starting state $s_i$, that is, the expected time required before being absorbed. Thus, $t_i$ is the sum of the entries in the $i$th row of $N$. If we write this statement in matrix form, we obtain the theorem.
+\end{proof}&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf5");</script>
+
+<h3 id="absorption-probabilities">Absorption probabilities</h3>
+<div class="theorem"><p><b>Theorem.</b> 
+Let $b_{ij}$ be the probability that an absorbing chain will be absorbed in the absorbing state $s_j$ if it starts in the transient state $s_i$. Let $B$ be the matrix with entries $b_{ij}$ . Then $B$ is an $t\times r$ matrix, and
+$$\begin{equation}
+    B = NR,
+\end{equation}$$
+where $N$ is the fundamental matrix and $R$ is as in the canonical form.
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf6-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf6-content"><p>
+We have 
+$$\begin{equation}
+    \begin{aligned} 
+        B_{i j} &amp;=\sum_{n} \sum_{k} q_{i k}^{(n)} r_{k j} \\ &amp;=\sum_{k} \sum_{n} q_{i k}^{(n)} r_{k j} \\ &amp;=\sum_{k} n_{i k} r_{k j} \\ &amp;=(N R)_{i j}.
+    \end{aligned}
+\end{equation}$$
+This completes the proof.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf6");</script>
+
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/2020/11/notes-6-1.html" title="Generating Functions">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/2020/11/notes-8.html" title="Markov Chain 2">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+                </div>
+                <div class="col-sm-2">
+    
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-7.html" title="Markov Chain" rel="bookmark">Markov Chain</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-6-1.html" title="Generating Functions" rel="bookmark">Generating Functions</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
+  
+    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
+  
+    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
+  
+    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
+  
+    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
+  
+    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
+  
+    <a href="/tags/#math" title="math" rel="11">math</a> &nbsp;
+  
+    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2022" > <a href="/archives/#2022">2022</a></li>
+    
+  
+    
+    
+      
+      
+      <li id="2020" > <a href="/archives/#2020">2020</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/">Home</a> | 
+                <a href="/blog">Blog</a> | 
+                <a href="/categories">Topics</a> | 
+                <a href="/publications">Publications</a> | 
+                <a href="/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/2020/11/notes-7.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/2020/11/notes-7.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

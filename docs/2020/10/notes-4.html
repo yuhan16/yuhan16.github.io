@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Expectation and Dependence">
+<title>Expectation and Dependence</title>
+<meta property="og:description" content="This note reviews the concepts of expectation and dependence of random variables.">
+<meta property="og:url" content="http://localhost:4000/2020/10/notes-4.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2020/10/notes-4.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/topics/probability">Probability</a></li>
+                    <!--li><a href="/topics/optimization">Optimization</a></li-->
+                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/topics/web">Web</a></li>
+                    <li><a href="/topics/programming">Programming</a></li>
+                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/publications">Publications</a></li>
+            <!--li><a href="/projects">Projects</a></li-->
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/2020/10/notes-4.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "20px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Expectation and Dependence</b></h1>
+    <meta itemprop="keywords" content="notes,math" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2020-10-23">
+        Oct 23, 2020
+      </time>
+      &nbsp;in
+      
+        <a href="/categories/#Probability"><b>Probability</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <h2 id="expectation-of-discrete-random-variables">Expectation of discrete random variables</h2>
+<p>The intuition of expectation is the <em>average value</em> of an experiment. Suppose we do an experiment for $N$ repeated times. The probability of each possible outcome $x$ can be approximately defined by 
+\begin{equation}
+    \mathbf{P}(x) \approx f(x) = \frac{freq(x)}{N}.
+\end{equation}
+Then the average outcome is
+\begin{equation}
+    m \approx \frac{1}{N}\sum_{x} \text{freq}(x)x = \sum_x f(x)x.
+\end{equation}</p>
+
+<div class="theorem"><p><b>Definition 1.</b> 
+The <strong>mean value</strong>, or <strong>expectation</strong>, or <strong>expected value</strong> of the random variable $X$ with mass function $f$ is defined to be 
+$$\begin{equation}
+    \mathbf{E}(X) = \sum_{x:f(x)&gt;0} xf(x)
+\end{equation}$$
+whenever this sum is absolutely convergent.
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+<ol>
+    <li>For notation convenience, we also write $\mathbf{E}(X) = \sum_x xf(x)$.</li>
+    <li>We require **absolute convergence** in order that $\mathbf{E}(X)$ be unchanged by reordering the $x_i$.</li>
+</ol>
+</p></div>
+
+<div class="theorem"><p><b>Theorem 1.</b><a href="https://en.wikipedia.org/wiki/Riemann_series_theorem"> Riemann Rearrangement Theorem</a>.
+</p></div>
+
+<div class="theorem"><p><b>Lemma.</b> 
+If $X$ has mass function $f$ and $g:\mathbb{R}\to\mathbb{R}$, then
+$$\begin{equation}
+    \mathbf{E}(g(x)) = \sum_x g(x) f(x)
+\end{equation}$$
+whenever this sum is absolutely convergent.
+</p></div>
+
+<div class="example"><p><b>Example.</b> 
+If $X$ is a random variable with mass function f, and $g(x) = x^2$, then 
+$$\begin{equation}
+    \mathbf{E}(X^2) = \sum_x g(x)f(x) = x^2 f(x).
+\end{equation}$$
+</p></div>
+
+<div class="theorem"><p><b>Definition 2.</b> 
+If $k$ is a positive integer, the $k$th <b>moment</b> $m_k$ of $X$ is defined to be 
+\begin{equation}
+    m_k = \mathbf{E}(X^k).
+\end{equation}
+The $k$th <b>central moment</b> $\sigma_k$ is defined as
+\begin{equation}
+    \sigma_k = \mathbf{E}\left( (X-m_1)^k \right) = \mathbf{E}\left( (X-E(X))^k \right).
+\end{equation}
+</p></div>
+
+<p>The two moments of most use are $m_1 = \mathbf{E}(X)$ and $\sigma_2 = \mathbf{E}( (X - \mathbf{E}(X))^2$, called the <strong>mean</strong> (or <strong>expectation)</strong> and <strong>variance</strong> of $X$. These two quantities are measures of the mean and dispersion of $X$; that is, $m_1$ is the average value of $X$, and $\sigma_2$ measures the amount by which $X$ tends to deviate from this average. The mean $m_1$ is often denoted $\mu$, and the variance of $X$ is often denoted $\mathbf{Var}(X)$. The positive square root $\sigma = \mathbf{Var}(X)$ is called the <strong>standard deviation</strong>, and in this notation $\sigma_2 = \sigma^2$.</p>
+
+<p>The central moments ${\sigma_i}$ can be expressed in terms of the ordinary moments ${m_i}$. For example, $\sigma_1 = 0$, and</p>
+
+\[\begin{equation}
+    \begin{aligned} 
+        \sigma_{2} &amp;=\sum_{x}\left(x-m_{1}\right)^{2} f(x) \\ 
+        &amp;=\sum_{x} x^{2} f(x)-2 m_{1} \sum_{x} x f(x)+m_{1}^{2} \sum_{x} f(x) \\ 
+        &amp;=m_{2}-m_{1}^{2} ,
+    \end{aligned}
+\end{equation}\]
+
+<p>which may be written as 
+\(\begin{equation}
+    \tag{4-1}
+    \mathbf{Var}(X) = \mathbf{E}\left( (X-E(X))^2 \right) = \mathbf{E}(X^2) - \mathbf{E}(X)^2.
+\end{equation}\)</p>
+
+<div class="example"><p><b>Example.</b> [Binomial variables]
+Let $X$ be a random variable with binomial distribution. The p.m.f. is 
+$$\begin{equation}
+    f(k) = \binom{n}{k} p^k q^{n-k} \quad k = 0,\dots, n,
+\end{equation}$$
+where $q = 1-p$. The expectation of $X$ is
+$$\begin{equation}
+    \mathbf{E}(X) = \sum_{k=0}^n k f(k) = \sum_{k=0}^n k\binom{n}{k} p^k q^{n-k}.
+\end{equation}$$
+We use the following algebraic identity to compute $\mathbf{E}(X)$.
+$$\begin{equation}
+    \label{eq:4.2}
+    \tag{4-2}
+    \sum_{k=0}^n \binom{n}{k} x^k = (1+x)^n, 
+\end{equation}$$
+Differentiate it and multiply by $x$, we obtain 
+$$\begin{equation}
+    \label{eq:4.3}
+    \tag{4-3}
+    \sum_{k=0}^n k \binom{n}{k} x^k = nx(1+x)^{n-1}. 
+\end{equation}$$
+We substitute $x = p / q$ to obtain $\mathbf{E}(X) = np$. A similar argument shows that the variance of $X$ is given by $\mathbf{Var}(X) = npq$. 
+</p></div>
+
+<p>We can think of the process of calculating expectations as a <strong>linear operator</strong> on the space of random variables.</p>
+
+<div class="theorem"><p><b>Theorem 2.</b> 
+The expectation operator $\mathbf{E}$ has the following properties: 
+<ol>
+    <li> if $X\geq 0$, then $\mathbf{E}(X) \geq 0$,</li>
+    <li> if $a, b \in \mathbb{R}$, then $\mathbf{E}(aX+bY) = a\mathbf{E}(X) + b\mathbf{E}(Y)$,</li>
+    <li> the random variable 1, taking the value 1 always, has expectation $\mathbf{E}(1) = 1$.</li>
+</ol>
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf1-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf1-content"><p>
+We only prove the second property, which is also called the linear property.
+
+We must use the joint p.m.f. of $X$ and $Y$ to compute the expectation. 
+$$\begin{equation}
+    \begin{split}
+        \mathbf{E}(aX+bY) &amp;= \sum_{i, j} (ax_i + by_j) f(x_i, y_j) \\
+        &amp;= a \sum_{i,j} x_i f(x_i, y_j) + b\sum_{i,j} y_j f(x_i, y_j) \\
+        &amp;= a\sum_{i} x_i f_X(x_i) + b\sum_{j}y_j f_Y(y_j) \\ 
+        &amp;= a\mathbf{E}(X) + b\mathbf{E}(Y),
+    \end{split}
+\end{equation}$$
+where $f_X(x)$ and $f_Y(y)$ are marginal p.m.f. of $X$ and $Y$ respectively.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf1");</script>
+
+<div class="remark"><p><b>Remark.</b> 
+It is <b>NOT</b> in general true that $\mathbf{E}(XY)$ is the same as $\mathbf{E}(X)\mathbf{E}(Y)$. 
+</p></div>
+
+<div class="theorem"><p><b>Lemma.</b> 
+If $X$ and $Y$ are independent, then $\mathbf{E}(XY) = \mathbf{E}(X)\mathbf{E}(Y)$. 
+</p></div>
+<div class="proof"><a href="javascript:void(0)" id="pf2-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf2-content"><p>
+If $X, Y$ are independent, $f(x,y) = f_X(x) f_Y(y)$. Then
+$$\begin{equation}
+    \mathbf{E}(XY) = \sum_{ij} x_i y_j f(x,y) = \sum_{i} \left( x_i f_X(x_i) \right) \sum_{j} \left( y_j f_Y(y_j) \right) = \mathbf{E}(X) \mathbf{E}(Y).
+\end{equation}$$
+\end{proof}
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf2");</script>
+
+<div class="theorem"><p><b>Definition 3.</b> 
+$X$ and $Y$ are called **uncorrelated** if $\mathbf{E}(XY) = \mathbf{E}(X)\mathbf{E}(Y)$.
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+Independent variables are uncorrelated. But the converse is **NOT** true.
+</p></div>
+
+<div class="theorem"><p><b>Theorem 3.</b> 
+For random variables $X$ and $Y$, 
+<ol>
+    <li> $\mathbf{Var}(aX) = a^2 \mathbf{Var}(X)$ for $a \in \mathbb{R}$,</li>
+    <li> $\mathbf{Var}(X+Y) = \mathbf{Var}(X) + \mathbf{Var}(Y)$ is $X$ and $Y$ are uncorrelated.</li>
+</ol>
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+The above theorem shows that the variance operator $\mathbf{Var}$ is **NOT** a linear operator, even when it 
+is applied only to uncorrelated variables. 
+</p></div>
+
+<p>Sometimes the sum $S = \sum xf(x)$ does not converge absolutely, which means the mean of the distribution does not exist. Here is an example.</p>
+<div class="example"><p><b>Example.</b> [A distribution without a mean] Let $X$ have mass function 
+$$\begin{equation}
+    f(k) = Ak^{-1} \quad k = \pm 1, \pm 2, \dots,
+\end{equation}$$
+where $A$ is chosen so that $\sum_k f(k) = 1$. The sum $\sum_k kf(k) = A\sum_{k\neq 0} k^{-1}$ doesn't converge absolutely, because both the positive and the negative parts diverge. 
+</p></div>
+<p>This example is suitable to point out that we can base probability theory upon the expectation operator $\mathbf{E}$ rather than upon the probability measure $\mathbf{P}$. Roughly speaking, the way we proceed is to postulate axioms, such as (a)-(c) of the above Theorem, for a so-called “expectation operator” $\mathbf{E}$ acting on a space of ``random variables”. The probability of an event can then be recaptured by defining $\mathbf{P}(A) = \mathbf{E}(I_A)$.</p>
+
+<p>Recall the indicator function of a set $A$ is defined as
+\(\begin{equation}
+    I_A(\omega) = \begin{cases} 1 &amp; \omega \in A, \\
+    0 &amp; \omega \not\in A. \end{cases}
+\end{equation}\)
+In addition, we have $\mathbf{E}(I_A) = \mathbf{P}(A)$.</p>
+
+<h2 id="dependence-of-discrete-random-variables">Dependence of discrete random variables</h2>
+<div class="theorem"><p><b>Definition 4.</b> 
+The **joint distribution function** $F:\mathbb{R}^2 \to [0,1]$ of $X$ and $Y$, where $X$ and $Y$ are discrete variables, is given by 
+$$\begin{equation}
+    F(x, y) = \mathbf{P}(X\leq x \text{ and } Y \leq y). 
+\end{equation}$$
+Their **joint mass function** $f:\mathbb{R}^2 \to [0,1]$ is given by 
+$$\begin{equation}
+    f(x,y) = \mathbf{P}(X = x \text{ and } Y = y). 
+\end{equation}$$
+</p></div>
+
+<p>We write $F_{X,Y}$ and $f_{X,Y}$ when we need to stress the role of $X$ and $Y$. We may think of the joint mass function in the following way. If $A_x = {X = x}$ and $B_y = {Y = y}$, then 
+\(\begin{equation}
+    f(x,y) = \mathbf{P}(A_x \cap B_y).
+\end{equation}\)</p>
+
+<div class="theorem"><p><b>Lemma.</b> 
+The discrete random variables $X$ and $Y$ are **independent** if and only if 
+$$\begin{equation}
+    \tag{4-4}
+    f_{X,Y}(x,y) = f_X(x)f_Y(y) \quad \forall x,y \in \mathbb{R}.
+\end{equation}$$
+More generally, $X$ and $Y$ are independent if and only if $f_{X,Y}(x, y)$ can be **factorized as the product** $g(x)h (y)$ of a function of $x$ alone and a function of $y$ alone. 
+</p></div>
+<div class="remark"><p><b>Remark.</b> 
+We stress that the factorization Eq.(4-4) must hold for all $x$ and $y$ in order that $X$ and $Y$ be independent. 
+</p></div>
+
+<div class="theorem"><p><b>Lemma.</b> 
+$$\begin{equation}
+    \mathbf{E}(g(X, Y))=\sum_{x, y} g(x, y) f_{X, Y}(x, y).
+\end{equation}$$
+</p></div>
+
+<div class="theorem"><p><b>Definition 5.</b> 
+The covariance of $X$ and $Y$ is
+$$\begin{equation}
+    \mathbf{cov}(X,Y) = \mathbf{E}\left( (X-\mathbf{E}(X))(Y-\mathbf{E}(Y)) \right).
+\end{equation}$$
+The correlation (coefficient) of $X$ and $Y$ is 
+$$\begin{equation}
+\mathbf{corr}(X, Y) = \rho(X,Y) = \frac{\mathbf{cov}(X,Y)}{\sqrt{\mathbf{Var}(X)\mathbf{Var}(Y)}}
+\end{equation}$$
+as long as the variances are non-zero. 
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+Notice the following two equations.
+<ol>
+    <li> $\mathbf{cov}(X,X) = \mathbf{Var}(X)$,</li>
+    <li> $\mathbf{cov}(X,Y) = \mathbf{E}(XY) - \mathbf{E}(X)\mathbf{E}(Y)$.</li>
+</ol>
+</p></div>
+
+<p>Covariance itself is not a satisfactory measure of dependence because the scale of values which $\mathbf{cov}(X, Y)$ may take contains no points which are clearly interpretable in terms of the relationship between $X$ and $Y$.</p>
+
+<div class="theorem"><p><b>Theorem 4.</b> [Cauchy-Schwarz inequality] For random variables $X$ and $Y$, 
+$$\begin{equation}
+    \mathbf{E}(XY)^2 \leq \mathbf{E}(X^2) \mathbf{E}(Y^2)
+\end{equation}$$ 
+with equality if and only if $\mathbf{P}(aX = bY) = 1$ for some real $a$ and $b$, at least one of which is non-zero. 
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf3-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf3-content"><p>
+For $a, b \in \mathbb{R}$, let $Z = aX - bY$. Then 
+$$\begin{equation}
+    0 \leq \mathbf{E}(Z^2) = a^2 \mathbf{E}(X^2) - 2ab\mathbf{E}(XY) + b^2\mathbf{E}(Y^2).
+\end{equation}$$
+Thus the right-hand side is a quadratic in the variable $a$ with at most one real root. Its discriminant must be non-positive. That is to say, if $b \neq 0$, 
+$$\begin{equation}
+    \mathbf{E}(XY)^2 - \mathbf{E}(X^2) \mathbf{E}(Y^2) \leq 0. 
+\end{equation}$$
+The discriminant is zero if and only if the quadratic has a real root. This occurs if and only if 
+$$\begin{equation}
+    \mathbf{E}\left( (aX-bY)^2 \right) = 0
+\end{equation}$$
+for some $a$ and $b$.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf3");</script>
+
+<p>We define $X’ = X-\mathbf{E}(X), Y’ = Y - \mathbf{E}(Y)$. Since all $X, Y$ satisfy the Cauchy-Schwarz inequality, so do $X’$ and $Y’$. Therefore, 
+\(\begin{equation}
+    \mathbf{E}(X'Y')^2 \leq \mathbf{E}(X'^2) \mathbf{E}(Y'^2) \quad \Leftrightarrow \quad \mathbf{cov}(X, Y)^2 \leq \mathbf{Var}(X)\mathbf{Var}(Y).
+\end{equation}\)
+Therefore, 
+\(\begin{equation}
+    \rho(X,Y)^2 \leq 1 \quad \mathbb{R}ightarrow \quad \rho(X,Y) \in [-1, 1].
+\end{equation}\)
+which gives the following lemma.</p>
+
+<div class="theorem"><p><b>Lemma.</b> 
+The correlation coefficient $\rho$ satisfies $\left\vert \rho (X, Y)  \right\vert \leq 1$ with equality if and only if $\mathbf{P}(aX + bY = c) = 1$ for some $a, b, c \in \mathbb{R}$. 
+</p></div>
+
+<h2 id="expectation-of-continuous-random-variables">Expectation of continuous random variables</h2>
+<h3 id="idea-of-translating-expectation-from-discrete-to-continuous">Idea of translating expectation from discrete to continuous</h3>
+<p>Suppose we have a continuous random variable $X$ with $f$ being the probability density function. We split $X$ into small intervals $\Delta x$. Then $p_i = f(x_i)\Delta x$. $\frac{p_i}{\Delta x}$ is an approximation of probability density function. Therefore, 
+\(\begin{equation}
+    \mathbf{E}(X) \approx \sum_{i} x_i p_i = \sum_{i} x_i f(x_i) \Delta x,
+\end{equation}\)
+which is the Remann sum. We take the limit and get
+\(\begin{equation}
+    \mathbf{E}(x) = \int_{-\infty}^\infty x f(x)dx.
+\end{equation}\)</p>
+
+<h3 id="expectation">Expectation</h3>
+<div class="theorem"><p><b>Definition 6.</b> 
+The **expectation** of a continuous random variable $X$ with density function $f$ is given by 
+$$\begin{equation}
+    \mathbf{E}(X) = \int_{-\infty}^\infty xf(x) dx
+\end{equation}$$
+whenever this integral exists.
+</p></div>
+
+<div class="theorem"><p><b>Theorem 5.</b> 
+If $X$ and $g(X)$ are continuous random variables, then $$\begin{equation}
+    \mathbf{E}\left( g(X) \right) = \int_{-\infty}^\infty g(x)f(x) dx.
+\end{equation}$$
+</p></div>
+
+<div class="theorem"><p><b>Definition 7.</b> 
+The $k$th **moment** of a continuous variable $X$ is defined as
+$$\begin{equation}
+    \mathbf{E}(X^k) = \int_{-\infty}^\infty x^k f(x) dx
+\end{equation}$$
+whenever the integral converges.
+</p></div>
+
+<div class="example"><p><b>Example.</b> [Cauchy distribution] The random variable $X$ has the Cauchy distribution t if it has density 
+function 
+$$\begin{equation}
+    f(x) = \frac{1}{\pi (1+x^2)}, \quad x \in \mathbb{R}.
+\end{equation}$$
+This distribution is notable for having no moments.
+</p></div>
+
+<h2 id="dependence-of-continuous-random-variables">Dependence of continuous random variables</h2>
+<div class="theorem"><p><b>Definition 8.</b> 
+The **joint distribution function** of $X$ and $Y$ is the function $F: \mathbb{R}^2 \to [0, 1]$ given by 
+$$\begin{equation}
+    F(x,y) = \mathbf{P}(X\leq x, Y \leq y).
+\end{equation}$$
+</p></div>
+
+<div class="theorem"><p><b>Definition 9.</b> 
+The random variables $X$ and $Y$ are **(jointly) continuous** with **joint (probability) density function** $f : \mathbb{R}^2 \to [0, \infty)$ if
+$$\begin{equation}
+    F(x, y)=\int_{v=-\infty}^{y} \int_{u=-\infty}^{x} f(u, v) d u d v \quad \text{for each } x, y\in\mathbb{R}. 
+\end{equation}$$
+If $F$ is sufficiently differentiable at the point $(x , y)$, then we usually specify 
+$$\begin{equation}
+    f(x, y)=\frac{\partial^{2}}{\partial x \partial y} F(x, y).
+\end{equation}$$
+</p></div>
+
+<p><strong>Probabilities</strong>:</p>
+
+\[\begin{equation}
+    \begin{aligned} 
+        \mathbf{P}(a \leq X \leq b, c \leq Y \leq d) &amp;=F(b, d)-F(a, d)-F(b, c)+F(a, c) \\ 
+        &amp;=\int_{y=c}^{d} \int_{x=a}^{b} f(x, y) d x d y. \end{aligned}
+\end{equation}\]
+
+<p>If $B$ is a sufficiently nice subset of $\mathbb{R}^2$, then
+\(\begin{equation}
+    \mathbf{P} \left( (X, Y) \in B \right)=\iint_{B} f(x, y) d x d y.
+\end{equation}\)</p>
+
+<p><strong>Marginal distributions</strong>: The marginal distribution functions of $X$ and $Y$ are</p>
+
+\[\begin{equation}
+    F_{X}(x)=\mathbf{P}(X \leq x)=F(x, \infty), \quad F_{Y}(y)=\mathbf{P}(Y \leq y)=F(\infty, y). 
+\end{equation}\]
+
+\[\begin{equation}
+    F_{X}(x)=\int_{-\infty}^{x}\left(\int_{-\infty}^{\infty} f(u, y) d y\right) d u.
+\end{equation}\]
+
+<p>Marginal density function of $X$ and $Y$:
+\(\begin{equation}
+    f_{X}(x)=\int_{-\infty}^{\infty} f(x, y) d y, \quad f_{Y}(y)=\int_{-\infty}^{\infty} f(x, y) d x.
+\end{equation}\)</p>
+
+<p><strong>Expectation</strong>: If $g: \mathbb{R}^2 \to \mathbb{R}$ is a sufficiently nice function, then</p>
+
+\[\begin{equation}
+    \mathbf{E}(g(X, Y))=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f(x, y) d x d y;
+\end{equation}\]
+
+<p>in particular, setting $g(x, y) = ax + by$,</p>
+
+\[\begin{equation}
+    \mathbf{E}(aX+bY) = a\mathbf{E}(X) + b\mathbf{E}(Y).
+\end{equation}\]
+
+<p><strong>Independence</strong>: The random variables $X$ and $Y$ are independent if and only if</p>
+
+\[\begin{equation}
+    F(x,y) = F_X(x) F_Y(y) \quad \forall x, y \in \mathbb{R},
+\end{equation}\]
+
+<p>which, for <strong>continuous random variables</strong>, is equivalent to requiring that</p>
+
+\[\begin{equation}
+    f(x,y) = f_X(x) f_Y(y).
+\end{equation}\]
+
+<div class="theorem"><p><b>Theorem 6.</b> [Cauchy-Schwarz inequality] For any pair $X, Y$ of jointly continuous variables, we have that 
+$$\begin{equation}
+    \mathbf{E}(XY)^2 \leq \mathbf{E}(X^2) \mathbf{E}(Y^2), 
+\end{equation}$$
+with equality if and only if $\mathbf{P}(aX = bY) = 1$ for some real $a$ and $b$, at least one of which is non-zero. 
+</p></div>
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/2020/10/notes-3.html" title="Continuous Randon Variables">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/2020/10/notes-5.html" title="LLN and conditional probability">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+                </div>
+                <div class="col-sm-2">
+    
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-7.html" title="Markov Chain" rel="bookmark">Markov Chain</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-6-1.html" title="Generating Functions" rel="bookmark">Generating Functions</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
+  
+    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
+  
+    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
+  
+    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
+  
+    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
+  
+    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
+  
+    <a href="/tags/#math" title="math" rel="11">math</a> &nbsp;
+  
+    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2022" > <a href="/archives/#2022">2022</a></li>
+    
+  
+    
+    
+      
+      
+      <li id="2020" > <a href="/archives/#2020">2020</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/">Home</a> | 
+                <a href="/blog">Blog</a> | 
+                <a href="/categories">Topics</a> | 
+                <a href="/publications">Publications</a> | 
+                <a href="/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/2020/10/notes-4.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/2020/10/notes-4.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

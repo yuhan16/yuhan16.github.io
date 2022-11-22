@@ -7,6 +7,9 @@ body, h1, h2, h3, h4, p, blockquote, pre, hr, dl, dd, ol, ul, figure { margin: 0
 /** Basic styling */
 body { font-family: "Roboto", sans-serif; font-size: 16px; line-height: 1.6em; font-weight: 300; color: #111; background-color: #e6e6e6; -webkit-text-size-adjust: 100%; }
 
+/** Set `margin-bottom` to maintain vertical rhythm */
+h1, h2, h3, h4, p, blockquote, pre, ul, ol, dl, figure { margin-bottom: 7.5px; }
+
 /** Images */
 img { max-width: 100%; vertical-align: middle; }
 
@@ -81,25 +84,25 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 /*two columns layout*/
 .col-sm-8, .col-sm-2 { position: relative; min-height: 1px; }
 
-.col-sm-8 { float: left; width: 70%; background-color: #777; }
+.col-sm-8 { float: left; width: 70%; }
 
-.col-sm-2 { float: right; width: 30%; background-color: #ccc; }
+.col-sm-2 { float: right; width: 30%; }
 
 /* @media screen and (min-width : $on-palm) { .col-sm-8 { float:left; width:67%; } .col-sm-2 { float:right; width:24%; } }*/
 /* site header layout */
-.header-container { margin: 0; padding: 40px 10px; width: 100%; background-color: #57068c; border-bottom: 1px solid #828282; z-index: 90; position: fixed; transition: 0.4s; }
+.header-container { margin: 0; padding: 20px 10px; width: 100%; background-color: #fff; border-bottom: 1px solid #c2c2c2; z-index: 90; position: fixed; transition: 0.4s; }
 
-.navbar { max-width: 1050px; margin-left: auto; margin-right: auto; background-color: #aaa; }
+.navbar { max-width: 1100px; margin-left: auto; margin-right: auto; }
 
 .navbar-logo { margin-left: 5px; margin-right: 15px; float: left; height: 80px; }
 
-.navbar-right { float: right; height: 80px; background-color: aqua; display: flex; align-items: center; }
+.navbar-right { float: right; height: 80px; display: flex; align-items: center; }
 
 .navbar .navbar-logo { transition: 0.4s; }
 
 .navbar .navbar-right { transition: 0.4s; }
 
-.main-menu { list-style-type: none; background-color: antiquewhite; margin: 0; padding: 0px; }
+.main-menu { list-style-type: none; margin: 0; padding: 0px; }
 
 .main-menu > li { display: inline-block; padding: 10px; }
 
@@ -107,7 +110,7 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 
 .main-menu > li > a:hover { text-decoration: none; }
 
-.sub-menu { list-style-type: none; text-align: left; padding: 0; margin: 0; min-width: 200px; background-color: #fff; z-index: 1; visibility: hidden; position: absolute; opacity: 0; transition: all 0.8s ease 0s; }
+.sub-menu { list-style-type: none; text-align: left; padding: 0; margin: 0; min-width: 210px; background-color: #fff; box-shadow: 0 0 3px #c2c2c2; z-index: 1; visibility: hidden; position: absolute; opacity: 0; transition: all 0.8s ease 0s; }
 
 .sub-menu > li { padding: 5px 15px; }
 
@@ -119,7 +122,7 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 
 .menu-item-dropdown:hover > .sub-menu-contact { visibility: visible; opacity: 1; }
 
-.sub-menu-contact { padding: 8px 10px; margin: 0; min-width: 190px; background-color: #fff; z-index: 1; opacity: 0; visibility: hidden; position: absolute; transition: all 0.8s ease 0s; }
+.sub-menu-contact { padding: 8px 10px; margin: 0; min-width: 170px; background-color: #fff; box-shadow: 0 0 3px #c2c2c2; z-index: 1; opacity: 0; visibility: hidden; position: absolute; transition: all 0.8s ease 0s; }
 
 .sub-menu-contact > a { padding: 10px; }
 
@@ -128,9 +131,11 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 .sub-menu-contact i.fa:hover { color: #62405c; }
 
 /* site body layout */
-.body-container { min-height: 100%; margin-top: 160px; padding: 0px; background-color: aqua; }
+.body-container { min-height: 100%; margin-top: 110px; padding: 0px; }
 
-.page-content { min-height: 100%; max-width: 1050px; margin-left: auto; margin-right: auto; padding-top: 60px; padding-bottom: 30px; padding-left: -webkit-calc( (1050px - 960px) / 2); padding-left: calc( (1050px - 960px) / 2); padding-right: -webkit-calc( (1050px - 960px) / 2); padding-right: calc( (1050px - 960px) / 2); background-color: #c4661f; }
+.page-content { min-height: 100%; max-width: 960px; margin-left: auto; margin-right: auto; padding-top: 60px; padding-bottom: 30px; }
+
+.page-content-single-col { margin-left: auto; margin-right: auto; padding-left: -webkit-calc( (960px - 800px) / 2); padding-left: calc( (960px - 800px) / 2); padding-right: -webkit-calc( (960px - 800px) / 2); padding-right: calc( (960px - 800px) / 2); }
 
 /* post layout */
 /*  post-title class controls the post title font style in all pages. It does not affect the titles in the post contents. */
@@ -171,9 +176,9 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 /* site footer layout */
 .footer-container { margin: 0; padding: 0; background-color: #62405c; min-height: 1px; padding-top: 20px; padding-bottom: 10px; }
 
-.footer-content { background-color: red; max-width: 1050px; min-height: 30px; margin-left: auto; margin-right: auto; display: flex; align-items: center; }
+.footer-content { max-width: 1100px; min-height: 30px; margin-left: auto; margin-right: auto; display: flex; align-items: center; }
 
-.footer-half-col { width: 50%; position: relative; float: left; color: #fff; background-color: #111; }
+.footer-half-col { width: 50%; position: relative; float: left; color: #fff; }
 
 .footer-half-col p, .footer-half-col a { font-size: 14px; color: #fff; }
 
@@ -190,7 +195,7 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 .fa-stack:hover .icon-background { visibility: visible; opacity: 1; }
 
 /** Sidebar */
-.sidebar-module { padding: 0px 5px 20px 10px; font-size: 14px; }
+.sidebar-module { padding: 0px 5px 20px 25px; font-size: 14px; }
 
 .sidebar-module h4 { font-size: 16px; font-weight: bold; color: #424242; }
 
@@ -200,6 +205,14 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 .topic-archive-header { border-bottom: 1px solid #c2c2c2; margin-bottom: 10px; }
 
 .topic-archive-header h3 { font-size: 18px; font-weight: bold; color: #111; }
+
+/** Tags and Categories Style */
+.tags-box li { list-style: none; font-weight: bold; margin-top: 10px; }
+
+.tags-box .size { font-size: 0.7em; font-weight: bold; vertical-align: super; }
+
+/*time style of tages and categories*/
+time { margin-left: 15px; font-style: italic; }
 
 /* page index layout, for blog, topic (multiple pages required) */
 .page-index { padding: 10px 0; border-top: 1px solid #c2c2c2; border-bottom: 1px solid #c2c2c2; display: flex; align-items: center; }
@@ -221,7 +234,7 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 .unselected:hover { background-color: #acc5f3; color: #fff; }
 
 /* post index layout, for each post (only previous and next) */
-.post-index { background-color: red; text-align: center; }
+.post-index { text-align: center; }
 
 .post-index ul { display: block; margin: 0 10px; }
 
@@ -242,14 +255,14 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 /** Aboutme photo and icon Style */
 .about { padding: 20px 10px 20px 10px; }
 
-.about img { float: left; height: 300px; margin-right: 45px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; }
+.about img { float: left; height: 300px; margin-right: 45px; margin-bottom: 30px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; }
 
 .about i.fa { color: #2a7ae2; }
 
 .about i.fa:hover { color: #669900; }
 
 /** theorem, remark, example, quote */
-.theorem { background: #e6e6e6; border: 1px solid #828282; margin: 10px 0; padding: 10px 15px; font-family: Times, "Times New Roman", Georgia, serif; font-size: 18px; font-style: italic; color: #424242; }
+.theorem { background: #e6e6e6; border: 1px solid #828282; margin: 10px 0; padding: 10px 15px; font-family: Times, "Times New Roman", Georgia, serif; font-size: 18px; font-style: italic; color: #111; }
 
 .theorem p { margin: 0; }
 
@@ -259,7 +272,7 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 
 .theorem li { counter-increment: section; }
 
-.remark { background: #f9f9f9; border-left: 4px solid #979797; margin: 10px 0; padding: 5px 15px; font-family: Times, "Times New Roman", Georgia, serif; color: #424242; }
+.remark { background: #f9f9f9; border-left: 4px solid #979797; margin: 10px 0; padding: 5px 15px; font-family: Times, "Times New Roman", Georgia, serif; color: #111; }
 
 .remark p { margin: 0; }
 
@@ -270,5 +283,31 @@ q:after { content: '』'; color: #DD1144; font-weight: bold; }
 .example { margin: 10px 0; padding: 10px 30px; }
 
 .quote-source { text-align: right; font-size: 14px; margin: 0; }
+
+.proof { border: 2px solid gray; margin: 10px 0; }
+
+.proof a { color: #111; text-decoration: none; }
+
+.proof-content { max-height: 0; overflow: hidden; padding: 0 30px; margin-top: 10px; transition: max-height 0.5s ease; }
+
+.pub { margin: 25px 0; }
+
+.pub a { color: #111; }
+
+.pub a:hover { color: red; }
+
+.pub a:hover > .pub-icon { border: 1px solid red; }
+
+.pub-title { font-size: 18px; }
+
+.pub-meta { line-height: 1.2em; color: #828282; }
+
+.pub-meta b { color: #111; font-weight: normal; }
+
+.pub-icon { margin: 5px 5px; border: 1px solid #111; border-radius: 3px; width: 40px; display: inline-block; text-align: center; font-size: 12px; }
+
+.pub-content { margin: 0 5px; font-size: 14px; line-height: 1.4em; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+
+.pub-content-pad { padding: 10px 15px; border: 1px dashed #111; border-radius: 3px; }
 
 /*# sourceMappingURL=main.css.map */

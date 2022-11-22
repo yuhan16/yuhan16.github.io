@@ -5,524 +5,1962 @@
     <description>HuskDev is Yuhan's personal blog.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 24 Mar 2022 21:02:46 -0400</pubDate>
-    <lastBuildDate>Thu, 24 Mar 2022 21:02:46 -0400</lastBuildDate>
-    <generator>Jekyll v4.2.1</generator>
+    <pubDate>Tue, 22 Nov 2022 11:56:25 -0500</pubDate>
+    <lastBuildDate>Tue, 22 Nov 2022 11:56:25 -0500</lastBuildDate>
+    <generator>Jekyll v4.2.2</generator>
     
       <item>
-        <title>Learning Jelly Part 1: Basic Elements</title>
-        <description>&lt;p&gt;In this learning notes, I will introduce the basic elements of Jekyll including the directory structure, front matter, and Liquid templating language. Understanding the elements is the first step towards learning Jekyll.&lt;/p&gt;
+        <title>Introduction to Reinforcement Learning</title>
+        <description>&lt;p&gt;I have been learning Reinforcement Learning (RL) recently and I want to share some slides as a personal summary on RL.&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-&lt;h2 id=&quot;jekyll&quot;&gt;Jekyll&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; is one of the most popular SSGs. It is written in &lt;a href=&quot;https://www.ruby-lang.org/en/&quot;&gt;Ruby&lt;/a&gt; and is supported by &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;, which is also one of the reasons I choose Jekyll to write my blog.&lt;/p&gt;
-
-&lt;p&gt;The Jekyll document is comprehensive and instructive. So I do encourage people to read the documentation if they decide to use it. Here, I will introduce Jekyll from my perspective and provide a general idea of how Jekyll works.&lt;/p&gt;
-
-&lt;h3 id=&quot;prerequisites-and-installation&quot;&gt;Prerequisites and Installation&lt;/h3&gt;
-
-&lt;p&gt;Since jekyll is software written in Ruby, we first need to make sure the Ruby programming language is installed in our computer. It comes with Linux distrirbutions. We can check it using the command&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;	&lt;span class=&quot;c&quot;&gt;# display ruby version info&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We can also follow the &lt;a href=&quot;https://jekyllrb.com/docs/&quot;&gt;Quickstart&lt;/a&gt; in Jekyll documentation to create a quick jekyll project and view it in the browser.&lt;/p&gt;
-
-&lt;h3 id=&quot;directory-structure&quot;&gt;Directory Structure&lt;/h3&gt;
-
-&lt;p&gt;Jekyll creates a series of directories. So it is important to understand the use of each directory so that we can create the pages we want. A typical jekyll directory is like the following (from Jekyll documentation):&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-|-- _config.yml
-|-- _data
-│   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; members.yml
-|-- _drafts
-|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; on-simplicity-in-technology.md
-|-- _includes
-|   |-- footer.html
-|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; header.html
-|-- _layouts
-|   |-- default.html
-|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; post.html
-|-- _posts
-|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; 2007-10-29-why-every-programmer-should-play-nethack.md
-|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; 2009-04-26-barcamp-boston-4-roundup.md
-|-- _sass
-|   |-- _base.scss
-|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; _layout.scss
-|-- _site
-|-- .jekyll-cache
-|-- .jekyll-metadata
-|-- index.html    &lt;span class=&quot;c&quot;&gt;# can also be an 'index.md' with valid front matter&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; is the directory where we write our blog contents. The content is usually written with &lt;a href=&quot;https://www.markdownguide.org/&quot;&gt;Markdown&lt;/a&gt;. Each file corresponds to an individual post page and each filename should follow the convention &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.md&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_draft&lt;/code&gt; is the directory to store the drafts. We can understand it as the unpublished &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_post&lt;/code&gt; directory. The files in this directory will not be translated into HTML file.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The above two directories are the most frequently edited ones after we set page templates.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layout&lt;/code&gt; directory stores all template layouts. It is written in HTML and is the skeleton for web pages. We can specify multiple templates for different use. Normally, we have a basic layout named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt;. It has to be a complete HTML file. Other templates (for example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post.html&lt;/code&gt;) can inherit from it and does not need to be a complete HTML file.&lt;/p&gt;
-
-    &lt;p&gt;We show an example of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt; as follows. The template has to include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;html&amp;gt;&lt;/code&gt; element to show it is a complete HTML file. However, the template does not need to include every detail. We can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;include&lt;/code&gt; command to make the template more consise.&lt;/p&gt;
-
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-{% include head.html %}
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-      
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;container&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    {% include header.html %}
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;page-content wrapper&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      {{ content }}
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-    {% include footer.html %}
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-      
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;Other template files can inherit from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt;. They add more details to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt; to form the new template. An example of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post.html&lt;/code&gt; template is shown in the following. They do &lt;strong&gt;not&lt;/strong&gt; need to be a complete HTML file.&lt;/p&gt;
-
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
-layout: default
----
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;header&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-header&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-title&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ page.title }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
-  
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;article&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;post-content&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; 
-    {{ content }}
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/article&amp;gt;&lt;/span&gt;
-  
-  {% if page.comments %}
-  {% include comments.html %}
-  {% endif %}
-  
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_include&lt;/code&gt; directory stores the frequently used HTML snippets which are used by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;include&lt;/code&gt; command. For example, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;footer.html&lt;/code&gt; can be the following.&lt;/p&gt;
-
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;footer&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;site-footer&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Copyright &lt;span class=&quot;ni&quot;&gt;&amp;amp;copy;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/freshman21-v2/&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;HuskyDev&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Powered by &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://github.com/jekyll/jekyll&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Jekyll&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt; 
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass&lt;/code&gt; directory stores the style sheets (CSS files) for HTML files. These files determine the display format of HTML file. We refer to &lt;a href=&quot;https://www.w3schools.com/css/&quot;&gt;CSS Tutorial&lt;/a&gt; to learn more about the CSS basics.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The above three directories are related to web page templates and display style. After completing the template, we can simple call which template to use in each post file. Jekyll will generate the corresponding HTML file with the desired template for us.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; is the configuration file for Jekyll. We can define user-defined variables in this file.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.html&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.md&lt;/code&gt; is the index page. For web server, there is always an index page for each directory. By default, the web server will send the index page back to the user if the user does not specify in detail which HTML file to look for.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory stores all the generated web pages. We can put &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; directory to the server, for example GitHub. Then the blog website is ready to view.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;templating-language&quot;&gt;Templating Language&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;A templating language basically is a language which allows defining placeholders that should later on be replaced for the purpose of implementing designs. Obviously modern template languages not only support placeholders, but also loops and conditions which are often necessary for designing a web page.&lt;/p&gt;
-
-  &lt;p&gt;&lt;em&gt;—From &lt;a href=&quot;https://stackoverflow.com/questions/4026597/what-is-a-templating-language&quot;&gt;Stack Overflow: What is a templating language?&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Jekyll uses the &lt;a href=&quot;https://shopify.github.io/liquid/&quot;&gt;Liquid&lt;/a&gt; templating language to process templates. We can think the templating language as a “scripting language” in HTML files. It defines how Jekyll process the HTML files and generate the final version.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The templating language is different from other real scripting language such as JavaScript and Python. The browser cannot read it. All the template statements will be replaced by HTML after Jekyll process them. So in the final versions of the generated HTML file, there is no templating Language.&lt;/p&gt;
-
-&lt;p&gt;Liquid has ample functions such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;include&lt;/code&gt; function and other string processing functions, which facilitate the static web page writing.&lt;/p&gt;
-
-&lt;h3 id=&quot;front-matter-and-variables&quot;&gt;Front Matter and Variables&lt;/h3&gt;
-
-&lt;p&gt;The front matter is specified by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;---&lt;/code&gt; block at the front of each file. If we add the front matter to a file, it means that we want Jekyll to process this file. The process can be including other HTML snippets, or replacing template statements.&lt;/p&gt;
-
-&lt;p&gt;The front matter specifies variables for processing. For example, in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post.html&lt;/code&gt;  layout, we add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout&lt;/code&gt; variable to the front matter. So Jekyll will first substitute the HTML snippets and then put every thing to back to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default.html&lt;/code&gt; template to generate the final HTML file.&lt;/p&gt;
-
-&lt;p&gt;Some global variables are reserved by Jekyll, for example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;content&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page&lt;/code&gt;. See &lt;a href=&quot;https://jekyllrb.com/docs/variables/&quot;&gt;Jekyll Variables&lt;/a&gt; for more information. These variables are useful when we write the template HTML files.&lt;/p&gt;
-
-&lt;p&gt;We can also define local variables (user-defined variables) in the front matter and reference it. For example, we define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mylogo-link&lt;/code&gt; variable in the following post file:&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;mylogo_link&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;https://path/to/image/.png&lt;/span&gt;
-&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Then we can reference this variable in the file by writting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{ mylogo_link }}&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;We can also define variables in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;. The variables are in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site&lt;/code&gt; domain and can be accessed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{{site.my_variable}}&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;We have introduced the general framework of Jekyll and the idea of how Jekyll works. In the future posts, I will write more details about Jekyll usage and the problems I have met when I use Jekyll.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 24 Dec 2021 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2021/12/jekyll-1-elements.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/jekyll-1-elements.html</guid>
-        
-        <category>web programming</category>
-        
-        <category>jekyll</category>
-        
-        <category>templating language</category>
-        
-        
-        <category>Programming</category>
-        
-        <category>Web</category>
-        
-      </item>
-    
-      <item>
-        <title>Static Site Generators</title>
-        <description>&lt;p&gt;I have discussed the difference between static and dynamic web pages in [xxx]. In this post, I will write some of my understanding of Jekyll and static site generators.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;static-site-generators&quot;&gt;Static Site Generators&lt;/h2&gt;
-
-&lt;p&gt;Static site generators (SSGs) are the software that generates and publish static HTML files from dynamic writing. In other words, they achieve two goals:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;automate static web page generation;&lt;/li&gt;
-  &lt;li&gt;publish the generated web pages locally for preview.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;some-background-of-html&quot;&gt;Some Background of HTML&lt;/h3&gt;
-
-&lt;p&gt;Every static web page is a complete HTML file. A simple example of a complete HTML file is like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Page Title&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;This is a Heading&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This is a paragraph.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The web page title and the style sheet for display are defined in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt;, and the content is written in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;body&amp;gt;&lt;/code&gt;. In short, an HTML file has to follow some rules to be displayed by the browser correctly. We refer to &lt;a href=&quot;https://www.w3schools.com/html/&quot;&gt;HTML Tutorial&lt;/a&gt; to learn more about the HTML basics.&lt;/p&gt;
-
-&lt;h3 id=&quot;ssg-as-a-tool&quot;&gt;SSG as a Tool&lt;/h3&gt;
-
-&lt;p&gt;It can be tedious and troublesome to write HTML files directly, especially when the page content is long. There are so many types of websites. In blogging, what we need is the blog content. The interactions with the website and other fancy components are less required. The primary objective is to display the blog content nicely on a web page. Now SSGs can help. So the idea behind SSGs is simple: use templates to facilitate blog writing and automate web page generation.&lt;/p&gt;
-
-&lt;p&gt;In SSGs, we can first create some templates for future display. Then we only need to focus on writing the content (usually in markdown files). SSGs will put the content to the template and generate a complete HTML file for display. After SSGs generate all the page files, we can put them to some web server, for example, GitHub, so that people can access your pages from the Internet.&lt;/p&gt;
-
-&lt;p&gt;Another advantage of SSGs is that they can publish the web pages locally. It turns your computer to a local server so that you can view the web pages through the browser as if you view the page from a real server. It is extremely helpful for debugging.&lt;/p&gt;
-
-&lt;p&gt;There are many SSGs available. For example, &lt;a href=&quot;[https://nextjs.org](https://nextjs.org/)&quot;&gt;Next.js&lt;/a&gt;, &lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt;, &lt;a href=&quot;https://gohugo.io/&quot;&gt;Hugo&lt;/a&gt;. &lt;a href=&quot;https://www.gatsbyjs.com/&quot;&gt;Gatsby&lt;/a&gt;, &lt;a href=&quot;https://nuxtjs.org/&quot;&gt;Nuxt&lt;/a&gt;. Any of them does a good job.&lt;/p&gt;
-
-&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;/h2&gt;
-
-&lt;p&gt;There are some resources discussing the functions of SSGs:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://about.gitlab.com/blog/2016/06/10/ssg-overview-gitlab-pages-part-2/&quot;&gt;GitLab SSGs Part 2: What are modern static site generators&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 23 Dec 2021 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2021/12/static-site-generators.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/static-site-generators.html</guid>
-        
-        <category>SSG</category>
-        
-        <category>static site generator</category>
-        
-        <category>html</category>
-        
-        <category>css</category>
-        
-        <category>github pages</category>
-        
-        
-        <category>Web</category>
-        
-      </item>
-    
-      <item>
-        <title>Static vs Dynamic Web Pages</title>
-        <description>&lt;p&gt;When we send HTTP requests to the web server, the web server responds to the request and sends the page file (usually with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.html&lt;/code&gt; extension) back so that we can view the entire web page in the browser. The way the web server processes and generates the web pages categorizes the web pages into &lt;strong&gt;static&lt;/strong&gt; and &lt;strong&gt;dynamic&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;static-web-pages&quot;&gt;Static Web Pages&lt;/h2&gt;
-
-&lt;p&gt;A static web page is a page file stored in the web server. Normally, static web pages are stored with a  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.html&lt;/code&gt; file extension. Each web page has a unique URL (Uniform Resource Locator). When we request a static web page, the web server finds the page file in the file system and sends it back. The server will not do any processing of the page file.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/pdf/RL_intro.pdf&quot;&gt;RL slides&lt;/a&gt;&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/freshman21-v2/assets/images/blog/2021/2021-12-22-static.png&quot; height=&quot;130&quot; /&gt;
-    &lt;figcaption&gt;Fig.1: Static web pages served by the web server.&lt;/figcaption&gt;
+    &lt;img src=&quot;/assets/images/blog/2022/2022-06-10-RL_intro_outline.png&quot; height=&quot;350&quot; /&gt;
+    &lt;figcaption&gt;Fig. 1: Outline of RL summary slides.&lt;/figcaption&gt;
 &lt;/figure&gt;
-
-&lt;h2 id=&quot;dynamic-web-pages&quot;&gt;Dynamic Web Pages&lt;/h2&gt;
-
-&lt;p&gt;The web server responds to dynamic web pages after pre-processing. The dynamic web page is stored in a page file with code. The code instructs the web server to pre-process the page file, generates the corresponding HTML file, and then sends it back to the user.&lt;/p&gt;
-
-&lt;p&gt;The pre-processing depends on what code the web server uses. The most common programming language for web server development is &lt;a href=&quot;https://www.php.net/&quot;&gt;PHP&lt;/a&gt;. There are other server-side languages such as Python and C#.&lt;/p&gt;
-
-&lt;p&gt;We take PhP for example. A dynamic web page written with PhP language is stored in a page file with a  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.php&lt;/code&gt; extension. When we request a dynamic web page, the web server first processes the PHP page file and generates the HTML file. Then the server sends the HTML file back to the user.&lt;/p&gt;
-
-&lt;figure&gt;
-    &lt;img src=&quot;/freshman21-v2/assets/images/blog/2021/2021-12-22-dynamic.png&quot; height=&quot;180&quot; /&gt;
-    &lt;figcaption&gt;Fig.2: Dynamic web pages served by the web server.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;A simple dynamic web page file with PHP looks like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This example shows PHP block and its processed output.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php
-            echo &quot;String Output from PHP Block.&quot;;
-        ?&amp;gt;&lt;/span&gt;
-         
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This PHP code prints addition of two number in the 
-        processed HTML output.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php
-            echo 1+1;
-        ?&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;static-vs-dynamic&quot;&gt;Static vs Dynamic&lt;/h2&gt;
-
-&lt;p&gt;The user can only view the existing page content on a static web page. Therefore, it is more suitable for blogs and news websites. In addition, it is also more secure because the user cannot modify anything on the web page.&lt;/p&gt;
-
-&lt;p&gt;A dynamic web page provides more interactions between the user and the website. The code adds more flexibility to the web server to process the web page. It is more suitable for interactive websites such as Google. Let’s consider two examples.&lt;/p&gt;
-
-&lt;p&gt;The first example is the stock price query. If we want to check the stock price right now, we request the web server. The web server receives the request and checks the latest database for the stock price. Then the server generates the HTML page file and sends it back. If the stock price web page is static, which means they are pre-generated and stored in the server, we either cannot find the latest stock price, or the web server has to constantly update the page file to ensure the data is in time. Either way, it is not convenient.&lt;/p&gt;
-
-&lt;p&gt;The second example is online computing. If we want to perform complex computation, for example, integration, on the web server, we need to input the data first on the website. The web page has to be dynamic. Otherwise, the web server cannot even know what we input on the page. Let along process the input.&lt;/p&gt;
-
-&lt;h2 id=&quot;resource&quot;&gt;Resource&lt;/h2&gt;
-
-&lt;p&gt;Some useful materials also introduce this topic:&lt;/p&gt;
-
-&lt;p&gt;[1] &lt;a href=&quot;https://elextutorial.com/learn-php/dynamic-vs-static-website-static-website-dynamic-website-definition/#:~:text=The%20dynamic%20web%20page%20code%20written%20in%20the%20PHP%20server,is%20served%20to%20the%20user.&quot;&gt;Elextutorial Tutorial: Dynamic vs Static Website&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;[2] &lt;a href=&quot;https://about.gitlab.com/blog/2016/06/03/ssg-overview-gitlab-pages-part-1-dynamic-x-static/&quot;&gt;GitLab SSGs Part 1: A Static vs Dynamic Website&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Wed, 22 Dec 2021 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2021/12/static-dynamic-web.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/static-dynamic-web.html</guid>
+        <pubDate>Fri, 10 Jun 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022/06/intro-to-rl.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2022/06/intro-to-rl.html</guid>
         
-        <category>tutorial</category>
+        <category>RL</category>
         
-        <category>static web</category>
-        
-        <category>dynamic web</category>
-        
-        <category>php</category>
+        <category>math</category>
         
         
-        <category>Web</category>
+        <category>Reinforcement Learning</category>
         
       </item>
     
       <item>
-        <title>jekyll notes</title>
-        <description>&lt;h2 id=&quot;some-notes&quot;&gt;Some notes&lt;/h2&gt;
+        <title>Random Walk</title>
+        <description>&lt;h2 id=&quot;random-walk&quot;&gt;Random walk&lt;/h2&gt;
+&lt;h3 id=&quot;basic-defitions&quot;&gt;Basic defitions&lt;/h3&gt;
 
-&lt;p&gt;Make entire Div Clickable:&lt;/p&gt;
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://example.com&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;example&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; anything &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;This is perfectly valid HTML.&lt;/p&gt;
+&lt;p&gt;One of the simplest random processes is so-called “simple random walk”.&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-&lt;p&gt;In liquid, we can use composite filter. The exection order is from left to right. For example.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+Let $\{X_k\}_{k=1}^\infty$ be a sequence of i.i.d. discrete random variables with finite outcomes. For each positive integer $n$, we let $S_n$ denote the sum $X_1 +X_2 + \cdots + X_n$. The sequence $\{S_n\}_{n=1}^\infty$ is called a **random walk**.
+&lt;/p&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{% assign var = site.baseurl | append: &quot;/page&quot; | append: 2 | string %}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+If the common range of the $X_k$’s is $\mathbb{R}^m$, then we say that $\{S_n\}$ is a random walk in $\mathbb{R}^m$.
+&lt;/p&gt;&lt;/div&gt;
 
-&lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{ int | string }&lt;/code&gt; convert integer to strings.&lt;/p&gt;
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Sometimes we set $S_0 = a$ for some number $a$ as the **start value** of the random walk. This is common in the gambling analysis.
+&lt;/p&gt;&lt;/div&gt;
 
-&lt;p&gt;Also, we need to find a way to write liquid in code block.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+The simple random walk has the Markov property ; that is
+$$\begin{equation}
+    \mathbf{P}\left(S_{m+n}=j | S_{0}, S_{1}, \ldots, S_{m}\right)=\mathbf{P}\left(S_{m+n}=j | S_{m}\right), \quad n \geq 0.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;publish-github-page-with-no-jekyll&quot;&gt;Publish github page with no jekyll&lt;/h2&gt;
-&lt;p&gt;Github page only accepts specific jekyll plugins. Some plugins such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll-paginate-v2&lt;/code&gt; cannot be recgnized by github pages. Therefore, one way to publish github page is to &lt;strong&gt;publish the generated pages to Github&lt;/strong&gt; instead of letting github complie pages online. The generated pages are in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder.&lt;/p&gt;
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf1-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf1-content&quot;&gt;&lt;p&gt;
+If one knows the value of $S_m$ , then the distribution of $S_{m+n}$ depends only on the jumps $X_{m+ 1} ,\dots, \\ X_{m+n}$, and cannot depend on further information concerning the values of $S_0, S_1, \dots , S_{m-1}$.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf1&quot;);&lt;/script&gt;
 
-&lt;p&gt;We should note two things when using jekyll to generate pages and publish to github:&lt;/p&gt;
+&lt;p&gt;The random walk has two main applications: gambling analysis and investment decision making. For example, in the gambling, we gamble at each step, $S_i$ is the total stack we have at step $i$, and we are interested in when there will be a &lt;strong&gt;return&lt;/strong&gt; or \text{equalization}, i.e., what is the probability that $S_0 = a = S_n$.&lt;/p&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [Random walks on the real line]
+We shall first consider the simplest non-trivial case of a random walk in $\mathbb{R}^1$, namely the case where the common distribution function of the random variables $X_n$ is given by
+$$\begin{equation}
+    \label{eq:9.1}
+    \tag{9-1}
+    f_{X}(x)=\left\{\begin{array}{ll}{1 / 2,} &amp;amp; {\text { if } x=\pm 1} \\ {0,} &amp;amp; {\text { otherwise }}\end{array}\right.
+\end{equation}$$
+We note that in this situation, all paths of length $n$ have the same probability, namely $2^{-n}$.
+
+We can plot the random walk in the plane, where the horizontal axis represents time and the vertical axis represents the value of $S_n$. Given a sequence $\{S_n\}$ of partial sums, we first plot the points $(n, S_n)$, and then for each $k &amp;lt; n$, we connect $(k, S_k)$ and $(k + 1, S_{k+1})$ with a straight line segment. The **length** of a path is just the difference in the time values of the beginning and ending points on the path. This can be visualized in Figure \ref{fig:9.1}.
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/blog/2020/2020-11-27-random_walk.png&quot; height=&quot;300&quot; /&gt;
+    &lt;figcaption&gt;Fig.1: A random walk $S_n$.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;returns-and-first-returns&quot;&gt;Returns and First Returns&lt;/h3&gt;
+&lt;p&gt;This subsection studies the random walk in $\mathbb{R}^1$. The p.m.f. of $X_i$ is given by \eqref{eq:9.1}.&lt;/p&gt;
+
+&lt;p&gt;We say that an &lt;strong&gt;equalization&lt;/strong&gt; has occurred, or there is a &lt;strong&gt;return&lt;/strong&gt; to the origin at time $n$, if $S_n = 0$. Note that the returns are possible &lt;strong&gt;only after even number of steps&lt;/strong&gt;. To calculate
+the probability of an equalization at time $2m$, &lt;strong&gt;we need only count the number of paths of length $2m$ which begin and end at the origin&lt;/strong&gt;. The number of such paths is clearly
+\(\begin{equation}
+    \binom{2m}{m} = \frac{(2m)!}{m! m!}.
+\end{equation}\)
+Since each path has probability $2^{-2m}$, we have the following theorem.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+The probability of a return to the origin at time $2m$ is given by
+$$\begin{equation}
+    u_{2 m}= \binom{2m}{m} 2^{-2 m}.
+\end{equation}$$
+The probability of a return to the origin at an odd time is 0.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;A random walk is said to have a &lt;strong&gt;first return&lt;/strong&gt; to the origin at time $2m$ if $m &amp;gt; 0$, and $S_{2k} = 0$ for all $k &amp;lt; m$. We define $f_{2m}$ to be the probability of this event. (We also define $f_0 = 0$.) One can think
+of the expression $f_{2m}2^{2m}$ as the number of paths of length $2m$ between the points $(0, 0)$ and $(2m, 0)$ that do not touch the horizontal axis except at the endpoints. We have the following theorem.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+For $n \geq 1$, the probabilities $\{u_{2k}\}$ and $\{f_{2k}\}$ are related by the equation
+$$\begin{equation}
+    u_{2 n}=f_{0} u_{2 n}+f_{2} u_{2 n-2}+\cdots+f_{2 n} u_{0},
+\end{equation}$$
+where $f_0 = 0$ and $u_0 = 1$ as convention.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf2-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf2-content&quot;&gt;&lt;p&gt;
+There are $u_{2n}2^{2n}$ paths of length $2n$ which have endpoints $(0, 0)$ and $(2n, 0)$. The collection of such paths can be partitioned into $n$ sets, depending upon the time of the first return to the origin. A path in this collection which has a first return to the origin at time $2k$ consists of an initial segment from $(0, 0)$ to $(2k, 0)$, in which no interior points are on the horizontal axis, and a terminal segment from $(2k, 0)$
+to $(2n, 0)$, with no further restrictions on this segment. Thus, the number of paths in the collection which have a first return to the origin at time $2k$ is given by
+$$\begin{equation}
+    f_{2 k} 2^{2 k} u_{2 n-2 k} 2^{2 n-2 k}=f_{2 k} u_{2 n-2 k} 2^{2 n}.
+\end{equation}$$
+If we sum over $k$, we obtain the equation
+$$\begin{equation}
+    u_{2 n} 2^{2 n}=f_{0} u_{2 n} 2^{2 n}+f_{2} u_{2 n-2} 2^{2 n}+\cdots+f_{2 n} u_{0} 2^{2 n}
+\end{equation}$$
+Dividing both sides of this equation by $2^{2n}$ completes the proof.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf2&quot;);&lt;/script&gt;
+
+&lt;p&gt;Using the generating functions, we have following theorem.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+For $m \geq 1$, the probability of a first return to the origin at time
+$2m$ is given by
+$$\begin{equation}
+    f_{2 m}=\frac{u_{2 m}}{2 m-1}=\frac{\binom{2m}{m}}{(2 m-1) 2^{2 m}}.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf3-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf3-content&quot;&gt;&lt;p&gt;
+We begin by defining the generating functions
+$$\begin{equation}
+    U(x)=\sum_{m=0}^{\infty} u_{2 m} x^{m}
+\end{equation}$$
+and 
+$$\begin{equation}
+    F(x)=\sum_{m=0}^{\infty} f_{2 m} x^{m}.
+\end{equation}$$
+Note that two sequences converge when $\left\vert x \right\vert&amp;lt;1$. The preceding theorem says that 
+$$\begin{equation}
+    U(x)=1+U(x) F(x).
+\end{equation}$$
+(The presence of the $1$ on the right-hand side is due to the fact that $u_0$ is defined to be $1$, but the last theorem only holds for $m \geq 1$.) We can solve the above equation for $F(x)$, obtaining
+$$\begin{equation}
+    F(x)=\frac{U(x)-1}{U(x)}.
+\end{equation}$$
+Now, if we can find a closed-form expression for the function $U(x)$, we will also have a closed-form expression for $F(x)$. From the first theorem in this notes, we have
+$$\begin{equation}
+    U(x)=\sum_{m=0}^{\infty}\binom{2m}{m} 2^{-2 m} x^{m} = \sum_{m=0}^\infty \binom{2m}{m} \left( \frac{x}{4} \right)^m.
+\end{equation}$$
+From series expansion, we find that 
+$$\begin{equation}
+    \frac{1}{\sqrt{1-4 x}}=\sum_{m=0}^{\infty}\left(\begin{array}{c}{2 m} \\ {m}\end{array}\right) x^{m}.
+\end{equation}$$
+Therefore, we have 
+$$\begin{equation}
+    U(x)=\frac{1}{\sqrt{1-x}}, \quad F(x) = \frac{U(x)-1}{U(x)} = 1-\sqrt{1-x}.
+\end{equation}$$
+Although it is possible to compute the value of f2m using the Binomial Theorem, it is easier to note that $F'(x) = U(x)/2$, so that the coefficients $f_{2m}$ can be found by integrating the series for $U(x)$. We obtain, for $m \geq 1$, 
+$$\begin{equation}
+    f_{2 m}=\frac{u_{2 m-2}}{2 m} = \frac{\binom{2m-2}{m-1}}{m 2^{2 m-1}} = \frac{\binom{2m}{m}}{(2 m-1) 2^{2 m}} = \frac{u_{2m}}{2m-1},
+\end{equation}$$
+since
+$$\begin{equation}
+    \binom{2m-2}{m-1} = \frac{m}{2(2 m-1)}\binom{2m}{m}.
+\end{equation}$$
+This completes the proof of the theorem.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf3&quot;);&lt;/script&gt;
+
+&lt;h3 id=&quot;probability-of-eventual-return&quot;&gt;Probability of Eventual Return&lt;/h3&gt;
+&lt;p&gt;In the symmetric random walk process in $R^m$, we first examine this question in the case that $m = 1$, and then we consider the general case.&lt;/p&gt;
+
+&lt;p&gt;We should be careful when dealing with eventual return since the sample space seems to be the set of all walks of infinite length, and this set is non-denumerable. To avoid difficulties, we will define $w_n$ to be the probability that a first return has occurred no later than time $n$. Thus,
+$w_n$ concerns the sample space of all walks of length $n$, which is a finite set. Then it is reasonable to define 
+\(\begin{equation}
+    w_{*}=\lim _{n \rightarrow \infty} w_{n}.
+\end{equation}\)
+This limit clearly exists and is at most one, since the sequence ${w_n}_{n=1}^\infty$ is an increasing sequence, and all of its terms are at most 1. In terms of the $f_n$ probabilities, we see that
+\(\begin{equation}
+    w_{2 n}=\sum_{i=1}^{n} f_{2 i}.
+\end{equation}\)
+Thus 
+\(\begin{equation}
+    w_{*}=\sum_{i=1}^{\infty} f_{2 i}.
+\end{equation}\)
+In previous proof we introduced the the generating function
+\(\begin{equation}
+    F(x)=\sum_{m=0}^{\infty} f_{2 m} x^{m} = 1-\sqrt{1-x}.
+\end{equation}\)
+which is convergent for $\left\vert x \right\vert &amp;lt; 1$. In fact, it also converges for $x = \pm 1$. Hence we see that 
+\(\begin{equation}
+    w_{*}=F(1)=1.
+\end{equation}\)
+Thus, with probability one, the particle returns to the origin in $\mathbb{R}^1$ random walk.&lt;/p&gt;
+
+&lt;p&gt;Now we consider the eventual return in $\mathbb{R}^m$. We define $f_{2 n}^{(m)}$ to be the probability that the first return to the origin in $\mathbb{R}^m$ occurs at time $2n$. The quantity $u_{2 n}^{(m)}$ is defined in a similar manner. From the preceding theorem, we have 
+\(\begin{equation}
+    u_{2 n}^{(m)}=f_{0}^{(m)} u_{2 n}^{(m)}+f_{2}^{(m)} u_{2 n-2}^{(m)}+\cdots+f_{2 n}^{(m)} u_{0}^{(m)}.
+\end{equation}\)
+We continue to generalize previous work by defining
+\(\begin{equation}
+    U^{(m)}(x)=\sum_{n=0}^{\infty} u_{2 n}^{(m)} x^{n}, \quad F^{(m)}(x)=\sum_{n=0}^{\infty} f_{2 n}^{(m)} x^{n}.
+\end{equation}\)
+Then we see that 
+\(\begin{equation}
+    U^{(m)}(x)=1+U^{(m)}(x) F^{(m)}(x).
+\end{equation}\)
+These functions will always converge in the interval $(1, 1)$. In fact, since 
+\(\begin{equation}
+    w_{*}^{(m)}=\sum_{n=0}^{\infty} f_{2 n}^{(m)} \leq 1
+\end{equation}\)
+for all $m$, the series for $F^{(m)}(x)$ converges at $x = 1$ as well, and $F^{(m)}(x)$ is left continuous at $x = 1$, i.e.,
+\(\begin{equation}
+    \lim _{x \uparrow 1} F^{(m)}(x)=F^{(m)}(1).
+\end{equation}\)
+Thus, we have
+\(\begin{equation}
+    \label{eq:9.2}
+    \tag{9-2}
+    w_{*}^{(m)}=\lim _{x \uparrow 1} F^{(m)}(x)=\lim _{x \uparrow 1} \frac{U^{(m)}(x)-1}{U^{(m)}(x)},
+\end{equation}\)
+so to determine $w_{*}^{(m)}$, , it suffices to determine 
+\(\begin{equation}
+    \lim _{x \uparrow 1} U^{(m)}(x).
+\end{equation}\)
+We let $u^{(m)}$ denote this limit. Then we have 
+\(\begin{equation}
+    \label{eq:9.3}
+    \tag{9-3}
+    u^{(m)}=\sum_{n=0}^{\infty} u_{2 n}^{(m)}.
+\end{equation}\)&lt;/p&gt;
+
+&lt;p&gt;In $\mathbb{R}^2$ random walk, we have
+\(\begin{equation}
+    u_{2 n}^{(2)}=\frac{1}{4^{2 n}} \binom{2n}{n}^2. 
+\end{equation}\)
+Using Stirling’s Formula
+\(\begin{equation}
+    \label{eq:Stirling}
+    \tag{Stirling}
+    n! \sim n^n e^{-n} \sqrt{2\pi n} \quad \text{for  $n$  large.}
+\end{equation}\)
+we have
+\(\begin{equation}
+    \binom{2n}{n} \sim \frac{2^{2 n}}{\sqrt{\pi n}} \quad \mathbb{R}ightarrow \quad 
+    u_{2 n}^{(2)} \sim \frac{1}{\pi n}.
+\end{equation}\)
+From this it follows easily that 
+\(\begin{equation}
+    \sum_{n=0}^{\infty} u_{2 n}^{(2)}
+\end{equation}\)
+diverges, so $w_{*}^{(2)}=1$, i.e., in $\mathbb{R}^2$, the probability of an eventual return is 1.&lt;/p&gt;
+
+&lt;p&gt;In $\mathbb{R}^3$, we have 
+\(\begin{equation}
+    u_{2 n}^{(3)}=\frac{1}{2^{2 n}}\binom{2n}{n} \sum_{j, k}\left(\frac{1}{3^{n}} \frac{n !}{j ! k !(n-j-k) !}\right)^{2}, 
+\end{equation}\)
+Note that $\sum_{n=0}^{\infty} u_{2 n}^{(3)}$ converges, so $w_{*}^{(3)}$ is strictly less than one. This means that in $\mathbb{R}^3$, the probability of an eventual return to the origin is strictly less than one.&lt;/p&gt;
+
+&lt;h2 id=&quot;gamblers-ruin&quot;&gt;Gambler’s Ruin&lt;/h2&gt;
+&lt;p&gt;In this section, we remove the assumption that the random walk is symmetric. Instead, we assume that $p$ and $q$ are non-negative real numbers with $p + q = 1$, and that the common distribution function of the jumps of the random walk is
+\(\begin{equation}
+    f_{X}(x)=\left\{\begin{array}{ll}{p,} &amp;amp; {\text { if } x=1} \\ {q,} &amp;amp; {\text { if } x=-1}\end{array}\right.
+\end{equation}\)&lt;/p&gt;
+
+&lt;p&gt;We formulate the problem as follows.
+A gambler starts with a “stake” of size $s$. She plays until her capital reaches the value $M$ or the value $0$. In the language of Markov chains, these two values correspond to absorbing states. We are interested in studying the probability of occurrence of each of these two outcomes.&lt;/p&gt;
+
+&lt;p&gt;We begin by defining $S_k$ to be the probability that the gambler’s stake reaches 0, i.e., she is ruined, before it reaches $M$, given that the initial stake is $k$. We note that $S_0 = 1$ and $S_M = 0$. The &lt;strong&gt;fundamental relationship&lt;/strong&gt; among the $S_k$’s is the following:
+\(\begin{equation}
+    S_{k}= p S_{k+1} + q S_{k-1},
+\end{equation}\)
+where $1 \leq k \leq M-1$. This holds because if her stake equals $k$, and she plays one game, then her stake becomes $k + 1$ with probability $p$ and $k-1$ with probability $q$. Since $p+q = 1$, we can rewrite the equation as 
+\(\begin{equation}
+    p\left(S_{k+1}-S_{k}\right)=q\left(S_{k}-S_{k-1}\right) \quad \text{ or }  \quad 
+    S_{k+1}-S_{k}=\frac{q}{p}\left(S_{k}-S_{k-1}\right).
+\end{equation}\)
+From this equation, it is easy to see that
+\(\begin{equation}
+    S_{k+1}-S_{k}=\left(\frac{q}{p}\right)^{k}\left(S_{1}-S_{0}\right). 
+\end{equation}\)
+We now use telescoping sums to obtain an equation in which the only unknown is $S_1$.
+\begin{equation}
+    \begin{split}
+        -1 &amp;amp;= S_M - S_0 = \sum_{k=0}^{M-1}\left(S_{k+1}-S_{k}\right) \&lt;br /&gt;
+        &amp;amp;= \sum_{k=0}^{M-1}\left(\frac{q}{p}\right)^{k}\left(S_{1}-S_{0}\right) = \left(S_{1}-S_{0}\right) \sum_{k=0}^{M-1}\left(\frac{q}{p}\right)^{k}.
+    \end{split}
+\end{equation}
+Then we can solve for $S_j$, $1\leq j \leq M$:
+\begin{equation}
+    S_{j}=1-\frac{(q / p)^{j}-1}{(q / p)^{M}-1}.
+\end{equation}&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yaml&lt;/code&gt;, set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;baseurl: /your-repo-name&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;include an empty file named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.nojekyll&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder&lt;/li&gt;
-  &lt;li&gt;change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docs&lt;/code&gt;. Or move everything out of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder.&lt;/li&gt;
+    &lt;li&gt; Consider $M &amp;gt;&amp;gt; j &amp;gt;&amp;gt; 0$, $q/p &amp;gt;1 $, then $S_j = 1-(q/p)^{j-M} \sim 1$.&lt;/li&gt;
+    &lt;li&gt; Consider $q/p &amp;lt; 1$, then $S_j = (q/p)^j \sim 0$.&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&quot;set-z-index-to-overlay&quot;&gt;set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;z-index&lt;/code&gt; to overlay&lt;/h3&gt;
-&lt;p&gt;The dropdown menu has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;position: relative&lt;/code&gt;. However, the two column layout also have the same property. Therefore, the two column layout may overlay the dropdown menu. To solve the problem, we have two ways:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;position: static&lt;/code&gt; to the two column layout. (May not feasible in some scenarios)&lt;/li&gt;
-  &lt;li&gt;Set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;z-index&lt;/code&gt; of the dropdown menu higher than the two column layout.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The superscript can be written like this&lt;sup&gt;[1]&lt;/sup&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;font-matter-settings&quot;&gt;font matter settings&lt;/h3&gt;
-&lt;p&gt;Jekyll can distinguish plural. For example,&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;category:
-- ca
-- cb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;is equivalent to&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;categories: ca cb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; there is no comma &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;,&lt;/code&gt; when using the plural.&lt;/p&gt;
-
-&lt;p&gt;The same applies for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;link-in-markdown&quot;&gt;link in markdown&lt;/h3&gt;
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;for-excerpt&quot;&gt;For excerpt&lt;/h3&gt;
-&lt;p&gt;We have two ways to display partial posts in the blog pages:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;excerpt&lt;/code&gt; in the front matter&lt;/li&gt;
-  &lt;li&gt;use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;excerpt_separator&lt;/code&gt; in the front matter&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;For example,&lt;/p&gt;
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;excerpt&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;These&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;pre-written&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;contents&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;will&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;be&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;displayed&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;blog&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;page&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;instead&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;the&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;post.&quot;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# or&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;excerpt_separator&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;lt;!--more--&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The second methods displays the post content before &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;!--more--&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;margin-collaps&quot;&gt;margin collaps&lt;/h3&gt;
-&lt;p&gt;when we use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;container-all&lt;/code&gt; with 0 margin and 0 padding to cover the background, we may encounter a margin collapse. The container will automatically have margin. We can use a fack padding to solve this problem &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;padding: 0.1px&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&quot;https://cmichel.io/css-margin-top-not-working&quot;&gt;Collapsing Margins of Block Elements&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;mathjax&quot;&gt;mathjax&lt;/h3&gt;
-&lt;p&gt;in jekyll we can use mathjax to nicely display latex math formula. Here is how to use mathjax: &lt;a href=&quot;http://zjuwhw.github.io/2017/06/04/MathJax.html&quot;&gt;Use MathJax to write Equations in Jekyll blogs&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Note that we need to add inline math &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ $&lt;/code&gt; so that mathjax can recognize it. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ $&lt;/code&gt; is not recognized by default.&lt;/p&gt;
-
-&lt;p&gt;We can also change the math font size with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTML-CSS&lt;/code&gt; option: &lt;a href=&quot;https://stackoverflow.com/questions/19086152/changing-mathjaxs-font-size&quot;&gt;Changing mathjax’s font size&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/x-mathjax-config&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;MathJax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hub&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-      &lt;span class=&quot;na&quot;&gt;tex2jax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;na&quot;&gt;inlineMath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\\&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt;
-        &lt;span class=&quot;na&quot;&gt;processEscapes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-      &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;HTML-CSS&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Note that we need &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.&lt;/code&gt; for different settings in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MathJax.Hub.Config&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;for-testing&quot;&gt;For testing&lt;/h3&gt;
-&lt;p&gt;&lt;i class=&quot;fa fa-car&quot; style=&quot;font-size:48px;&quot;&gt;&lt;/i&gt;&lt;/p&gt;
-
-&lt;p&gt;/freshman21-v2/2021/12/jekyll-notes.html&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;javascript:void(0)&quot;&gt;testlink&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;deeplearning&lt;/p&gt;
 </description>
-        <pubDate>Fri, 10 Dec 2021 00:00:00 -0500</pubDate>
-        <link>http://localhost:4000/2021/12/jekyll-notes.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/12/jekyll-notes.html</guid>
+        <pubDate>Fri, 27 Nov 2020 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2020/11/notes-9.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/11/notes-9.html</guid>
         
-        <category>jekyll</category>
+        <category>notes</category>
         
-        <category>html</category>
+        <category>math</category>
         
         
-        <category>Miscellaneous</category>
+        <category>Probability</category>
         
       </item>
     
       <item>
-        <title>Notes on CSS files</title>
-        <description>&lt;p&gt;This notes documents the usage of css classes.
-&lt;!--more--&gt;&lt;/p&gt;
+        <title>Markov Chain 2</title>
+        <description>&lt;h2 id=&quot;irreducible-markov-chains-and-regular-markov-chains&quot;&gt;Irreducible Markov chains and regular Markov chains&lt;/h2&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+A Markov chain is called an **irreducible chain** if it is possible to go from every state to every state (not necessarily in one move).
+&lt;/p&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;container-all  &lt;span class=&quot;c&quot;&gt;# entire body&lt;/span&gt;
-|- header-container    &lt;span class=&quot;c&quot;&gt;# through header, format only&lt;/span&gt;
-|  &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;- navbar           &lt;span class=&quot;c&quot;&gt;# small header, container only with clearfix&lt;/span&gt;
-|- body-container      &lt;span class=&quot;c&quot;&gt;# through body, format only&lt;/span&gt;
-|   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;- page-content    &lt;span class=&quot;c&quot;&gt;# small body page, container only with clearfix&lt;/span&gt;
-|- footer-container    &lt;span class=&quot;c&quot;&gt;# through footer, format only&lt;/span&gt;
-|  &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;- footer-content   &lt;span class=&quot;c&quot;&gt;# small footer, container only with clearfix&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Note that absorbing chains are NOT irreducible chains.
+&lt;/p&gt;&lt;/div&gt;
 
-&lt;p&gt;There is only one &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page&lt;/code&gt; class: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page-content&lt;/code&gt;, which defines the format of the page content.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+A Markov chain is called a **regular chain** if some power of the transition matrix has only positive elements. 
+&lt;/p&gt;&lt;/div&gt;
 
-&lt;p&gt;There is a series of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt; class:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt;: no css definition, only used to group things.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-header&lt;/code&gt;: contains &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-title&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-meta&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-title&lt;/code&gt;: defines post titile formats, including h1-h4&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-meta&lt;/code&gt;: defines meta information under post title&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-content&lt;/code&gt;: defines post content format.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-link:&lt;/code&gt;: defines link format in the post.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Note that regular chains are irreducible chains. But the converse is NOT true as the following example shows.
+&lt;/p&gt;&lt;/div&gt;
 
-&lt;p&gt;There is another css file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout_research.scss&lt;/code&gt;, which defines the formats of math related posts and publications.&lt;/p&gt;
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+Let the transition matrix of a Markov chain be defined by
+$$\begin{equation}
+    P = \begin{bmatrix} 0 &amp;amp; 1 \\ 1 &amp;amp; 0 \end{bmatrix}.
+\end{equation}$$
+If we start from state 1, then next step we jump to state 2. If we start from state 2, then we jump to state 1. In other words, we are flipping between two states after each step. So the chain is irreducible. But 
+$$\begin{equation}
+    P^{2n} = \begin{bmatrix} 1 &amp;amp; 0 \\ 0 &amp;amp; 1 \end{bmatrix}, \quad 
+    P^{2n+1} = \begin{bmatrix} 0 &amp;amp; 1 \\ 1 &amp;amp; 0 \end{bmatrix}.
+\end{equation}$$
+So the chain is not regular.
+&lt;/p&gt;&lt;/div&gt;
 
-&lt;p&gt;There are two different &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt; classes:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;page-index&lt;/code&gt;: display current page and JS. not in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt; class.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-index&lt;/code&gt;: previous and next posts. not in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt; class.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Any transition matrix that has no zeros determines a regular Markov chain. However, it is possible for a regular Markov chain to have a transition matrix that has zeros.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;We shall discuss two important theorems relating to regular chains. But before, we will use the following two lemmas.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+\label{lemma:8.1}
+Suppose $X$ is a random variable with finite number of outcomes, with the greatest being $x_{max}$ and the least being $x_{min}$. Then we have 
+$$\begin{equation}
+    \mathbf{E}(X) \leq x_{max}, \quad \mathbf{E}(X) \geq x_{min}.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf1-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf1-content&quot;&gt;&lt;p&gt;
+Assume $X$ has $n$ outcomes, and let $f(x_i) = \mathbf{P}(X = x_i)$, then we have
+\begin{gather*}
+    \mathbf{E}(X) = \sum_{i=1}^n x_i f(x_i) \geq \sum_{i=1}^n x_{min} f(x_i) = x_{min}, \\
+    \mathbf{E}(X) = \sum_{i=1}^n x_i f(x_i) \leq \sum_{i=1}^n x_{max} f(x_i) = x_{max}.
+\end{gather*}
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf1&quot;);&lt;/script&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+\label{lemma:8.2}
+Suppose a transition matrix $P$ only has positive entries and the smallest entry is $d&amp;gt;0$. Consider a vector $y$. Denote its maximum value as $M_0$ and its minimum value as $m_0$. Now consider the product $Py$. Denote its maximum value as $M_1$ and its minimum value as $m_1$. Then we have
+$$\begin{equation}
+    M_1 - m_1 \leq (1-2d) (M_0 - m_0).
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf2-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf2-content&quot;&gt;&lt;p&gt;
+Note that $P$ is a transition matrix. So each row of $P$ sums up to $1$. From lemma \ref{lemma:8.1}, we note that each entry in the vector $Py$ is a weighted average of the entries in $y$, therefore, we have
+$$\begin{equation}
+    \label{eq:8.1}
+    \tag{8-1}
+    M_1 \leq M_0, \quad m_1 \geq m_0.
+\end{equation}$$
+The largest weighted average that could be obtained in the present case would occur if all but one of the entries of $y$ have value $M_0$ and one entry has value $m_0$, and this one small entry is weightedby the smallest possible weight, namely $d$. In this case, the weighted average would equal $m_0 d + M_0(1-d)$.
+%$$\begin{equation}
+%    m_0 d + M_0(1-d).
+%\end{equation}$$
+Similarly, the smallest possible weighted average equals $M_0 d + m_0(1-d)$.
+%$$\begin{equation}
+%    M_0 d + m_0(1-d).
+%\end{equation}$$
+Therefore, we have 
+%Since \eqref{eq:8.1} is true for any $y$, we can take some particular form of $y$ to find the best and worst outcome of $Py$. First let $y = \begin{bmatrix} M_0 &amp;amp; \cdots &amp;amp; m_0 &amp;amp; \cdots &amp;amp; M_0 \end{bmatrix}$ such that $y$ only one entry being $m_0$ and such entry captures the minimum entry $d$ of $P$. Then we can show that 
+$$\begin{equation}
+    \label{eq:8.2}
+    \tag{8-2}
+    M_1 \leq m_0 d + M_0(1-d),
+\end{equation}$$
+%Similarly, by letting $y = \begin{bmatrix} m_0 &amp;amp; \cdots &amp;amp; M_0 &amp;amp; \cdots &amp;amp; m_0 \end{bmatrix}$ such that $y$ only one entry being $M_0$ and such entry captures the minimum entry $d$ of $P$, we can obtain 
+$$\begin{equation}
+    \label{eq:8.3}
+    \tag{8-3}
+    m_1 \geq M_0 d + m_0(1-d). 
+\end{equation}$$
+\eqref{eq:8.2}-\eqref{eq:8.3} yields 
+$$\begin{equation}
+    M_1 - m_1 \leq (1-2d) (M_0 - m_0).
+\end{equation}$$
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf2&quot;);&lt;/script&gt;
+
+&lt;p&gt;Now we give two important theorems.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; [Fundamental limit theorem for regular chains]
+\label{thm:8.1}
+Let $P$ be the transition matrix for a regular chain. Then, as $n \to \infty$, the powers $P^n$ approach a limiting matrix $W$ with all rows the **same** vector $w$. The vector $w$ is a strictly positive probability vector (i.e.., the components are all **positive** and they sum to one).
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf3-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf3-content&quot;&gt;&lt;p&gt;
+We consider an arbitrary vector $y$, and denote the maximum entry of $P^n y$ as $M_n$ and the minimum entry of $P^n y$ as $m_n$. From lemma 1, we must have 
+$$\begin{equation}
+    M_n \leq M_{n-1}, \quad m_n \geq m_{n+1}.
+\end{equation}$$
+Writing all these inequality from 1 to $n$ gives
+$$\begin{equation}
+    M_0 \geq M_1 \geq \cdots \geq M_n \geq m_n \geq \cdots \geq m_1 \geq m_0.
+\end{equation}$$
+Therefore $\{M_n\}$ is a decreasing sequence bounded below and $\{m_n\}$ is an increasing sequence bounded above. From sequence theory we know that $\{ M_n \}$ and $\{m_n\}$ must converge. Let
+$$\begin{equation}
+    M = \lim_{n\to\infty} M_n, \quad m = \lim_{n\to\infty} m_n.
+\end{equation}$$
+From Lemma \ref{lemma:8.2} we have 
+$$$$$$$$$$\begin{equation}
+    \label{eq:8.4}
+    \tag{8-4}
+    M_n - m_n \leq (1-2d)^n (M_0 - m_0).
+\end{equation}$$$$$$$$$$
+On the other hand, since $d$ is the minimum entry of $P$, we must have $0 &amp;lt; d \leq \frac{1}{2}$, which gives $0 \leq 1-2d &amp;lt; 1$. Thus from \eqref{eq:8.4} we have 
+$$$$$$$$$$\begin{equation}
+    \label{eq:8.5}
+    \tag{8-5}
+    \lim_{n\to\infty} (M_n - m_n) = 0 \quad \Rightarrow \quad 
+    M=m \quad \forall \ y.
+\end{equation}$$$$$$$$$$
+We choose a particular form of $y$ such that $y = e_j$ with $j$th entry being 1 and others being 0. Then $P^n y$ gives the $j$th column of $P^n$. Using \eqref{eq:8.5}, we have
+$$\begin{equation}
+    \lim_{n\to\infty} P^n y = \alpha \mathbf{1} \quad \text{for some $\alpha &amp;gt; 0$},
+\end{equation}$$
+which shows the $j$th column has the same entries.
+
+Thus, by letting $y = e_j$, $1\leq j \leq n$, we conclude that each column of $P^n$ has the same entries. This finishes the proof.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf3&quot;);&lt;/script&gt;
+
+&lt;p&gt;The $ij$th entry of $P^n$, $p^{(n)}_{ij}$, is the probability that the process will be in state $s_j$ after $n$ steps if it starts in state $s_i$. If we denote the common row of $W$ by $w$, then Theorem \ref{thm:8.1} states that the probability of being in $s_j$ in the long run is approximately $w_j$, the $j$th entry of $w$, and is independent of the starting state.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+\label{thm:8.2}
+Let $P$ be a regular transition matrix, let
+$$\begin{equation}
+    W = \lim_{n\to\infty} P^n,
+\end{equation}$$
+and let $w$ be the common row of $W$. Then
+&lt;ol&gt;
+    &lt;li&gt; 
+    $wP = w$, which means $w$ is a left eigenvector of $P$ with eigenvalue 1, and any row vector $v$ such that $vP = v$ is a constant multiple of $w$.&lt;/li&gt;
+    &lt;li&gt; 
+    $P\mathbf{1} = \mathbf{1}$, which means $\mathbf{1}$ is an eigenvector of $P$ with eigenvalue 1, and any column vector $x$ such that $Px = x$ is a multiple of $\mathbf{1}$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf4-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf4-content&quot;&gt;&lt;p&gt;
+To prove part (a), we note that from Theorem \ref{thm:8.1}, 
+$$\begin{equation}
+    \lim_{n\to\infty} P^n = W.
+\end{equation}$$
+Thus
+$$\begin{equation}
+    \lim_{n\to\infty} P^{n+1} = P^n P = W P.
+\end{equation}$$
+But $\lim_{n\to\infty} P^{n+1} = W$, and so $W = WP$ and $w = wP$.
+
+Let $v$ be any vector with $vP = v$. Then $v = vP^n$, and passing to the limit, $v = vW$. Let $r$ be the sum of the components of $v$, i.e., $r = \sum_{i=1}^n v_i$. Then it is easily checked that $vW = rw$. So, $v = rw$.
+
+To prove part (b), assume that $x = Px$. Then $x = P^n x$, and again passing to the limit, $x = Wx$. Since all rows of $W$ are the same, the components of $Wx$ are all equal, so $x$ is a multiple of $\mathbf{1}$.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf4&quot;);&lt;/script&gt;
+
+&lt;p&gt;Note that an immediate consequence of Theorem \ref{thm:8.2} is the fact that there is only one &lt;strong&gt;probability vector&lt;/strong&gt; $v$ such that $vP = v$, which is $v = w$. The probability vector $v$ is the vector such that $\sum_{i=1}^n = 1$.&lt;/p&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Computing $W$ is equivalent to computing the left eigenvector of $P$ with eigenvalue 1. It is equivalent to compute the right eigenvector of $P^T$ with eigenvalue 1.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+Let $P$ be a transition matrix such that 
+$$\begin{equation}
+    P = \begin{bmatrix}  \frac{1}{2} &amp;amp; \frac{1}{2} \\ \frac{1}{4} &amp;amp; \frac{3}{4} \end{bmatrix}.
+\end{equation}$$
+Compute $W = \lim_{n\to\infty} P^n$. 
+
+This is equivalent to compute $P^T x = x$. Note that $x$ is a probability vector, so $\mathbf{1}^T x = 1$.
+$$\begin{equation}
+    P^T x = x \quad \Rightarrow \quad \begin{cases} \frac{1}{2} x_1 + \frac{1}{4}x_2 = x_1 \\ x_1+x_2 = 1 \end{cases} \quad \Rightarrow \quad
+    \begin{cases} x_1 = \frac{1}{3} \\ x_2 = \frac{2}{3} \end{cases}
+\end{equation}$$
+Therefore $w = [\frac{1}{3} \ \frac{2}{3}]$, and $W = \begin{bmatrix} w \\ w \end{bmatrix} = \begin{bmatrix} \frac{1}{3} &amp;amp; \frac{2}{3} \\ \frac{1}{3} &amp;amp; \frac{2}{3} \end{bmatrix}$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;fixed-vectors&quot;&gt;Fixed vectors&lt;/h2&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+A row vector $w$ with the property $wP = w$ is called a **fixed row vector** for $P$. Similarly, a column vector $x$ such that $Px = x$ is called a **fixed column vector** for $P$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Thus, the common row of $W$ is the unique vector $w$ which is both a fixed row vector for $P$ and a probability vector. Theorem \ref{thm:8.2} shows that any fixed row vector for $P$ is a multiple of $w$ and any fixed column vector for $P$ is a constant vector. One can also state the above definition in terms of eigenvalues and eigenvectors. A fixed row vector is a left eigenvector of the matrix $P$ corresponding to the eigenvalue 1. A similar statement can be made about fixed column vectors.&lt;/p&gt;
+
+&lt;p&gt;The following theorem generalizes Theorem \ref{thm:8.1} to the case where the starting state is itself
+determined by a probability vector.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 8.3.&lt;/b&gt; 
+Let $P$ be the transition matrix for a regular chain and $v$ an arbitrary probability vector. Then
+$$\begin{equation}
+    \lim_{n\to\infty} vP^n = w,
+\end{equation}$$
+where $w$ is the unique fixed probability vector for $P$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf5-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf5-content&quot;&gt;&lt;p&gt;
+By Theorem \ref{thm:8.1},
+$$\begin{equation}
+    \lim_{n\to\infty} P^n = W.
+\end{equation}$$
+Hence 
+$$\begin{equation}
+    \lim_{n\to\infty} vP^n = vW.
+\end{equation}$$
+But the entries in $v$ sum to 1, and each row of $W$ equals $w$. From these statements, it is easy to check that
+$$\begin{equation}
+    vW = w.
+\end{equation}$$
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf5&quot;);&lt;/script&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+If we start a Markov chain with initial probabilities given by $v$, then the probability vector $v P^n$ gives the probabilities of being in the various states after $n$ steps. Theorem \ref{thm:8.3} then establishes the fact that, even in this more general class of processes, the probability of being in $s_j$ approaches $w_j$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Theorem 8.3 tells that regular chains always equilibriate to $w$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Does the result holds for irreducible chains?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOT&lt;/strong&gt; true for irreducible chains. The following is a counterexample.&lt;/p&gt;
+&lt;div class=&quot;Example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+Let 
+$$\begin{equation}
+    P = \begin{bmatrix} 0 &amp;amp; 1 \\ 1 &amp;amp; 0 \end{bmatrix}.
+\end{equation}$$
+If we calculate the left eigenvector, we can obtain 
+$$\begin{equation}
+    w = \begin{bmatrix} \frac{1}{2} &amp;amp; \frac{1}{2} \end{bmatrix}.
+\end{equation}$$
+But if we start from $(1,0)$ or $(0,1)$, we will never goes to this equilibrium.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+The period $d(i)$ of a state $i$ is defined by $d(i) = \gcd\{n : P_{ii}(n) &amp;gt; 0\}$, the greatest common divisor of the epochs at which return is possible. We call state $i$ periodic if $d(i) &amp;gt; 1$ and aperiodic if $d(i) = 1$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Aperiodic + irreducible $\Leftrightarrow$ regular for finite outcome Markov chains.
+&lt;/p&gt;&lt;/div&gt;
+
 </description>
-        <pubDate>Mon, 01 Nov 2021 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2021/11/scss-notes.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/11/scss-notes.html</guid>
+        <pubDate>Fri, 20 Nov 2020 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2020/11/notes-8.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/11/notes-8.html</guid>
         
-        <category>css</category>
+        <category>notes</category>
+        
+        <category>math</category>
         
         
-        <category>Miscellaneous</category>
+        <category>Probability</category>
         
       </item>
     
       <item>
-        <title>Build Up My Own Website!</title>
-        <description>&lt;p&gt;Welcome!&lt;/p&gt;
+        <title>Markov Chain</title>
+        <description>&lt;p&gt;Most of our study of probability has dealt with independent trials processes, in which we have i.i.d. random variables $X_i$. This is useful for modeling and sampling situations. But when study random dynamical systems, they are less useful. In these cases, ${X_i}$ are no longer independent because they are all part of the system, and they have to interact with each other. So one way to modeling this is to use conditional probability.&lt;/p&gt;
 
-&lt;p&gt;I have always been eager to build my personal blog from sketch. Now it comes true! 
-&lt;!--more--&gt;&lt;/p&gt;
+&lt;h2 id=&quot;markov-chains-basic-definitions&quot;&gt;Markov chains: basic definitions&lt;/h2&gt;
+&lt;p&gt;Consider a countable sequence $X_1, X_2, \dots, X_n, \dots$ which&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt; the subscript represents time, thus we have discrete time sequence;&lt;/li&gt;
+    &lt;li&gt; each $X_i$ has finite outcomes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In other words, each $X_i$ is a discrete random variable that takes one of $N$ possible values, where 
+$N = \mathbf{card}(S)$ and $S$ is the outcome space; it may be the case that $N = \infty$.&lt;/p&gt;
 
-&lt;p&gt;It is not as simple as I thought. So I thought it would be best to jot down what I learned along the way. Since I have zero background in web applications, some notes may be too obvious for an expert. Also, there are a lot of reserouces online, and I will refer to those that helped me along the way.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+The process $X$ is a Markov chain if it satisfies the &lt;b&gt;Markov condition&lt;/b&gt;:
+$$\begin{equation}
+    \mathbf{P}\left(X_{n}=s | X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n-1}=x_{n-1}\right)=\mathbf{P}\left(X_{n}=s | X_{n-1}=x_{n-1}\right)
+\end{equation}$$
+for all $n\geq 1$ ans all $s, x_1, \dots, x_{n-1} \in S$.
+&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;Since $S$ is assumed countable, it can be put in one-to-one correspondence with some subset $S’$ of the integers, and without loss of generality we can assume that $S$ is this set $S’$ of integers. Then the evolution of a chain is described by its &lt;strong&gt;transition probabilities&lt;/strong&gt; 
+\(\begin{equation}
+    \label{eq:7.1}
+    \tag{7-1}
+    \mathbf{P}(X_{n} = j \;\vert\; X_{n-1} = i) := p_{ij}(n-1).
+\end{equation}\)&lt;/p&gt;
 
-&lt;p&gt;Also, I will write notes and blogs related to my research as a way to document and share ideas.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+The transition matrix $P$ is a **stochastic matrix**, which is to say that: 
+&lt;ol&gt;
+    &lt;li&gt; $P$ has non-negative entries, or $p_{ij} \geq 0$ for all $i, j$,&lt;/li&gt;
+    &lt;li&gt; $P$ has row sums equal to one, or $\sum_j p_{ij} = 1$ for all $i$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;%Note that the Markov property is equivalent to the following stipulation, which is also called &lt;strong&gt;$k$-step transition probabilities&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+The **$k$-step transition probabilities** is defined as
+$$\begin{equation}
+    \label{eq:7.2}
+    \tag{7-2}
+    \mathbf{P}(X_{n+k-1} = j \;\vert\; X_{n-1} = i) := p_{ij}^{(k)}(n-1) \quad \text{for any } n, k \geq 1.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;%Based on this, we can define&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+The **transition matrix** $P(n-1) = (p_{ij}(n-1))$ is the $\left\vert S \right\vert \times \left\vert S \right\vert$ matrix of **transition probabilities** $p_{ij}(n-1)$. The **$k$-step transition matrix** $P^{(k)}(n-1) = (p_{ij}^{(k)}(n-1))$ is the matrix of **$k$-step transition probabilities** $p_{ij}^{(k)}(n-1)$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+We can check that the Markov property is equivalent to each of the following two stipulations: for each $s \in S$ and for every sequence $\{ x_i \;\vert\; i \geq 0\}$ in $S$,
+$$\begin{equation}
+    \label{eq:7.3a}
+    \tag{7-3a}
+    \begin{split}
+        \mathbf{P}\left(X_{n+1}=s | X_{n_{1}}=x_{n_{1}}, X_{n_{2}}=x_{n_{2}}, X_{n_{k}}=x_{n_{k}}\right)=\mathbf{P}\left(X_{n+1}=s | X_{n_{k}}=x_{n_{k}}\right) \\
+        \text{for all } n_1 &amp;lt; n_2 &amp;lt; \cdots &amp;lt; n_k \leq n.
+    \end{split}
+\end{equation}$$
+$$\begin{equation}
+    \label{eq:7.3b}
+    \tag{7-3b}
+    \begin{split}
+        \mathbf{P}\left(X_{m+n}=s | X_{0}=x_{0}, X_{1}=x_{1}, \ldots, X_{m}=x_{m}\right)=\mathbf{P}\left(X_{m+n}=s | X_{m}=x_{m}\right) \\ 
+        \text{for any } m, n \geq 0.
+    \end{split}
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Next we introduce another assumption:&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+The chain $X$ is called **homogeneous** if
+$$\begin{equation}
+    \mathbf{P}(X_n = j \;\vert\; X_{n-1} = i) = \mathbf{P}(X_2 = j \;\vert\; X_1 = i), \quad \text{for all } n, i, j.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Note the following two remarks.
+&lt;ol&gt;
+    &lt;li&gt; Markov property and homogeneity property are **independent**. There are also Markov chains which are not homogeneous.&lt;/li&gt;
+    &lt;li&gt; If a Markov chain $X$ is homogeneous, then $p_{ij}(n-1)$ doesn't depends on the time $(n-1)$, i.e., the probability transition matrix $P$ is **fixed** at each step.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;properties-of-markov-chains&quot;&gt;Properties of Markov chains&lt;/h2&gt;
+&lt;p&gt;By the assumption of homogeneity, we know $P(n-1) = P$. That $P^{(k)}(n-1)$ doesn’t depend on $(n-1)$ is a consequence of the following important fact.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; [Chapman-Kolmogorov equations]
+$$\begin{equation}
+    p_{ij}^{(n+r)}(m) = \sum_{k} p_{ik}^{(n)}(m) p_{kj}^{(r)}(m+n).
+\end{equation}$$
+Therefore, 
+$$\begin{equation}
+    P^{(n+r)}(m) = P^{(n)}(m) P^{(r)}(m+n).
+\end{equation}$$
+Furthermore, if we have homogeneity, then 
+$$\begin{equation}
+    P^{n}(m) = P^n,
+\end{equation}$$
+the $n$th power of $P$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf1-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf1-content&quot;&gt;&lt;p&gt;
+    $$\begin{equation}
+        \begin{split}
+            p_{ij}^{n+r}(m) &amp;amp;= \mathbf{P}(X_{m+n+r} = j \;\vert\; X_m = i) \\ 
+            &amp;amp;= \sum_{k} \mathbf{P}(X_{m+n+r} = j, X_{m+n} = k \;\vert\; X_m = i) \\
+            &amp;amp;= \sum_{k} \mathbf{P}(X_{m+n+r} = j \;\vert\; X_{m+n} = k, X_m = i) \mathbf{P}(X_{m+n} = k \;\vert\; X_m = i) \quad \text{(marginalization)} \\
+            &amp;amp;= \sum_{k} \mathbf{P}(X_{m+n+r} = j \;\vert\; X_{m+n} = k) \mathbf{P}(X_{m+n} = k \;\vert\; X_m = i) \quad \text{(Markov property)} \\
+            &amp;amp;= \sum_{k} p_{kj}^{(r)}(m+n) p_{ik}^{(n)}(m) . 
+        \end{split}
+    \end{equation}$$
+    The marginalization step uses the fact that 
+    $$\begin{equation}
+        \mathbf{P}(A \cap B \;\vert\; C) = \mathbf{P}(A \;\vert\; B \cap C) \mathbf{P}(B \;\vert\; C).
+    \end{equation}$$
+    The Markov property step uses \eqref{eq:7.3a}. The $n$th power is obtained by iteration.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf1&quot;);&lt;/script&gt;
+
+&lt;p&gt;One consequence of the preceding theorem is that $P^{(n)}(m) = P^{(n)}(0)$. Note that this consequence is obtained &lt;strong&gt;with homogeneous assumption&lt;/strong&gt;. We write $P_n$ for $P^{(n)}(m)$ and $p_{ij}(n)$ for $p_{ij}^{(n)}(m)$. This theorem relates long-term development to short-term development, and tells us how $X_n$ depends on the initial variable $X_0$. Let $\mu_i^{(n)} = \mathbf{P}(X_n = i)$ be the mass function of $X_n$, and write $\mu^{(n)}$ for the &lt;strong&gt;row vector&lt;/strong&gt; with entries $(\mu_i^{(n)} : i \in S)$. Then we have the following lemma.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+$\mu^{(m+n)} = \mu^{(m)}P_n$, and hence $\mu^{(n)} = \mu^{(0)}P^n$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf2-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf2-content&quot;&gt;&lt;p&gt;
+    We have that
+    $$\begin{equation}
+        \begin{split}
+            \mu_j^{(m+n)} &amp;amp;= \mathbf{P}(X_{m+n} = j) \\
+            &amp;amp;= \sum_{i} \mathbf{P}(X_{m+n} = j \;\vert\; X_m = i) \mathbf{P}(X_m = i) \\
+            &amp;amp;= \sum_{i} \mu_i^{(m)} p_{ij}(n) \\
+            &amp;amp;= (\mu^{(m)} P_n)_j
+        \end{split}
+    \end{equation}$$
+    and the result follows from the preceding theorem.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf2&quot;);&lt;/script&gt;
+
+&lt;p&gt;The random evolution of the chain is determined by the transition matrix $P$ and the initial mass function $\mu^{(0)}$.&lt;/p&gt;
+
+&lt;h2 id=&quot;absorbing-markov-chains&quot;&gt;Absorbing Markov chains&lt;/h2&gt;
+&lt;p&gt;An absorbing Markov chain is a special type of Markov chains.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+A state $s_i$ of a Markov chain is called **absorbing** if it is impossible to leave it (i.e., $p_{ii} = 1$). A Markov chain is **absorbing** if it has at least one absorbing state, and if from every state it is possible to go to an absorbing state (not necessarily in one step).
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+In an absorbing Markov chain, a state which is not absorbing is called **transient**.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;canonical-form-of-absorbing-markov-chains&quot;&gt;Canonical form of absorbing Markov chains&lt;/h3&gt;
+&lt;p&gt;Consider an arbitrary absorbing Markov chain. Renumber the states so that the transient states come first. If there are $r$ absorbing states and $t$ transient states, the transition matrix will have the following canonical form
+\begin{equation}
+    P = 
+    \begin{blockarray}{rcc}
+        &amp;amp; TR. &amp;amp; ABS. &lt;br /&gt;
+    \begin{block}{r[cc]}
+        TR. &amp;amp; Q &amp;amp;  R &lt;br /&gt;
+        ABS. &amp;amp; 0 &amp;amp;  I &lt;br /&gt;
+    \end{block}
+    \end{blockarray}
+\end{equation}
+Here $I$ is an $r\times r$ identity matrix, $0$ is an $r\times t$ zero matrix, $R$ is a nonzero $t\times r$ matrix, and $Q$ is an $t\times t$ matrix. The first $t$ states are transient and the last $r$ states are absorbing.&lt;/p&gt;
+
+&lt;p&gt;A standard matrix algebra argument shows that $P^n$ is of the form
+\begin{equation}
+    P^n = 
+    \begin{blockarray}{rcc}
+        &amp;amp; TR. &amp;amp; ABS. &lt;br /&gt;
+    \begin{block}{r[cc]}
+        TR. &amp;amp; Q^n &amp;amp;  * &lt;br /&gt;
+        ABS. &amp;amp; 0 &amp;amp;  I &lt;br /&gt;
+    \end{block}
+    \end{blockarray}
+\end{equation}
+where the asterisk $*$ stands for the $t\times r$ matrix in the upper right-hand corner of $P^n$.&lt;/p&gt;
+
+&lt;p&gt;The entries of $Q_n$ give the probabilities for being in each of the transient states after $n$ steps for each possible transient starting state. The following theorem will show that every entry of $Q_n$ will approach zero as $n$ approaches infinity (i.e., $Q_n \to 0$).&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+In an absorbing Markov chain, the probability that the process will be absorbed is 1 (i.e., $Q_n \to 0$ as $n \to \infty$).
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf3-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf3-content&quot;&gt;&lt;p&gt;
+From each non-absorbing state $s_j$ it is possible to reach an absorbing state. Let $m_j$ be the minimum number of steps required to reach an absorbing state, starting from $s_j$. Let $p_j$ be the probability that, starting from $s_j$, the process will not reach an absorbing state in $m_j$ steps. Then $p_j &amp;lt; 1$. Let $m$ be the largest of the $m_j$ and let $p$ be the largest of $p_j$. The probability of not being absorbed in $m$ steps is less than or equal to $p$, in $2m$ steps less than or equal to $p^2$, etc. Since $p &amp;lt; 1$, these probabilities tend to 0. Since the probability of not being absorbed in $n$ steps is monotone decreasing, these probabilities also tend to 0, hence $\lim_{n\to\infty} Q_n = 0$.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf3&quot;);&lt;/script&gt;
+
+&lt;h3 id=&quot;the-fundamental-matrix&quot;&gt;The fundamental matrix&lt;/h3&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+For an absorbing Markov chain $P$, the matrix $N = (I-Q)^{-1}$ is called the **fundamental matrix** for $P$. The entry $n_{ij}$ of $N$ gives the expected number of times that the process is in the transient state $s_j$ if it is started in the transient state $s_i$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+For an absorbing Markov chain the matrix $I-Q$ has an inverse $N$ and $N = I + Q + Q^2 + \cdots$. The $ij$-entry $n_{ij}$ of the matrix $N$ is the expected number of times the chain is in state $s_j$, given that it starts in state $s_i$. The initial state is counted if $i = j$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf4-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf4-content&quot;&gt;&lt;p&gt;
+Let $(I-Q)x = 0$; that is $x = Qx$. Then, iterating this we see that $x = Q^n x$. Since $Q_n \to 0$, we have $Q_n x \to 0$, so $x = 0$. Thus $(I-Q)^{-1} = N$
+exists. Note next that
+$$\begin{equation}
+    (I-Q)(I+Q + Q^2 + \cdots + Q^n) = I - Q^{n+1}.
+\end{equation}$$
+Thus multiplying both sides by $N$ gives
+$$\begin{equation}
+    I + Q + Q^2 + \cdots + Q^n = N(I-Q^{n+1}) .
+\end{equation}$$
+Letting $n$ tend to infinity we have
+$$\begin{equation}
+    N = I + Q + Q^2 + \cdots .
+\end{equation}$$
+Let $s_i$ and $s_j$ be two transient states, and assume throughout the remainder of the proof that $i$ and $j$ are fixed. Let $X^{(k)}$ be a random variable which equals 1 if the chain is in state $s_j$ after $k$ steps, and equals 0 otherwise. For each $k$, this random variable depends upon both $i$ and $j$; we choose not to explicitly show this dependence in the interest of clarity. We have
+$$\begin{equation}
+    \mathbf{P} \left(X^{(k)}=1\right)=q_{i j}^{(k)},
+\end{equation}$$
+and 
+$$\begin{equation}
+    \mathbf{P} \left(X^{(k)}=0\right)=1-q_{i j}^{(k)},
+\end{equation}$$
+where $q_{i j}^{(k)}$ is the $ij$th entry of $Q^k$. These equations hold for $k = 0$ since $Q^0 = I$. Therefore, since $X^{(k)}$ is a 0-1 random variable, $\mathbf{E}(X^{(k)}) = q_{i j}^{(k)}$.
+
+The expected number of times the chain is in state $s_j$ in the first $n$ steps, given that it starts in state $s_i$, is clearly
+$$\begin{equation}
+    \mathbf{E}\left(X^{(0)}+X^{(1)}+\cdots+X^{(n)}\right)=q_{i j}^{(0)}+q_{i j}^{(1)}+\cdots+q_{i j}^{(n)}.
+\end{equation}$$
+Letting $n$ tend to infinity we have
+$$\begin{equation}
+    \mathbf{E}\left(X^{(0)}+X^{(1)}+\cdots\right)=q_{i j}^{(0)}+q_{i j}^{(1)}+\cdots=n_{i j}.
+\end{equation}$$
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf4&quot;);&lt;/script&gt;
+
+&lt;h3 id=&quot;time-to-absorption&quot;&gt;Time to absorption&lt;/h3&gt;
+&lt;p&gt;Given that the chain starts in state $s_i$, what is the expected number of steps before the chain is absorbed? The following theorem gives the answer.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+Let $t_i$ be the expected number of steps before the chain is absorbed, given that the chain starts in state $s_i$, and let $t$ be the **column vector** whose $i$th entry is $t_i$. Then
+$$\begin{equation}
+    t = N \mathbf{1}
+\end{equation}$$
+where $\mathbf{1}$ is a column vector all of whose entries are 1.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf5-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf5-content&quot;&gt;&lt;p&gt;
+If we add all the entries in the $i$th row of $N$, we will have the expected number of times in any of the transient states for a given starting state $s_i$, that is, the expected time required before being absorbed. Thus, $t_i$ is the sum of the entries in the $i$th row of $N$. If we write this statement in matrix form, we obtain the theorem.
+\end{proof}&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf5&quot;);&lt;/script&gt;
+
+&lt;h3 id=&quot;absorption-probabilities&quot;&gt;Absorption probabilities&lt;/h3&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+Let $b_{ij}$ be the probability that an absorbing chain will be absorbed in the absorbing state $s_j$ if it starts in the transient state $s_i$. Let $B$ be the matrix with entries $b_{ij}$ . Then $B$ is an $t\times r$ matrix, and
+$$\begin{equation}
+    B = NR,
+\end{equation}$$
+where $N$ is the fundamental matrix and $R$ is as in the canonical form.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf6-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf6-content&quot;&gt;&lt;p&gt;
+We have 
+$$\begin{equation}
+    \begin{aligned} 
+        B_{i j} &amp;amp;=\sum_{n} \sum_{k} q_{i k}^{(n)} r_{k j} \\ &amp;amp;=\sum_{k} \sum_{n} q_{i k}^{(n)} r_{k j} \\ &amp;amp;=\sum_{k} n_{i k} r_{k j} \\ &amp;amp;=(N R)_{i j}.
+    \end{aligned}
+\end{equation}$$
+This completes the proof.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf6&quot;);&lt;/script&gt;
+
 </description>
-        <pubDate>Mon, 11 Oct 2021 23:53:40 -0400</pubDate>
-        <link>http://localhost:4000/2021/10/wellcome.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2021/10/wellcome.html</guid>
+        <pubDate>Fri, 13 Nov 2020 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2020/11/notes-7.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/11/notes-7.html</guid>
         
-        <category>welcome</category>
+        <category>notes</category>
+        
+        <category>math</category>
         
         
-        <category>Miscellaneous</category>
+        <category>Probability</category>
+        
+      </item>
+    
+      <item>
+        <title>Generating Functions</title>
+        <description>&lt;h2 id=&quot;generating-functions&quot;&gt;Generating functions&lt;/h2&gt;
+&lt;p&gt;A sequence $a = {a_i \;\vert\; i = 0, 1 , 2, \dots }$ of real numbers may contain a lot of information. One concise way of storing this information is to wrap up the numbers together in a ``generating function”. For example, the (ordinary) &lt;strong&gt;generating function&lt;/strong&gt; of the sequence $a$ is the function $G_a$ defined by 
+\(\begin{equation}
+    G_{a}(s)=\sum_{i=0}^{\infty} a_{i} s^{i} \quad \text { for } s \in \mathbb{R} \text { for which the sum converges. }
+\end{equation}\)
+In many circumstances it is easier to work with the generating function $G_a$ than with the original sequence $a$.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; [Abel's theorem]
+If $a_i \geq 0$ for all $i$ and $G_a(s)$ is finite for $\left\vert s \right\vert &amp;lt; 1$, then $\lim_{s \uparrow 1} G_a (s) = \sum_{i=1}^ \infty a_i$, whether the sum is finite or equals $+\infty$. This standard result is useful when the radius of convergence $R$ satisfies $R = 1$, since then one has no a priori right to take the limit as $s \uparrow 1$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;moment-generating-function&quot;&gt;Moment generating function&lt;/h3&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+The **moment generating function** of the random variable $X$ is the function $M: \mathbb{R} \mapsto [0, \infty)$ given by the Laplace transform of the corresponding p.d.f. $f_X(s)$:
+$$\begin{equation}
+    M_X(t) = \mathbf{E} \left( e^{tX} \right) = \int_{-\infty}^\infty e^{tx} f_X(x) dx,
+\end{equation}$$
+or corresponding p.m.f. $p_X(k)$:
+$$\begin{equation}
+    M_X(t) = \sum_{k} e^{t k} \mathbf{P}(X=k) 
+    = \sum_k \sum_{n=0}^{\infty} \frac{(t k)^{n}}{n !} \mathbf{P}(X=k)
+    = \sum_{n=0}^{\infty} \frac{t^{n}}{n !}\left(\sum_k k^{n} \mathbf{P}(X=k)\right) 
+    = \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \mathbf{E}\left(X^{n}\right).
+\end{equation}$$
+$M_X(-t)$ is so called **bilateral** Laplace transform of $f_X(x)$ or $p_X(k)$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Under the assumption that $M_X(t)$ is infinitely differentiable at $t=0$, the following statements are true.&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt; $M^\prime(0) = \mathbf{E}(0) = \mu$.&lt;/li&gt;
+    &lt;li&gt; $M^{(n)}(0) = \mathbf{E}(X^n)$.&lt;/li&gt;
+    &lt;li&gt; Using Taylor's theorem, $M_X(t) = \sum_{k=0}^\infty \frac{t^k}{k!} \mathbf{E}(X^k)$.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+If $X$ and $Y$ are independent, then
+$$\begin{equation}
+    \begin{split}
+        M_{X+Y}(t) &amp;amp;= \int_{-\infty}^\infty e^{tz} f_{x+y}(z) dz \\
+        &amp;amp;= \int_{-\infty}^\infty e^{tz} \int_{-\infty}^\infty f_X(x) f_Y(z-x) dx dz \\
+        &amp;amp;= \int_{-\infty}^\infty e^{t(x+y)} \int_{-\infty}^\infty f_X(x) f_Y(y) dx dy \\
+        &amp;amp;= M_X(t) M_Y(t).
+    \end{split}
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;characteristic-functions&quot;&gt;Characteristic functions&lt;/h3&gt;
+&lt;p&gt;Sometimes $\mathbf{E}(e^{tX})$ may blow up. So we consider some transformations in the complex domain, which usually perform better.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+The **characteristic function** of $X$ is the function $\phi: \mathbb{R} \mapsto \mathbb{C}$ defined by
+$$\begin{equation}
+    \phi(t)=\mathbf{E}\left(e^{i t X}\right) \quad \text { where } \quad i=\sqrt{-1}.
+\end{equation}$$
+We often write $\phi_x$ for the characteristic function of the random variable $X$. Characteristic functions are related to Fourier transforms. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+The characteristic function $\phi$ satisfies:
+&lt;ol&gt;
+    &lt;li&gt; $\phi(0) = 1$, $\left\vert \phi(t) \right\vert \leq 1$ for all $t$.&lt;/li&gt;
+    &lt;li&gt; $\phi$ is uniformly continuous on $\mathbb{R}$ w.r.t. $t$.&lt;/li&gt;
+    &lt;li&gt; If $X \sim \mathcal{N}(0,1)$, then $\phi_{X}(t) = e^{-t^2/2}$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf1-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf1-content&quot;&gt;&lt;p&gt;
+We only prove the first statement.
+$$\begin{equation}
+    \begin{split}
+        \left\vert \phi(t) \right\vert &amp;amp;= \left\vert \int_{-\infty}^\infty e^{itx} f(x)dx  \right\vert \\
+        &amp;amp;\leq \int_{-\infty}^\infty \left\vert e^{itx} \right\vert f(x) dx \quad \text{(triangle inequality)} \\
+        &amp;amp;= \int_{-\infty}^\infty f(x) dx \quad (\left\vert e^{itx} \right\vert=1) \\
+        &amp;amp;= 1
+    \end{split}
+\end{equation}$$
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf1&quot;);&lt;/script&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [Cauchy distribution]
+If $f(x) = 
+\frac{1}{\pi(1+x^2)}$, then the corresponding characteristic function is 
+$$\begin{equation}
+    \phi(t)=\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{e^{i t x}}{1+x^{2}} d x = e^{-\left\vert t \right\vert}.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+The following statements are true.
+&lt;ol&gt;
+    &lt;li&gt; If $\phi^{(k)}(0)$ exists, then 
+    $$\begin{equation}
+        \left\{\begin{array}{ll}{\mathbf{E}\left|X^{k}\right|&amp;lt;\infty} &amp;amp; {\text { if $k$}  \text { is even }} \\ {\mathbf{E}\left|X^{k-1}\right|&amp;lt;\infty} &amp;amp; {\text { if $k$ } \text { is odd }}\end{array}\right.
+    \end{equation}$$&lt;/li&gt;
+    &lt;li&gt; If $\mathbf{E}(\left\vert X^k \right\vert) &amp;lt; \infty$, then 
+    $$\begin{equation}
+        \phi(t)=\sum_{j=0}^{k} \frac{\mathbb{E}\left(X^{j}\right)}{j !}(i t)^{j}+\mathrm{o}\left(t^{k}\right)
+    \end{equation}$$
+    and so $\phi^{(k)}(0)=i^{k} \mathbb{E}\left(X^{k}\right)$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+If $X$ and $Y$ are independent then 
+$$\begin{equation}
+    \phi_{X+Y}(t)=\phi_{X}(t) \phi_{Y}(t).
+\end{equation}$$
+Similarly, if $X_1, \dots, X_n$ are independent, then 
+$$\begin{equation}
+    \phi_{X_1 + \cdots + X_n}(t)= \prod_{i=1}^n \phi_{X_i}(t).
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+If $a, b \in \mathbb{R}$ and $Y = aX+b$, then $\phi_{Y}(t)=e^{i t b} \phi_{X}(a t)$.
+&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf2-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf2-content&quot;&gt;&lt;p&gt;
+$$\begin{equation}
+    \phi_{Y}(t)=\mathbf{E}\left(e^{i t(a X+b)}\right)=\mathbf{E}\left(e^{i t b} e^{i(a t) X}\right) = e^{i t b} \mathbf{E}\left(e^{i(a t) X}\right)=e^{i t b} \phi_{X}(a t).
+\end{equation}$$
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf2&quot;);&lt;/script&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+Random variables $X$ and $Y$ are independent if and only if
+$$\begin{equation}
+    \phi_{X, Y}(s, t)=\phi_{X}(s) \phi_{Y}(t) \quad \text { for all } s \text { and } t.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+We say that the sequence $F_1 , F_2, \dots $ of distribution functions converges to the distribution function $F$, written $F_n \to F$, if $F(x) = \lim_{n\to\infty} F_n(x)$ at each point $x$ where $F$ is continuous.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; [Continnity theorem]
+Suppose that $F_1 , F_2, \dots $ is a sequence of distribution functions 
+with corresponding characteristic functions $\phi_1 , \phi_2, \dots $.
+&lt;ol&gt;
+    &lt;li&gt; If $F_n \to F$ for some distribution function $F$ with characteristic function $\phi$, then $\phi_n(t) \to \phi(t)$ for all $t$.&lt;/li&gt;
+    &lt;li&gt; Conversely, if $\phi(t) \lim_{n\to\infty} \phi_n(t)$ exists and is continuous at $t=0$, then $\phi$ is the characteristic function of some distribution function $F$, and $F_n \to F$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;central-limit-theorem&quot;&gt;Central limit theorem&lt;/h2&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+If $X, X_1 , X_2 , \dots$ is a sequence of random variables with respective distribution functions $F, F_1, F_2, \cdots$, we say that $X_n$ converges in distribution to $X$, written $X_{n} \stackrel{\mathrm{D}}{\rightarrow} X$, if $F_n \to F$ as $n \to\infty$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; [Central limit theorem]
+Let $X_1 , X_2, \dots$ be a sequence of independent identically distributed random variables with finite mean $\mu$ and finite nonzero variance $\sigma^2$, and let $S_n = X_1 + X_2 + \cdots + X_n$. Then
+$$\begin{equation}
+    \frac{S_{n}-n \mu}{\sqrt{n \sigma^{2}}} \stackrel{\mathrm{D}}{\rightarrow} N(0,1) \quad \text { as } \quad n \rightarrow \infty.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf3-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf3-content&quot;&gt;&lt;p&gt;
+First, write $Y_i = \frac{X_i - \mu}{\sigma}$, and let $\phi_Y$ be the characteristic function of the $Y_i$. We have that 
+$$\begin{equation}
+    \phi_{Y}(t)=1-\frac{1}{2} t^{2}+o\left(t^{2}\right).
+\end{equation}$$
+Note that $Y_i$ are i.i.d. So the characteristic function of $\sum_{i=1}^n Y_i$ is
+$$\begin{equation}
+    \phi_n = [\phi_{Y}(t)]^n = \left[ 1-\frac{1}{2} t^{2}+o\left(t^{2}\right) \right]^n.
+\end{equation}$$
+Also, the characteristic function $\psi_n$ of
+$$\begin{equation}
+    U_{n}=\frac{S_{n}-n \mu}{\sqrt{n \sigma^{2}}}=\frac{1}{\sqrt{n}} \sum_{i=1}^{n} Y_{i}
+\end{equation}$$
+satisfies
+$$\begin{equation}
+    \psi_{n}(t)=\left\{\phi_{Y}(t / \sqrt{n})\right\}^{n}=\left\{1-\frac{t^{2}}{2 n}+o\left(\frac{t^{2}}{n}\right)\right\}^{n} \rightarrow e^{-\frac{1}{2} t^{2}} \quad \text { as } \quad  n \rightarrow \infty,
+\end{equation}$$
+where we used 
+$$\begin{equation}
+    \lim_{n\to\infty} \left( 1 + \frac{a}{n} \right)^n = e^a.
+\end{equation}$$
+The last function is the characteristic function of the $\mathcal{N}(0, 1)$ distribution, and an application of the continuity theorem completes the proof.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf3&quot;);&lt;/script&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Corollary.&lt;/b&gt;
+$Q_n = \frac{1}{n}S_n \to \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right)$, $S_n \to \mathcal{N}(\mu, n \sigma^2)$. The sampling error is proportional to $\frac{1}{\sqrt{n}}$.
+&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;There is a generalization. If $X_i$ is not i.i.d., we can still use the central limit theorem.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 07 Nov 2020 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2020/11/notes-6-1.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/11/notes-6-1.html</guid>
+        
+        <category>notes</category>
+        
+        <category>math</category>
+        
+        
+        <category>Probability</category>
+        
+      </item>
+    
+      <item>
+        <title>Sum of Random Variables</title>
+        <description>&lt;p&gt;This lecture we study the expectation of the average of $n$ i.i.d. random variables $X_i$, $i=1,\dots, n$, i.e., the expectation of $Q_n = \frac{1}{n} (X_1 + \dots + X_n)$. As $n \to \infty$, we will introduce the central limit theorem and show that $Q_n$ converges to a normal distribution provided $\mathbf{Var}(X_i)$ exists.&lt;/p&gt;
+
+&lt;h2 id=&quot;sums-of-discrete-random-variables&quot;&gt;Sums of Discrete Random Variables&lt;/h2&gt;
+&lt;p&gt;Suppose $X$ and $Y$ are two independent discrete random variables with distribution functions $p_X(x)$ and $p_Y(y)$. Let $Z = X + Y$, we want to find the the distribution function of $Z$.&lt;/p&gt;
+
+&lt;p&gt;Suppose that $X = k$, where $k$ is some integer. Then $Z = z$ if and only if $Y = z-k$. So the event $Z = z$ is the union of the pairwise disjoint events
+\(\begin{equation}
+    (X=k) \quad  \text { and } \quad  (Y=z-k)
+\end{equation}\)
+where $k$ runs over the integers. Since these events are pairwise disjoint, we have
+\(\begin{equation}
+    \label{eq:6.1}
+    \tag{6-1}
+    \mathbf{P}(Z=z)=\sum_{k=-\infty}^{\infty} \mathbf{P}(X=k)  \mathbf{P}(Y=z-k)
+\end{equation}\)
+which is the &lt;strong&gt;distribution function of the random variable $Z$&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+Let $X$ and $Y$ be two independent integer-valued random variables, with distribution functions $p_X(x)$ and $p_Y(y)$ respectively. Then the **convolution** of $p_X(x)$ and $p_Y(y)$ is the distribution function $p_Z = p_X * p_Y$ given by
+$$\begin{equation}
+    p_Z(z) = \sum_{x} p_X(x) p_Y(z-x)
+\end{equation}$$
+for $x\in \mathbb{Z}$. The function $p_Z(z)$ is the distribution function of the random variable $Z = X + Y$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;sums-of-continuous-random-variables&quot;&gt;Sums of Continuous Random Variables&lt;/h2&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition.&lt;/b&gt; 
+Let $X$ and $Y$ be two continuous random variables with density functions $f_X(x)$ and $f_Y(y)$ respectively. Assume that both $f_X(x)$ and $f_Y(y)$ are defined for all real numbers. Then the **convolution** $f * g$ of $f$ and $g$ is the function given by
+$$\begin{equation}
+    \label{eq:6.2}
+    \tag{6-2}
+    (f_X * f_Y)(z) = \int_{-\infty}^{+\infty} f_X(z-y) f_Y(y) d y = \int_{-\infty}^{+\infty} f_Y(z-x) f_X(x) d x.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+Let $X$ and $Y$ be two independent random variables with density functions $f_X(x)$ and $f_Y(y)$ defined for all $x$ and $y$. Then the sum $Z = X + Y$ is a random variable with density function $f_Z(z)$, where $f_Z$ is the convolution of $f_X$ and $f_Y$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
+Let $\{X_i\}$, $i=1,\dots, n$ be a sequence of independent random variables with density functions $f_{X_1}(x), \dots, f_{X_n}(x)$ respectively, then we have 
+$$\begin{equation}
+    f_{X_1 + \cdots + X_n}(x) = f_{X_1} * \left( f_{X_2} * ( \cdots * f_{X_n}) \right)(x).
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [Sum of two independent uniform random variables]
+Let $X$ and $Y$ be random variables describing our choices and $Z = X + Y$ their sum. Then we have
+$$\begin{equation}
+    f_{X}(x)=f_{Y}(x)=\left\{\begin{array}{ll}{1} &amp;amp; {\text { if } 0 \leq x \leq 1} \\ {0} &amp;amp; {\text { otherwise }}\end{array}\right.
+\end{equation}$$
+and the density function for the sum is given by
+$$\begin{equation}
+    f_{Z}(z)=\int_{-\infty}^{+\infty} f_{X}(z-y) f_{Y}(y) d y = \int_{0}^{1} f_{X}(z-y) d y.
+\end{equation}$$
+Now the integrand is $0$ unless $0 \leq z-y \leq 1$ and then it is $1$. So if $0 \leq z \leq 1$, we have 
+$$\begin{equation}
+    f_{Z}(z)=\int_{0}^{z} d y=z,
+\end{equation}$$
+while if $1 &amp;lt; z \leq 2$, we have
+$$\begin{equation}
+    f_{Z}(z)=\int_{z-1}^{1} d y=2-z, 
+\end{equation}$$
+and if $z &amp;lt; 0$ or $z &amp;gt; 2$ we have $f_Z(z) = 0$. Hence
+$$\begin{equation}
+    f_{Z}(z)=\left\{\begin{array}{ll}{z,} &amp;amp; {\text { if } 0 \leq z \leq 1} \\ {2-z,} &amp;amp; {\text { if } 1&amp;lt;z \leq 2} \\ {0,} &amp;amp; {\text { otherwise }}\end{array}\right.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [Sum of two independent exponential random variables]
+Let $X, Y$, and $Z = X + Y$ denote the relevant random variables, and $f_X$ , $f_Y$ , and $f_Z$ their densities. Then
+$$\begin{equation}
+    f_{X}(x)=f_{Y}(x)=\left\{\begin{array}{ll}{\lambda e^{-\lambda x},} &amp;amp; {\text { if } x \geq 0} \\ {0,} &amp;amp; {\text { otherwise }}\end{array}\right.
+\end{equation}$$
+If $z &amp;gt; 0$,
+$$\begin{equation}
+    f_{Z}(z)=\int_{-\infty}^{+\infty} f_{X}(z-y) f_{Y}(y) d y =\int_{0}^{z} \lambda e^{-\lambda(z-y)} \lambda e^{-\lambda y} d y =\int_{0}^{z} \lambda^{2} e^{-\lambda z} d y =\lambda^{2} z e^{-\lambda z},
+\end{equation}$$
+while if $z &amp;lt; 0$, $f_Z(z) = 0$. Hence 
+$$\begin{equation}
+    f_{Z}(z)=\left\{\begin{array}{ll}{\lambda^{2} z e^{-\lambda z},} &amp;amp; {\text { if } z \geq 0} \\ {0,} &amp;amp; {\text { otherwise }}\end{array}\right.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Fri, 06 Nov 2020 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2020/11/notes-6.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/11/notes-6.html</guid>
+        
+        <category>notes</category>
+        
+        <category>math</category>
+        
+        
+        <category>Probability</category>
+        
+      </item>
+    
+      <item>
+        <title>LLN and conditional probability</title>
+        <description>&lt;h2 id=&quot;law-of-large-numbers&quot;&gt;Law of large numbers&lt;/h2&gt;
+&lt;p&gt;Note that in section, we are dealing with random variables with &lt;strong&gt;independent, identical distribution&lt;/strong&gt;, also written as &lt;strong&gt;i.i.d.&lt;/strong&gt; The law of large numbers aims to study the convergence of the average sum of large &lt;strong&gt;i.i.d.&lt;/strong&gt; random variables.&lt;/p&gt;
+
+&lt;p&gt;We first prove the following important lemma.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; [Chebyshev Inequality]
+Let $X$ be a random variable with $\mathbf{E}(X) &amp;lt; \infty$ and $\mathbf{Var}(X) &amp;lt; \infty$, then for any $\epsilon &amp;gt; 0$, we have
+$$\begin{equation}
+    \label{eq:5.1}
+    \tag{5-1}
+    \mathbf{P}\left( \left\vert X-\mathbf{E}(X) \right\vert \geq \epsilon \right) \leq \frac{\mathbf{Var}(X)}{\epsilon^2}.
+\end{equation}$$
+In other words, we have
+$$\begin{equation}
+    \label{eq:5.2}
+    \tag{5-2}
+    \mathbf{P}(\left\vert X-\mathbf{E}(X) \right\vert &amp;lt; \epsilon) \geq 1-\frac{\mathbf{Var}(X)}{\epsilon^2}.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf1-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf1-content&quot;&gt;&lt;p&gt;
+We assume $X$ is a discrete random variable. It can be easily extend to the case where $X$ is continuous. We denote $\mathbf{E}(X) = \mu$ and $f(x)$ as the p.m.f. of $X$.
+
+We first expand the LHS of \eqref{eq:5.1} and obtain
+$$\begin{equation}
+    \mathbf{P}(\left\vert X-\mu \right\vert \geq \epsilon)  = \sum_{\left\vert x-\mu \right\vert\geq \epsilon} f(x).
+\end{equation}$$
+On the other hand, we have
+$$\begin{equation}
+    \begin{split}
+        \mathbf{Var}(X) &amp;amp;= \sum_{x} (x-\mu)^2 f(x) \\
+        &amp;amp;\geq \sum_{\left\vert x-\mu \right\vert \geq \epsilon} (x-\mu)^2 f(x) \\
+        &amp;amp;\geq \sum_{\left\vert x-\mu \right\vert \geq \epsilon} \epsilon^2 f(x) \\
+        &amp;amp;= \epsilon^2 \sum_{\left\vert x-\mu \right\vert \geq \epsilon} f(x) \\ &amp;amp;= \epsilon^2 \mathbf{P}(\left\vert X-\mu \right\vert \geq \epsilon).
+    \end{split}
+\end{equation}$$
+Therefore, we have 
+$$\begin{equation}
+    \mathbf{P}(\left\vert X-\mu \right\vert \geq \epsilon) \leq \frac{\mathbf{Var}(X)}{\epsilon^2}.
+\end{equation}$$
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf1&quot;);&lt;/script&gt;
+
+&lt;p&gt;Chebyshev’s Inequality is the best possible inequality in the sense that, for any $\epsilon &amp;gt; 0$, it is possible to give an example of a random variable for which Chebyshev’s Inequality is in fact an equality.&lt;/p&gt;
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+Suppose we have a random variable $X$ such that for any $\epsilon &amp;gt; 0$, $f(-\epsilon) = f(\epsilon) = \frac{1}{2}$. Clearly, $\mathbf{E}(X) = 0 &amp;lt; \infty$ and $\mathbf{Var}(X) = \mathbf{E}(X^2) = \epsilon^2 &amp;lt; \infty$. Therefore,
+$$\begin{equation}
+    \frac{\mathbf{Var}(X)}{\epsilon^2} = 1.
+\end{equation}$$
+Also note that $\mathbf{P}(\left\vert X-\mu \right\vert \geq \epsilon) = 1$. The equality sign of Chebyshev inequality holds. We cannot get better result.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 1.&lt;/b&gt; [Law of large numbers]
+Consider a sequence of i.i.d. random variables $X_i$ with finite mean and variance. Denote $\mathbf{E}(X) = \mu$ and $\mathbf{Var}(X) = \sigma^2$. Define 
+$$\begin{equation}
+    Q_n = \frac{1}{n}\left( X_1 + X_2 + \cdots + X_n \right),
+\end{equation}$$
+then for any $\epsilon &amp;gt; 0$, 
+$$\begin{equation}
+    \lim_{n\to\infty} \mathbf{P}(\left\vert Q_n - \mu \right\vert \geq \epsilon ) = 0,
+\end{equation}$$
+or 
+$$\begin{equation}
+    \lim_{n\to\infty} \mathbf{P}(\left\vert Q_n - \mu \right\vert &amp;lt; \epsilon) = 1.
+\end{equation}$$
+This means $Q_n$ converges to $\mu$ in probability.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf2-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf2-content&quot;&gt;&lt;p&gt;
+We notice that 
+$$\begin{equation}
+    \mathbf{E}(Q_n) = \sum_{i=1}^n \mathbf{E}\left( \frac{1}{n} X_i \right) = \frac{1}{n} \sum_{i=1}^n \mathbf{E}(X_i) = \frac{1}{n} n\mu = \mu,
+\end{equation}$$
+which shows that the expectation of $Q_n$ is the same as the expectation of $X_i$. We also have
+$$\begin{equation}
+    \mathbf{Var}(Q_n) = \mathbf{Var} \left( \frac{1}{n} \left(X_1 + \cdots + X_n \right) \right) = \frac{1}{n^2} \sum_{i=1}^n \mathbf{Var}(X_i) = \frac{\sigma^2}{n}.
+\end{equation}$$
+Using Chebyshev inequality, for any $\epsilon &amp;gt; 0$, we have
+$$\begin{equation}
+    \mathbf{P}(\left\vert Q_n-\mu \right\vert\geq \epsilon) \leq \frac{\mathbf{Var}(Q_n)}{\epsilon^2} = \frac{\sigma^2}{n\epsilon^2}.
+\end{equation}$$
+Therfore,
+$$\begin{equation}
+    \lim_{n\to\infty} \mathbf{P}(\left\vert Q_n-\mu \right\vert\geq \epsilon) \leq \lim_{n\to\infty} \frac{\sigma^2}{n\epsilon^2} = 0.
+\end{equation}$$
+Since the probability is nonnegative, we must have
+$$\begin{equation}
+    \lim_{n\to\infty} \mathbf{P}(\left\vert Q_n-\mu \right\vert\geq \epsilon) = 0.
+\end{equation}$$
+This finishes the proof.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf2&quot;);&lt;/script&gt;
+
+&lt;p&gt;This result is significant from the view of frequentist statistics. Recall the probability of an event $A$ is motivated by $\mathbf{P}(A) \approx N(A) / N$ where $N(A)$ and $N$ the number of occurrence of $A$ and the number of total experiments respectively. Now we can let $X_i = \mathbf{1}_A$, which is the indicator of the event $A$. Since each experiment is independent, we are actually perform a series Bernoulli trails and $X_i$ is the simple Bernoulli variable. Then we can write $N(A) = X_1 + \cdots + X_n$. Now 
+\(\begin{equation}
+    \frac{N(A)}{N} = \frac{1}{n} \left( X_1 + \cdots + X_n \right) = Q_n.
+\end{equation}\)
+Note that $E(X) = \mathbf{P}(A)$ and $\mathbf{Var}(X) = \mathbf{P}(A) - \mathbf{P}(A)^2$. Therefore, 
+\(\begin{equation}
+    \frac{N(A)}{N} \to \mathbf{P}(A) \quad \text{ as } n\to\infty.
+\end{equation}\)&lt;/p&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+For the law of large numbers to work, $\mathbf{Var}(X)$ must be finite. Otherwise, the law may fail as the following example shows.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [Cauchy distribution]
+The Cauchy distribution is given by
+$$\begin{equation}
+    f(x) = \frac{1}{\pi (1+x^2)},
+\end{equation}$$
+where $\pi$ is the normalization parameter. Let $X$ be the random variable which has the Cauchy distribution. Note that although the Cauchy distribution is very like the normal distribution, $X$ doesn't have the variance. This is because the Cauchy distribution has a long tail as $\left\vert x \right\vert\to\infty$ and it converges slowly. But $X$ has a mean which is $\mu = 0$. So the question is: does $Q_n$ converges to $\mu$? The answer is negative. This example shows that if the variance is not finite, the law of large numbers fails.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;%&amp;lt;div class=&quot;remark&quot;&amp;gt;&amp;lt;p&amp;gt;&lt;b&gt;Remark.&lt;/b&gt; 
+%It is interesting to note that if $X$ and $Y$ are bernoulli, then $X/Y$ is Cauchy.
+%&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conditional-distributions-and-conditional-expectation&quot;&gt;Conditional distributions and conditional expectation&lt;/h2&gt;
+&lt;p&gt;(This section is the supplement of the lecture.)&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 1.&lt;/b&gt; 
+The conditional distribution function of $Y$ given $X = x$ is the function $F_{Y\vert X} (\cdot \vert x)$ given by
+$$\begin{equation}
+    F_{Y | X}(y | x)=\int_{-\infty}^{y} \frac{f(x, v)}{f_{X}(x)} d v
+\end{equation}$$
+for any $x$ such that $f_X(x) &amp;gt; 0$. It is sometimes denoted $\mathbf{P} (Y \leq y \vert X = x)$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Remembering that distribution functions are integrals of density functions, we are led to the following definition.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 2.&lt;/b&gt; 
+The conditional density function of $F_{Y\vert X}$, written $f_{Y\vert X}$, is given by
+$$\begin{equation}
+    f_{Y | X}(y | x)=\frac{f(x, y)}{f_{X}(x)} = \frac{f(x, y)}{\int_{-\infty}^{\infty} f(x, y) d y}
+\end{equation}$$
+for any $x$ such that $f_X(x) &amp;gt; 0$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 2.&lt;/b&gt; 
+The conditional expectation $\psi(X) = \mathbf{E}(Y \vert X)$ satisfies 
+$$\begin{equation}
+    \mathbf{E}(\psi(X)) = \mathbf{E}(Y).
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 3.&lt;/b&gt; 
+The conditional expectation $\psi(X) = \mathbf{E}(Y \vert X)$ satisfies 
+$$\begin{equation}
+    \mathbf{E}\left( \psi(X) g(X) \right) = \mathbf{E}(Y g(X))
+\end{equation}$$
+for any function $g$ for which both expectations exist.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;functions-of-continuous-random-variables&quot;&gt;Functions of continuous random variables&lt;/h2&gt;
+
+&lt;p&gt;Let $X$ be a random variable with density function $f$, and let $g : \mathbb{R} \to \mathbb{R}$ be a sufficiently nice 
+function. Then $y = g(X)$ is a random variable also. In order to calculate the distribution of $Y$, we proceed thus
+\(\begin{equation}
+    \begin{aligned} 
+        \mathbf{P}(Y \leq y) &amp;amp;= \mathbf{P}\left(g(X) \leq y\right) = \mathbf{P}\left((g(X) \in(-\infty, y] \right) \\
+        &amp;amp;=\mathbf{P}\left(X \in g^{-1}(-\infty, y]\right)=\int_{g^{-1}(-\infty, y]} f(x) d x\end{aligned}.
+\end{equation}\)
+The $g^{-1}$ is defined as follows. If $A \subseteq \mathbb{R}$ then $g^{-1} A={x \in \mathbb{R}: g(x) \in A}$.&lt;/p&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+Let $g(x) = ax + b$ for fixed $a, b \in \mathbb{R}$. Then $Y = g (X) = aX + b$ has distribution function 
+$$\begin{equation}
+    \mathbf{P}(Y \leq y) = \mathbf{P}(a X+b \leq y) = \left\{\begin{array}{ll}
+    {\mathbf{P}(X \leq(y-b) / a)} &amp;amp; {\text { if } a&amp;gt;0} \\
+    {\mathbf{P}(X \geq(y-b) / a)} &amp;amp; {\text { if } a&amp;lt;0}\end{array}\right.
+\end{equation}$$
+Differentiate to obtain $f_{Y}(y)=|a|^{-1} f_{X}((y-b) / a)$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;More generally, if $X_1$ and $X_2$ have joint density function $f$, and $g, h$ are two functions mapping $\mathbb{R}^2 \to \mathbb{R}$, then we can use the Jacobian to find the density the joint density function of the pair $Y_1 = g(X_1 , X_2)$, $Y_2 = h(X_1 , X_2)$.&lt;/p&gt;
+
+&lt;p&gt;Let $y_1 = y_1 (x_1 , x_2)$, $y_2 = y_2(x_1 , x_2)$ 
+be a one-one mapping $T : (x_1 , x_2) \mapsto (y_1 , y_2)$ taking some domain $D \subseteq \mathbb{R}^2$ onto some 
+range $R \subseteq \mathbb{R}^2$. The transformation can be inverted as $x_1 = x_1(y_1 , y_2)$, $x_2 = x_2(y_1 , y_2)$; the Jacobian of this inverse is defined to be the determinant 
+\(\begin{equation}
+    J=\left|\begin{array}{ll}{\frac{\partial x_{1}}{\partial y_{1}}} &amp;amp; {\frac{\partial x_{2}}{\partial y_{1}}} \\ {\frac{\partial x_{1}}{\partial y_{2}}} &amp;amp; {\frac{\partial x_{2}}{\partial y_{2}}}\end{array}\right|=\frac{\partial x_{1}}{\partial y_{1}} \frac{\partial x_{2}}{\partial y_{2}}-\frac{\partial x_{1}}{\partial y_{2}} \frac{\partial x_{2}}{\partial y_{1}}
+\end{equation}\)
+which express as a function $J = J(y_1, y_2)$. We assume the &lt;strong&gt;partial derivatives are continuous&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 4.&lt;/b&gt; 
+If $g : \mathbb{R}^2 \to \mathbb{R}$, and $T$ maps the set $A \subseteq D$ onto the set $B \subseteq R$, then 
+$$\begin{equation}
+    \iint_{A} g\left(x_{1}, x_{2}\right) d x_{1} d x_{2}=\iint_{B} g\left(x_{1}\left(y_{1}, y_{2}\right), x_{2}\left(y_{1}, y_{2}\right)\right)\left|J\left(y_{1}, y_{2}\right)\right| d y_{1} d y_{2}.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Corollary 4.1.&lt;/b&gt; 
+If $X_1$, $X_2$ have joint density function $f$, then the pair $Y_1,Y_2$ given by $(Y_1 , Y_2) = T (X_1, X_2)$ has joint density function 
+$$\begin{equation}
+    f_{Y_{1}, Y_{2}}\left(y_{1}, y_{2}\right)=\left\{\begin{array}{ll}{f\left(x_{1}\left(y_{1}, y_{2}\right), x_{2}\left(y_{1}, y_{2}\right)\right)\left|J\left(y_{1}, y_{2}\right)\right|} &amp;amp; {\text { if }\left(y_{1}, y_{2}\right) \text { is in the range of } T} \\ {0} &amp;amp; {\text { otherwise. }}\end{array}\right.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;A similar result holds for mappings of $\mathbb{R}^n$ into $\mathbb{R}^n$. This technique is sometimes referred to as the method of &lt;strong&gt;change of variables&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+Suppose that 
+$$\begin{equation}
+    X_{1}=a Y_{1}+b Y_{2}, \quad X_{2}=c Y_{1}+d Y_{2}
+\end{equation}$$
+where $ad-bc \neq 0$. Check that 
+$$\begin{equation}
+    f_{Y_{1}, Y_{2}}\left(y_{1}, y_{2}\right) = |a d-b c| f_{X_{1}, X_{2}}\left(a y_{1}+b y_{2}, c y_{1}+d y_{2}\right).
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;multivariate-normal-distribution&quot;&gt;Multivariate normal distribution&lt;/h2&gt;
+
+&lt;h3 id=&quot;definition-and-properties&quot;&gt;Definition and properties&lt;/h3&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 3.&lt;/b&gt; 
+The vector $\mathbf{X} = (X_1 , X_2 , \dots , X_n )$ has the **multivariate normal distribution** (or **multinormal distribution**), written $N(\boldsymbol{\mu}, \mathbf{V})$, if its joint density function is 
+$$\begin{equation}
+    f(\mathbf{x})=\frac{1}{\sqrt{(2 \pi)^{n}|\mathbf{V}|}} \exp \left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T \mathbf{V}^{-1}(\mathbf{x}-\boldsymbol{\mu}) \right], \quad \mathbf{x} \in \mathbb{R}^{n}
+\end{equation}$$
+where $\mathbf{V}$ is a positive definite symmetric matrix. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 5.&lt;/b&gt; 
+If $\mathbf{X}$ is $N(\boldsymbol{\mu}, \mathbf{V})$, then 
+&lt;ol&gt;
+    &lt;li&gt; $\mathbf{E}(\mathbf{X}) = \boldsymbol{\mu}$, which is to say that $\mathbf{E}(X_i) = \mu_i$ for all $i$,&lt;/li&gt;
+    &lt;li&gt; $\mathbf{V} = (v_{ij})$ is called the covariance matrix, because $v_{ij} = \mathbf{cov}(X_i , X_j)$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 6.&lt;/b&gt; 
+If $\mathbf{X}=\left(X_{1}, X_{2}, \dots, X_{n}\right)$ is $N(\boldsymbol{\mu}, \mathbf{V})$ and $\mathbf{Y}=\left(Y_{1}, Y_{2}, \dots, Y_{m}\right)$ is given by $\mathbf{Y} = \mathbf{XD}$ for some matrix $\mathbf{D}$ of rank $m \leq n$, then $\mathbf{Y}$ is $N\left(\mathbf{0}, \mathbf{D}^T \mathbf{V} \mathbf{D}\right)$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 4.&lt;/b&gt; 
+The vector $\mathbf{X}=\left(X_{1}, X_{2}, \dots, X_{n}\right)$ of random variables is said to have the 
+**multivariate normal distribution** whenever, for all $\mathbf{a} \in \mathbb{R}^n$, the linear combination $\mathbf{Xa}^T = a_1 X_1 + \dots + a_n X_n$ has a normal distribution.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;distributions-arising-from-the-normal-distribution&quot;&gt;Distributions arising from the normal distribution&lt;/h3&gt;
+&lt;p&gt;Suppose that $X_1, X_2, \dots , X_n$ is a collection 
+of independent $N(\mu, \sigma^2)$ variables for some fixed but unknown values of $\mu$ and $\sigma^2$. We can use them to estimate $\mu$ and $\sigma^2$.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 5.&lt;/b&gt; 
+The **sample mean** of a sequence of random variables $X_1, X_2, \dots , X_n$ is 
+$$\begin{equation}
+    \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
+\end{equation}$$
+It is usually used as a guess at the value of $\mu$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 6.&lt;/b&gt; 
+The **sample variance** of a sequence of random variables $X_1, X_2, \dots , X_n$ is 
+$$\begin{equation}
+    S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2.
+\end{equation}$$
+It is usually used as a guess at the value of $\sigma^2$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+The sample mean and the sample variance have the property of being 'unbiased' in that $\mathbf{E}(\bar{X}) = \mu$ and $\mathbf{E}(S^2) = \sigma^2$. Note that in some texts the sample variance is defined with $n$ in place of $(n - 1)$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 7.&lt;/b&gt; 
+If $X_1, X_2, \dots , X_n$ are independent $N(\mu, \sigma^2)$ variables, then $\bar{X}$ and $S^2$ are independent. We have that $\bar{X}$ is $N(\mu, \sigma^2/n)$ and $(n-1)S^2 / \sigma^2$ is $\chi^{(n-1)}$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 7.&lt;/b&gt; 
+If $X_1, X_2, \dots , X_n$ are standard normal random variables, then the sum of their squares,
+$$\begin{equation}
+    Q = \sum_{i=1}^n X_i^2
+\end{equation}$$
+is distributed according to the $\chi^2$ distribution with $n$ **degrees of freedom**. This is usually denoted as
+$$\begin{equation}
+    Q \sim \chi^2(k) \quad \text{or} \quad Q \sim \chi^2_k.
+\end{equation}$$
+The probability density function (p.d.f.) of the $\chi^2$ distribution is
+$$\begin{equation}
+    f(x ; k)=\left\{\begin{array}{ll}
+    {\frac{x^{\frac{k}{2}-1} e^{-\frac{x}{2}}}{2^{\frac{k}{2}} \Gamma\left(\frac{k}{2}\right)}} &amp;amp; {x&amp;gt;0} \\ 
+    {0} &amp;amp; {\text { otherwise }}\end{array}\right.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;sampling-from-a-distribution&quot;&gt;Sampling from a distribution&lt;/h3&gt;
+&lt;p&gt;A basic way of generating a random variable with given distribution function is to use the following theorem.&lt;/p&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 8.&lt;/b&gt; [Inverse transform technique]
+Let $F$ be a distribution function, and let $U$ be uniformly distributed on the interval $[0, 1]$. 
+&lt;ol&gt;
+    &lt;li&gt; If $F$ is a continuous function, the random variable $X = F^{-1} (U)$ has distribution function $F$.&lt;/li&gt;
+    &lt;li&gt; &lt;p style=&quot;display: inline;&quot;&gt;Let $F$ be the distribution function of a random variable taking non-negative integer values. The random variable $X$ given by
+    $$\begin{equation}
+        X = k \quad \text{if and only if} \quad F(k-1) &amp;lt; U \leq F(k)
+    \end{equation}$$
+    has distribution function $F$. &lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+</description>
+        <pubDate>Fri, 30 Oct 2020 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2020/10/notes-5.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/10/notes-5.html</guid>
+        
+        <category>notes</category>
+        
+        <category>math</category>
+        
+        
+        <category>Probability</category>
+        
+      </item>
+    
+      <item>
+        <title>Expectation and Dependence</title>
+        <description>&lt;h2 id=&quot;expectation-of-discrete-random-variables&quot;&gt;Expectation of discrete random variables&lt;/h2&gt;
+&lt;p&gt;The intuition of expectation is the &lt;em&gt;average value&lt;/em&gt; of an experiment. Suppose we do an experiment for $N$ repeated times. The probability of each possible outcome $x$ can be approximately defined by 
+\begin{equation}
+    \mathbf{P}(x) \approx f(x) = \frac{freq(x)}{N}.
+\end{equation}
+Then the average outcome is
+\begin{equation}
+    m \approx \frac{1}{N}\sum_{x} \text{freq}(x)x = \sum_x f(x)x.
+\end{equation}&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 1.&lt;/b&gt; 
+The &lt;strong&gt;mean value&lt;/strong&gt;, or &lt;strong&gt;expectation&lt;/strong&gt;, or &lt;strong&gt;expected value&lt;/strong&gt; of the random variable $X$ with mass function $f$ is defined to be 
+$$\begin{equation}
+    \mathbf{E}(X) = \sum_{x:f(x)&amp;gt;0} xf(x)
+\end{equation}$$
+whenever this sum is absolutely convergent.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+&lt;ol&gt;
+    &lt;li&gt;For notation convenience, we also write $\mathbf{E}(X) = \sum_x xf(x)$.&lt;/li&gt;
+    &lt;li&gt;We require **absolute convergence** in order that $\mathbf{E}(X)$ be unchanged by reordering the $x_i$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 1.&lt;/b&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Riemann_series_theorem&quot;&gt; Riemann Rearrangement Theorem&lt;/a&gt;.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+If $X$ has mass function $f$ and $g:\mathbb{R}\to\mathbb{R}$, then
+$$\begin{equation}
+    \mathbf{E}(g(x)) = \sum_x g(x) f(x)
+\end{equation}$$
+whenever this sum is absolutely convergent.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
+If $X$ is a random variable with mass function f, and $g(x) = x^2$, then 
+$$\begin{equation}
+    \mathbf{E}(X^2) = \sum_x g(x)f(x) = x^2 f(x).
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 2.&lt;/b&gt; 
+If $k$ is a positive integer, the $k$th &lt;b&gt;moment&lt;/b&gt; $m_k$ of $X$ is defined to be 
+\begin{equation}
+    m_k = \mathbf{E}(X^k).
+\end{equation}
+The $k$th &lt;b&gt;central moment&lt;/b&gt; $\sigma_k$ is defined as
+\begin{equation}
+    \sigma_k = \mathbf{E}\left( (X-m_1)^k \right) = \mathbf{E}\left( (X-E(X))^k \right).
+\end{equation}
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;The two moments of most use are $m_1 = \mathbf{E}(X)$ and $\sigma_2 = \mathbf{E}( (X - \mathbf{E}(X))^2$, called the &lt;strong&gt;mean&lt;/strong&gt; (or &lt;strong&gt;expectation)&lt;/strong&gt; and &lt;strong&gt;variance&lt;/strong&gt; of $X$. These two quantities are measures of the mean and dispersion of $X$; that is, $m_1$ is the average value of $X$, and $\sigma_2$ measures the amount by which $X$ tends to deviate from this average. The mean $m_1$ is often denoted $\mu$, and the variance of $X$ is often denoted $\mathbf{Var}(X)$. The positive square root $\sigma = \mathbf{Var}(X)$ is called the &lt;strong&gt;standard deviation&lt;/strong&gt;, and in this notation $\sigma_2 = \sigma^2$.&lt;/p&gt;
+
+&lt;p&gt;The central moments ${\sigma_i}$ can be expressed in terms of the ordinary moments ${m_i}$. For example, $\sigma_1 = 0$, and&lt;/p&gt;
+
+\[\begin{equation}
+    \begin{aligned} 
+        \sigma_{2} &amp;amp;=\sum_{x}\left(x-m_{1}\right)^{2} f(x) \\ 
+        &amp;amp;=\sum_{x} x^{2} f(x)-2 m_{1} \sum_{x} x f(x)+m_{1}^{2} \sum_{x} f(x) \\ 
+        &amp;amp;=m_{2}-m_{1}^{2} ,
+    \end{aligned}
+\end{equation}\]
+
+&lt;p&gt;which may be written as 
+\(\begin{equation}
+    \tag{4-1}
+    \mathbf{Var}(X) = \mathbf{E}\left( (X-E(X))^2 \right) = \mathbf{E}(X^2) - \mathbf{E}(X)^2.
+\end{equation}\)&lt;/p&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [Binomial variables]
+Let $X$ be a random variable with binomial distribution. The p.m.f. is 
+$$\begin{equation}
+    f(k) = \binom{n}{k} p^k q^{n-k} \quad k = 0,\dots, n,
+\end{equation}$$
+where $q = 1-p$. The expectation of $X$ is
+$$\begin{equation}
+    \mathbf{E}(X) = \sum_{k=0}^n k f(k) = \sum_{k=0}^n k\binom{n}{k} p^k q^{n-k}.
+\end{equation}$$
+We use the following algebraic identity to compute $\mathbf{E}(X)$.
+$$\begin{equation}
+    \label{eq:4.2}
+    \tag{4-2}
+    \sum_{k=0}^n \binom{n}{k} x^k = (1+x)^n, 
+\end{equation}$$
+Differentiate it and multiply by $x$, we obtain 
+$$\begin{equation}
+    \label{eq:4.3}
+    \tag{4-3}
+    \sum_{k=0}^n k \binom{n}{k} x^k = nx(1+x)^{n-1}. 
+\end{equation}$$
+We substitute $x = p / q$ to obtain $\mathbf{E}(X) = np$. A similar argument shows that the variance of $X$ is given by $\mathbf{Var}(X) = npq$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;We can think of the process of calculating expectations as a &lt;strong&gt;linear operator&lt;/strong&gt; on the space of random variables.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 2.&lt;/b&gt; 
+The expectation operator $\mathbf{E}$ has the following properties: 
+&lt;ol&gt;
+    &lt;li&gt; if $X\geq 0$, then $\mathbf{E}(X) \geq 0$,&lt;/li&gt;
+    &lt;li&gt; if $a, b \in \mathbb{R}$, then $\mathbf{E}(aX+bY) = a\mathbf{E}(X) + b\mathbf{E}(Y)$,&lt;/li&gt;
+    &lt;li&gt; the random variable 1, taking the value 1 always, has expectation $\mathbf{E}(1) = 1$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf1-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf1-content&quot;&gt;&lt;p&gt;
+We only prove the second property, which is also called the linear property.
+
+We must use the joint p.m.f. of $X$ and $Y$ to compute the expectation. 
+$$\begin{equation}
+    \begin{split}
+        \mathbf{E}(aX+bY) &amp;amp;= \sum_{i, j} (ax_i + by_j) f(x_i, y_j) \\
+        &amp;amp;= a \sum_{i,j} x_i f(x_i, y_j) + b\sum_{i,j} y_j f(x_i, y_j) \\
+        &amp;amp;= a\sum_{i} x_i f_X(x_i) + b\sum_{j}y_j f_Y(y_j) \\ 
+        &amp;amp;= a\mathbf{E}(X) + b\mathbf{E}(Y),
+    \end{split}
+\end{equation}$$
+where $f_X(x)$ and $f_Y(y)$ are marginal p.m.f. of $X$ and $Y$ respectively.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf1&quot;);&lt;/script&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+It is &lt;b&gt;NOT&lt;/b&gt; in general true that $\mathbf{E}(XY)$ is the same as $\mathbf{E}(X)\mathbf{E}(Y)$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+If $X$ and $Y$ are independent, then $\mathbf{E}(XY) = \mathbf{E}(X)\mathbf{E}(Y)$. 
+&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf2-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf2-content&quot;&gt;&lt;p&gt;
+If $X, Y$ are independent, $f(x,y) = f_X(x) f_Y(y)$. Then
+$$\begin{equation}
+    \mathbf{E}(XY) = \sum_{ij} x_i y_j f(x,y) = \sum_{i} \left( x_i f_X(x_i) \right) \sum_{j} \left( y_j f_Y(y_j) \right) = \mathbf{E}(X) \mathbf{E}(Y).
+\end{equation}$$
+\end{proof}
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf2&quot;);&lt;/script&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 3.&lt;/b&gt; 
+$X$ and $Y$ are called **uncorrelated** if $\mathbf{E}(XY) = \mathbf{E}(X)\mathbf{E}(Y)$.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Independent variables are uncorrelated. But the converse is **NOT** true.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 3.&lt;/b&gt; 
+For random variables $X$ and $Y$, 
+&lt;ol&gt;
+    &lt;li&gt; $\mathbf{Var}(aX) = a^2 \mathbf{Var}(X)$ for $a \in \mathbb{R}$,&lt;/li&gt;
+    &lt;li&gt; $\mathbf{Var}(X+Y) = \mathbf{Var}(X) + \mathbf{Var}(Y)$ is $X$ and $Y$ are uncorrelated.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+The above theorem shows that the variance operator $\mathbf{Var}$ is **NOT** a linear operator, even when it 
+is applied only to uncorrelated variables. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Sometimes the sum $S = \sum xf(x)$ does not converge absolutely, which means the mean of the distribution does not exist. Here is an example.&lt;/p&gt;
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [A distribution without a mean] Let $X$ have mass function 
+$$\begin{equation}
+    f(k) = Ak^{-1} \quad k = \pm 1, \pm 2, \dots,
+\end{equation}$$
+where $A$ is chosen so that $\sum_k f(k) = 1$. The sum $\sum_k kf(k) = A\sum_{k\neq 0} k^{-1}$ doesn't converge absolutely, because both the positive and the negative parts diverge. 
+&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;This example is suitable to point out that we can base probability theory upon the expectation operator $\mathbf{E}$ rather than upon the probability measure $\mathbf{P}$. Roughly speaking, the way we proceed is to postulate axioms, such as (a)-(c) of the above Theorem, for a so-called “expectation operator” $\mathbf{E}$ acting on a space of ``random variables”. The probability of an event can then be recaptured by defining $\mathbf{P}(A) = \mathbf{E}(I_A)$.&lt;/p&gt;
+
+&lt;p&gt;Recall the indicator function of a set $A$ is defined as
+\(\begin{equation}
+    I_A(\omega) = \begin{cases} 1 &amp;amp; \omega \in A, \\
+    0 &amp;amp; \omega \not\in A. \end{cases}
+\end{equation}\)
+In addition, we have $\mathbf{E}(I_A) = \mathbf{P}(A)$.&lt;/p&gt;
+
+&lt;h2 id=&quot;dependence-of-discrete-random-variables&quot;&gt;Dependence of discrete random variables&lt;/h2&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 4.&lt;/b&gt; 
+The **joint distribution function** $F:\mathbb{R}^2 \to [0,1]$ of $X$ and $Y$, where $X$ and $Y$ are discrete variables, is given by 
+$$\begin{equation}
+    F(x, y) = \mathbf{P}(X\leq x \text{ and } Y \leq y). 
+\end{equation}$$
+Their **joint mass function** $f:\mathbb{R}^2 \to [0,1]$ is given by 
+$$\begin{equation}
+    f(x,y) = \mathbf{P}(X = x \text{ and } Y = y). 
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;We write $F_{X,Y}$ and $f_{X,Y}$ when we need to stress the role of $X$ and $Y$. We may think of the joint mass function in the following way. If $A_x = {X = x}$ and $B_y = {Y = y}$, then 
+\(\begin{equation}
+    f(x,y) = \mathbf{P}(A_x \cap B_y).
+\end{equation}\)&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+The discrete random variables $X$ and $Y$ are **independent** if and only if 
+$$\begin{equation}
+    \tag{4-4}
+    f_{X,Y}(x,y) = f_X(x)f_Y(y) \quad \forall x,y \in \mathbb{R}.
+\end{equation}$$
+More generally, $X$ and $Y$ are independent if and only if $f_{X,Y}(x, y)$ can be **factorized as the product** $g(x)h (y)$ of a function of $x$ alone and a function of $y$ alone. 
+&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+We stress that the factorization Eq.(4-4) must hold for all $x$ and $y$ in order that $X$ and $Y$ be independent. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+$$\begin{equation}
+    \mathbf{E}(g(X, Y))=\sum_{x, y} g(x, y) f_{X, Y}(x, y).
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 5.&lt;/b&gt; 
+The covariance of $X$ and $Y$ is
+$$\begin{equation}
+    \mathbf{cov}(X,Y) = \mathbf{E}\left( (X-\mathbf{E}(X))(Y-\mathbf{E}(Y)) \right).
+\end{equation}$$
+The correlation (coefficient) of $X$ and $Y$ is 
+$$\begin{equation}
+\mathbf{corr}(X, Y) = \rho(X,Y) = \frac{\mathbf{cov}(X,Y)}{\sqrt{\mathbf{Var}(X)\mathbf{Var}(Y)}}
+\end{equation}$$
+as long as the variances are non-zero. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
+Notice the following two equations.
+&lt;ol&gt;
+    &lt;li&gt; $\mathbf{cov}(X,X) = \mathbf{Var}(X)$,&lt;/li&gt;
+    &lt;li&gt; $\mathbf{cov}(X,Y) = \mathbf{E}(XY) - \mathbf{E}(X)\mathbf{E}(Y)$.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Covariance itself is not a satisfactory measure of dependence because the scale of values which $\mathbf{cov}(X, Y)$ may take contains no points which are clearly interpretable in terms of the relationship between $X$ and $Y$.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 4.&lt;/b&gt; [Cauchy-Schwarz inequality] For random variables $X$ and $Y$, 
+$$\begin{equation}
+    \mathbf{E}(XY)^2 \leq \mathbf{E}(X^2) \mathbf{E}(Y^2)
+\end{equation}$$ 
+with equality if and only if $\mathbf{P}(aX = bY) = 1$ for some real $a$ and $b$, at least one of which is non-zero. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf3-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
+&lt;div class=&quot;proof-content&quot; id=&quot;pf3-content&quot;&gt;&lt;p&gt;
+For $a, b \in \mathbb{R}$, let $Z = aX - bY$. Then 
+$$\begin{equation}
+    0 \leq \mathbf{E}(Z^2) = a^2 \mathbf{E}(X^2) - 2ab\mathbf{E}(XY) + b^2\mathbf{E}(Y^2).
+\end{equation}$$
+Thus the right-hand side is a quadratic in the variable $a$ with at most one real root. Its discriminant must be non-positive. That is to say, if $b \neq 0$, 
+$$\begin{equation}
+    \mathbf{E}(XY)^2 - \mathbf{E}(X^2) \mathbf{E}(Y^2) \leq 0. 
+\end{equation}$$
+The discriminant is zero if and only if the quadratic has a real root. This occurs if and only if 
+$$\begin{equation}
+    \mathbf{E}\left( (aX-bY)^2 \right) = 0
+\end{equation}$$
+for some $a$ and $b$.
+&amp;#9724;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;toggle_proof(&quot;pf3&quot;);&lt;/script&gt;
+
+&lt;p&gt;We define $X’ = X-\mathbf{E}(X), Y’ = Y - \mathbf{E}(Y)$. Since all $X, Y$ satisfy the Cauchy-Schwarz inequality, so do $X’$ and $Y’$. Therefore, 
+\(\begin{equation}
+    \mathbf{E}(X'Y')^2 \leq \mathbf{E}(X'^2) \mathbf{E}(Y'^2) \quad \Leftrightarrow \quad \mathbf{cov}(X, Y)^2 \leq \mathbf{Var}(X)\mathbf{Var}(Y).
+\end{equation}\)
+Therefore, 
+\(\begin{equation}
+    \rho(X,Y)^2 \leq 1 \quad \mathbb{R}ightarrow \quad \rho(X,Y) \in [-1, 1].
+\end{equation}\)
+which gives the following lemma.&lt;/p&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
+The correlation coefficient $\rho$ satisfies $\left\vert \rho (X, Y)  \right\vert \leq 1$ with equality if and only if $\mathbf{P}(aX + bY = c) = 1$ for some $a, b, c \in \mathbb{R}$. 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;expectation-of-continuous-random-variables&quot;&gt;Expectation of continuous random variables&lt;/h2&gt;
+&lt;h3 id=&quot;idea-of-translating-expectation-from-discrete-to-continuous&quot;&gt;Idea of translating expectation from discrete to continuous&lt;/h3&gt;
+&lt;p&gt;Suppose we have a continuous random variable $X$ with $f$ being the probability density function. We split $X$ into small intervals $\Delta x$. Then $p_i = f(x_i)\Delta x$. $\frac{p_i}{\Delta x}$ is an approximation of probability density function. Therefore, 
+\(\begin{equation}
+    \mathbf{E}(X) \approx \sum_{i} x_i p_i = \sum_{i} x_i f(x_i) \Delta x,
+\end{equation}\)
+which is the Remann sum. We take the limit and get
+\(\begin{equation}
+    \mathbf{E}(x) = \int_{-\infty}^\infty x f(x)dx.
+\end{equation}\)&lt;/p&gt;
+
+&lt;h3 id=&quot;expectation&quot;&gt;Expectation&lt;/h3&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 6.&lt;/b&gt; 
+The **expectation** of a continuous random variable $X$ with density function $f$ is given by 
+$$\begin{equation}
+    \mathbf{E}(X) = \int_{-\infty}^\infty xf(x) dx
+\end{equation}$$
+whenever this integral exists.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 5.&lt;/b&gt; 
+If $X$ and $g(X)$ are continuous random variables, then $$\begin{equation}
+    \mathbf{E}\left( g(X) \right) = \int_{-\infty}^\infty g(x)f(x) dx.
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 7.&lt;/b&gt; 
+The $k$th **moment** of a continuous variable $X$ is defined as
+$$\begin{equation}
+    \mathbf{E}(X^k) = \int_{-\infty}^\infty x^k f(x) dx
+\end{equation}$$
+whenever the integral converges.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [Cauchy distribution] The random variable $X$ has the Cauchy distribution t if it has density 
+function 
+$$\begin{equation}
+    f(x) = \frac{1}{\pi (1+x^2)}, \quad x \in \mathbb{R}.
+\end{equation}$$
+This distribution is notable for having no moments.
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;dependence-of-continuous-random-variables&quot;&gt;Dependence of continuous random variables&lt;/h2&gt;
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 8.&lt;/b&gt; 
+The **joint distribution function** of $X$ and $Y$ is the function $F: \mathbb{R}^2 \to [0, 1]$ given by 
+$$\begin{equation}
+    F(x,y) = \mathbf{P}(X\leq x, Y \leq y).
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 9.&lt;/b&gt; 
+The random variables $X$ and $Y$ are **(jointly) continuous** with **joint (probability) density function** $f : \mathbb{R}^2 \to [0, \infty)$ if
+$$\begin{equation}
+    F(x, y)=\int_{v=-\infty}^{y} \int_{u=-\infty}^{x} f(u, v) d u d v \quad \text{for each } x, y\in\mathbb{R}. 
+\end{equation}$$
+If $F$ is sufficiently differentiable at the point $(x , y)$, then we usually specify 
+$$\begin{equation}
+    f(x, y)=\frac{\partial^{2}}{\partial x \partial y} F(x, y).
+\end{equation}$$
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Probabilities&lt;/strong&gt;:&lt;/p&gt;
+
+\[\begin{equation}
+    \begin{aligned} 
+        \mathbf{P}(a \leq X \leq b, c \leq Y \leq d) &amp;amp;=F(b, d)-F(a, d)-F(b, c)+F(a, c) \\ 
+        &amp;amp;=\int_{y=c}^{d} \int_{x=a}^{b} f(x, y) d x d y. \end{aligned}
+\end{equation}\]
+
+&lt;p&gt;If $B$ is a sufficiently nice subset of $\mathbb{R}^2$, then
+\(\begin{equation}
+    \mathbf{P} \left( (X, Y) \in B \right)=\iint_{B} f(x, y) d x d y.
+\end{equation}\)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Marginal distributions&lt;/strong&gt;: The marginal distribution functions of $X$ and $Y$ are&lt;/p&gt;
+
+\[\begin{equation}
+    F_{X}(x)=\mathbf{P}(X \leq x)=F(x, \infty), \quad F_{Y}(y)=\mathbf{P}(Y \leq y)=F(\infty, y). 
+\end{equation}\]
+
+\[\begin{equation}
+    F_{X}(x)=\int_{-\infty}^{x}\left(\int_{-\infty}^{\infty} f(u, y) d y\right) d u.
+\end{equation}\]
+
+&lt;p&gt;Marginal density function of $X$ and $Y$:
+\(\begin{equation}
+    f_{X}(x)=\int_{-\infty}^{\infty} f(x, y) d y, \quad f_{Y}(y)=\int_{-\infty}^{\infty} f(x, y) d x.
+\end{equation}\)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Expectation&lt;/strong&gt;: If $g: \mathbb{R}^2 \to \mathbb{R}$ is a sufficiently nice function, then&lt;/p&gt;
+
+\[\begin{equation}
+    \mathbf{E}(g(X, Y))=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f(x, y) d x d y;
+\end{equation}\]
+
+&lt;p&gt;in particular, setting $g(x, y) = ax + by$,&lt;/p&gt;
+
+\[\begin{equation}
+    \mathbf{E}(aX+bY) = a\mathbf{E}(X) + b\mathbf{E}(Y).
+\end{equation}\]
+
+&lt;p&gt;&lt;strong&gt;Independence&lt;/strong&gt;: The random variables $X$ and $Y$ are independent if and only if&lt;/p&gt;
+
+\[\begin{equation}
+    F(x,y) = F_X(x) F_Y(y) \quad \forall x, y \in \mathbb{R},
+\end{equation}\]
+
+&lt;p&gt;which, for &lt;strong&gt;continuous random variables&lt;/strong&gt;, is equivalent to requiring that&lt;/p&gt;
+
+\[\begin{equation}
+    f(x,y) = f_X(x) f_Y(y).
+\end{equation}\]
+
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 6.&lt;/b&gt; [Cauchy-Schwarz inequality] For any pair $X, Y$ of jointly continuous variables, we have that 
+$$\begin{equation}
+    \mathbf{E}(XY)^2 \leq \mathbf{E}(X^2) \mathbf{E}(Y^2), 
+\end{equation}$$
+with equality if and only if $\mathbf{P}(aX = bY) = 1$ for some real $a$ and $b$, at least one of which is non-zero. 
+&lt;/p&gt;&lt;/div&gt;
+</description>
+        <pubDate>Fri, 23 Oct 2020 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2020/10/notes-4.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/10/notes-4.html</guid>
+        
+        <category>notes</category>
+        
+        <category>math</category>
+        
+        
+        <category>Probability</category>
         
       </item>
     
@@ -562,7 +2000,7 @@ $$\begin{equation}
 where $\lambda &amp;gt; 0$, then $X$ is said to have the &lt;b&gt;Poisson distribution&lt;/b&gt; with parameter $\lambda$. Figure 1. shows how p.m.f varies with $k$.
 &lt;/p&gt;
 &lt;figure&gt;
-    &lt;img src=&quot;/freshman21-v2/assets/images/blog/2019/2019-10-16-poisson.png&quot; height=&quot;230&quot; /&gt;
+    &lt;img src=&quot;/assets/images/blog/2020/2020-10-16-poisson.png&quot; height=&quot;230&quot; /&gt;
     &lt;figcaption&gt;Fig.1: p.m.f of Poisson distribution.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
@@ -696,8 +2134,11 @@ $$\begin{equation}
     f(x) = \begin{cases} \lambda e^{-\lambda x} &amp;amp; x &amp;gt; 0 \\ 0 &amp;amp; o.w.
     \end{cases}
 \end{equation}$$
-Note that $F(x)$ is not differentiable at $x=0$. This means $f$ has discontinuity at $x=0$. Thus we need to choose some value for $f(0)$. It doesn't matter what value we choose as it doesn't affect the integral. Figure \ref{fig:exponential} shows the p.d.f. of Exponential distribution.
-{plots/exponential.png}
+Note that $F(x)$ is not differentiable at $x=0$. This means $f$ has discontinuity at $x=0$. Thus we need to choose some value for $f(0)$. It doesn't matter what value we choose as it doesn't affect the integral. Figure 2 shows the p.d.f. of Exponential distribution.
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/blog/2020/2020-10-16-exponential.png&quot; height=&quot;300&quot; /&gt;
+    &lt;figcaption&gt;Fig.2: p.m.f of exponential distribution.&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;/p&gt;&lt;/div&gt;
 
 &lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
@@ -724,9 +2165,9 @@ For 2D case, if $\sigma^2$ is diagonal, then $f(x,y) = f(x)f(y)$. Therefore, $\s
 &lt;/p&gt;&lt;/div&gt;
 
 </description>
-        <pubDate>Wed, 16 Oct 2019 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2019/10/notes-3.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/10/notes-3.html</guid>
+        <pubDate>Fri, 16 Oct 2020 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2020/10/notes-3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/10/notes-3.html</guid>
         
         <category>notes</category>
         
@@ -738,7 +2179,7 @@ For 2D case, if $\sigma^2$ is diagonal, then $f(x,y) = f(x)f(y)$. Therefore, $\s
       </item>
     
       <item>
-        <title>Randon Variables</title>
+        <title>Random Variables</title>
         <description>&lt;h2 id=&quot;random-variables&quot;&gt;Random variables&lt;/h2&gt;
 &lt;div class=&quot;theorem-block&quot;&gt;
 &lt;p&gt;&lt;b&gt;Definition 1.&lt;/b&gt; A &lt;b&gt;random variable&lt;/b&gt; is a function $X: \Omega \to \mathbb{R}$ with the property that $\{ \omega\in \Omega \;\vert\; X(\omega) \leq x\} \in \mathcal{F}$ for each $x \in \mathbb{R}$. Such a function is said to be $\mathbf{\mathcal{F}}$-measurable. 
@@ -896,272 +2337,13 @@ $$
 for some **integrable** function $f : \mathbb{R}^2 \to [0, \infty)$ called the **joint (probability) density function** of the pair $(X, Y)$. 
 &lt;/p&gt;&lt;/div&gt;
 </description>
-        <pubDate>Wed, 09 Oct 2019 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2019/10/notes-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/10/notes-2.html</guid>
+        <pubDate>Fri, 09 Oct 2020 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2020/10/notes-2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/10/notes-2.html</guid>
         
         <category>notes</category>
         
         <category>math</category>
-        
-        
-        <category>Probability</category>
-        
-      </item>
-    
-      <item>
-        <title>Sets and Probability Measures</title>
-        <description>&lt;h2 id=&quot;event-as-sets&quot;&gt;Event as sets&lt;/h2&gt;
-&lt;p&gt;Probability studies the &lt;strong&gt;repeatable (or ideal) experiments&lt;/strong&gt;. The result of an experiment is called an &lt;strong&gt;outcome&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Definition 1.&lt;/b&gt; The set of all possible outcomes of an experiment is called the &lt;b&gt;sample space&lt;/b&gt; and is denoted by $\Omega$.&lt;/p&gt;  
-&lt;/div&gt;
-
-&lt;h3 id=&quot;cardinality-of-sets&quot;&gt;Cardinality of sets&lt;/h3&gt;
-&lt;p&gt;The cardinality of a set $\Omega$ refers to the number of the number of elements in this set, and is denoted by $\mathbf{carf}(\Omega)$ or $\vert \Omega \vert$.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;For finite sets, $\mathbf{card}(\Omega)$ is a natural number.&lt;/li&gt;
-  &lt;li&gt;For the integer set, $\mathbf{card}(\mathbb{Z}) = \aleph_0$, which is countable.&lt;/li&gt;
-  &lt;li&gt;For the real number set, $\mathbf{card}(\mathbb{R}) = \aleph_1 &amp;gt; \aleph_0$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The &lt;strong&gt;power set&lt;/strong&gt; of a set $\Omega$ is the set of all subsets, which is denoted by $2^\Omega$.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;For $\mathbb{Z}$, $\mathbf{card}(2^\mathbb{Z}) = \aleph_1 = \mathbf{card}(\mathbb{R})$.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In practical, sets in probability are: &lt;strong&gt;finite&lt;/strong&gt;, &lt;strong&gt;countable&lt;/strong&gt;, &lt;strong&gt;reals&lt;/strong&gt; and their variants.&lt;/p&gt;
-
-&lt;p&gt;When we conduct an experiment, we want to know whether a subset occurs or not. For example, if we take a number from $\mathbb{R}$, the probability will be 0 because $\card(\mathbb{R})$ is very large. Therefore,
-\begin{center}
-\emph{we are interested in $A \subset \Omega$ in probability, where $A$ is a collection of subsets in probability.}
-\end{center}&lt;/p&gt;
-
-&lt;p&gt;\subsection{Events and fields}
-\begin{definition}
-The \textbf{events} are subsets of the sample space $\Omega$. 
-\end{definition}&lt;/p&gt;
-
-&lt;p&gt;\begin{remark}
-$\varnothing$ is called the \emph{impossible event}. The set $\Omega$ is called the \emph{certain event}. Events $A$ and $B$ are called \emph{disjoint} if their intersection is the empty set.
-\end{remark}&lt;/p&gt;
-
-&lt;p&gt;We do \textbf{NOT} need all the subsets of $\Omega$ be events. It suffices for us to think of the collection of events as a subcollection $\mathcal{F}$ of the set of all subsets of $\Omega$.
-\begin{definition}
-Any collection $\mathcal{F}$ of subsets of $\Omega$ which satisfies the following three conditions is called a field:
-\begin{enumerate}[(a)]
-    \item if $A, B \in \mathcal{F}$, then $A \cup B \in \mathcal{F}$ and $A \cap B \in \mathcal{F}$ (actually $A\cap B \in \mathcal{F}$ is redundant); 
-    \item if $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$;
-    \item the empty set $\varnothing$ belongs to $\mathcal{F}$.
-\end{enumerate}
-\end{definition}&lt;/p&gt;
-
-&lt;p&gt;\begin{remark}
-Some implications from the properties of a filed $\mathcal{F}$:
-\begin{itemize}
-    \item if $A_1, \dots, A_n \in \mathcal{F}$, then $\bigcup_{i=1}^n A_i \in \mathcal{F}$;
-    \item $\varnothing^C = \Omega \in \mathcal{F}$;
-    \item $A \cap B = (A^c \cup B^c)^C \in \mathcal{F}$.
-\end{itemize}
-\end{remark}&lt;/p&gt;
-
-&lt;p&gt;\begin{question}
-what if we have an $\Omega$ such that $\card(\Omega) = \aleph_0$? In this case, we may need $2^\Omega$ to study the probability. 
-\end{question}&lt;/p&gt;
-
-&lt;p&gt;\begin{definition}
-A collection $\mathcal{F}$ of subsets of $\Omega$ is called a $\sigma$-field if it satisfies the following conditions: 
-\begin{enumerate}[(a)]
-    \item $\varnothing \in \mathcal{F}$;
-    \item if $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$;
-    \item if $A_1, A_2, \dots \in \mathcal{F}$, then $\bigcup_{i=1}^\infty A_i \in \mathcal{F}$.
-\end{enumerate}
-\end{definition}&lt;/p&gt;
-
-&lt;p&gt;\begin{remark}
-$\sigma$-fields are closed under the operation of taking countable intersections.
-\end{remark}&lt;/p&gt;
-
-&lt;p&gt;\begin{example}
-The smallest $\sigma$-field associated with $\Omega$ is the collection $\mathcal{F} = {\varnothing, \Omega }$.
-\end{example}&lt;/p&gt;
-
-&lt;p&gt;\begin{example}
-If $A \subset \Omega$, then $\mathcal{F} = {\varnothing, A, A^c, \Omega }$ is a $\sigma$-field. 
-\end{example}&lt;/p&gt;
-
-&lt;p&gt;\begin{example}
-The power set of $\Omega$ is a $\sigma$-field.
-\end{example}&lt;/p&gt;
-
-&lt;p&gt;With any experiment we may associate a pair ${\Omega, \mathcal{F}}$, where $\Omega$ is the set of all possible outcomes or elementary events and $\mathcal{F}$ is a $\sigma$-field of subsets of $\Omega$ which contains \emph{all the events in whose occurrences we may be interested}; henceforth, to call a set $A$ an event is equivalent to asserting that $A$ belongs to the $\sigma$-field in question.&lt;/p&gt;
-
-&lt;p&gt;\section{Probability}
-Assume we have a ``repeatable” experiment and we repeat the experiment a large number $N$ of times. Let $A \in \Omega$ and $N(A)$ be the number of $A$ occurs in the $N$ trails. Intuitively, the ratio $N(A)/ N$ appears to converge to a constant limit as $N$ increases. In practice, we have 
-\begin{itemize}
-    \item $0 \leq N(A)/ N \leq 1$;
-    \item if $A, B$ are disjoint, then $N(A \cup B) = N(A) + N(B)$. (finite additive and countably additive)
-\end{itemize}&lt;/p&gt;
-
-&lt;p&gt;\begin{definition}
-A \textbf{probability measure} $\Prob$ on ${ \Omega, \mathcal{F} }$ is a function $\Prob : \mathcal{F} \to [0,1]$ satisfying
-\begin{enumerate}[(a)]
-    \item $\Prob(\varnothing) = 0$;
-    \item $\Prob(\Omega) = 1$;
-    \item  if $A_1, A2, \dots$ is a collection of disjoint members of $\mathcal{F}$, in that $A_i \cap A_j = \varnothing$ for all pairs $i, j$ satisfying $i \neq j$, then
-    \begin{equation&lt;em&gt;}
-        \Prob\left( \bigcup_{i=1}^\infty A_i \right) = \sum_{i=1}^\infty \Prob (A_i).
-    \end{equation&lt;/em&gt;}
-\end{enumerate}
-\end{definition}
-The triple ${ \Omega, \mathcal{F}, \Prob }$, comprising a set $\Omega$, a $\sigma$-field $\mathcal{F}$ of subsets of $\Omega$, and a probability measure $\Prob$ on ${\Omega, \mathcal{F}}$, is called a \textbf{probability space}. We can associate a probability space ${ \Omega, \mathcal{F}, \Prob }$ with any experiment, and all questions associated with the experiment can be reformulated in terms of this space.&lt;/p&gt;
-
-&lt;p&gt;\begin{remark}
-A probability measure is a special example of what is called a \emph{measure} on the pair ${\Omega, \mathcal{F}}$. A measure is a function $\mu: \mathcal{F} \to [0, \infty)$ satisfying $\mu(\varnothing) = 0$ together with (c) above. A measure $\mu$ is a probability measure if $\mu(\Omega) = 1$. 
-\end{remark}&lt;/p&gt;
-
-&lt;p&gt;\begin{lemma}
-We can deduce some lemmas from the definition.
-\begin{enumerate}[(a)]
-    \item $\Prob(A^c) = 1 - \Prob(A)$;
-    \item if $A \subseteq B$, then $\Prob(B) = \Prob(A) + \Prob(B\backslash A) \geq \Prob(A)$;
-    \item $\Prob(A \cup B) = \Prob(A) + \Prob(B) - \Prob(A \cap B)$;
-    \item more generally, if $A_1, A_2, \dots, A_n$ are events, then 
-    \begin{equation&lt;em&gt;}
-        \begin{split}
-        \Prob\left( \bigcup_{i=1}^n A_i \right) =&amp;amp; \sum_{i}\Prob(A_i) - \sum_{i &amp;lt; j} \Prob(A_i \cap A_j) + \sum_{i&amp;lt;j&amp;lt;k} \Prob(A_i \cap A_j \cap A_k) - \cdots &lt;br /&gt;
-        &amp;amp; +(-1)^{n+1} \Prob(A_1 \cap A_2 \cap \cdots \cap A_n)
-        \end{split}
-    \end{equation&lt;/em&gt;}
-\end{enumerate}
-\end{lemma}&lt;/p&gt;
-
-&lt;p&gt;\begin{lemma}
-Let $A_1, A_2, \dots$ be an increasing sequence of events, so that $A_1 \subset A_2 \subset A_3 \subset \cdots$, and write $A$ for their limit:
-\begin{equation&lt;em&gt;}
-    A = \bigcup_{i=1}^\infty A_i = \lim_{i \to \infty} A_i.
-\end{equation&lt;/em&gt;}
-Then $\Prob(A) = \lim_{i\to\infty} \Prob(A_i)$.&lt;/p&gt;
-
-&lt;p&gt;Similarly, if $B_1, B_2, \dots$ is a decreasing sequence of events, so that $B_1 \supseteq  B_2 \supseteq B_3 \supseteq \cdots$, then 
-\begin{equation&lt;em&gt;}
-    B = \bigcap_{i=1}^\infty B_i = \lim_{i \to \infty} B_i
-\end{equation&lt;/em&gt;}
-satisfies $\Prob(B) = \lim_{i\to\infty} \Prob(B_i)$
-\end{lemma}&lt;/p&gt;
-
-&lt;p&gt;\section{Some useful concepts}
-\subsection{Conditional probability}
-What if we only care how many times does $A$ occur only when $B$ occurs? $N(A\cap B) / N(B)$, the universe is changed. 
-\begin{definition}
-If $\Prob(B) &amp;gt; 0$, then the \textbf{conditional probability} that $A$ occurs given that $B$ occurs is defined to be
-\begin{equation&lt;em&gt;}
-    \Prob(A \spacevert B) = \frac{\Prob(A \cap B)}{\Prob(B)}.
-\end{equation&lt;/em&gt;}
-\end{definition}&lt;/p&gt;
-
-&lt;p&gt;\begin{definition}
-Suppose ${B_i}$ is a finite set. If $B_i$ are all disjoint and $\bigcup_{i=1}^n B_i = \Omega$, then ${B_i}$ is called a \textbf{partition} of $\Omega$.
-\end{definition}&lt;/p&gt;
-
-&lt;p&gt;\begin{lemma}
-For any events $A$ and $B$ such that $0 &amp;lt; \Prob(B) &amp;lt; 1$,
-\begin{equation&lt;em&gt;}
-    \Prob(A) = \Prob(A \spacevert B) \Prob(B) + \Prob(A \spacevert B^c) \Prob(B^c).
-\end{equation&lt;/em&gt;}
-More generally, let $B_1,  B_2, \dots, B_n$ be a partition of $\Omega$ such that $\Prob(B_i) &amp;gt; O$ for all $i$. Then 
-\begin{equation&lt;em&gt;}
-    \Prob(A) = \sum_i \Prob(A \spacevert B_i) \Prob(B_i).
-\end{equation&lt;/em&gt;}
-\end{lemma}&lt;/p&gt;
-
-&lt;p&gt;\subsection{Independence}
-Intuition: an event $A$ occurs doesn’t affect the probability of $A$ occurs when $B$ occurs, which means $\Prob(A) = \Prob(A\spacevert B)$.&lt;/p&gt;
-
-&lt;p&gt;\begin{definition}
-Events $A$ and $B$ are called \textbf{independent} if 
-\begin{equation&lt;em&gt;}
-    \Prob(A \cap B) = \Prob(A) \Prob(B).
-\end{equation&lt;/em&gt;}
-More generally, a family ${A_i \spacevert i \in I}$ is called independent if
-\begin{equation&lt;em&gt;}
-    \Prob \left( \bigcap_{i \in J} A_i \right) = \prod_{i\in J} \Prob(A_i)
-\end{equation&lt;/em&gt;}
-for all finite subsets $J$ of $I$. 
-\end{definition}&lt;/p&gt;
-
-&lt;p&gt;\begin{caution}
-A common \emph{student error} is to make the fallacious statement that $A$ and $B$ are independent if $A \cap B = \varnothing$.
-\end{caution}&lt;/p&gt;
-
-&lt;p&gt;\begin{remark}
-If the family ${A_i \spacevert i \in I}$ has the property that 
-for all 
-\begin{equation&lt;em&gt;}
-    \Prob(A_i \cap A_j) = \Prob(A_i) \Prob(A_j) \quad \forall i\neq j, 
-\end{equation&lt;/em&gt;}
-then it is called \emph{pairwise independent}. \textbf{Pairwise-independent families are not necessarily independent.} 
-\end{remark}&lt;/p&gt;
-
-&lt;p&gt;\section{Completeness and product space}
-\begin{lemma}
-If $\mathcal{F}$ and $\mathcal{G}$ are two $\sigma$-fields of subsets of $\Omega$, then their intersection $\mathcal{F} \cap \mathcal{G}$ is a $\sigma$-field also. More generally, if ${ \mathcal{F}&lt;em&gt;i \spacevert  i \in I }$ is a family of $\sigma$-fields of subsets of $\Omega$, then $\mathcal{G} = \bigcap&lt;/em&gt;{i\in I} \mathcal{F}_i $ is a $\sigma$-field also. 
-\end{lemma}&lt;/p&gt;
-
-&lt;p&gt;\begin{newnotion}{Completeness}
-Let ${\Omega, \mathcal{F}, \Prob}$ be a probability space. Any event $A$ which has zero probability, that is $\Prob(A) = 0$, is called \emph{null}. It may seem reasonable to suppose that any subset $B$ of a null set $A$ will itself be null, but this may be without meaning since $B$ may not be an event, and thus $\Prob(B)$ may not be defined. 
-\end{newnotion}&lt;/p&gt;
-
-&lt;p&gt;\begin{definition}
-A probability space ${\Omega, \mathcal{F}, \Prob}$ is called \textbf{complete} if all subsets of null sets are events. 
-\end{definition}&lt;/p&gt;
-
-&lt;p&gt;Any incomplete space can be completed thus. Let $\mathcal{N}$ be the collection of all subsets of null sets in $\mathcal{F}$ and let $\mathcal{G} = \sigma (\mathcal{F} \cup \mathcal{N})$ be the smallest $\sigma$-field which contains all sets in $\mathcal{F}$ 
-and $\mathcal{N}$. It can be shown that the domain of $\Prob$ may be extended in an obvious way from $\mathcal{F}$ to $\mathcal{G}$; ${\Omega, \mathcal{G}, \Prob}$ is called the completion of ${\Omega, \mathcal{F}, \Prob}$.&lt;/p&gt;
-
-&lt;p&gt;\begin{newnotion}{Product space}
-Suppose two experiments have associated probability spaces ${ \Omega_1, \mathcal{F}_1, \Prob_1 }$ and  ${ \Omega_2, \mathcal{F}_2, \Prob_2 }$ respectively. The sample space of the pair of experiments, considered jointly, is the collection $\Omega_1 \times \Omega_2 = { (\omega_1 , \omega_2) \spacevert w_1 \in \Omega_1, \omega_2 \in \Omega_2 }$ of ordered pairs. The appropriate $\sigma$-field of events is \textbf{more complicated} to construct. \textbf{The family of all such sets, $\mathcal{F}_1 \times \mathcal{F}_2 = {A_1 \times A_2 \spacevert A_1 \in \mathcal{F}_1 , A_1 \in \mathcal{F}_2 }$, is NOT in general a $\sigma$-field.}
-\end{newnotion}&lt;/p&gt;
-
-&lt;p&gt;\begin{remark}
-There exists a unique smallest $\sigma$-field $\mathcal{G} = \sigma(\mathcal{F}&lt;em&gt;1 \times \mathcal{F}_2)$ of subsets of $\Omega_1 \times \Omega_2$ which contains $\mathcal{F}_1 \times \mathcal{F}_2$. All we require now is a suitable probability function on $( \Omega1 \times \Omega_2, \mathcal{G} )$. Let $\Prob&lt;/em&gt;{12}: \mathcal{F}&lt;em&gt;1 \times \mathcal{F}_2 \to [0, 1]$ be given by: 
-\begin{equation*}
-    \Prob(A_1 \times A_2) = \Prob_1(A_1) \times \Prob_2(A_2) \quad \text{for $A_1 \in \mathcal{F}_1, A_2 \in \mathcal{F}_2$}.
-\end{equation*}
-It can be shown that the domain of $\Prob&lt;/em&gt;{12}$ can be extended from $\mathcal{F}_1 \times \mathcal{F}_2$ to the whole of $\mathcal{G} = \sigma(\mathcal{F}_1 \times \mathcal{F}_2)$.
-\end{remark}&lt;/p&gt;
-
-&lt;p&gt;\begin{definition}
-The probability space $(\mathcal{F}&lt;em&gt;1 \times \mathcal{F}_2, \mathcal{G}, \Prob&lt;/em&gt;{12})$ is called the \textbf{product space} of $(\Omega_1, \mathcal{F}&lt;em&gt;1, \Prob_1)$ and  $(\Omega_2, \mathcal{F}_2, \Prob_2)$. The measure $\Prob&lt;/em&gt;{12}$ is sometimes called the `product measure’. 
-\end{definition}&lt;/p&gt;
-
-&lt;p&gt;\end{document}&lt;/p&gt;
-</description>
-        <pubDate>Wed, 02 Oct 2019 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2019/10/notes-1.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/10/notes-1.html</guid>
-        
-        <category>notes</category>
-        
-        <category>math</category>
-        
-        
-        <category>Probability</category>
-        
-      </item>
-    
-      <item>
-        <title>Notes in Probability</title>
-        <description>&lt;p&gt;I will post a series of notes from the Elements of Probability course which I took in 2019. The notes review the basic concepts in probability. I write them for quick review prupose.&lt;/p&gt;
-
-&lt;p&gt;The notes are mainly based on the book xxx. There are also some other great books in probability theory. For example, xxx&lt;/p&gt;
-</description>
-        <pubDate>Wed, 25 Sep 2019 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2019/09/probability-intro.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/09/probability-intro.html</guid>
-        
-        <category>notes</category>
         
         
         <category>Probability</category>

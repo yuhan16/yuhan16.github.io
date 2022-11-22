@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Publications">
+<title>Publications</title>
+<meta property="og:description" content="HuskDev is Yuhan's personal blog.">
+<meta property="og:url" content="http://localhost:4000/publications/">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/publications/">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/topics/probability">Probability</a></li>
+                    <!--li><a href="/topics/optimization">Optimization</a></li-->
+                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/topics/web">Web</a></li>
+                    <li><a href="/topics/programming">Programming</a></li>
+                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/publications">Publications</a></li>
+            <!--li><a href="/projects">Projects</a></li-->
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/publications/feed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "20px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post">
+
+    <header class="post-header">
+        <h1 class="post-title">Publications</h1>
+    </header>
+
+    <article class="post-content"> 
+        <div class="pub">
+    <h4 class="pub-title">Stackelberg Strategic Guidance for Heterogeneous Robots Collaboration</h4>
+    <p class="pub-meta"><b>Yuhan Zhao</b>, Quanyan Zhu</p>
+    <p class="pub-meta"><em>International Conference on Robotics and Automation (ICRA) 2022</em></p>
+    
+    <a href="https://arxiv.org/pdf/2202.01877.pdf"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-7-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-7-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-7-abs-content">
+        <div class="pub-content-pad">
+            In this study, we explore the application of game theory, in particular Stackelberg games, to address the issue of effective coordination strategy generation for heterogeneous robots with one-way communication. To that end, focusing on the task of multi-object rearrangement, we develop a theoretical and algorithmic framework that provides strategic guidance for a pair of robot arms, a leader and a follower where the leader has a model of the follower's decision-making process, through the computation of a feedback Stackelberg equilibrium. With built-in tolerance of model uncertainty, the strategic guidance generated by our planning algorithm not only improves the overall efficiency in solving the rearrangement tasks, but is also robust to common pitfalls in collaboration, e.g., chattering. 
+        </div>
+    </div>
+    <div class="pub-content" id="pub-7-bib-content">
+        <div class="pub-content-pad">
+            @inproceedings{zhao2022stackelberg,<br>
+                author={Zhao, Yuhan and Huang, Baichuan and Yu, Jingjin and Zhu, Quanyan},<br>
+                booktitle={2022 International Conference on Robotics and Automation (ICRA)},<br>
+                title={Stackelberg Strategic Guidance for Heterogeneous Robots Collaboration},<br>
+                year={2022},<br>
+                volume={},<br>
+                number={},<br>
+                pages={4922-4928},<br>
+                doi={10.1109/ICRA46639.2022.9811678}
+            }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-7-abs");</script>
+<script>toggle_pub_content("pub-7-bib");</script>
+
+
+
+<div class="pub">
+    <h4 class="pub-title">Distributed and Resilient Planning-Control for Optimal LEO Satellite Constellation Coverage</h4>
+    <p class="pub-meta"><b>Yuhan Zhao</b>, Quanyan Zhu</p>
+    <p class="pub-meta"><em>American Control Conference (ACC), 2022</em></p>
+    
+    <a href="https://ieeexplore.ieee.org/document/9867536"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-6-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-6-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-6-abs-content">
+        <div class="pub-content-pad">
+            Coverage services provided by LEO satellite constellations have served as the base platform for various space applications. However, the surge of space attacks such as physical and cyber attacks are greatly endangering the security of satellite constellations and the integrity of the coverage services. As repairs of satellites are challenging, a distributed protection mechanism is necessary to ensure the self-healing of the satellite constellation coverage from different attacks. To this end, this paper establishes a distributed framework to empower a resilient satellite constellation coverage design and control within a single orbit. Each satellite can make decisions individually to recover from adversarial and non-adversarial attacks and keep providing coverage service. We first provide the average coverage cost to measure the coverage performance. Then, we formulate the joint resilient coverage planning-control problem as a two-stage problem by decoupling the coverage planning and fuel-optimal control. A distributed algorithm is proposed to find the optimal coverage configuration. The multi-waypoint MPC methodology is adopted to steer satellites to the target configuration. Finally, we use a typical LEO satellite constellation as a case study to corroborate the results.
+        </div>
+    </div>
+    <div class="pub-content" id="pub-6-bib-content">
+        <div class="pub-content-pad">
+            @inproceedings{zhao2022distributed,<br>
+                author={Zhao, Yuhan and Zhu, Quanyan},<br>
+                booktitle={2022 American Control Conference (ACC)}, <br>
+                title={Distributed and Resilient Planning-Control for Optimal LEO Satellite Constellation Coverage}, <br>
+                year={2022},<br>
+                volume={},<br>
+                number={},<br>
+                pages={1841-1846},<br>
+                doi={10.23919/ACC53348.2022.9867536}
+            }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-6-abs");</script>
+<script>toggle_pub_content("pub-6-bib");</script>
+
+
+
+<div class="pub">
+    <h4 class="pub-title">The Role of Information Structures in Game-Theoretic Multi-Agent Learning</h4>
+    <p class="pub-meta">Tao Li, <b>Yuhan Zhao</b>, Quanyan Zhu</p>
+    <p class="pub-meta"><em>Annual Reviews in Control, 2022</em></p>
+    
+    <a href="https://www.sciencedirect.com/science/article/pii/S1367578822000086"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-5-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-5-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-5-abs-content">
+        <div class="pub-content-pad">
+            Multi-agent learning (MAL) studies how agents learn to behave optimally and adaptively from their experience when interacting with other agents in dynamic environments. 
+            The outcome of a MAL process is jointly determined by all agents’ decision-making. Hence, each agent needs to think strategically about others’ sequential moves, 
+            when planning future actions. The strategic interactions among agents makes MAL go beyond the direct extension of single-agent learning to multiple agents. 
+            With the strategic thinking, each agent aims to build a subjective model of others decision-making using its observations. 
+            Such modeling is directly influenced by agents’ perception during the learning process, which is called the information structure of the agent’s learning. 
+            As it determines the input to MAL processes, information structures play a significant role in the learning mechanisms of the agents. 
+            This review creates a taxonomy of MAL and establishes a unified and systematic way to understand MAL from the perspective of information structures. 
+            We define three fundamental components of MAL: the information structure (i.e., what the agent can observe), 
+            the belief generation (i.e., how the agent forms a belief about others based on the observations), 
+            as well as the policy generation (i.e., how the agent generates its policy based on its belief). In addition, this taxonomy enables the classification of 
+            a wide range of state-of-the-art algorithms into four categories based on the belief-generation mechanisms of the opponents, including stationary, conjectured, calibrated, and sophisticated opponents. 
+            We introduce Value of Information (VoI) as a metric to quantify the impact of different information structures on MAL. 
+            Finally, we discuss the strengths and limitations of algorithms from different categories and point to promising avenues of future research.
+        </div>
+    </div>
+
+    <div class="pub-content" id="pub-5-bib-content">
+        <div class="pub-content-pad">
+            @article{li2022role, <br>
+                title = {The role of information structures in game-theoretic multi-agent learning},<br>
+                journal = {Annual Reviews in Control},<br>
+                year = {2022},<br>
+                pages = {296-314},<br>
+                volume = {53},<br>
+                issn = {1367-5788},<br>
+                doi = {https://doi.org/10.1016/j.arcontrol.2022.03.003},<br>
+                url = {https://www.sciencedirect.com/science/article/pii/S1367578822000086},<br>
+                author = {Tao Li and Yuhan Zhao and Quanyan Zhu},<br>
+                keywords = {Multi-agent learning, Information structures, Reinforcement learning, Belief generation, Game theory, Value of Information}
+            }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-5-abs");</script>
+<script>toggle_pub_content("pub-5-bib");</script>
+
+
+
+<div class="pub">
+    <h4 class="pub-title">Herd Behaviors in Epidemics: A Dynamics-Coupled Evolutionary Games Approach</h4>
+    <p class="pub-meta">Shutian Liu, <b>Yuhan Zhao</b>, Quanyan Zhu</p>
+    <p class="pub-meta"><em>Dynamic Games and Applications, 2022</em></p>
+    
+    <a href="https://link.springer.com/article/10.1007/s13235-022-00433-3"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-4-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-4-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-4-abs-content">
+        <div class="pub-content-pad">
+            The recent COVID-19 pandemic has led to an increasing interest in the modeling and analysis of infectious diseases. 
+            The pandemic has made a significant impact on the way we behave and interact in our daily life. The past year has witnessed a strong interplay between human behaviors and epidemic spreading. 
+            In this paper, we propose an evolutionary game-theoretic framework to study the coupled evolution of herd behaviors and epidemics. 
+            Our framework extends the classical degree-based mean-field epidemic model over complex networks by coupling it with the evolutionary game dynamics. 
+            The statistically equivalent individuals in a population choose their social activity intensities based on the fitness or the payoffs that depend on the state of the epidemics. 
+            Meanwhile, the spreading of the infectious disease over the complex network is reciprocally influenced by the players’ social activities. 
+            We analyze the coupled dynamics by studying the stationary properties of the epidemic for a given herd behavior and the structural properties of the game for a given epidemic process. 
+            The decisions of the herd turn out to be strategic substitutes. We formulate an equivalent finite-player game and an equivalent network to represent the interactions among the finite populations. 
+            We develop a structure-preserving approximation technique to study time-dependent properties of the joint evolution of the behavioral and epidemic dynamics. 
+            The resemblance between the simulated coupled dynamics and the real COVID-19 statistics in the numerical experiments indicates the predictive power of our framework.
+        </div>
+    </div>
+    
+    <div class="pub-content" id="pub-4-bib-content">
+        <div class="pub-content-pad">
+            @article{liu2022role, <br>
+                title = {Herd behaviors in epidemics: a dynamics-coupled evolutionary games approach},<br>
+                journal = {Dynamic Games and Applications},<br>
+                year = {2022},<br>
+                pages = {183-213},<br>
+                volume = {12},<br>
+                issue = {1},<br>
+                issn = {2153-0793},<br>
+                doi = {10.1007/s13235-022-00433-3},<br>
+                url = {https://doi.org/10.1007/s13235-022-00433-3},<br>
+                author = {Shutian Liu and Yuhan Zhao and Quanyan Zhu}
+            }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-4-abs");</script>
+<script>toggle_pub_content("pub-4-bib");</script>
+
+
+
+<div class="pub">
+    <h4 class="pub-title">Understanding the Interplay Between Herd Behaviors and Epidemic Spreading Using Federated Evolutionary Games</h4>
+    <p class="pub-meta">Shutian Liu, <b>Yuhan Zhao</b>, Quanyan Zhu</p>
+    <p class="pub-meta"><em>American Control Conference (ACC), 2022</em></p>
+    
+    <a href="https://ieeexplore.ieee.org/document/9867809"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-3-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-3-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-3-abs-content">
+        <div class="pub-content-pad">
+            The recent COVID-19 pandemic has led to an increasing interest in the modeling and analysis of infectious diseases. 
+            Our social behaviors in the daily lives have been significantly affected by the pandemic. 
+            In this paper, we propose a federated evolutionary game-theoretic framework to study the coupling of herd behaviors changes and epidemics spreading. 
+            Our framework extends the classical degree-based mean-field epidemic model over complex networks by integrating it with the evolutionary game dynamics. 
+            The statistically equivalent individuals in a population choose their social activity intensities based on the fitness or the payoffs that depend on the state of the epidemics. 
+            Meanwhile, the spread of infectious diseases over the complex network is reciprocally influenced by the players' social activities. 
+            We address the challenge of federated dynamics by breaking the analysis into the studies of the stationary properties of the epidemic for given herd behavior and the structural properties of the game for a given epidemic process. 
+            We use numerical experiments to show that our framework enables the prediction of the historical COVID-19 statistics.
+        </div>
+    </div>
+    <div class="pub-content" id="pub-3-bib-content">
+        <div class="pub-content-pad">
+            @INPROCEEDINGS{liu2022understanding,<br>
+                author={Liu, Shutian and Zhao, Yuhan and Zhu, Quanyan},<br>
+                booktitle={2022 American Control Conference (ACC)}, <br>
+                title={Understanding the Interplay Between Herd Behaviors and Epidemic Spreading Using Federated Evolutionary Games}, <br>
+                year={2022},<br>
+                volume={},<br>
+                number={},<br>
+                pages={593-598},<br>
+                doi={10.23919/ACC53348.2022.9867809}
+            }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-3-abs");</script>
+<script>toggle_pub_content("pub-3-bib");</script>
+
+
+
+<div class="pub">
+    <h4 class="pub-title">Combating Ransomware in Internet of Things: A Games-in-Games Approach for Cross-Layer Cyber Defense and Security Investment</h4>
+    <p class="pub-meta"><b>Yuhan Zhao</b>, Yunfei Ge, Quanyan Zhu</p>
+    <p class="pub-meta"><em>International Conference on Decision and Game Theory for Security (GameSec), 2021</em></p>
+    
+    <a href="https://link.springer.com/chapter/10.1007/978-3-030-90370-1_12"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-2-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-2-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-2-abs-content">
+        <div class="pub-content-pad">
+            The recent surge in ransomware attacks has threatened many critical infrastructures such as oil pipeline systems, hospitals, and industrial Internet of Things (IoT). 
+            Ransomware is a cryptoviral extortion attack that involves two phases: the cyber infection of the malware and the financial transaction of the ransom payment. 
+            As the ransomware attackers are financially motivated, the protection of the infrastructure networked systems requires a cross-layer risk analysis that not only examines the vulnerability of the cyber system but also consolidates the economics of ransom payment. 
+            To this end, this paper establishes a two-player multi-phase and multi-stage game framework to model cyber and economic phases of a ransomware attack. 
+            We use a zero-sum Markov game to capture the multi-stage penetration of ransomware in the lateral movement. A sequential-move game is proposed to model the ransom payment interactions at the second phase. 
+            Two games are composed to form a multi-phase and multi-stage game-in-games (MPMS-GiG) that enables a holistic risk assessment of ransomware in networks and a cross-layer design of cyber defense and investment strategies to mitigate the attack. 
+            We provide a complete equilibrium characterization of ransomware game and design interdependent optimal strategies for cyber protection and ransom payment. 
+            We use prospect theory to analyze the impact of human factors on equilibrium strategies. Finally, we use a prototypical industrial IoT network as a case study to corroborate the results.
+        </div>
+    </div>
+
+    <div class="pub-content" id="pub-2-bib-content">
+        <div class="pub-content-pad">
+            @inproceedings{zhao2021combating,<br>
+                title = {Combating ransomware in internet of things: a games-in-games approach for cross-layer cyber defense and security investment},<br>
+                booktitle = {Decision and Game Theory for Security},<br>
+                year = {2021},<br>
+                pages = {208-228},<br>
+                isbn = {978-3-030-90370-1},<br>
+                doi = {https://doi.org/10.1007/978-3-030-90370-1_12},<br>
+                author = {Yuhan Zhao and Yunfei Ge and Quanyan Zhu},<br>
+                editor = {Bo{\v{s}}ansk{\'y}, Branislav and Gonzalez, Cleotilde and Rass, Stefan and Sinha, Arunesh},<br>
+                publisher = {Springer International Publishing},<br>
+                address = {Cham}
+            }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-2-abs");</script>
+<script>toggle_pub_content("pub-2-bib");</script>
+
+
+
+<div class="pub">
+    <h4 class="pub-title">Combating Online Counterfeits: A Game-Theoretic Analysis of Cyber Supply Chain Ecosystem</h4>
+    <p class="pub-meta"><b>Yuhan Zhao</b>, Quanyan Zhu</p>
+    <p class="pub-meta"><em>International Conference on Decision and Game Theory for Security (GameSec), 2020</em></p>
+    
+    <a href="https://link.springer.com/chapter/10.1007/978-3-030-64793-3_18"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-1-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-1-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-1-abs-content">
+        <div class="pub-content-pad">
+            Counterfeiting has been a pervasive threat to the security of supply chains. With the development of cyber technologies, traditional supply chains move their logistics to the cyberspace for better efficiency. 
+            However, counterfeiting threats still exist and may even cause worse consequences. It is imperative to find mitigating strategies to combat counterfeiting in the cyber supply chain. 
+            In this paper, we establish a games-in-games framework to capture the interactions of counterfeiting activities in the cyber supply chain. 
+            Specifically, the sellers in the cyber supply chain play a Stackelberg game with consumers, while sellers compete with each other by playing a Nash game. 
+            All sellers and consumers aim to maximize their utilities. We design algorithms to find the best response of all participants and analyze the equilibrium of the supply chain system. 
+            Finally, we use case studies to demonstrate the equilibrium behavior and propose effective anti-counterfeit strategies.
+        </div>
+    </div>
+    <div class="pub-content" id="pub-1-bib-content">
+        <div class="pub-content-pad">
+            @inproceedings{zhao2020combating,<br>
+                title = {Combating online counterfeits: a game-theoretic analysis of cyber supply chain ecosystem},<br>
+                booktitle = {Decision and Game Theory for Security},<br>
+                year = {2020},<br>
+                pages = {326-345},<br>
+                isbn = {978-3-030-64793-3},<br>
+                doi = {https://doi.org/10.1007/978-3-030-64793-3_18},<br>
+                author = {Yuhan Zhao and Quanyan Zhu},<br>
+                editor = {Zhu, Quanyan and Baras, John S. and Poovendran, Radha and Chen, Juntao},<br>
+                publisher = {Springer International Publishing},<br>
+                address = {Cham}
+            }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-1-abs");</script>
+<script>toggle_pub_content("pub-1-bib");</script>
+
+
+<!--Preprints-->
+<h3>Preprints</h3>
+<div class="pub">
+    <h4 class="pub-title">Autonomous and Resilient Control for Optimal LEO Satellite Constellation Coverage Against Space Threats</h4>
+    <p class="pub-meta"><b>Yuhan Zhao</b>, Quanyan Zhu</p>
+    <p class="pub-meta"><em>Submitted to IEEE Transactions on Control Systems Technology</em></p>
+    
+    <a href="https://arxiv.org/pdf/2203.02050.pdf"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-8-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-8-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-8-abs-content">
+        <div class="pub-content-pad">
+            LEO satellite constellation coverage has served as the base platform for various space applications. 
+            However, the rapidly evolving security environment such as orbit debris and adversarial space threats are greatly endangering the security of satellite constellation and integrity of the satellite constellation coverage. 
+            As on-orbit repairs are challenging, a distributed and autonomous protection mechanism is necessary to ensure the adaptation and self-healing of the satellite constellation coverage from different attacks. 
+            To this end, we establish an integrative and distributed framework to enable resilient satellite constellation coverage planning and control in a single orbit. 
+            Each satellite can make decisions individually to recover from adversarial and non-adversarial attacks and keep providing coverage service. We first provide models and methodologies to measure the coverage performance. 
+            Then, we formulate the joint resilient coverage planning-control problem as a two-stage problem. A coverage game is proposed to find the equilibrium constellation deployment for resilient coverage planning and an agent-based algorithm is developed to compute the equilibrium. 
+            The multi-waypoint Model Predictive Control (MPC) methodology is adopted to achieve autonomous self-healing control. Finally, we use a typical LEO satellite constellation as a case study to corroborate the results.
+        </div>
+    </div>
+    <div class="pub-content" id="pub-8-bib-content">
+        <div class="pub-content-pad">
+            @article{zhao2022autonomous,<br>
+                title={Autonomous and Resilient Control for Optimal LEO Satellite Constellation Coverage Against Space Threats},<br>
+                author={Zhao, Yuhan and Zhu, Quanyan},<br>
+                journal={arXiv preprint arXiv:2203.02050},<br>
+                year={2022}
+            }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-8-abs");</script>
+<script>toggle_pub_content("pub-8-bib");</script>
+
+
+
+<div class="pub">
+    <h4 class="pub-title">	Multi-Agent Learning for Resilient Distributed Control Systems</h4>
+    <p class="pub-meta"><b>Yuhan Zhao</b>, Quanyan Zhu</p>
+    <p class="pub-meta"><em>Submitted as a Chapter for Power Grid Resilience: Theory and Applications</em></p>
+    
+    <a href="https://arxiv.org/pdf/2208.05060.pdf"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-9-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-9-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-9-abs-content">
+        <div class="pub-content-pad">
+            Resilience describes a system's ability to function under disturbances and threats. Many critical infrastructures, including smart grids and transportation networks, are large-scale complex systems consisting of many interdependent subsystems. 
+            Decentralized architecture becomes a key resilience design paradigm for large-scale systems. In this book chapter, we present a multi-agent system (MAS) framework for distributed large-scale control systems and discuss the role of MAS learning in resiliency. 
+            This chapter introduces the creation of an artificial intelligence (AI) stack in the MAS to provide computational intelligence for subsystems to detect, respond, and recover. We discuss the application of learning methods at the cyber and physical layers of the system. 
+            The discussions focus on distributed learning algorithms for subsystems to respond to each other, and game-theoretic learning for them to respond to disturbances and adversarial behaviors. The book chapter presents a case study of distributed renewable energy systems to elaborate on the MAS architecture and its interface with the AI stack.        
+        </div>
+    </div>
+    <div class="pub-content" id="pub-9-bib-content">
+        <div class="pub-content-pad">
+            @article{zhao2022multi,<br>
+                title={Multi-Agent Learning for Resilient Distributed Control Systems},<br>
+                author={Zhao, Yuhan and Rieger, Craig and Zhu, Quanyan},<br>
+                journal={arXiv preprint arXiv:2208.05060},<br>
+                year={2022}
+              }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-9-abs");</script>
+<script>toggle_pub_content("pub-9-bib");</script>
+
+
+
+<div class="pub">
+    <h4 class="pub-title">Stackelberg Meta-Learning Based Control for Guided Cooperative LQG Systems</h4>
+    <p class="pub-meta"><b>Yuhan Zhao</b>, Quanyan Zhu</p>
+    <p class="pub-meta"><em>Submitted to IFAC World Congress 2023</em></p>
+    
+    <a href="https://arxiv.org/pdf/2211.06512.pdf"><div class="pub-icon">PDF</div></a> 
+    <a><div class="pub-icon" id="pub-10-abs">ABS</div></a> 
+    <a><div class="pub-icon" id="pub-10-bib">BIB</div></a>
+    
+    <div class="pub-content" id="pub-10-abs-content">
+        <div class="pub-content-pad">
+            Guided cooperation allows intelligent agents with heterogeneous capabilities to work together by following a leader-follower type of interaction. 
+            However, the associated control problem becomes challenging when the leader agent does not have complete information about follower agents. 
+            There is a need for online learning and adaptation of cooperation plans. To this end, we develop a meta-learning-based Stackelberg game-theoretic framework to address the challenges in the guided cooperative control for linear systems. 
+            We first formulate the guided cooperation between agents as a dynamic Stackelberg game and use the feedback Stackelberg equilibrium as the agent-wise cooperation strategy. 
+            We further leverage meta-learning to address the incomplete information of follower agents, where the leader agent learns a meta-response model from a prescribed set of followers offline and adapts to an unseen cooperation task with a small amount of online learning data. 
+            We use a case study in robot teaming to corroborate the effectiveness of our framework. Comparison with other learning approaches shows our learned cooperation strategy has better transferability for different cooperation tasks.
+        </div>
+    </div>
+    <div class="pub-content" id="pub-10-bib-content">
+        <div class="pub-content-pad">
+            @article{zhao2022stackelberg,<br>
+                title={Stackelberg Meta-Learning Based Control for Guided Cooperative LQG Systems},<br>
+                author={Zhao, Yuhan and Zhu, Quanyan},<br>
+                journal={arXiv preprint arXiv:2211.06512},<br>
+                year={2022}
+              }
+        </div>
+    </div>
+</div>
+<script>toggle_pub_content("pub-10-abs");</script>
+<script>toggle_pub_content("pub-10-bib");</script>
+    </article>
+
+    
+
+</div> 
+                </div>
+                <div class="col-sm-2">
+    
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-7.html" title="Markov Chain" rel="bookmark">Markov Chain</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-6-1.html" title="Generating Functions" rel="bookmark">Generating Functions</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
+  
+    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
+  
+    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
+  
+    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
+  
+    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
+  
+    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
+  
+    <a href="/tags/#math" title="math" rel="11">math</a> &nbsp;
+  
+    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2022" > <a href="/archives/#2022">2022</a></li>
+    
+  
+    
+    
+      
+      
+      <li id="2020" > <a href="/archives/#2020">2020</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/">Home</a> | 
+                <a href="/blog">Blog</a> | 
+                <a href="/categories">Topics</a> | 
+                <a href="/publications">Publications</a> | 
+                <a href="/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/publications/feed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/publications/feed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

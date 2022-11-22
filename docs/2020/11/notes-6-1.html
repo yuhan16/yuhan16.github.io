@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Generating Functions">
+<title>Generating Functions</title>
+<meta property="og:description" content="This notes reviews the generating function.">
+<meta property="og:url" content="http://localhost:4000/2020/11/notes-6-1.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2020/11/notes-6-1.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/topics/probability">Probability</a></li>
+                    <!--li><a href="/topics/optimization">Optimization</a></li-->
+                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/topics/web">Web</a></li>
+                    <li><a href="/topics/programming">Programming</a></li>
+                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/publications">Publications</a></li>
+            <!--li><a href="/projects">Projects</a></li-->
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/2020/11/notes-6-1.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "20px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Generating Functions</b></h1>
+    <meta itemprop="keywords" content="notes,math" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2020-11-07">
+        Nov 7, 2020
+      </time>
+      &nbsp;in
+      
+        <a href="/categories/#Probability"><b>Probability</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <h2 id="generating-functions">Generating functions</h2>
+<p>A sequence $a = {a_i \;\vert\; i = 0, 1 , 2, \dots }$ of real numbers may contain a lot of information. One concise way of storing this information is to wrap up the numbers together in a ``generating function”. For example, the (ordinary) <strong>generating function</strong> of the sequence $a$ is the function $G_a$ defined by 
+\(\begin{equation}
+    G_{a}(s)=\sum_{i=0}^{\infty} a_{i} s^{i} \quad \text { for } s \in \mathbb{R} \text { for which the sum converges. }
+\end{equation}\)
+In many circumstances it is easier to work with the generating function $G_a$ than with the original sequence $a$.</p>
+
+<div class="theorem"><p><b>Theorem.</b> [Abel's theorem]
+If $a_i \geq 0$ for all $i$ and $G_a(s)$ is finite for $\left\vert s \right\vert &lt; 1$, then $\lim_{s \uparrow 1} G_a (s) = \sum_{i=1}^ \infty a_i$, whether the sum is finite or equals $+\infty$. This standard result is useful when the radius of convergence $R$ satisfies $R = 1$, since then one has no a priori right to take the limit as $s \uparrow 1$.
+</p></div>
+
+<h3 id="moment-generating-function">Moment generating function</h3>
+<div class="theorem"><p><b>Definition.</b> 
+The **moment generating function** of the random variable $X$ is the function $M: \mathbb{R} \mapsto [0, \infty)$ given by the Laplace transform of the corresponding p.d.f. $f_X(s)$:
+$$\begin{equation}
+    M_X(t) = \mathbf{E} \left( e^{tX} \right) = \int_{-\infty}^\infty e^{tx} f_X(x) dx,
+\end{equation}$$
+or corresponding p.m.f. $p_X(k)$:
+$$\begin{equation}
+    M_X(t) = \sum_{k} e^{t k} \mathbf{P}(X=k) 
+    = \sum_k \sum_{n=0}^{\infty} \frac{(t k)^{n}}{n !} \mathbf{P}(X=k)
+    = \sum_{n=0}^{\infty} \frac{t^{n}}{n !}\left(\sum_k k^{n} \mathbf{P}(X=k)\right) 
+    = \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \mathbf{E}\left(X^{n}\right).
+\end{equation}$$
+$M_X(-t)$ is so called **bilateral** Laplace transform of $f_X(x)$ or $p_X(k)$.
+</p></div>
+
+<p>Under the assumption that $M_X(t)$ is infinitely differentiable at $t=0$, the following statements are true.</p>
+<ol>
+    <li> $M^\prime(0) = \mathbf{E}(0) = \mu$.</li>
+    <li> $M^{(n)}(0) = \mathbf{E}(X^n)$.</li>
+    <li> Using Taylor's theorem, $M_X(t) = \sum_{k=0}^\infty \frac{t^k}{k!} \mathbf{E}(X^k)$.</li>
+</ol>
+
+<div class="theorem"><p><b>Theorem.</b> 
+If $X$ and $Y$ are independent, then
+$$\begin{equation}
+    \begin{split}
+        M_{X+Y}(t) &amp;= \int_{-\infty}^\infty e^{tz} f_{x+y}(z) dz \\
+        &amp;= \int_{-\infty}^\infty e^{tz} \int_{-\infty}^\infty f_X(x) f_Y(z-x) dx dz \\
+        &amp;= \int_{-\infty}^\infty e^{t(x+y)} \int_{-\infty}^\infty f_X(x) f_Y(y) dx dy \\
+        &amp;= M_X(t) M_Y(t).
+    \end{split}
+\end{equation}$$
+</p></div>
+
+<h3 id="characteristic-functions">Characteristic functions</h3>
+<p>Sometimes $\mathbf{E}(e^{tX})$ may blow up. So we consider some transformations in the complex domain, which usually perform better.</p>
+
+<div class="theorem"><p><b>Definition.</b> 
+The **characteristic function** of $X$ is the function $\phi: \mathbb{R} \mapsto \mathbb{C}$ defined by
+$$\begin{equation}
+    \phi(t)=\mathbf{E}\left(e^{i t X}\right) \quad \text { where } \quad i=\sqrt{-1}.
+\end{equation}$$
+We often write $\phi_x$ for the characteristic function of the random variable $X$. Characteristic functions are related to Fourier transforms. 
+</p></div>
+
+<div class="theorem"><p><b>Theorem.</b> 
+The characteristic function $\phi$ satisfies:
+<ol>
+    <li> $\phi(0) = 1$, $\left\vert \phi(t) \right\vert \leq 1$ for all $t$.</li>
+    <li> $\phi$ is uniformly continuous on $\mathbb{R}$ w.r.t. $t$.</li>
+    <li> If $X \sim \mathcal{N}(0,1)$, then $\phi_{X}(t) = e^{-t^2/2}$.</li>
+</ol>
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf1-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf1-content"><p>
+We only prove the first statement.
+$$\begin{equation}
+    \begin{split}
+        \left\vert \phi(t) \right\vert &amp;= \left\vert \int_{-\infty}^\infty e^{itx} f(x)dx  \right\vert \\
+        &amp;\leq \int_{-\infty}^\infty \left\vert e^{itx} \right\vert f(x) dx \quad \text{(triangle inequality)} \\
+        &amp;= \int_{-\infty}^\infty f(x) dx \quad (\left\vert e^{itx} \right\vert=1) \\
+        &amp;= 1
+    \end{split}
+\end{equation}$$
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf1");</script>
+
+<div class="example"><p><b>Example.</b> [Cauchy distribution]
+If $f(x) = 
+\frac{1}{\pi(1+x^2)}$, then the corresponding characteristic function is 
+$$\begin{equation}
+    \phi(t)=\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{e^{i t x}}{1+x^{2}} d x = e^{-\left\vert t \right\vert}.
+\end{equation}$$
+</p></div>
+
+<div class="theorem"><p><b>Theorem.</b> 
+The following statements are true.
+<ol>
+    <li> If $\phi^{(k)}(0)$ exists, then 
+    $$\begin{equation}
+        \left\{\begin{array}{ll}{\mathbf{E}\left|X^{k}\right|&lt;\infty} &amp; {\text { if $k$}  \text { is even }} \\ {\mathbf{E}\left|X^{k-1}\right|&lt;\infty} &amp; {\text { if $k$ } \text { is odd }}\end{array}\right.
+    \end{equation}$$</li>
+    <li> If $\mathbf{E}(\left\vert X^k \right\vert) &lt; \infty$, then 
+    $$\begin{equation}
+        \phi(t)=\sum_{j=0}^{k} \frac{\mathbb{E}\left(X^{j}\right)}{j !}(i t)^{j}+\mathrm{o}\left(t^{k}\right)
+    \end{equation}$$
+    and so $\phi^{(k)}(0)=i^{k} \mathbb{E}\left(X^{k}\right)$.</li>
+</ol>
+</p></div>
+<div class="theorem"><p><b>Theorem.</b> 
+If $X$ and $Y$ are independent then 
+$$\begin{equation}
+    \phi_{X+Y}(t)=\phi_{X}(t) \phi_{Y}(t).
+\end{equation}$$
+Similarly, if $X_1, \dots, X_n$ are independent, then 
+$$\begin{equation}
+    \phi_{X_1 + \cdots + X_n}(t)= \prod_{i=1}^n \phi_{X_i}(t).
+\end{equation}$$
+</p></div>
+
+<div class="theorem"><p><b>Theorem.</b> 
+If $a, b \in \mathbb{R}$ and $Y = aX+b$, then $\phi_{Y}(t)=e^{i t b} \phi_{X}(a t)$.
+</p></div>
+<div class="proof"><a href="javascript:void(0)" id="pf2-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf2-content"><p>
+$$\begin{equation}
+    \phi_{Y}(t)=\mathbf{E}\left(e^{i t(a X+b)}\right)=\mathbf{E}\left(e^{i t b} e^{i(a t) X}\right) = e^{i t b} \mathbf{E}\left(e^{i(a t) X}\right)=e^{i t b} \phi_{X}(a t).
+\end{equation}$$
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf2");</script>
+
+<div class="theorem"><p><b>Theorem.</b> 
+Random variables $X$ and $Y$ are independent if and only if
+$$\begin{equation}
+    \phi_{X, Y}(s, t)=\phi_{X}(s) \phi_{Y}(t) \quad \text { for all } s \text { and } t.
+\end{equation}$$
+</p></div>
+
+<div class="theorem"><p><b>Definition.</b> 
+We say that the sequence $F_1 , F_2, \dots $ of distribution functions converges to the distribution function $F$, written $F_n \to F$, if $F(x) = \lim_{n\to\infty} F_n(x)$ at each point $x$ where $F$ is continuous.
+</p></div>
+
+<div class="theorem"><p><b>Theorem.</b> [Continnity theorem]
+Suppose that $F_1 , F_2, \dots $ is a sequence of distribution functions 
+with corresponding characteristic functions $\phi_1 , \phi_2, \dots $.
+<ol>
+    <li> If $F_n \to F$ for some distribution function $F$ with characteristic function $\phi$, then $\phi_n(t) \to \phi(t)$ for all $t$.</li>
+    <li> Conversely, if $\phi(t) \lim_{n\to\infty} \phi_n(t)$ exists and is continuous at $t=0$, then $\phi$ is the characteristic function of some distribution function $F$, and $F_n \to F$.</li>
+</ol>
+</p></div>
+
+<h2 id="central-limit-theorem">Central limit theorem</h2>
+<div class="theorem"><p><b>Definition.</b> 
+If $X, X_1 , X_2 , \dots$ is a sequence of random variables with respective distribution functions $F, F_1, F_2, \cdots$, we say that $X_n$ converges in distribution to $X$, written $X_{n} \stackrel{\mathrm{D}}{\rightarrow} X$, if $F_n \to F$ as $n \to\infty$.
+</p></div>
+
+<div class="theorem"><p><b>Theorem.</b> [Central limit theorem]
+Let $X_1 , X_2, \dots$ be a sequence of independent identically distributed random variables with finite mean $\mu$ and finite nonzero variance $\sigma^2$, and let $S_n = X_1 + X_2 + \cdots + X_n$. Then
+$$\begin{equation}
+    \frac{S_{n}-n \mu}{\sqrt{n \sigma^{2}}} \stackrel{\mathrm{D}}{\rightarrow} N(0,1) \quad \text { as } \quad n \rightarrow \infty.
+\end{equation}$$
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf3-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf3-content"><p>
+First, write $Y_i = \frac{X_i - \mu}{\sigma}$, and let $\phi_Y$ be the characteristic function of the $Y_i$. We have that 
+$$\begin{equation}
+    \phi_{Y}(t)=1-\frac{1}{2} t^{2}+o\left(t^{2}\right).
+\end{equation}$$
+Note that $Y_i$ are i.i.d. So the characteristic function of $\sum_{i=1}^n Y_i$ is
+$$\begin{equation}
+    \phi_n = [\phi_{Y}(t)]^n = \left[ 1-\frac{1}{2} t^{2}+o\left(t^{2}\right) \right]^n.
+\end{equation}$$
+Also, the characteristic function $\psi_n$ of
+$$\begin{equation}
+    U_{n}=\frac{S_{n}-n \mu}{\sqrt{n \sigma^{2}}}=\frac{1}{\sqrt{n}} \sum_{i=1}^{n} Y_{i}
+\end{equation}$$
+satisfies
+$$\begin{equation}
+    \psi_{n}(t)=\left\{\phi_{Y}(t / \sqrt{n})\right\}^{n}=\left\{1-\frac{t^{2}}{2 n}+o\left(\frac{t^{2}}{n}\right)\right\}^{n} \rightarrow e^{-\frac{1}{2} t^{2}} \quad \text { as } \quad  n \rightarrow \infty,
+\end{equation}$$
+where we used 
+$$\begin{equation}
+    \lim_{n\to\infty} \left( 1 + \frac{a}{n} \right)^n = e^a.
+\end{equation}$$
+The last function is the characteristic function of the $\mathcal{N}(0, 1)$ distribution, and an application of the continuity theorem completes the proof.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf3");</script>
+
+<div class="theorem"><p><b>Corollary.</b>
+$Q_n = \frac{1}{n}S_n \to \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right)$, $S_n \to \mathcal{N}(\mu, n \sigma^2)$. The sampling error is proportional to $\frac{1}{\sqrt{n}}$.
+</p></div>
+<p>There is a generalization. If $X_i$ is not i.i.d., we can still use the central limit theorem.</p>
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/2020/11/notes-6.html" title="Sum of Random Variables">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/2020/11/notes-7.html" title="Markov Chain">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+                </div>
+                <div class="col-sm-2">
+    
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-7.html" title="Markov Chain" rel="bookmark">Markov Chain</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-6-1.html" title="Generating Functions" rel="bookmark">Generating Functions</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
+  
+    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
+  
+    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
+  
+    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
+  
+    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
+  
+    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
+  
+    <a href="/tags/#math" title="math" rel="11">math</a> &nbsp;
+  
+    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2022" > <a href="/archives/#2022">2022</a></li>
+    
+  
+    
+    
+      
+      
+      <li id="2020" > <a href="/archives/#2020">2020</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/">Home</a> | 
+                <a href="/blog">Blog</a> | 
+                <a href="/categories">Topics</a> | 
+                <a href="/publications">Publications</a> | 
+                <a href="/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/2020/11/notes-6-1.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/2020/11/notes-6-1.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

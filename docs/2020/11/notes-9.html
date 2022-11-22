@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Random Walk">
+<title>Random Walk</title>
+<meta property="og:description" content="Random walkBasic defitionsOne of the simplest random processes is so-called “simple random walk”.">
+<meta property="og:url" content="http://localhost:4000/2020/11/notes-9.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2020/11/notes-9.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/topics/probability">Probability</a></li>
+                    <!--li><a href="/topics/optimization">Optimization</a></li-->
+                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/topics/web">Web</a></li>
+                    <li><a href="/topics/programming">Programming</a></li>
+                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/publications">Publications</a></li>
+            <!--li><a href="/projects">Projects</a></li-->
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/2020/11/notes-9.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "20px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Random Walk</b></h1>
+    <meta itemprop="keywords" content="notes,math" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2020-11-27">
+        Nov 27, 2020
+      </time>
+      &nbsp;in
+      
+        <a href="/categories/#Probability"><b>Probability</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <h2 id="random-walk">Random walk</h2>
+<h3 id="basic-defitions">Basic defitions</h3>
+
+<p>One of the simplest random processes is so-called “simple random walk”.</p>
+
+<!--more-->
+
+<div class="theorem"><p><b>Definition.</b> 
+Let $\{X_k\}_{k=1}^\infty$ be a sequence of i.i.d. discrete random variables with finite outcomes. For each positive integer $n$, we let $S_n$ denote the sum $X_1 +X_2 + \cdots + X_n$. The sequence $\{S_n\}_{n=1}^\infty$ is called a **random walk**.
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+If the common range of the $X_k$’s is $\mathbb{R}^m$, then we say that $\{S_n\}$ is a random walk in $\mathbb{R}^m$.
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+Sometimes we set $S_0 = a$ for some number $a$ as the **start value** of the random walk. This is common in the gambling analysis.
+</p></div>
+
+<div class="theorem"><p><b>Lemma.</b> 
+The simple random walk has the Markov property ; that is
+$$\begin{equation}
+    \mathbf{P}\left(S_{m+n}=j | S_{0}, S_{1}, \ldots, S_{m}\right)=\mathbf{P}\left(S_{m+n}=j | S_{m}\right), \quad n \geq 0.
+\end{equation}$$
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf1-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf1-content"><p>
+If one knows the value of $S_m$ , then the distribution of $S_{m+n}$ depends only on the jumps $X_{m+ 1} ,\dots, \\ X_{m+n}$, and cannot depend on further information concerning the values of $S_0, S_1, \dots , S_{m-1}$.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf1");</script>
+
+<p>The random walk has two main applications: gambling analysis and investment decision making. For example, in the gambling, we gamble at each step, $S_i$ is the total stack we have at step $i$, and we are interested in when there will be a <strong>return</strong> or \text{equalization}, i.e., what is the probability that $S_0 = a = S_n$.</p>
+
+<div class="example"><p><b>Example.</b> [Random walks on the real line]
+We shall first consider the simplest non-trivial case of a random walk in $\mathbb{R}^1$, namely the case where the common distribution function of the random variables $X_n$ is given by
+$$\begin{equation}
+    \label{eq:9.1}
+    \tag{9-1}
+    f_{X}(x)=\left\{\begin{array}{ll}{1 / 2,} &amp; {\text { if } x=\pm 1} \\ {0,} &amp; {\text { otherwise }}\end{array}\right.
+\end{equation}$$
+We note that in this situation, all paths of length $n$ have the same probability, namely $2^{-n}$.
+
+We can plot the random walk in the plane, where the horizontal axis represents time and the vertical axis represents the value of $S_n$. Given a sequence $\{S_n\}$ of partial sums, we first plot the points $(n, S_n)$, and then for each $k &lt; n$, we connect $(k, S_k)$ and $(k + 1, S_{k+1})$ with a straight line segment. The **length** of a path is just the difference in the time values of the beginning and ending points on the path. This can be visualized in Figure \ref{fig:9.1}.
+
+<figure>
+    <img src="/assets/images/blog/2020/2020-11-27-random_walk.png" height="300" />
+    <figcaption>Fig.1: A random walk $S_n$.</figcaption>
+</figure>
+</p></div>
+
+<h3 id="returns-and-first-returns">Returns and First Returns</h3>
+<p>This subsection studies the random walk in $\mathbb{R}^1$. The p.m.f. of $X_i$ is given by \eqref{eq:9.1}.</p>
+
+<p>We say that an <strong>equalization</strong> has occurred, or there is a <strong>return</strong> to the origin at time $n$, if $S_n = 0$. Note that the returns are possible <strong>only after even number of steps</strong>. To calculate
+the probability of an equalization at time $2m$, <strong>we need only count the number of paths of length $2m$ which begin and end at the origin</strong>. The number of such paths is clearly
+\(\begin{equation}
+    \binom{2m}{m} = \frac{(2m)!}{m! m!}.
+\end{equation}\)
+Since each path has probability $2^{-2m}$, we have the following theorem.</p>
+<div class="theorem"><p><b>Theorem.</b> 
+The probability of a return to the origin at time $2m$ is given by
+$$\begin{equation}
+    u_{2 m}= \binom{2m}{m} 2^{-2 m}.
+\end{equation}$$
+The probability of a return to the origin at an odd time is 0.
+</p></div>
+
+<p>A random walk is said to have a <strong>first return</strong> to the origin at time $2m$ if $m &gt; 0$, and $S_{2k} = 0$ for all $k &lt; m$. We define $f_{2m}$ to be the probability of this event. (We also define $f_0 = 0$.) One can think
+of the expression $f_{2m}2^{2m}$ as the number of paths of length $2m$ between the points $(0, 0)$ and $(2m, 0)$ that do not touch the horizontal axis except at the endpoints. We have the following theorem.</p>
+<div class="theorem"><p><b>Theorem.</b> 
+For $n \geq 1$, the probabilities $\{u_{2k}\}$ and $\{f_{2k}\}$ are related by the equation
+$$\begin{equation}
+    u_{2 n}=f_{0} u_{2 n}+f_{2} u_{2 n-2}+\cdots+f_{2 n} u_{0},
+\end{equation}$$
+where $f_0 = 0$ and $u_0 = 1$ as convention.
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf2-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf2-content"><p>
+There are $u_{2n}2^{2n}$ paths of length $2n$ which have endpoints $(0, 0)$ and $(2n, 0)$. The collection of such paths can be partitioned into $n$ sets, depending upon the time of the first return to the origin. A path in this collection which has a first return to the origin at time $2k$ consists of an initial segment from $(0, 0)$ to $(2k, 0)$, in which no interior points are on the horizontal axis, and a terminal segment from $(2k, 0)$
+to $(2n, 0)$, with no further restrictions on this segment. Thus, the number of paths in the collection which have a first return to the origin at time $2k$ is given by
+$$\begin{equation}
+    f_{2 k} 2^{2 k} u_{2 n-2 k} 2^{2 n-2 k}=f_{2 k} u_{2 n-2 k} 2^{2 n}.
+\end{equation}$$
+If we sum over $k$, we obtain the equation
+$$\begin{equation}
+    u_{2 n} 2^{2 n}=f_{0} u_{2 n} 2^{2 n}+f_{2} u_{2 n-2} 2^{2 n}+\cdots+f_{2 n} u_{0} 2^{2 n}
+\end{equation}$$
+Dividing both sides of this equation by $2^{2n}$ completes the proof.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf2");</script>
+
+<p>Using the generating functions, we have following theorem.</p>
+<div class="theorem"><p><b>Theorem.</b> 
+For $m \geq 1$, the probability of a first return to the origin at time
+$2m$ is given by
+$$\begin{equation}
+    f_{2 m}=\frac{u_{2 m}}{2 m-1}=\frac{\binom{2m}{m}}{(2 m-1) 2^{2 m}}.
+\end{equation}$$
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf3-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf3-content"><p>
+We begin by defining the generating functions
+$$\begin{equation}
+    U(x)=\sum_{m=0}^{\infty} u_{2 m} x^{m}
+\end{equation}$$
+and 
+$$\begin{equation}
+    F(x)=\sum_{m=0}^{\infty} f_{2 m} x^{m}.
+\end{equation}$$
+Note that two sequences converge when $\left\vert x \right\vert&lt;1$. The preceding theorem says that 
+$$\begin{equation}
+    U(x)=1+U(x) F(x).
+\end{equation}$$
+(The presence of the $1$ on the right-hand side is due to the fact that $u_0$ is defined to be $1$, but the last theorem only holds for $m \geq 1$.) We can solve the above equation for $F(x)$, obtaining
+$$\begin{equation}
+    F(x)=\frac{U(x)-1}{U(x)}.
+\end{equation}$$
+Now, if we can find a closed-form expression for the function $U(x)$, we will also have a closed-form expression for $F(x)$. From the first theorem in this notes, we have
+$$\begin{equation}
+    U(x)=\sum_{m=0}^{\infty}\binom{2m}{m} 2^{-2 m} x^{m} = \sum_{m=0}^\infty \binom{2m}{m} \left( \frac{x}{4} \right)^m.
+\end{equation}$$
+From series expansion, we find that 
+$$\begin{equation}
+    \frac{1}{\sqrt{1-4 x}}=\sum_{m=0}^{\infty}\left(\begin{array}{c}{2 m} \\ {m}\end{array}\right) x^{m}.
+\end{equation}$$
+Therefore, we have 
+$$\begin{equation}
+    U(x)=\frac{1}{\sqrt{1-x}}, \quad F(x) = \frac{U(x)-1}{U(x)} = 1-\sqrt{1-x}.
+\end{equation}$$
+Although it is possible to compute the value of f2m using the Binomial Theorem, it is easier to note that $F'(x) = U(x)/2$, so that the coefficients $f_{2m}$ can be found by integrating the series for $U(x)$. We obtain, for $m \geq 1$, 
+$$\begin{equation}
+    f_{2 m}=\frac{u_{2 m-2}}{2 m} = \frac{\binom{2m-2}{m-1}}{m 2^{2 m-1}} = \frac{\binom{2m}{m}}{(2 m-1) 2^{2 m}} = \frac{u_{2m}}{2m-1},
+\end{equation}$$
+since
+$$\begin{equation}
+    \binom{2m-2}{m-1} = \frac{m}{2(2 m-1)}\binom{2m}{m}.
+\end{equation}$$
+This completes the proof of the theorem.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf3");</script>
+
+<h3 id="probability-of-eventual-return">Probability of Eventual Return</h3>
+<p>In the symmetric random walk process in $R^m$, we first examine this question in the case that $m = 1$, and then we consider the general case.</p>
+
+<p>We should be careful when dealing with eventual return since the sample space seems to be the set of all walks of infinite length, and this set is non-denumerable. To avoid difficulties, we will define $w_n$ to be the probability that a first return has occurred no later than time $n$. Thus,
+$w_n$ concerns the sample space of all walks of length $n$, which is a finite set. Then it is reasonable to define 
+\(\begin{equation}
+    w_{*}=\lim _{n \rightarrow \infty} w_{n}.
+\end{equation}\)
+This limit clearly exists and is at most one, since the sequence ${w_n}_{n=1}^\infty$ is an increasing sequence, and all of its terms are at most 1. In terms of the $f_n$ probabilities, we see that
+\(\begin{equation}
+    w_{2 n}=\sum_{i=1}^{n} f_{2 i}.
+\end{equation}\)
+Thus 
+\(\begin{equation}
+    w_{*}=\sum_{i=1}^{\infty} f_{2 i}.
+\end{equation}\)
+In previous proof we introduced the the generating function
+\(\begin{equation}
+    F(x)=\sum_{m=0}^{\infty} f_{2 m} x^{m} = 1-\sqrt{1-x}.
+\end{equation}\)
+which is convergent for $\left\vert x \right\vert &lt; 1$. In fact, it also converges for $x = \pm 1$. Hence we see that 
+\(\begin{equation}
+    w_{*}=F(1)=1.
+\end{equation}\)
+Thus, with probability one, the particle returns to the origin in $\mathbb{R}^1$ random walk.</p>
+
+<p>Now we consider the eventual return in $\mathbb{R}^m$. We define $f_{2 n}^{(m)}$ to be the probability that the first return to the origin in $\mathbb{R}^m$ occurs at time $2n$. The quantity $u_{2 n}^{(m)}$ is defined in a similar manner. From the preceding theorem, we have 
+\(\begin{equation}
+    u_{2 n}^{(m)}=f_{0}^{(m)} u_{2 n}^{(m)}+f_{2}^{(m)} u_{2 n-2}^{(m)}+\cdots+f_{2 n}^{(m)} u_{0}^{(m)}.
+\end{equation}\)
+We continue to generalize previous work by defining
+\(\begin{equation}
+    U^{(m)}(x)=\sum_{n=0}^{\infty} u_{2 n}^{(m)} x^{n}, \quad F^{(m)}(x)=\sum_{n=0}^{\infty} f_{2 n}^{(m)} x^{n}.
+\end{equation}\)
+Then we see that 
+\(\begin{equation}
+    U^{(m)}(x)=1+U^{(m)}(x) F^{(m)}(x).
+\end{equation}\)
+These functions will always converge in the interval $(1, 1)$. In fact, since 
+\(\begin{equation}
+    w_{*}^{(m)}=\sum_{n=0}^{\infty} f_{2 n}^{(m)} \leq 1
+\end{equation}\)
+for all $m$, the series for $F^{(m)}(x)$ converges at $x = 1$ as well, and $F^{(m)}(x)$ is left continuous at $x = 1$, i.e.,
+\(\begin{equation}
+    \lim _{x \uparrow 1} F^{(m)}(x)=F^{(m)}(1).
+\end{equation}\)
+Thus, we have
+\(\begin{equation}
+    \label{eq:9.2}
+    \tag{9-2}
+    w_{*}^{(m)}=\lim _{x \uparrow 1} F^{(m)}(x)=\lim _{x \uparrow 1} \frac{U^{(m)}(x)-1}{U^{(m)}(x)},
+\end{equation}\)
+so to determine $w_{*}^{(m)}$, , it suffices to determine 
+\(\begin{equation}
+    \lim _{x \uparrow 1} U^{(m)}(x).
+\end{equation}\)
+We let $u^{(m)}$ denote this limit. Then we have 
+\(\begin{equation}
+    \label{eq:9.3}
+    \tag{9-3}
+    u^{(m)}=\sum_{n=0}^{\infty} u_{2 n}^{(m)}.
+\end{equation}\)</p>
+
+<p>In $\mathbb{R}^2$ random walk, we have
+\(\begin{equation}
+    u_{2 n}^{(2)}=\frac{1}{4^{2 n}} \binom{2n}{n}^2. 
+\end{equation}\)
+Using Stirling’s Formula
+\(\begin{equation}
+    \label{eq:Stirling}
+    \tag{Stirling}
+    n! \sim n^n e^{-n} \sqrt{2\pi n} \quad \text{for  $n$  large.}
+\end{equation}\)
+we have
+\(\begin{equation}
+    \binom{2n}{n} \sim \frac{2^{2 n}}{\sqrt{\pi n}} \quad \mathbb{R}ightarrow \quad 
+    u_{2 n}^{(2)} \sim \frac{1}{\pi n}.
+\end{equation}\)
+From this it follows easily that 
+\(\begin{equation}
+    \sum_{n=0}^{\infty} u_{2 n}^{(2)}
+\end{equation}\)
+diverges, so $w_{*}^{(2)}=1$, i.e., in $\mathbb{R}^2$, the probability of an eventual return is 1.</p>
+
+<p>In $\mathbb{R}^3$, we have 
+\(\begin{equation}
+    u_{2 n}^{(3)}=\frac{1}{2^{2 n}}\binom{2n}{n} \sum_{j, k}\left(\frac{1}{3^{n}} \frac{n !}{j ! k !(n-j-k) !}\right)^{2}, 
+\end{equation}\)
+Note that $\sum_{n=0}^{\infty} u_{2 n}^{(3)}$ converges, so $w_{*}^{(3)}$ is strictly less than one. This means that in $\mathbb{R}^3$, the probability of an eventual return to the origin is strictly less than one.</p>
+
+<h2 id="gamblers-ruin">Gambler’s Ruin</h2>
+<p>In this section, we remove the assumption that the random walk is symmetric. Instead, we assume that $p$ and $q$ are non-negative real numbers with $p + q = 1$, and that the common distribution function of the jumps of the random walk is
+\(\begin{equation}
+    f_{X}(x)=\left\{\begin{array}{ll}{p,} &amp; {\text { if } x=1} \\ {q,} &amp; {\text { if } x=-1}\end{array}\right.
+\end{equation}\)</p>
+
+<p>We formulate the problem as follows.
+A gambler starts with a “stake” of size $s$. She plays until her capital reaches the value $M$ or the value $0$. In the language of Markov chains, these two values correspond to absorbing states. We are interested in studying the probability of occurrence of each of these two outcomes.</p>
+
+<p>We begin by defining $S_k$ to be the probability that the gambler’s stake reaches 0, i.e., she is ruined, before it reaches $M$, given that the initial stake is $k$. We note that $S_0 = 1$ and $S_M = 0$. The <strong>fundamental relationship</strong> among the $S_k$’s is the following:
+\(\begin{equation}
+    S_{k}= p S_{k+1} + q S_{k-1},
+\end{equation}\)
+where $1 \leq k \leq M-1$. This holds because if her stake equals $k$, and she plays one game, then her stake becomes $k + 1$ with probability $p$ and $k-1$ with probability $q$. Since $p+q = 1$, we can rewrite the equation as 
+\(\begin{equation}
+    p\left(S_{k+1}-S_{k}\right)=q\left(S_{k}-S_{k-1}\right) \quad \text{ or }  \quad 
+    S_{k+1}-S_{k}=\frac{q}{p}\left(S_{k}-S_{k-1}\right).
+\end{equation}\)
+From this equation, it is easy to see that
+\(\begin{equation}
+    S_{k+1}-S_{k}=\left(\frac{q}{p}\right)^{k}\left(S_{1}-S_{0}\right). 
+\end{equation}\)
+We now use telescoping sums to obtain an equation in which the only unknown is $S_1$.
+\begin{equation}
+    \begin{split}
+        -1 &amp;= S_M - S_0 = \sum_{k=0}^{M-1}\left(S_{k+1}-S_{k}\right) \<br />
+        &amp;= \sum_{k=0}^{M-1}\left(\frac{q}{p}\right)^{k}\left(S_{1}-S_{0}\right) = \left(S_{1}-S_{0}\right) \sum_{k=0}^{M-1}\left(\frac{q}{p}\right)^{k}.
+    \end{split}
+\end{equation}
+Then we can solve for $S_j$, $1\leq j \leq M$:
+\begin{equation}
+    S_{j}=1-\frac{(q / p)^{j}-1}{(q / p)^{M}-1}.
+\end{equation}</p>
+<ul>
+    <li> Consider $M &gt;&gt; j &gt;&gt; 0$, $q/p &gt;1 $, then $S_j = 1-(q/p)^{j-M} \sim 1$.</li>
+    <li> Consider $q/p &lt; 1$, then $S_j = (q/p)^j \sim 0$.</li>
+</ul>
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/2020/11/notes-8.html" title="Markov Chain 2">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+                </div>
+                <div class="col-sm-2">
+    
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-7.html" title="Markov Chain" rel="bookmark">Markov Chain</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-6-1.html" title="Generating Functions" rel="bookmark">Generating Functions</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
+  
+    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
+  
+    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
+  
+    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
+  
+    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
+  
+    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
+  
+    <a href="/tags/#math" title="math" rel="11">math</a> &nbsp;
+  
+    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2022" > <a href="/archives/#2022">2022</a></li>
+    
+  
+    
+    
+      
+      
+      <li id="2020" > <a href="/archives/#2020">2020</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/">Home</a> | 
+                <a href="/blog">Blog</a> | 
+                <a href="/categories">Topics</a> | 
+                <a href="/publications">Publications</a> | 
+                <a href="/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/2020/11/notes-9.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/2020/11/notes-9.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

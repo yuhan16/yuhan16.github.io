@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="LLN and conditional probability">
+<title>LLN and conditional probability</title>
+<meta property="og:description" content="This note reviews the concepts of law of large numbers and conditional probability.">
+<meta property="og:url" content="http://localhost:4000/2020/10/notes-5.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2020/10/notes-5.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/topics/probability">Probability</a></li>
+                    <!--li><a href="/topics/optimization">Optimization</a></li-->
+                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/topics/web">Web</a></li>
+                    <li><a href="/topics/programming">Programming</a></li>
+                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/publications">Publications</a></li>
+            <!--li><a href="/projects">Projects</a></li-->
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/2020/10/notes-5.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "20px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>LLN and conditional probability</b></h1>
+    <meta itemprop="keywords" content="notes,math" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2020-10-30">
+        Oct 30, 2020
+      </time>
+      &nbsp;in
+      
+        <a href="/categories/#Probability"><b>Probability</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <h2 id="law-of-large-numbers">Law of large numbers</h2>
+<p>Note that in section, we are dealing with random variables with <strong>independent, identical distribution</strong>, also written as <strong>i.i.d.</strong> The law of large numbers aims to study the convergence of the average sum of large <strong>i.i.d.</strong> random variables.</p>
+
+<p>We first prove the following important lemma.</p>
+<div class="theorem"><p><b>Lemma.</b> [Chebyshev Inequality]
+Let $X$ be a random variable with $\mathbf{E}(X) &lt; \infty$ and $\mathbf{Var}(X) &lt; \infty$, then for any $\epsilon &gt; 0$, we have
+$$\begin{equation}
+    \label{eq:5.1}
+    \tag{5-1}
+    \mathbf{P}\left( \left\vert X-\mathbf{E}(X) \right\vert \geq \epsilon \right) \leq \frac{\mathbf{Var}(X)}{\epsilon^2}.
+\end{equation}$$
+In other words, we have
+$$\begin{equation}
+    \label{eq:5.2}
+    \tag{5-2}
+    \mathbf{P}(\left\vert X-\mathbf{E}(X) \right\vert &lt; \epsilon) \geq 1-\frac{\mathbf{Var}(X)}{\epsilon^2}.
+\end{equation}$$
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf1-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf1-content"><p>
+We assume $X$ is a discrete random variable. It can be easily extend to the case where $X$ is continuous. We denote $\mathbf{E}(X) = \mu$ and $f(x)$ as the p.m.f. of $X$.
+
+We first expand the LHS of \eqref{eq:5.1} and obtain
+$$\begin{equation}
+    \mathbf{P}(\left\vert X-\mu \right\vert \geq \epsilon)  = \sum_{\left\vert x-\mu \right\vert\geq \epsilon} f(x).
+\end{equation}$$
+On the other hand, we have
+$$\begin{equation}
+    \begin{split}
+        \mathbf{Var}(X) &amp;= \sum_{x} (x-\mu)^2 f(x) \\
+        &amp;\geq \sum_{\left\vert x-\mu \right\vert \geq \epsilon} (x-\mu)^2 f(x) \\
+        &amp;\geq \sum_{\left\vert x-\mu \right\vert \geq \epsilon} \epsilon^2 f(x) \\
+        &amp;= \epsilon^2 \sum_{\left\vert x-\mu \right\vert \geq \epsilon} f(x) \\ &amp;= \epsilon^2 \mathbf{P}(\left\vert X-\mu \right\vert \geq \epsilon).
+    \end{split}
+\end{equation}$$
+Therefore, we have 
+$$\begin{equation}
+    \mathbf{P}(\left\vert X-\mu \right\vert \geq \epsilon) \leq \frac{\mathbf{Var}(X)}{\epsilon^2}.
+\end{equation}$$
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf1");</script>
+
+<p>Chebyshev’s Inequality is the best possible inequality in the sense that, for any $\epsilon &gt; 0$, it is possible to give an example of a random variable for which Chebyshev’s Inequality is in fact an equality.</p>
+<div class="example"><p><b>Example.</b> 
+Suppose we have a random variable $X$ such that for any $\epsilon &gt; 0$, $f(-\epsilon) = f(\epsilon) = \frac{1}{2}$. Clearly, $\mathbf{E}(X) = 0 &lt; \infty$ and $\mathbf{Var}(X) = \mathbf{E}(X^2) = \epsilon^2 &lt; \infty$. Therefore,
+$$\begin{equation}
+    \frac{\mathbf{Var}(X)}{\epsilon^2} = 1.
+\end{equation}$$
+Also note that $\mathbf{P}(\left\vert X-\mu \right\vert \geq \epsilon) = 1$. The equality sign of Chebyshev inequality holds. We cannot get better result.
+</p></div>
+
+<div class="theorem"><p><b>Theorem 1.</b> [Law of large numbers]
+Consider a sequence of i.i.d. random variables $X_i$ with finite mean and variance. Denote $\mathbf{E}(X) = \mu$ and $\mathbf{Var}(X) = \sigma^2$. Define 
+$$\begin{equation}
+    Q_n = \frac{1}{n}\left( X_1 + X_2 + \cdots + X_n \right),
+\end{equation}$$
+then for any $\epsilon &gt; 0$, 
+$$\begin{equation}
+    \lim_{n\to\infty} \mathbf{P}(\left\vert Q_n - \mu \right\vert \geq \epsilon ) = 0,
+\end{equation}$$
+or 
+$$\begin{equation}
+    \lim_{n\to\infty} \mathbf{P}(\left\vert Q_n - \mu \right\vert &lt; \epsilon) = 1.
+\end{equation}$$
+This means $Q_n$ converges to $\mu$ in probability.
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf2-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf2-content"><p>
+We notice that 
+$$\begin{equation}
+    \mathbf{E}(Q_n) = \sum_{i=1}^n \mathbf{E}\left( \frac{1}{n} X_i \right) = \frac{1}{n} \sum_{i=1}^n \mathbf{E}(X_i) = \frac{1}{n} n\mu = \mu,
+\end{equation}$$
+which shows that the expectation of $Q_n$ is the same as the expectation of $X_i$. We also have
+$$\begin{equation}
+    \mathbf{Var}(Q_n) = \mathbf{Var} \left( \frac{1}{n} \left(X_1 + \cdots + X_n \right) \right) = \frac{1}{n^2} \sum_{i=1}^n \mathbf{Var}(X_i) = \frac{\sigma^2}{n}.
+\end{equation}$$
+Using Chebyshev inequality, for any $\epsilon &gt; 0$, we have
+$$\begin{equation}
+    \mathbf{P}(\left\vert Q_n-\mu \right\vert\geq \epsilon) \leq \frac{\mathbf{Var}(Q_n)}{\epsilon^2} = \frac{\sigma^2}{n\epsilon^2}.
+\end{equation}$$
+Therfore,
+$$\begin{equation}
+    \lim_{n\to\infty} \mathbf{P}(\left\vert Q_n-\mu \right\vert\geq \epsilon) \leq \lim_{n\to\infty} \frac{\sigma^2}{n\epsilon^2} = 0.
+\end{equation}$$
+Since the probability is nonnegative, we must have
+$$\begin{equation}
+    \lim_{n\to\infty} \mathbf{P}(\left\vert Q_n-\mu \right\vert\geq \epsilon) = 0.
+\end{equation}$$
+This finishes the proof.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf2");</script>
+
+<p>This result is significant from the view of frequentist statistics. Recall the probability of an event $A$ is motivated by $\mathbf{P}(A) \approx N(A) / N$ where $N(A)$ and $N$ the number of occurrence of $A$ and the number of total experiments respectively. Now we can let $X_i = \mathbf{1}_A$, which is the indicator of the event $A$. Since each experiment is independent, we are actually perform a series Bernoulli trails and $X_i$ is the simple Bernoulli variable. Then we can write $N(A) = X_1 + \cdots + X_n$. Now 
+\(\begin{equation}
+    \frac{N(A)}{N} = \frac{1}{n} \left( X_1 + \cdots + X_n \right) = Q_n.
+\end{equation}\)
+Note that $E(X) = \mathbf{P}(A)$ and $\mathbf{Var}(X) = \mathbf{P}(A) - \mathbf{P}(A)^2$. Therefore, 
+\(\begin{equation}
+    \frac{N(A)}{N} \to \mathbf{P}(A) \quad \text{ as } n\to\infty.
+\end{equation}\)</p>
+
+<div class="remark"><p><b>Remark.</b> 
+For the law of large numbers to work, $\mathbf{Var}(X)$ must be finite. Otherwise, the law may fail as the following example shows.
+</p></div>
+
+<div class="example"><p><b>Example.</b> [Cauchy distribution]
+The Cauchy distribution is given by
+$$\begin{equation}
+    f(x) = \frac{1}{\pi (1+x^2)},
+\end{equation}$$
+where $\pi$ is the normalization parameter. Let $X$ be the random variable which has the Cauchy distribution. Note that although the Cauchy distribution is very like the normal distribution, $X$ doesn't have the variance. This is because the Cauchy distribution has a long tail as $\left\vert x \right\vert\to\infty$ and it converges slowly. But $X$ has a mean which is $\mu = 0$. So the question is: does $Q_n$ converges to $\mu$? The answer is negative. This example shows that if the variance is not finite, the law of large numbers fails.
+</p></div>
+
+<p>%&lt;div class="remark"&gt;&lt;p&gt;<b>Remark.</b> 
+%It is interesting to note that if $X$ and $Y$ are bernoulli, then $X/Y$ is Cauchy.
+%&lt;/p&gt;&lt;/div&gt;</p>
+
+<h2 id="conditional-distributions-and-conditional-expectation">Conditional distributions and conditional expectation</h2>
+<p>(This section is the supplement of the lecture.)</p>
+
+<div class="theorem"><p><b>Definition 1.</b> 
+The conditional distribution function of $Y$ given $X = x$ is the function $F_{Y\vert X} (\cdot \vert x)$ given by
+$$\begin{equation}
+    F_{Y | X}(y | x)=\int_{-\infty}^{y} \frac{f(x, v)}{f_{X}(x)} d v
+\end{equation}$$
+for any $x$ such that $f_X(x) &gt; 0$. It is sometimes denoted $\mathbf{P} (Y \leq y \vert X = x)$. 
+</p></div>
+
+<p>Remembering that distribution functions are integrals of density functions, we are led to the following definition.</p>
+<div class="theorem"><p><b>Definition 2.</b> 
+The conditional density function of $F_{Y\vert X}$, written $f_{Y\vert X}$, is given by
+$$\begin{equation}
+    f_{Y | X}(y | x)=\frac{f(x, y)}{f_{X}(x)} = \frac{f(x, y)}{\int_{-\infty}^{\infty} f(x, y) d y}
+\end{equation}$$
+for any $x$ such that $f_X(x) &gt; 0$. 
+</p></div>
+
+<div class="theorem"><p><b>Theorem 2.</b> 
+The conditional expectation $\psi(X) = \mathbf{E}(Y \vert X)$ satisfies 
+$$\begin{equation}
+    \mathbf{E}(\psi(X)) = \mathbf{E}(Y).
+\end{equation}$$
+</p></div>
+
+<div class="theorem"><p><b>Theorem 3.</b> 
+The conditional expectation $\psi(X) = \mathbf{E}(Y \vert X)$ satisfies 
+$$\begin{equation}
+    \mathbf{E}\left( \psi(X) g(X) \right) = \mathbf{E}(Y g(X))
+\end{equation}$$
+for any function $g$ for which both expectations exist.
+</p></div>
+
+<h2 id="functions-of-continuous-random-variables">Functions of continuous random variables</h2>
+
+<p>Let $X$ be a random variable with density function $f$, and let $g : \mathbb{R} \to \mathbb{R}$ be a sufficiently nice 
+function. Then $y = g(X)$ is a random variable also. In order to calculate the distribution of $Y$, we proceed thus
+\(\begin{equation}
+    \begin{aligned} 
+        \mathbf{P}(Y \leq y) &amp;= \mathbf{P}\left(g(X) \leq y\right) = \mathbf{P}\left((g(X) \in(-\infty, y] \right) \\
+        &amp;=\mathbf{P}\left(X \in g^{-1}(-\infty, y]\right)=\int_{g^{-1}(-\infty, y]} f(x) d x\end{aligned}.
+\end{equation}\)
+The $g^{-1}$ is defined as follows. If $A \subseteq \mathbb{R}$ then $g^{-1} A={x \in \mathbb{R}: g(x) \in A}$.</p>
+
+<div class="example"><p><b>Example.</b> 
+Let $g(x) = ax + b$ for fixed $a, b \in \mathbb{R}$. Then $Y = g (X) = aX + b$ has distribution function 
+$$\begin{equation}
+    \mathbf{P}(Y \leq y) = \mathbf{P}(a X+b \leq y) = \left\{\begin{array}{ll}
+    {\mathbf{P}(X \leq(y-b) / a)} &amp; {\text { if } a&gt;0} \\
+    {\mathbf{P}(X \geq(y-b) / a)} &amp; {\text { if } a&lt;0}\end{array}\right.
+\end{equation}$$
+Differentiate to obtain $f_{Y}(y)=|a|^{-1} f_{X}((y-b) / a)$.
+</p></div>
+
+<p>More generally, if $X_1$ and $X_2$ have joint density function $f$, and $g, h$ are two functions mapping $\mathbb{R}^2 \to \mathbb{R}$, then we can use the Jacobian to find the density the joint density function of the pair $Y_1 = g(X_1 , X_2)$, $Y_2 = h(X_1 , X_2)$.</p>
+
+<p>Let $y_1 = y_1 (x_1 , x_2)$, $y_2 = y_2(x_1 , x_2)$ 
+be a one-one mapping $T : (x_1 , x_2) \mapsto (y_1 , y_2)$ taking some domain $D \subseteq \mathbb{R}^2$ onto some 
+range $R \subseteq \mathbb{R}^2$. The transformation can be inverted as $x_1 = x_1(y_1 , y_2)$, $x_2 = x_2(y_1 , y_2)$; the Jacobian of this inverse is defined to be the determinant 
+\(\begin{equation}
+    J=\left|\begin{array}{ll}{\frac{\partial x_{1}}{\partial y_{1}}} &amp; {\frac{\partial x_{2}}{\partial y_{1}}} \\ {\frac{\partial x_{1}}{\partial y_{2}}} &amp; {\frac{\partial x_{2}}{\partial y_{2}}}\end{array}\right|=\frac{\partial x_{1}}{\partial y_{1}} \frac{\partial x_{2}}{\partial y_{2}}-\frac{\partial x_{1}}{\partial y_{2}} \frac{\partial x_{2}}{\partial y_{1}}
+\end{equation}\)
+which express as a function $J = J(y_1, y_2)$. We assume the <strong>partial derivatives are continuous</strong>.</p>
+
+<div class="theorem"><p><b>Theorem 4.</b> 
+If $g : \mathbb{R}^2 \to \mathbb{R}$, and $T$ maps the set $A \subseteq D$ onto the set $B \subseteq R$, then 
+$$\begin{equation}
+    \iint_{A} g\left(x_{1}, x_{2}\right) d x_{1} d x_{2}=\iint_{B} g\left(x_{1}\left(y_{1}, y_{2}\right), x_{2}\left(y_{1}, y_{2}\right)\right)\left|J\left(y_{1}, y_{2}\right)\right| d y_{1} d y_{2}.
+\end{equation}$$
+</p></div>
+
+<div class="theorem"><p><b>Corollary 4.1.</b> 
+If $X_1$, $X_2$ have joint density function $f$, then the pair $Y_1,Y_2$ given by $(Y_1 , Y_2) = T (X_1, X_2)$ has joint density function 
+$$\begin{equation}
+    f_{Y_{1}, Y_{2}}\left(y_{1}, y_{2}\right)=\left\{\begin{array}{ll}{f\left(x_{1}\left(y_{1}, y_{2}\right), x_{2}\left(y_{1}, y_{2}\right)\right)\left|J\left(y_{1}, y_{2}\right)\right|} &amp; {\text { if }\left(y_{1}, y_{2}\right) \text { is in the range of } T} \\ {0} &amp; {\text { otherwise. }}\end{array}\right.
+\end{equation}$$
+</p></div>
+
+<p>A similar result holds for mappings of $\mathbb{R}^n$ into $\mathbb{R}^n$. This technique is sometimes referred to as the method of <strong>change of variables</strong>.</p>
+
+<div class="example"><p><b>Example.</b> 
+Suppose that 
+$$\begin{equation}
+    X_{1}=a Y_{1}+b Y_{2}, \quad X_{2}=c Y_{1}+d Y_{2}
+\end{equation}$$
+where $ad-bc \neq 0$. Check that 
+$$\begin{equation}
+    f_{Y_{1}, Y_{2}}\left(y_{1}, y_{2}\right) = |a d-b c| f_{X_{1}, X_{2}}\left(a y_{1}+b y_{2}, c y_{1}+d y_{2}\right).
+\end{equation}$$
+</p></div>
+
+<h2 id="multivariate-normal-distribution">Multivariate normal distribution</h2>
+
+<h3 id="definition-and-properties">Definition and properties</h3>
+<div class="theorem"><p><b>Definition 3.</b> 
+The vector $\mathbf{X} = (X_1 , X_2 , \dots , X_n )$ has the **multivariate normal distribution** (or **multinormal distribution**), written $N(\boldsymbol{\mu}, \mathbf{V})$, if its joint density function is 
+$$\begin{equation}
+    f(\mathbf{x})=\frac{1}{\sqrt{(2 \pi)^{n}|\mathbf{V}|}} \exp \left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T \mathbf{V}^{-1}(\mathbf{x}-\boldsymbol{\mu}) \right], \quad \mathbf{x} \in \mathbb{R}^{n}
+\end{equation}$$
+where $\mathbf{V}$ is a positive definite symmetric matrix. 
+</p></div>
+
+<div class="theorem"><p><b>Theorem 5.</b> 
+If $\mathbf{X}$ is $N(\boldsymbol{\mu}, \mathbf{V})$, then 
+<ol>
+    <li> $\mathbf{E}(\mathbf{X}) = \boldsymbol{\mu}$, which is to say that $\mathbf{E}(X_i) = \mu_i$ for all $i$,</li>
+    <li> $\mathbf{V} = (v_{ij})$ is called the covariance matrix, because $v_{ij} = \mathbf{cov}(X_i , X_j)$.</li>
+</ol>
+</p></div>
+
+<div class="theorem"><p><b>Theorem 6.</b> 
+If $\mathbf{X}=\left(X_{1}, X_{2}, \dots, X_{n}\right)$ is $N(\boldsymbol{\mu}, \mathbf{V})$ and $\mathbf{Y}=\left(Y_{1}, Y_{2}, \dots, Y_{m}\right)$ is given by $\mathbf{Y} = \mathbf{XD}$ for some matrix $\mathbf{D}$ of rank $m \leq n$, then $\mathbf{Y}$ is $N\left(\mathbf{0}, \mathbf{D}^T \mathbf{V} \mathbf{D}\right)$.
+</p></div>
+
+<div class="theorem"><p><b>Definition 4.</b> 
+The vector $\mathbf{X}=\left(X_{1}, X_{2}, \dots, X_{n}\right)$ of random variables is said to have the 
+**multivariate normal distribution** whenever, for all $\mathbf{a} \in \mathbb{R}^n$, the linear combination $\mathbf{Xa}^T = a_1 X_1 + \dots + a_n X_n$ has a normal distribution.
+</p></div>
+
+<h3 id="distributions-arising-from-the-normal-distribution">Distributions arising from the normal distribution</h3>
+<p>Suppose that $X_1, X_2, \dots , X_n$ is a collection 
+of independent $N(\mu, \sigma^2)$ variables for some fixed but unknown values of $\mu$ and $\sigma^2$. We can use them to estimate $\mu$ and $\sigma^2$.</p>
+
+<div class="theorem"><p><b>Definition 5.</b> 
+The **sample mean** of a sequence of random variables $X_1, X_2, \dots , X_n$ is 
+$$\begin{equation}
+    \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i.
+\end{equation}$$
+It is usually used as a guess at the value of $\mu$.
+</p></div>
+
+<div class="theorem"><p><b>Definition 6.</b> 
+The **sample variance** of a sequence of random variables $X_1, X_2, \dots , X_n$ is 
+$$\begin{equation}
+    S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2.
+\end{equation}$$
+It is usually used as a guess at the value of $\sigma^2$.
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+The sample mean and the sample variance have the property of being 'unbiased' in that $\mathbf{E}(\bar{X}) = \mu$ and $\mathbf{E}(S^2) = \sigma^2$. Note that in some texts the sample variance is defined with $n$ in place of $(n - 1)$. 
+</p></div>
+
+<div class="theorem"><p><b>Theorem 7.</b> 
+If $X_1, X_2, \dots , X_n$ are independent $N(\mu, \sigma^2)$ variables, then $\bar{X}$ and $S^2$ are independent. We have that $\bar{X}$ is $N(\mu, \sigma^2/n)$ and $(n-1)S^2 / \sigma^2$ is $\chi^{(n-1)}$.
+</p></div>
+
+<div class="theorem"><p><b>Definition 7.</b> 
+If $X_1, X_2, \dots , X_n$ are standard normal random variables, then the sum of their squares,
+$$\begin{equation}
+    Q = \sum_{i=1}^n X_i^2
+\end{equation}$$
+is distributed according to the $\chi^2$ distribution with $n$ **degrees of freedom**. This is usually denoted as
+$$\begin{equation}
+    Q \sim \chi^2(k) \quad \text{or} \quad Q \sim \chi^2_k.
+\end{equation}$$
+The probability density function (p.d.f.) of the $\chi^2$ distribution is
+$$\begin{equation}
+    f(x ; k)=\left\{\begin{array}{ll}
+    {\frac{x^{\frac{k}{2}-1} e^{-\frac{x}{2}}}{2^{\frac{k}{2}} \Gamma\left(\frac{k}{2}\right)}} &amp; {x&gt;0} \\ 
+    {0} &amp; {\text { otherwise }}\end{array}\right.
+\end{equation}$$
+</p></div>
+
+<h3 id="sampling-from-a-distribution">Sampling from a distribution</h3>
+<p>A basic way of generating a random variable with given distribution function is to use the following theorem.</p>
+<div class="theorem"><p><b>Theorem 8.</b> [Inverse transform technique]
+Let $F$ be a distribution function, and let $U$ be uniformly distributed on the interval $[0, 1]$. 
+<ol>
+    <li> If $F$ is a continuous function, the random variable $X = F^{-1} (U)$ has distribution function $F$.</li>
+    <li> <p style="display: inline;">Let $F$ be the distribution function of a random variable taking non-negative integer values. The random variable $X$ given by
+    $$\begin{equation}
+        X = k \quad \text{if and only if} \quad F(k-1) &lt; U \leq F(k)
+    \end{equation}$$
+    has distribution function $F$. </p></li>
+</ol>
+</p></div>
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/2020/10/notes-4.html" title="Expectation and Dependence">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/2020/11/notes-6.html" title="Sum of Random Variables">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+                </div>
+                <div class="col-sm-2">
+    
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-7.html" title="Markov Chain" rel="bookmark">Markov Chain</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-6-1.html" title="Generating Functions" rel="bookmark">Generating Functions</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
+  
+    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
+  
+    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
+  
+    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
+  
+    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
+  
+    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
+  
+    <a href="/tags/#math" title="math" rel="11">math</a> &nbsp;
+  
+    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2022" > <a href="/archives/#2022">2022</a></li>
+    
+  
+    
+    
+      
+      
+      <li id="2020" > <a href="/archives/#2020">2020</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/">Home</a> | 
+                <a href="/blog">Blog</a> | 
+                <a href="/categories">Topics</a> | 
+                <a href="/publications">Publications</a> | 
+                <a href="/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/2020/10/notes-5.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/2020/10/notes-5.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

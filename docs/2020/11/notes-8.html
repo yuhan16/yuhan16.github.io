@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Markov Chain 2">
+<title>Markov Chain 2</title>
+<meta property="og:description" content="This note reviews the irrducible and regular markov chains.">
+<meta property="og:url" content="http://localhost:4000/2020/11/notes-8.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2020/11/notes-8.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/topics/probability">Probability</a></li>
+                    <!--li><a href="/topics/optimization">Optimization</a></li-->
+                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/topics/web">Web</a></li>
+                    <li><a href="/topics/programming">Programming</a></li>
+                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/publications">Publications</a></li>
+            <!--li><a href="/projects">Projects</a></li-->
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/2020/11/notes-8.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "20px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            
+                <div class="col-sm-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Markov Chain 2</b></h1>
+    <meta itemprop="keywords" content="notes,math" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2020-11-20">
+        Nov 20, 2020
+      </time>
+      &nbsp;in
+      
+        <a href="/categories/#Probability"><b>Probability</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <h2 id="irreducible-markov-chains-and-regular-markov-chains">Irreducible Markov chains and regular Markov chains</h2>
+<div class="theorem"><p><b>Definition.</b> 
+A Markov chain is called an **irreducible chain** if it is possible to go from every state to every state (not necessarily in one move).
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+Note that absorbing chains are NOT irreducible chains.
+</p></div>
+
+<div class="theorem"><p><b>Definition.</b> 
+A Markov chain is called a **regular chain** if some power of the transition matrix has only positive elements. 
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+Note that regular chains are irreducible chains. But the converse is NOT true as the following example shows.
+</p></div>
+
+<div class="example"><p><b>Example.</b> 
+Let the transition matrix of a Markov chain be defined by
+$$\begin{equation}
+    P = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}.
+\end{equation}$$
+If we start from state 1, then next step we jump to state 2. If we start from state 2, then we jump to state 1. In other words, we are flipping between two states after each step. So the chain is irreducible. But 
+$$\begin{equation}
+    P^{2n} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}, \quad 
+    P^{2n+1} = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}.
+\end{equation}$$
+So the chain is not regular.
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+Any transition matrix that has no zeros determines a regular Markov chain. However, it is possible for a regular Markov chain to have a transition matrix that has zeros.
+</p></div>
+
+<p>We shall discuss two important theorems relating to regular chains. But before, we will use the following two lemmas.</p>
+
+<div class="theorem"><p><b>Lemma.</b> 
+\label{lemma:8.1}
+Suppose $X$ is a random variable with finite number of outcomes, with the greatest being $x_{max}$ and the least being $x_{min}$. Then we have 
+$$\begin{equation}
+    \mathbf{E}(X) \leq x_{max}, \quad \mathbf{E}(X) \geq x_{min}.
+\end{equation}$$
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf1-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf1-content"><p>
+Assume $X$ has $n$ outcomes, and let $f(x_i) = \mathbf{P}(X = x_i)$, then we have
+\begin{gather*}
+    \mathbf{E}(X) = \sum_{i=1}^n x_i f(x_i) \geq \sum_{i=1}^n x_{min} f(x_i) = x_{min}, \\
+    \mathbf{E}(X) = \sum_{i=1}^n x_i f(x_i) \leq \sum_{i=1}^n x_{max} f(x_i) = x_{max}.
+\end{gather*}
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf1");</script>
+
+<div class="theorem"><p><b>Lemma.</b> 
+\label{lemma:8.2}
+Suppose a transition matrix $P$ only has positive entries and the smallest entry is $d&gt;0$. Consider a vector $y$. Denote its maximum value as $M_0$ and its minimum value as $m_0$. Now consider the product $Py$. Denote its maximum value as $M_1$ and its minimum value as $m_1$. Then we have
+$$\begin{equation}
+    M_1 - m_1 \leq (1-2d) (M_0 - m_0).
+\end{equation}$$
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf2-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf2-content"><p>
+Note that $P$ is a transition matrix. So each row of $P$ sums up to $1$. From lemma \ref{lemma:8.1}, we note that each entry in the vector $Py$ is a weighted average of the entries in $y$, therefore, we have
+$$\begin{equation}
+    \label{eq:8.1}
+    \tag{8-1}
+    M_1 \leq M_0, \quad m_1 \geq m_0.
+\end{equation}$$
+The largest weighted average that could be obtained in the present case would occur if all but one of the entries of $y$ have value $M_0$ and one entry has value $m_0$, and this one small entry is weightedby the smallest possible weight, namely $d$. In this case, the weighted average would equal $m_0 d + M_0(1-d)$.
+%$$\begin{equation}
+%    m_0 d + M_0(1-d).
+%\end{equation}$$
+Similarly, the smallest possible weighted average equals $M_0 d + m_0(1-d)$.
+%$$\begin{equation}
+%    M_0 d + m_0(1-d).
+%\end{equation}$$
+Therefore, we have 
+%Since \eqref{eq:8.1} is true for any $y$, we can take some particular form of $y$ to find the best and worst outcome of $Py$. First let $y = \begin{bmatrix} M_0 &amp; \cdots &amp; m_0 &amp; \cdots &amp; M_0 \end{bmatrix}$ such that $y$ only one entry being $m_0$ and such entry captures the minimum entry $d$ of $P$. Then we can show that 
+$$\begin{equation}
+    \label{eq:8.2}
+    \tag{8-2}
+    M_1 \leq m_0 d + M_0(1-d),
+\end{equation}$$
+%Similarly, by letting $y = \begin{bmatrix} m_0 &amp; \cdots &amp; M_0 &amp; \cdots &amp; m_0 \end{bmatrix}$ such that $y$ only one entry being $M_0$ and such entry captures the minimum entry $d$ of $P$, we can obtain 
+$$\begin{equation}
+    \label{eq:8.3}
+    \tag{8-3}
+    m_1 \geq M_0 d + m_0(1-d). 
+\end{equation}$$
+\eqref{eq:8.2}-\eqref{eq:8.3} yields 
+$$\begin{equation}
+    M_1 - m_1 \leq (1-2d) (M_0 - m_0).
+\end{equation}$$
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf2");</script>
+
+<p>Now we give two important theorems.</p>
+
+<div class="theorem"><p><b>Theorem.</b> [Fundamental limit theorem for regular chains]
+\label{thm:8.1}
+Let $P$ be the transition matrix for a regular chain. Then, as $n \to \infty$, the powers $P^n$ approach a limiting matrix $W$ with all rows the **same** vector $w$. The vector $w$ is a strictly positive probability vector (i.e.., the components are all **positive** and they sum to one).
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf3-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf3-content"><p>
+We consider an arbitrary vector $y$, and denote the maximum entry of $P^n y$ as $M_n$ and the minimum entry of $P^n y$ as $m_n$. From lemma 1, we must have 
+$$\begin{equation}
+    M_n \leq M_{n-1}, \quad m_n \geq m_{n+1}.
+\end{equation}$$
+Writing all these inequality from 1 to $n$ gives
+$$\begin{equation}
+    M_0 \geq M_1 \geq \cdots \geq M_n \geq m_n \geq \cdots \geq m_1 \geq m_0.
+\end{equation}$$
+Therefore $\{M_n\}$ is a decreasing sequence bounded below and $\{m_n\}$ is an increasing sequence bounded above. From sequence theory we know that $\{ M_n \}$ and $\{m_n\}$ must converge. Let
+$$\begin{equation}
+    M = \lim_{n\to\infty} M_n, \quad m = \lim_{n\to\infty} m_n.
+\end{equation}$$
+From Lemma \ref{lemma:8.2} we have 
+$$$$$$$$$$\begin{equation}
+    \label{eq:8.4}
+    \tag{8-4}
+    M_n - m_n \leq (1-2d)^n (M_0 - m_0).
+\end{equation}$$$$$$$$$$
+On the other hand, since $d$ is the minimum entry of $P$, we must have $0 &lt; d \leq \frac{1}{2}$, which gives $0 \leq 1-2d &lt; 1$. Thus from \eqref{eq:8.4} we have 
+$$$$$$$$$$\begin{equation}
+    \label{eq:8.5}
+    \tag{8-5}
+    \lim_{n\to\infty} (M_n - m_n) = 0 \quad \Rightarrow \quad 
+    M=m \quad \forall \ y.
+\end{equation}$$$$$$$$$$
+We choose a particular form of $y$ such that $y = e_j$ with $j$th entry being 1 and others being 0. Then $P^n y$ gives the $j$th column of $P^n$. Using \eqref{eq:8.5}, we have
+$$\begin{equation}
+    \lim_{n\to\infty} P^n y = \alpha \mathbf{1} \quad \text{for some $\alpha &gt; 0$},
+\end{equation}$$
+which shows the $j$th column has the same entries.
+
+Thus, by letting $y = e_j$, $1\leq j \leq n$, we conclude that each column of $P^n$ has the same entries. This finishes the proof.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf3");</script>
+
+<p>The $ij$th entry of $P^n$, $p^{(n)}_{ij}$, is the probability that the process will be in state $s_j$ after $n$ steps if it starts in state $s_i$. If we denote the common row of $W$ by $w$, then Theorem \ref{thm:8.1} states that the probability of being in $s_j$ in the long run is approximately $w_j$, the $j$th entry of $w$, and is independent of the starting state.</p>
+
+<div class="theorem"><p><b>Theorem.</b> 
+\label{thm:8.2}
+Let $P$ be a regular transition matrix, let
+$$\begin{equation}
+    W = \lim_{n\to\infty} P^n,
+\end{equation}$$
+and let $w$ be the common row of $W$. Then
+<ol>
+    <li> 
+    $wP = w$, which means $w$ is a left eigenvector of $P$ with eigenvalue 1, and any row vector $v$ such that $vP = v$ is a constant multiple of $w$.</li>
+    <li> 
+    $P\mathbf{1} = \mathbf{1}$, which means $\mathbf{1}$ is an eigenvector of $P$ with eigenvalue 1, and any column vector $x$ such that $Px = x$ is a multiple of $\mathbf{1}$.</li>
+</ol>
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf4-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf4-content"><p>
+To prove part (a), we note that from Theorem \ref{thm:8.1}, 
+$$\begin{equation}
+    \lim_{n\to\infty} P^n = W.
+\end{equation}$$
+Thus
+$$\begin{equation}
+    \lim_{n\to\infty} P^{n+1} = P^n P = W P.
+\end{equation}$$
+But $\lim_{n\to\infty} P^{n+1} = W$, and so $W = WP$ and $w = wP$.
+
+Let $v$ be any vector with $vP = v$. Then $v = vP^n$, and passing to the limit, $v = vW$. Let $r$ be the sum of the components of $v$, i.e., $r = \sum_{i=1}^n v_i$. Then it is easily checked that $vW = rw$. So, $v = rw$.
+
+To prove part (b), assume that $x = Px$. Then $x = P^n x$, and again passing to the limit, $x = Wx$. Since all rows of $W$ are the same, the components of $Wx$ are all equal, so $x$ is a multiple of $\mathbf{1}$.
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf4");</script>
+
+<p>Note that an immediate consequence of Theorem \ref{thm:8.2} is the fact that there is only one <strong>probability vector</strong> $v$ such that $vP = v$, which is $v = w$. The probability vector $v$ is the vector such that $\sum_{i=1}^n = 1$.</p>
+
+<div class="remark"><p><b>Remark.</b> 
+Computing $W$ is equivalent to computing the left eigenvector of $P$ with eigenvalue 1. It is equivalent to compute the right eigenvector of $P^T$ with eigenvalue 1.
+</p></div>
+
+<div class="example"><p><b>Example.</b> 
+Let $P$ be a transition matrix such that 
+$$\begin{equation}
+    P = \begin{bmatrix}  \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{4} &amp; \frac{3}{4} \end{bmatrix}.
+\end{equation}$$
+Compute $W = \lim_{n\to\infty} P^n$. 
+
+This is equivalent to compute $P^T x = x$. Note that $x$ is a probability vector, so $\mathbf{1}^T x = 1$.
+$$\begin{equation}
+    P^T x = x \quad \Rightarrow \quad \begin{cases} \frac{1}{2} x_1 + \frac{1}{4}x_2 = x_1 \\ x_1+x_2 = 1 \end{cases} \quad \Rightarrow \quad
+    \begin{cases} x_1 = \frac{1}{3} \\ x_2 = \frac{2}{3} \end{cases}
+\end{equation}$$
+Therefore $w = [\frac{1}{3} \ \frac{2}{3}]$, and $W = \begin{bmatrix} w \\ w \end{bmatrix} = \begin{bmatrix} \frac{1}{3} &amp; \frac{2}{3} \\ \frac{1}{3} &amp; \frac{2}{3} \end{bmatrix}$.
+</p></div>
+
+<h2 id="fixed-vectors">Fixed vectors</h2>
+<div class="theorem"><p><b>Definition.</b> 
+A row vector $w$ with the property $wP = w$ is called a **fixed row vector** for $P$. Similarly, a column vector $x$ such that $Px = x$ is called a **fixed column vector** for $P$.
+</p></div>
+
+<p>Thus, the common row of $W$ is the unique vector $w$ which is both a fixed row vector for $P$ and a probability vector. Theorem \ref{thm:8.2} shows that any fixed row vector for $P$ is a multiple of $w$ and any fixed column vector for $P$ is a constant vector. One can also state the above definition in terms of eigenvalues and eigenvectors. A fixed row vector is a left eigenvector of the matrix $P$ corresponding to the eigenvalue 1. A similar statement can be made about fixed column vectors.</p>
+
+<p>The following theorem generalizes Theorem \ref{thm:8.1} to the case where the starting state is itself
+determined by a probability vector.</p>
+
+<div class="theorem"><p><b>Theorem 8.3.</b> 
+Let $P$ be the transition matrix for a regular chain and $v$ an arbitrary probability vector. Then
+$$\begin{equation}
+    \lim_{n\to\infty} vP^n = w,
+\end{equation}$$
+where $w$ is the unique fixed probability vector for $P$.
+</p></div>
+
+<div class="proof"><a href="javascript:void(0)" id="pf5-link"><b>Proof &#9656;</b></a>
+<div class="proof-content" id="pf5-content"><p>
+By Theorem \ref{thm:8.1},
+$$\begin{equation}
+    \lim_{n\to\infty} P^n = W.
+\end{equation}$$
+Hence 
+$$\begin{equation}
+    \lim_{n\to\infty} vP^n = vW.
+\end{equation}$$
+But the entries in $v$ sum to 1, and each row of $W$ equals $w$. From these statements, it is easy to check that
+$$\begin{equation}
+    vW = w.
+\end{equation}$$
+&#9724;</p>
+</div>
+</div>
+<script>toggle_proof("pf5");</script>
+
+<div class="remark"><p><b>Remark.</b> 
+If we start a Markov chain with initial probabilities given by $v$, then the probability vector $v P^n$ gives the probabilities of being in the various states after $n$ steps. Theorem \ref{thm:8.3} then establishes the fact that, even in this more general class of processes, the probability of being in $s_j$ approaches $w_j$.
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+Theorem 8.3 tells that regular chains always equilibriate to $w$.
+</p></div>
+
+<p>Does the result holds for irreducible chains?</p>
+
+<p><strong>NOT</strong> true for irreducible chains. The following is a counterexample.</p>
+<div class="Example"><p><b>Example.</b> 
+Let 
+$$\begin{equation}
+    P = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}.
+\end{equation}$$
+If we calculate the left eigenvector, we can obtain 
+$$\begin{equation}
+    w = \begin{bmatrix} \frac{1}{2} &amp; \frac{1}{2} \end{bmatrix}.
+\end{equation}$$
+But if we start from $(1,0)$ or $(0,1)$, we will never goes to this equilibrium.
+</p></div>
+
+<div class="theorem"><p><b>Definition.</b> 
+The period $d(i)$ of a state $i$ is defined by $d(i) = \gcd\{n : P_{ii}(n) &gt; 0\}$, the greatest common divisor of the epochs at which return is possible. We call state $i$ periodic if $d(i) &gt; 1$ and aperiodic if $d(i) = 1$.
+</p></div>
+
+<div class="remark"><p><b>Remark.</b> 
+Aperiodic + irreducible $\Leftrightarrow$ regular for finite outcome Markov chains.
+</p></div>
+
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/2020/11/notes-7.html" title="Markov Chain">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/2020/11/notes-9.html" title="Random Walk">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+                </div>
+                <div class="col-sm-2">
+    
+    <div class="sidebar-module">
+  <h4>Recent Posts</h4>
+  
+  <li>
+  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-7.html" title="Markov Chain" rel="bookmark">Markov Chain</a>
+  </li>
+  
+  <li>
+  <a href="/2020/11/notes-6-1.html" title="Generating Functions" rel="bookmark">Generating Functions</a>
+  </li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Categories</h4>
+  
+    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
+  
+    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+  
+    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+  
+    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
+  
+    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Tags</h4>
+  
+    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+  
+    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
+  
+    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
+  
+    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
+  
+    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
+  
+    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+  
+    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
+  
+    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+  
+    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+  
+    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+  
+    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
+  
+    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+  
+    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+  
+    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+  
+    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
+  
+    <a href="/tags/#math" title="math" rel="11">math</a> &nbsp;
+  
+    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
+  
+</div>
+
+
+    <div class="sidebar-module">
+  <h4>Archive</h4>
+
+  
+    
+    
+      
+      
+      <li id="2022" > <a href="/archives/#2022">2022</a></li>
+    
+  
+    
+    
+      
+      
+      <li id="2020" > <a href="/archives/#2020">2020</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+      
+      
+      <li id="2019" > <a href="/archives/#2019">2019</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+
+</div>
+
+
+</div>
+    
+    
+
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/">Home</a> | 
+                <a href="/blog">Blog</a> | 
+                <a href="/categories">Topics</a> | 
+                <a href="/publications">Publications</a> | 
+                <a href="/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/2020/11/notes-8.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/2020/11/notes-8.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

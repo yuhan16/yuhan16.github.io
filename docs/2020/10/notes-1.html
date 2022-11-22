@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Sets and Probability Measures">
+<title>Sets and Probability Measures</title>
+<meta property="og:description" content="This note reviews the definition of probability measures using the set theory. It also reviews the concept of conditional probability.">
+<meta property="og:url" content="http://localhost:4000/2020/10/notes-1.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2020/10/notes-1.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+<div class="container-all">
+        
+    <header class="header-container" id="header-container">
+    <nav class="navbar" id="navbar">
+        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        
+        <div class="navbar-right" id="navbar-right">
+        <ul class="main-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
+                <ul class="sub-menu">
+                    <li><a href="/topics/probability">Probability</a></li>
+                    <!--li><a href="/topics/optimization">Optimization</a></li-->
+                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/topics/web">Web</a></li>
+                    <li><a href="/topics/programming">Programming</a></li>
+                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
+                </ul>
+            </li>
+            <li><a href="/publications">Publications</a></li>
+            <!--li><a href="/projects">Projects</a></li-->
+            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
+                <div class="sub-menu-contact">
+                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
+                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                    <a href="/2020/10/notes-1.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                </div>
+            </li>
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+        </div>
+
+    </nav>
+</header>
+
+<script>
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("header-container").style.padding = "1px 5px";
+        document.getElementById("navbar-logo").style.height = "55px";
+        document.getElementById("navbar-right").style.height = "55px";
+      } else {
+        document.getElementById("header-container").style.padding = "20px 5px";
+        document.getElementById("navbar-logo").style.height = "80px";
+        document.getElementById("navbar-right").style.height = "80px";
+      }
+    }
+</script>
+
+    <div class="body-container">
+        <div class="page-content">
+            
+            <div class="page-content-single-col">
+                <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Sets and Probability Measures</b></h1>
+    <meta itemprop="keywords" content="notes,math" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2020-10-02">
+        Oct 2, 2020
+      </time>
+      &nbsp;in
+      
+        <a href="/categories/#Probability"><b>Probability</b></a>
+         
+    </p>
+  </header>
+
+  <article class="post-content" itemprop="articleBody">
+    <h2 id="event-as-sets">Event as sets</h2>
+<p>Probability studies the <strong>repeatable (or ideal) experiments</strong>. The result of an experiment is called an <strong>outcome</strong>.</p>
+
+<div class="theorem"><p><b>Definition 1.</b>
+The set of all possible outcomes of an experiment is called the <b>sample space</b> and is denoted by $\Omega$.
+</p></div>
+
+<h3 id="cardinality-of-sets">Cardinality of sets</h3>
+<p>The cardinality of a set $\Omega$ refers to the number of elements in this set, and is denoted by $\mathbf{card}(\Omega)$ or $\vert \Omega \vert$.</p>
+<ul>
+  <li>For finite sets, $\mathbf{card}(\Omega)$ is a natural number.</li>
+  <li>For the integer set, $\mathbf{card}(\mathbb{Z}) = \aleph_0$, which is countable.</li>
+  <li>For the real number set, $\mathbf{card}(\mathbb{R}) = \aleph_1 &gt; \aleph_0$.</li>
+</ul>
+
+<p>The <strong>power set</strong> of a set $\Omega$ is the set of all subsets, which is denoted by $2^\Omega$.</p>
+<ul>
+  <li>For $\mathbb{Z}$, $\mathbf{card}(2^\mathbb{Z}) = \aleph_1 = \mathbf{card}(\mathbb{R})$.</li>
+</ul>
+
+<p>In practical, sets in probability are: <strong>finite</strong>, <strong>countable</strong>, <strong>reals</strong> and their variants.</p>
+
+<p>When we conduct an experiment, we want to know whether a subset occurs or not. For example, if we take a number from $\mathbb{R}$, the probability will be 0 because $\mathbf{card}(\mathbb{R})$ is very large. Therefore, <strong>we are interested in $A \subset \Omega$ in probability, where $A$ is a collection of subsets in probability.</strong></p>
+
+<h3 id="events-and-fields">Events and fields</h3>
+<div class="theorem"><p><b>Definition 2.</b>
+The <b>events</b> are subsets of the sample space $\Omega$. 
+</p></div>
+
+<div class="remark"><p><b>Remark.</b>
+$\varnothing$ is called the <b>impossible event</b>. The set $\Omega$ is called the <b>certain event</b>. Events $A$ and $B$ are called <b>disjoint</b> if their intersection is the empty set.
+</p></div>
+
+<p>We do not need all the subsets of $\Omega$ be events. It suffices for us to think of the collection of events as a subcollection $\mathcal{F}$ of the set of all subsets of $\Omega$.</p>
+
+<div class="theorem"><p><b>Definition 3.</b>
+Any collection $\mathcal{F}$ of subsets of $\Omega$ which satisfies the following three conditions is called a field:
+<ol>
+    <li> if $A, B \in \mathcal{F}$, then $A \cup B \in \mathcal{F}$ and $A \cap B \in \mathcal{F}$ (actually $A\cap B \in \mathcal{F}$ is redundant);</li>
+    <li> if $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$;</li>
+    <li> the empty set $\varnothing$ belongs to $\mathcal{F}$.</li>
+</ol>
+</p></div>
+
+<div class="remark"><p><b>Remark.</b>
+Some implications from the properties of a filed $\mathcal{F}$:
+<ul>
+    <li> if $A_1, \dots, A_n \in \mathcal{F}$, then $\bigcup_{i=1}^n A_i \in \mathcal{F}$;</li>
+    <li> $\varnothing^C = \Omega \in \mathcal{F}$;</li>
+    <li> $A \cap B = (A^c \cup B^c)^C \in \mathcal{F}$.</li>
+</ul>
+</p></div>
+
+<p>what if we have an $\Omega$ such that $\mathbf{card}(\Omega) = \aleph_0$? In this case, we may need $2^\Omega$ to study the probability.</p>
+
+<div class="theorem"><p><b>Definition 4.</b>
+A collection $\mathcal{F}$ of subsets of $\Omega$ is called a $\sigma$-field if it satisfies the following conditions: 
+<ol>
+    <li> $\varnothing \in \mathcal{F}$;</li>
+    <li> if $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$;</li>
+    <li> if $A_1, A_2, \dots \in \mathcal{F}$, then $\bigcup_{i=1}^\infty A_i \in \mathcal{F}$.</li>
+</ol>
+</p></div>
+
+<div class="remark"><p><b>Remark. </b>
+$\sigma$-fields are closed under the operation of taking countable intersections.
+</p></div>
+
+<div class="example"><p><b>Example. </b>
+The smallest $\sigma$-field associated with $\Omega$ is the collection $\mathcal{F} = \{\varnothing, \Omega \}$.
+</p>
+
+<p>
+If $A \subset \Omega$, then $\mathcal{F} = \{\varnothing, A, A^c, \Omega \}$ is a $\sigma$-field. 
+</p>
+
+<p>
+The power set of $\Omega$ is a $\sigma$-field.
+</p></div>
+
+<p>With any experiment we may associate a pair ${\Omega, \mathcal{F}}$, where $\Omega$ is the set of all possible outcomes or elementary events and $\mathcal{F}$ is a $\sigma$-field of subsets of $\Omega$ which contains \emph{all the events in whose occurrences we may be interested}; henceforth, to call a set $A$ an event is equivalent to asserting that $A$ belongs to the $\sigma$-field in question.</p>
+
+<h2 id="probability">Probability</h2>
+<p>Assume we have a “repeatable” experiment and we repeat the experiment a large number $N$ of times. Let $A \in \Omega$ and $N(A)$ be the number of $A$ occurs in the $N$ trails. Intuitively, the ratio $N(A)/ N$ appears to converge to a constant limit as $N$ increases. In practice, we have</p>
+<ul>
+    <li> $0 \leq N(A)/ N \leq 1$;</li>
+    <li> if $A, B$ are disjoint, then $N(A \cup B) = N(A) + N(B)$. (finite additive and countably additive)</li>
+</ul>
+
+<div class="theorem"><p><b>Definition 5. </b>
+A <b>probability measure</b> $\mathbf{P}$ on $\{ \Omega, \mathcal{F} \}$ is a function $\mathbf{P} : \mathcal{F} \to [0,1]$ satisfying
+<ol>
+    <li> $\mathbf{P}(\varnothing) = 0$;</li>
+    <li> $\mathbf{P}(\Omega) = 1$;</li>
+    <li> if $A_1, A2, \dots$ is a collection of disjoint members of $\mathcal{F}$, in that $A_i \cap A_j = \varnothing$ for all pairs $i, j$ satisfying $i \neq j$, then
+    \begin{equation*}
+        \mathbf{P}\left( \bigcup_{i=1}^\infty A_i \right) = \sum_{i=1}^\infty \mathbf{P} (A_i).
+    \end{equation*}</li>
+</ol>
+</p></div>
+
+<p>The triple ${ \Omega, \mathcal{F}, \mathbf{P} }$, comprising a set $\Omega$, a $\sigma$-field $\mathcal{F}$ of subsets of $\Omega$, and a probability measure $\mathbf{P}$ on ${\Omega, \mathcal{F}}$, is called a \textbf{probability space}. We can associate a probability space ${ \Omega, \mathcal{F}, \mathbf{P} }$ with any experiment, and all questions associated with the experiment can be reformulated in terms of this space.</p>
+
+<div class="remark"><p><b>Remark.</b>
+A probability measure is a special example of what is called a \emph{measure} on the pair $\{\Omega, \mathcal{F}\}$. A measure is a function $\mu: \mathcal{F} \to [0, \infty)$ satisfying $\mu(\varnothing) = 0$ together with (c) above. A measure $\mu$ is a probability measure if $\mu(\Omega) = 1$. 
+</p></div>
+
+<div class="theorem"><p><b>Lemma.</b>
+We can deduce some lemmas from the definition.
+<ol>
+    <li> $\mathbf{P}(A^c) = 1 - \mathbf{P}(A)$;</li>
+    <li> if $A \subseteq B$, then $\mathbf{P}(B) = \mathbf{P}(A) + \mathbf{P}(B\backslash A) \geq \mathbf{P}(A)$;</li>
+    <li> $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B) - \mathbf{P}(A \cap B)$;</li>
+    <li> more generally, if $A_1, A_2, \dots, A_n$ are events, then 
+    \begin{equation*}
+        \begin{split}
+        \mathbf{P}\left( \bigcup_{i=1}^n A_i \right) =&amp; \sum_{i}\mathbf{P}(A_i) - \sum_{i &lt; j} \mathbf{P}(A_i \cap A_j) + \sum_{i&lt;j&lt;k} \mathbf{P}(A_i \cap A_j \cap A_k) - \cdots \\
+        &amp; +(-1)^{n+1} \mathbf{P}(A_1 \cap A_2 \cap \cdots \cap A_n)
+        \end{split}
+    \end{equation*}</li>
+</ol>
+</p></div>
+
+<div class="theorem"><p><b>Lemma.</b>
+Let $A_1, A_2, \dots$ be an increasing sequence of events, so that $A_1 \subset A_2 \subset A_3 \subset \cdots$, and write $A$ for their limit:
+\begin{equation*}
+    A = \bigcup_{i=1}^\infty A_i = \lim_{i \to \infty} A_i.
+\end{equation*}
+Then $\mathbf{P}(A) = \lim_{i\to\infty} \mathbf{P}(A_i)$. 
+
+Similarly, if $B_1, B_2, \dots$ is a decreasing sequence of events, so that $B_1 \supseteq  B_2 \supseteq B_3 \supseteq \cdots$, then 
+\begin{equation*}
+    B = \bigcap_{i=1}^\infty B_i = \lim_{i \to \infty} B_i
+\end{equation*}
+satisfies $\mathbf{P}(B) = \lim_{i\to\infty} \mathbf{P}(B_i)$
+</p></div>
+
+<h2 id="some-useful-concepts">Some useful concepts</h2>
+<h3 id="conditional-probability">Conditional probability</h3>
+<p>What if we only care how many times does $A$ occur only when $B$ occurs? $N(A\cap B) / N(B)$, the universe is changed.</p>
+<div class="theorem"><p><b>Definition. </b>
+If $\mathbf{P}(B) &gt; 0$, then the \textbf{conditional probability} that $A$ occurs given that $B$ occurs is defined to be
+\begin{equation*}
+    \mathbf{P}(A \vert B) = \frac{\mathbf{P}(A \cap B)}{\mathbf{P}(B)}.
+\end{equation*}
+</p></div>
+
+<div class="theorem"><p><b>Definition 6.</b>
+Suppose $\{B_i\}$ is a finite set. If $B_i$ are all disjoint and $\bigcup_{i=1}^n B_i = \Omega$, then $\{B_i\}$ is called a \textbf{partition} of $\Omega$.
+</p></div>
+
+<div class="theorem"><p><b>Lemma.</b>
+For any events $A$ and $B$ such that $0 &lt; \mathbf{P}(B) &lt; 1$,
+\begin{equation*}
+    \mathbf{P}(A) = \mathbf{P}(A \vert B) \mathbf{P}(B) + \mathbf{P}(A \vert B^c) \mathbf{P}(B^c).
+\end{equation*}
+More generally, let $B_1,  B_2, \dots, B_n$ be a partition of $\Omega$ such that $\mathbf{P}(B_i) &gt; O$ for all $i$. Then 
+\begin{equation*}
+    \mathbf{P}(A) = \sum_i \mathbf{P}(A \vert B_i) \mathbf{P}(B_i).
+\end{equation*}
+</p></div>
+
+<h3 id="independence">Independence</h3>
+<p>Intuition: an event $A$ occurs doesn’t affect the probability of $A$ occurs when $B$ occurs, which means $\mathbf{P}(A) = \mathbf{P}(A\vert B)$.</p>
+
+<div class="theorem"><p><b>Definition 7.</b>
+Events $A$ and $B$ are called <b>independent</b> if 
+\begin{equation*}
+    \mathbf{P}(A \cap B) = \mathbf{P}(A) \mathbf{P}(B).
+\end{equation*}
+More generally, a family $\{A_i \vert i \in I\}$ is called independent if
+\begin{equation*}
+    \mathbf{P} \left( \bigcap_{i \in J} A_i \right) = \prod_{i\in J} \mathbf{P}(A_i)
+\end{equation*}
+for all finite subsets $J$ of $I$. 
+</p></div>
+
+<div class="remark"><p><b>Remark. </b>
+A common student error is to make the fallacious statement that $A$ and $B$ are independent if $A \cap B = \varnothing$.
+</p></div>
+
+<div class="remark"><p><b>Remark. </b>
+If the family $\{A_i \vert i \in I\}$ has the property that 
+for all 
+\begin{equation*}
+    \mathbf{P}(A_i \cap A_j) = \mathbf{P}(A_i) \mathbf{P}(A_j) \quad \forall i\neq j, 
+\end{equation*}
+then it is called \emph{pairwise independent}. <b>Pairwise-independent families are not necessarily independent.</b> 
+</p></div>
+
+<h2 id="completeness-and-product-space">Completeness and product space</h2>
+<div class="theorem"><p><b>Lemma. </b>
+If $\mathcal{F}$ and $\mathcal{G}$ are two $\sigma$-fields of subsets of $\Omega$, then their intersection $\mathcal{F} \cap \mathcal{G}$ is a $\sigma$-field also. More generally, if $\{ \mathcal{F}_i \vert  i \in I \}$ is a family of $\sigma$-fields of subsets of $\Omega$, then $\mathcal{G} = \bigcap_{i\in I} \mathcal{F}_i $ is a $\sigma$-field also. 
+</p></div>
+
+<p><strong>Completeness</strong>: 
+Let ${\Omega, \mathcal{F}, \mathbf{P}}$ be a probability space. Any event $A$ which has zero probability, that is $\mathbf{P}(A) = 0$, is called \emph{null}. It may seem reasonable to suppose that any subset $B$ of a null set $A$ will itself be null, but this may be without meaning since $B$ may not be an event, and thus $\mathbf{P}(B)$ may not be defined.</p>
+
+<div class="theorem"><p><b>Definition 8.</b>
+A probability space $\{\Omega, \mathcal{F}, \mathbf{P}\}$ is called <b>complete</b> if all subsets of null sets are events. 
+</p></div>
+
+<p>Any incomplete space can be completed thus. Let $\mathcal{N}$ be the collection of all subsets of null sets in $\mathcal{F}$ and let $\mathcal{G} = \sigma (\mathcal{F} \cup \mathcal{N})$ be the smallest $\sigma$-field which contains all sets in $\mathcal{F}$ 
+and $\mathcal{N}$. It can be shown that the domain of $\mathbf{P}$ may be extended in an obvious way from $\mathcal{F}$ to $\mathcal{G}$; ${\Omega, \mathcal{G}, \mathbf{P}}$ is called the completion of ${\Omega, \mathcal{F}, \mathbf{P}}$.</p>
+
+<p><strong>Product space</strong>:
+Suppose two experiments have associated probability spaces ${ \Omega_1, \mathcal{F}_1, \mathbf{P}_1 }$ and  ${ \Omega_2, \mathcal{F}_2, \mathbf{P}_2 }$ respectively. The sample space of the pair of experiments, considered jointly, is the collection $\Omega_1 \times \Omega_2 = { (\omega_1 , \omega_2) \vert w_1 \in \Omega_1, \omega_2 \in \Omega_2 }$ of ordered pairs. The appropriate $\sigma$-field of events is \textbf{more complicated} to construct. \textbf{The family of all such sets, $\mathcal{F}_1 \times \mathcal{F}_2 = {A_1 \times A_2 \vert A_1 \in \mathcal{F}_1 , A_1 \in \mathcal{F}_2 }$, is NOT in general a $\sigma$-field.</p>
+
+<div class="remark"><p><b>Remark.</b>
+There exists a unique smallest $\sigma$-field $\mathcal{G} = \sigma(\mathcal{F}_1 \times \mathcal{F}_2)$ of subsets of $\Omega_1 \times \Omega_2$ which contains $\mathcal{F}_1 \times \mathcal{F}_2$. All we require now is a suitable probability function on $( \Omega1 \times \Omega_2, \mathcal{G} )$. Let $\mathbf{P}_{12}: \mathcal{F}_1 \times \mathcal{F}_2 \to [0, 1]$ be given by: 
+\begin{equation*}
+    \mathbf{P}(A_1 \times A_2) = \mathbf{P}_1(A_1) \times \mathbf{P}_2(A_2) \quad \text{for $A_1 \in \mathcal{F}_1, A_2 \in \mathcal{F}_2$}.
+\end{equation*}
+It can be shown that the domain of $\mathbf{P}_{12}$ can be extended from $\mathcal{F}_1 \times \mathcal{F}_2$ to the whole of $\mathcal{G} = \sigma(\mathcal{F}_1 \times \mathcal{F}_2)$.
+</p></div>
+
+<div class="theorem"><p><b>Definition 9.</b>
+The probability space $(\mathcal{F}_1 \times \mathcal{F}_2, \mathcal{G}, \mathbf{P}_{12})$ is called the <b>product space</b> of $(\Omega_1, \mathcal{F}_1, \mathbf{P}_1)$ and  $(\Omega_2, \mathcal{F}_2, \mathbf{P}_2)$. The measure $\mathbf{P}_{12}$ is sometimes called the `product measure'. 
+</p></div>
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/2019/12/static-site-generators.html" title="Static Site Generators">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/2020/10/notes-2.html" title="Random Variables">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+            </div>
+                
+            
+        </div>
+    </div>
+
+    <footer class="footer-container">
+    
+    <div class="footer-content">
+        
+        <div class="footer-half-col" style="text-align: left;">
+            <p>
+                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
+                <span style="padding-left:30px"></span>
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
+            </p>
+        </div>
+        
+        <div class="footer-half-col" style="text-align: right;">
+            <!--display menu-->
+            <span>
+                <a href="/">Home</a> | 
+                <a href="/blog">Blog</a> | 
+                <a href="/categories">Topics</a> | 
+                <a href="/publications">Publications</a> | 
+                <a href="/projects">Projects</a>
+            </span>
+            <span style="padding-left:15px"></span>
+            <!--display contact icons-->
+            <span class="fa-stack">
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <span class="fa-stack">
+                <a href="/2020/10/notes-1.htmlfeed.xml" title="RSS feed">
+                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
+                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
+                </a>
+            </span>
+            <!--
+            <span>
+                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
+                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
+                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
+                <a href="/2020/10/notes-1.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+            </span>
+            -->
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+
+</html>

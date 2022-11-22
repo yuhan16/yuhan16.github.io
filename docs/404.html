@@ -16,28 +16,32 @@
 
 <meta name="keywords" content="YuhanHuskyDev">
 
-<link rel="icon" href="/freshman21-v2/assets/images/favicon.ico">
-<link rel="stylesheet" href="/freshman21-v2/assets/css/main.css">
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
 <link rel="canonical" href="http://localhost:4000/404.html">
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
 <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
 
-<link rel="stylesheet" href="/freshman21-v2/assets/css/github.min.css">
-<script src="/freshman21-v2/assets/js/highlight.min.js"></script>
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
         processEscapes: true
       },
       "HTML-CSS": { scale: 90 }
     });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
     
 </head>
 
@@ -49,30 +53,30 @@
         
     <header class="header-container" id="header-container">
     <nav class="navbar" id="navbar">
-        <a href="/freshman21-v2/"><img src="/freshman21-v2/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
+        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
         
         <div class="navbar-right" id="navbar-right">
         <ul class="main-menu">
-            <li><a href="/freshman21-v2/">Home</a></li>
-            <li><a href="/freshman21-v2/blog">Blog</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
             <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
                 <ul class="sub-menu">
-                    <li><a href="/freshman21-v2/topics/probability">Probability</a></li>
-                    <li><a href="/freshman21-v2/topics/optimization">Optimization</a></li>
-                    <li><a href="/freshman21-v2/topics/reinforcement-learning">Reinforcement Learning</a></li>
-                    <li><a href="/freshman21-v2/topics/web">Web</a></li>
-                    <li><a href="/freshman21-v2/topics/programming">Programming</a></li>
-                    <li><a href="/freshman21-v2/topics/miscellaneous">Miscellaneous</a></li>
+                    <li><a href="/topics/probability">Probability</a></li>
+                    <!--li><a href="/topics/optimization">Optimization</a></li-->
+                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
+                    <li><a href="/topics/web">Web</a></li>
+                    <li><a href="/topics/programming">Programming</a></li>
+                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
                 </ul>
             </li>
-            <li><a href="/freshman21-v2/research">Research</a></li>
-            <li><a href="/freshman21-v2/projects">Projects</a></li>
+            <li><a href="/publications">Publications</a></li>
+            <!--li><a href="/projects">Projects</a></li-->
             <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
                 <div class="sub-menu-contact">
                     <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
                     <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
                     <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                    <a href="/freshman21-v2/404.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                    <a href="/404.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
                 </div>
             </li>
             <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
@@ -87,12 +91,12 @@
     window.onscroll = function() {scrollFunction()};
     
     function scrollFunction() {
-      if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
         document.getElementById("header-container").style.padding = "1px 5px";
         document.getElementById("navbar-logo").style.height = "55px";
         document.getElementById("navbar-right").style.height = "55px";
       } else {
-        document.getElementById("header-container").style.padding = "40px 5px";
+        document.getElementById("header-container").style.padding = "20px 5px";
         document.getElementById("navbar-logo").style.height = "80px";
         document.getElementById("navbar-right").style.height = "80px";
       }
@@ -104,37 +108,34 @@
             
             
                 <div class="col-sm-8">
-                    <img src="/freshman21-v2/assets/images/husky-404.png" height="300" style="margin: 15px auto; display: block;">
+                    <img src="/assets/images/husky-404.png" height="300" style="margin: 15px auto; display: block;">
 
 <h1 style="text-align: center; margin-top: 30px;">Oops!</h1>
 <h2 style="text-align: center; margin-top: 20px;">Error 404: Page Not Found</h2>
                 </div>
                 <div class="col-sm-2">
-    <div class="sidebar-module">
-  <h4>Site Search</h4>
-  <input type="text"> &nbsp; <input type="submit">
-</div>
+    
     <div class="sidebar-module">
   <h4>Recent Posts</h4>
   
   <li>
-  <a href="/freshman21-v2/2021/12/jekyll-1-elements.html" title="Learning Jelly Part 1: Basic Elements" rel="bookmark">Learning Jelly Part 1: Basic Elements</a>
+  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
   </li>
   
   <li>
-  <a href="/freshman21-v2/2021/12/static-site-generators.html" title="Static Site Generators" rel="bookmark">Static Site Generators</a>
+  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
   </li>
   
   <li>
-  <a href="/freshman21-v2/2021/12/static-dynamic-web.html" title="Static vs Dynamic Web Pages" rel="bookmark">Static vs Dynamic Web Pages</a>
+  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
   </li>
   
   <li>
-  <a href="/freshman21-v2/2021/12/jekyll-notes.html" title="jekyll notes" rel="bookmark">jekyll notes</a>
+  <a href="/2020/11/notes-7.html" title="Markov Chain" rel="bookmark">Markov Chain</a>
   </li>
   
   <li>
-  <a href="/freshman21-v2/2021/11/scss-notes.html" title="Notes on CSS files" rel="bookmark">Notes on CSS files</a>
+  <a href="/2020/11/notes-6-1.html" title="Generating Functions" rel="bookmark">Generating Functions</a>
   </li>
   
 </div>
@@ -143,13 +144,15 @@
     <div class="sidebar-module">
   <h4>Categories</h4>
   
-    <li><a href="/freshman21-v2/categories/#Miscellaneous" title="Miscellaneous" rel="6">Miscellaneous (6)</a></li>
+    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
   
-    <li><a href="/freshman21-v2/categories/#Probability" title="Probability" rel="4">Probability (4)</a></li>
+    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
   
-    <li><a href="/freshman21-v2/categories/#Web" title="Web" rel="3">Web (3)</a></li>
+    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
   
-    <li><a href="/freshman21-v2/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
+    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
+  
+    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
   
 </div>
 
@@ -157,41 +160,39 @@
     <div class="sidebar-module">
   <h4>Tags</h4>
   
-    <a href="/freshman21-v2/tags/#sample-post" title="sample-post" rel="1">sample-post</a> &nbsp;
+    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#structure" title="structure" rel="1">structure</a> &nbsp;
+    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#configure" title="configure" rel="1">configure</a> &nbsp;
+    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#notes" title="notes" rel="4">notes</a> &nbsp;
+    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#math" title="math" rel="3">math</a> &nbsp;
+    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
+    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#css" title="css" rel="2">css</a> &nbsp;
+    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#jekyll" title="jekyll" rel="2">jekyll</a> &nbsp;
+    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#html" title="html" rel="2">html</a> &nbsp;
+    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
+    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
+    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
+    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#php" title="php" rel="1">php</a> &nbsp;
+    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
+    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
+    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
+    <a href="/tags/#math" title="math" rel="11">math</a> &nbsp;
   
-    <a href="/freshman21-v2/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
-  
-    <a href="/freshman21-v2/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
+    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
   
 </div>
 
@@ -204,7 +205,26 @@
     
       
       
-      <li id="2021" > <a href="/freshman21-v2/archives/#2021">2021</a></li>
+      <li id="2022" > <a href="/archives/#2022">2022</a></li>
+    
+  
+    
+    
+      
+      
+      <li id="2020" > <a href="/archives/#2020">2020</a></li>
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
     
   
     
@@ -226,7 +246,7 @@
     
       
       
-      <li id="2019" > <a href="/freshman21-v2/archives/#2019">2019</a></li>
+      <li id="2019" > <a href="/archives/#2019">2019</a></li>
     
   
     
@@ -239,10 +259,6 @@
     
   
     
-    
-      
-      
-      <li id="2014" > <a href="/freshman21-v2/archives/#2014">2014</a></li>
     
   
     
@@ -269,21 +285,20 @@
         
         <div class="footer-half-col" style="text-align: left;">
             <p>
-                Copyright &copy; <a href="/freshman21-v2/">HuskyDev</a> 
+                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
                 <span style="padding-left:30px"></span>
-                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> on <a href="https://github.com/"><b>Github</b></a>
-                | Design by Yuhan
+                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
             </p>
         </div>
         
         <div class="footer-half-col" style="text-align: right;">
             <!--display menu-->
             <span>
-                <a href="/freshman21-v2/">Home</a> | 
-                <a href="/freshman21-v2/blog">Blog</a> | 
-                <a href="/freshman21-v2/categories">Topics</a> | 
-                <a href="/freshman21-v2/research">Research</a> | 
-                <a href="/freshman21-v2/projects">Projects</a>
+                <a href="/">Home</a> | 
+                <a href="/blog">Blog</a> | 
+                <a href="/categories">Topics</a> | 
+                <a href="/publications">Publications</a> | 
+                <a href="/projects">Projects</a>
             </span>
             <span style="padding-left:15px"></span>
             <!--display contact icons-->
@@ -306,7 +321,7 @@
                 </a>
             </span>
             <span class="fa-stack">
-                <a href="/freshman21-v2/404.htmlfeed.xml" title="RSS feed">
+                <a href="/404.htmlfeed.xml" title="RSS feed">
                     <i class="fa fa-circle fa-stack-2x icon-background"></i>
                     <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
                 </a>
@@ -316,7 +331,7 @@
                 <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
                 <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
                 <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                <a href="/freshman21-v2/404.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+                <a href="/404.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
             </span>
             -->
         </div>

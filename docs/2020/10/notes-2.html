@@ -7,10 +7,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width initial-scale=1">
 
-<meta property="og:title" content="Guestbook">
-<title>Guestbook</title>
-<meta property="og:description" content="HuskDev is Yuhan's personal blog.">
-<meta property="og:url" content="http://localhost:4000/guestbook/">
+<meta property="og:title" content="Random Variables">
+<title>Random Variables</title>
+<meta property="og:description" content="This note reviews the definition of random variables.">
+<meta property="og:url" content="http://localhost:4000/2020/10/notes-2.html">
 <meta property="og:site_name" content="HuskyDev">
 <meta property="og:locale" content="">
 
@@ -18,7 +18,7 @@
 
 <link rel="icon" href="/assets/images/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/guestbook/">
+<link rel="canonical" href="http://localhost:4000/2020/10/notes-2.html">
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -76,7 +76,7 @@
                     <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
                     <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
                     <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                    <a href="/guestbook/feed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                    <a href="/2020/10/notes-2.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
                 </div>
             </li>
             <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
@@ -108,24 +108,198 @@
             
             
                 <div class="col-sm-8">
-                    <div class="post">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <header class="post-header">
-        <h1 class="post-title">Guestbook</h1>
-    </header>
+  <header class="post-header">
+    <h1 itemprop="name" class="post-title"><b>Random Variables</b></h1>
+    <meta itemprop="keywords" content="notes,math" />
+    <p class="post-meta">
+      Posted on
+      <time itemprop="datePublished" datetime="2020-10-09">
+        Oct 9, 2020
+      </time>
+      &nbsp;in
+      
+        <a href="/categories/#Probability"><b>Probability</b></a>
+         
+    </p>
+  </header>
 
-    <article class="post-content"> 
-        <h2 id="hi-welcome-to-leave-a-message-here">Hi, welcome to leave a message here.:)</h2>
+  <article class="post-content" itemprop="articleBody">
+    <h2 id="random-variables">Random variables</h2>
+<div class="theorem-block">
+<p><b>Definition 1.</b> A <b>random variable</b> is a function $X: \Omega \to \mathbb{R}$ with the property that $\{ \omega\in \Omega \;\vert\; X(\omega) \leq x\} \in \mathcal{F}$ for each $x \in \mathbb{R}$. Such a function is said to be $\mathbf{\mathcal{F}}$-measurable. 
+</p>
+</div>
 
-<blockquote>
-  <p>To follow the path, look to the master, follow the master, walk with the master, see through the master, become the master.</p>
-</blockquote>
+<div class="remark-block">
+<p><b>Example 1.</b> Tossing two dice. We define
+$$
+    X = \begin{cases} 1 &amp; \text{get double ($i=j$)} \\ 0 &amp; \text{not double $(i\neq j)$} \end{cases}.
+$$
+Then $X = (i,j) \in \mathbb{R}$.</p>
+</div>
 
+<div class="remark-block">
+<p><b>Remark.</b> We are interested in $g(x) = \mathbf{P}\{ \omega \;\vert\; X(\omega) = x \}$. But sometimes it doesn't work very well. Probability triplet is defined as $\{ \Omega, \mathcal{F}, \mathbf{P} \}$. If $\Omega$ is countable, then $g(x)$ is okay. But if $\Omega$ is uncountable like intervals, then $\mathbf{P}(X=x)$ doesn't make much sense because the cardinality is too large.</p>
+</div>
 
-    </article>
+<div class="theorem-block">
+<p><b>Definition 2.</b> The <b>distribution function</b> of a random variable $X$ is the function $F: \mathbb{R} \to 
+[0, 1]$ given by $F(x) = \mathbf{P}(X \leq x)$. </p>
+</div>
 
-    
-        <div id="disqus_thread"></div>
+<div class="remark-block">
+<p><b>Example 2.</b> The distribution function of preceeding example is
+$$
+    F(x) = \begin{cases} 0 &amp; x \leq 0, \\ \frac{30}{36} &amp; 0 &lt; x \leq 1, \\ 1 &amp; x &gt; 1. \end{cases}
+$$
+</p>
+</div>
+
+<p>Notice that ${ \omega \;\vert\; X(\omega) \leq x}$ defines an event. It is an element in the corresponding $\sigma$-field. Denote $A(x) = { \omega \;\vert\; X(\omega) \leq x }$. Along with $A(x)$, we can define
+\(A^c(x) = \{ \omega \;\vert\; X(\omega) &gt; x \}, \quad A(x, y) = A^c(x) \cap A(y) = \{ \omega \;\vert\; x &lt; X(\omega) \leq y \}.\)
+Tow points worth noting:</p>
+<ol>
+  <li>$F$ must be defined for <strong>all</strong> $x \in \mathbb{R}$.</li>
+  <li>$A(x)$ should <strong>belongs to</strong> $\mathcal{F}$. Otherwise, we cannot talk about the probability of $\mathbf{P}(A(x))$. Then the definition of distribution function is meaningless.</li>
+</ol>
+
+<div class="theorem-block">
+<p><b>Lemma 1.</b> A distribution function $F$ has the following properties:</p>
+<ol>
+    <li>$\lim_{x \to -\infty}F(x) = 0$, $\lim_{x\to\infty} F(x) = 1$,</li>
+    <li>if $x &lt; y$, then $F(x) \leq F(y)$,</li>
+    <li>$F$ is right-continuous, that is $F(x+h) \to F(x)$ as $h \downarrow 0$. (left-continuous is not necessary)</li>
+</ol>
+</div>
+
+<div class="remark-block">
+<p><b>Example 3.</b> <b>Indicator functions.</b> A particular class of Bernoulli variables is very useful in probability theory. Let $A$ be an event and let $I_A : \Omega \to \mathbb{R}$ be the indicator function of $A$; that is,
+$$
+    I_A(\omega) = \begin{cases} 1 &amp; \text{if $\omega \in A$}, \\ 0 &amp; \text{if $\omega \in A^c$}. \end{cases}
+$$
+Then $I_A$ is a Bernoulli random variable taking the values 1 and 0 with probabilities $\mathbf{P}(A)$ and $\mathbf{P}(A^c)$ respectively. Suppose $\{B_i \;\vert\; i \in I\}$ is a family of disjoint events with $A \subseteq \bigcup_{i\in I} B_i$. Then
+$$
+    I_A = \sum_{i} = I_{A\cap B_i},
+$$
+an identity which is often useful.</p>
+</div>
+
+<div class="theorem-block">
+<p><b>Lemma 2.</b> Let $F$ be the distribution function of $X$. Then</p>
+<ol>
+    <li> $\mathbf{P}(X&gt;x) = 1-F(x)$,</li> 
+    <li> $\mathbf{P}(x &lt; X \leq y) = F(y) - F(x)$,</li>
+    <li> $\mathbf{P}(X = x) = F(x) - \lim_{y \uparrow x} F(y)$.</li>
+</ol>
+</div>
+
+<p>A random variable $X$ with distribution function $F$ is said to have two “tails” given by 
+\(T_1 (X) = \mathbf{P}(X &gt; x) = 1 - F(x), \quad T_2(X) = \mathbf{P}(X \leq -x) = F(-x),\)
+where $x$ is large and positive. The rates at which the $T_i$ decay to zero as $x\to\infty$ have a substantial effect on the existence or non-existence of certain associated quantities called the “moments” of the distribution.</p>
+
+<h2 id="different-random-variables">Different random variables</h2>
+<h3 id="discrete-random-variables">Discrete random variables</h3>
+<div class="theorem-block">
+<p><b>Definition 3.</b> The random variable $X$ is called <b>discrete</b> if it takes values in some <b>countable</b> subset $\{ x_1, x_2, \dots \}$, only, of $\mathbb{R}$. The discrete random variable $X$ has <b>(probability) mass function</b> $f : \mathbb{R} \to [0, 1]$ given by $f(x) = \mathbf{P}(X = x)$.</p>
+</div>
+
+<p>We shall see that the distribution function of a discrete variable has jump discontinuities 
+at the values $x_1 , x_2, \dots$ and is constant in between; such a distribution is called <em>atomic</em>.</p>
+
+<h3 id="continuous-random-variables">Continuous random variables</h3>
+<div class="theorem-block">
+<p><b>Definition 4.</b> The random variable $X$ is called <b>continuous</b> if its distribution function can 
+be expressed as 
+$$
+    F(x) = \int_{-\infty}^x f(u) du \qquad x \in \mathbb{R}
+$$
+for some <b>integrable</b> function $f : \mathbb{R} \to [0, \infty)$ called the **(probability) density function** of $X$.
+</p> 
+</div>
+
+<p>Some point worth noting:</p>
+<ol>
+    <li> The density function $f(x)$ is not unique. We can add some separate points to $f$, and it doesn't affect the integration.</li>
+    <li> $F$ must be **absolutely continuous**. This implies $F$ is continuous. We can also deduce that the probability at certain point must be zero. \emph{i.e.}, $\mathbf{P}(X=x) = 0$.</li>
+</ol>
+
+<p>There is another sort of random variable, called “singular”.</p>
+
+<h2 id="random-vectors">Random vectors</h2>
+<h3 id="definition">Definition</h3>
+<p>The random vector is a function $X : \Omega \to \mathbb{R}^n$. For example, $\mathbf{X} = (X, Y)$ for $n=2$. We can also define the distribution function for such $X$. But we need to first introduce the ordering in $\mathbb{R}^n$.</p>
+<div class="theorem-block">
+<p><b>Definition 5.</b> 
+    By definition, $(x_1, y_1) &lt; (x_2, y_2)$ if and only if $x_1 &lt; x_2$  **AND**  $y_1 &lt; y_2$.
+</p>
+</div>
+
+<div class="remark-block"> 
+<p><b>Definition 6.</b>
+The <b>joint distribution function</b> of a random vector $\mathbf{X} = (X_1, X_2 \dots, X_n)$ on the probability space $\{ \Omega, \mathcal{F}, \mathbf{P} \}$ is the function $F_{\mathbf{X}} : \mathbb{R}^n \to [0, 1]$ given by $F_{\mathbf{X}}(x) = \mathbf{P}(\mathbf{X} \leq \mathbf{x})$ for $\mathbf{x} \in \mathbb{R}^n$. 
+</p>
+</div>
+
+<div class="remark-block">
+<p><b>Remark .</b> 
+The joint probability $\mathbf{P}(\mathbf{X} \leq \mathbf{x}) = \mathbf{P}(X_1 \leq x_1, \dots, X_n \leq x_n)$. $\{\mathbf{X} \leq \mathbf{x} \}$ is an abbreviation for the event $\{\omega \in \Omega \;\vert\; \mathbf{X}(w) \leq \mathbf{x}\}$.
+</p>
+</div>
+
+<div class="theorem-block">
+<p><b>Lemma 3.</b>
+The joint distribution function $F_{X, Y}$ of the random vector $(X, Y)$ has the following properties:</p>
+<ol>
+    <li> $\lim_{x, y\to -\infty} F_{X, Y}(x, y) = 0, \lim_{x,y\to\infty} F_{X, Y}(x,y) = 1$,</li>
+    <li> if $(x_1, y_1) \leq (x_2, y_2)$, then $F_{X,Y}(x_1, y_1) \leq F_{X, Y}(x_2, y_2)$,</li>
+    <li> $F_{X,Y}$ is continuous from above, in that
+    $$
+        F_{X,Y}(x+u, y+v) \to F_{X,Y}(x,y) \quad as \quad u, v \downarrow 0.
+    $$</li>
+</ol>
+</div>
+
+<h3 id="marginalization">Marginalization</h3>
+<p>\(\begin{align}
+    \lim_{y\to\infty} F_{X,Y} &amp;= F_X(x) = \mathbf{P}(X \leq x), \\
+    \lim_{x\to\infty} F_{X,Y} &amp;= F_Y(y) = \mathbf{P}(Y \leq y).
+\end{align}\)</p>
+
+<p>The functions $F_X$ and $F_Y$ are called the “marginal” distribution functions of $F_{X,Y}$. $F_{X,Y}$ can determine two marginals $F_X$ and $F_Y$, but <strong>converse is NOT true</strong>.</p>
+
+<h3 id="discrete-and-continuous-distribution">Discrete and continuous distribution</h3>
+<div class="theorem-block">
+<p><b>Definition 7.</b> The random variables $X$ and $Y$ on the probability space $\{ \Omega, \mathcal{F}, \mathbf{P} \}$ are called **(jointly) discrete** if the vector $(X, Y)$ takes values in some **countable** subset of $\mathbb{R}^2$ only. The jointly discrete random variables $X, Y$ have **joint (probability) mass function** $f : \mathbb{R}^2 \to [0,1]$ given by $f(x, y) = \mathbf{P}(X = x, Y = y)$. 
+</p></div>
+
+<div class="theorem-block">
+<p><b>Definition 8.</b>
+The random variables $X$ and $Y$ on the probability space $\{ \Omega, \mathcal{F}, \mathbf{P} \}$ are called **(jointly) continuous** if their joint distribution function can be expressed as 
+$$
+    F_{X,Y}(x,y) = \int_{u = -\infty}^x \int_{v = -\infty}^y f(u,v)du dv \qquad x, y\in\mathbb{R},
+$$
+for some **integrable** function $f : \mathbb{R}^2 \to [0, \infty)$ called the **joint (probability) density function** of the pair $(X, Y)$. 
+</p></div>
+
+  </article>
+  <hr />
+</div>
+
+<section class="post-index">
+    <ul>
+        
+            <li class="previous"><a href="/2020/10/notes-1.html" title="Sets and Probability Measures">&laquo; Previous</a></li>
+        
+        
+        
+            <li class="next"><a href="/2020/10/notes-3.html" title="Continuous Randon Variables">Next &raquo;</a></li>
+        
+    </ul>
+</section>
+  
+<div id="disqus_thread"></div>
 
 <script type="text/javascript">
 
@@ -142,9 +316,8 @@ var disqus_shortname ='';
 
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-    
 
-</div> 
+
                 </div>
                 <div class="col-sm-2">
     
@@ -354,7 +527,7 @@ var disqus_shortname ='';
                 </a>
             </span>
             <span class="fa-stack">
-                <a href="/guestbook/feed.xml" title="RSS feed">
+                <a href="/2020/10/notes-2.htmlfeed.xml" title="RSS feed">
                     <i class="fa fa-circle fa-stack-2x icon-background"></i>
                     <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
                 </a>
@@ -364,7 +537,7 @@ var disqus_shortname ='';
                 <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
                 <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
                 <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                <a href="/guestbook/feed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+                <a href="/2020/10/notes-2.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
             </span>
             -->
         </div>

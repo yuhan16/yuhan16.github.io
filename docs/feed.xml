@@ -2,12 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HuskyDev</title>
-    <description>HuskDev is Yuhan's personal blog.</description>
+    <description>HuskDev is Yuhan&apos;s personal blog.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 28 Nov 2022 10:24:44 -0500</pubDate>
-    <lastBuildDate>Mon, 28 Nov 2022 10:24:44 -0500</lastBuildDate>
-    <generator>Jekyll v4.2.2</generator>
+    <pubDate>Mon, 26 Jun 2023 11:17:02 -0400</pubDate>
+    <lastBuildDate>Mon, 26 Jun 2023 11:17:02 -0400</lastBuildDate>
+    <generator>Jekyll v4.3.2</generator>
+    
+      <item>
+        <title>Introduction to Trajectory Optimization</title>
+        <description>&lt;p&gt;I have summarized some mathematical background and common computational approaches in trajectory optimization.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/pdf/Trajopt_intro.pdf&quot;&gt;TrajectOpt slides&lt;/a&gt;&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/blog/2023/2023-04-10-trajopt_intro_outline.png&quot; height=&quot;350&quot; /&gt;
+    &lt;figcaption&gt;Fig. 1: Outline of trajectory optimization slides.&lt;/figcaption&gt;
+&lt;/figure&gt;
+</description>
+        <pubDate>Mon, 10 Apr 2023 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2023/04/intro-to-trajopt.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2023/04/intro-to-trajopt.html</guid>
+        
+        <category>optimization</category>
+        
+        <category>math</category>
+        
+        
+        <category>Optimization</category>
+        
+      </item>
     
       <item>
         <title>Introduction to Reinforcement Learning</title>
@@ -173,7 +199,7 @@ Therefore, we have
 $$\begin{equation}
     U(x)=\frac{1}{\sqrt{1-x}}, \quad F(x) = \frac{U(x)-1}{U(x)} = 1-\sqrt{1-x}.
 \end{equation}$$
-Although it is possible to compute the value of f2m using the Binomial Theorem, it is easier to note that $F'(x) = U(x)/2$, so that the coefficients $f_{2m}$ can be found by integrating the series for $U(x)$. We obtain, for $m \geq 1$, 
+Although it is possible to compute the value of f2m using the Binomial Theorem, it is easier to note that $F&apos;(x) = U(x)/2$, so that the coefficients $f_{2m}$ can be found by integrating the series for $U(x)$. We obtain, for $m \geq 1$, 
 $$\begin{equation}
     f_{2 m}=\frac{u_{2 m-2}}{2 m} = \frac{\binom{2m-2}{m-1}}{m 2^{2 m-1}} = \frac{\binom{2m}{m}}{(2 m-1) 2^{2 m}} = \frac{u_{2m}}{2m-1},
 \end{equation}$$
@@ -701,7 +727,7 @@ $$\begin{equation}
 Note the following two remarks.
 &lt;ol&gt;
     &lt;li&gt; Markov property and homogeneity property are **independent**. There are also Markov chains which are not homogeneous.&lt;/li&gt;
-    &lt;li&gt; If a Markov chain $X$ is homogeneous, then $p_{ij}(n-1)$ doesn't depends on the time $(n-1)$, i.e., the probability transition matrix $P$ is **fixed** at each step.&lt;/li&gt;
+    &lt;li&gt; If a Markov chain $X$ is homogeneous, then $p_{ij}(n-1)$ doesn&apos;t depends on the time $(n-1)$, i.e., the probability transition matrix $P$ is **fixed** at each step.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/p&gt;&lt;/div&gt;
 
@@ -932,7 +958,7 @@ This completes the proof.
 \end{equation}\)
 In many circumstances it is easier to work with the generating function $G_a$ than with the original sequence $a$.&lt;/p&gt;
 
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; [Abel's theorem]
+&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; [Abel&apos;s theorem]
 If $a_i \geq 0$ for all $i$ and $G_a(s)$ is finite for $\left\vert s \right\vert &amp;lt; 1$, then $\lim_{s \uparrow 1} G_a (s) = \sum_{i=1}^ \infty a_i$, whether the sum is finite or equals $+\infty$. This standard result is useful when the radius of convergence $R$ satisfies $R = 1$, since then one has no a priori right to take the limit as $s \uparrow 1$.
 &lt;/p&gt;&lt;/div&gt;
 
@@ -956,7 +982,7 @@ $M_X(-t)$ is so called **bilateral** Laplace transform of $f_X(x)$ or $p_X(k)$.
 &lt;ol&gt;
     &lt;li&gt; $M^\prime(0) = \mathbf{E}(0) = \mu$.&lt;/li&gt;
     &lt;li&gt; $M^{(n)}(0) = \mathbf{E}(X^n)$.&lt;/li&gt;
-    &lt;li&gt; Using Taylor's theorem, $M_X(t) = \sum_{k=0}^\infty \frac{t^k}{k!} \mathbf{E}(X^k)$.&lt;/li&gt;
+    &lt;li&gt; Using Taylor&apos;s theorem, $M_X(t) = \sum_{k=0}^\infty \frac{t^k}{k!} \mathbf{E}(X^k)$.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem.&lt;/b&gt; 
@@ -1349,7 +1375,7 @@ The Cauchy distribution is given by
 $$\begin{equation}
     f(x) = \frac{1}{\pi (1+x^2)},
 \end{equation}$$
-where $\pi$ is the normalization parameter. Let $X$ be the random variable which has the Cauchy distribution. Note that although the Cauchy distribution is very like the normal distribution, $X$ doesn't have the variance. This is because the Cauchy distribution has a long tail as $\left\vert x \right\vert\to\infty$ and it converges slowly. But $X$ has a mean which is $\mu = 0$. So the question is: does $Q_n$ converges to $\mu$? The answer is negative. This example shows that if the variance is not finite, the law of large numbers fails.
+where $\pi$ is the normalization parameter. Let $X$ be the random variable which has the Cauchy distribution. Note that although the Cauchy distribution is very like the normal distribution, $X$ doesn&apos;t have the variance. This is because the Cauchy distribution has a long tail as $\left\vert x \right\vert\to\infty$ and it converges slowly. But $X$ has a mean which is $\mu = 0$. So the question is: does $Q_n$ converges to $\mu$? The answer is negative. This example shows that if the variance is not finite, the law of large numbers fails.
 &lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;%&amp;lt;div class=&quot;remark&quot;&amp;gt;&amp;lt;p&amp;gt;&lt;b&gt;Remark.&lt;/b&gt; 
@@ -1498,7 +1524,7 @@ It is usually used as a guess at the value of $\sigma^2$.
 &lt;/p&gt;&lt;/div&gt;
 
 &lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
-The sample mean and the sample variance have the property of being 'unbiased' in that $\mathbf{E}(\bar{X}) = \mu$ and $\mathbf{E}(S^2) = \sigma^2$. Note that in some texts the sample variance is defined with $n$ in place of $(n - 1)$. 
+The sample mean and the sample variance have the property of being &apos;unbiased&apos; in that $\mathbf{E}(\bar{X}) = \mu$ and $\mathbf{E}(S^2) = \sigma^2$. Note that in some texts the sample variance is defined with $n$ in place of $(n - 1)$. 
 &lt;/p&gt;&lt;/div&gt;
 
 &lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 7.&lt;/b&gt; 
@@ -1722,7 +1748,7 @@ is applied only to uncorrelated variables.
 $$\begin{equation}
     f(k) = Ak^{-1} \quad k = \pm 1, \pm 2, \dots,
 \end{equation}$$
-where $A$ is chosen so that $\sum_k f(k) = 1$. The sum $\sum_k kf(k) = A\sum_{k\neq 0} k^{-1}$ doesn't converge absolutely, because both the positive and the negative parts diverge. 
+where $A$ is chosen so that $\sum_k f(k) = 1$. The sum $\sum_k kf(k) = A\sum_{k\neq 0} k^{-1}$ doesn&apos;t converge absolutely, because both the positive and the negative parts diverge. 
 &lt;/p&gt;&lt;/div&gt;
 &lt;p&gt;This example is suitable to point out that we can base probability theory upon the expectation operator $\mathbf{E}$ rather than upon the probability measure $\mathbf{P}$. Roughly speaking, the way we proceed is to postulate axioms, such as (a)-(c) of the above Theorem, for a so-called “expectation operator” $\mathbf{E}$ acting on a space of ``random variables”. The probability of an event can then be recaptured by defining $\mathbf{P}(A) = \mathbf{E}(I_A)$.&lt;/p&gt;
 
@@ -1819,7 +1845,7 @@ for some $a$ and $b$.
 
 &lt;p&gt;We define $X’ = X-\mathbf{E}(X), Y’ = Y - \mathbf{E}(Y)$. Since all $X, Y$ satisfy the Cauchy-Schwarz inequality, so do $X’$ and $Y’$. Therefore, 
 \(\begin{equation}
-    \mathbf{E}(X'Y')^2 \leq \mathbf{E}(X'^2) \mathbf{E}(Y'^2) \quad \Leftrightarrow \quad \mathbf{cov}(X, Y)^2 \leq \mathbf{Var}(X)\mathbf{Var}(Y).
+    \mathbf{E}(X&apos;Y&apos;)^2 \leq \mathbf{E}(X&apos;^2) \mathbf{E}(Y&apos;^2) \quad \Leftrightarrow \quad \mathbf{cov}(X, Y)^2 \leq \mathbf{Var}(X)\mathbf{Var}(Y).
 \end{equation}\)
 Therefore, 
 \(\begin{equation}
@@ -2044,7 +2070,7 @@ The function $f$ is called the &lt;b&gt;(probability) density function&lt;/b&gt;
 &lt;/p&gt;&lt;/div&gt;
 
 &lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
-The function $f$ is &lt;b&gt;NOT&lt;/b&gt; unique. We can add some separate points or a countable set of points which has zero measure to $f$. This doesn't change the value of the integral. However, if $F$ is differentiable at $u$ then we shall normally set $f(u) = F'(u)$. 
+The function $f$ is &lt;b&gt;NOT&lt;/b&gt; unique. We can add some separate points or a countable set of points which has zero measure to $f$. This doesn&apos;t change the value of the integral. However, if $F$ is differentiable at $u$ then we shall normally set $f(u) = F&apos;(u)$. 
 &lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;Next, we assume $f$ is continuous, then from the basic theorem of calculus, $F$ must be differentiable. Recall 
@@ -2134,7 +2160,7 @@ $$\begin{equation}
     f(x) = \begin{cases} \lambda e^{-\lambda x} &amp;amp; x &amp;gt; 0 \\ 0 &amp;amp; o.w.
     \end{cases}
 \end{equation}$$
-Note that $F(x)$ is not differentiable at $x=0$. This means $f$ has discontinuity at $x=0$. Thus we need to choose some value for $f(0)$. It doesn't matter what value we choose as it doesn't affect the integral. Figure 2 shows the p.d.f. of Exponential distribution.
+Note that $F(x)$ is not differentiable at $x=0$. This means $f$ has discontinuity at $x=0$. Thus we need to choose some value for $f(0)$. It doesn&apos;t matter what value we choose as it doesn&apos;t affect the integral. Figure 2 shows the p.d.f. of Exponential distribution.
 &lt;figure&gt;
     &lt;img src=&quot;/assets/images/blog/2020/2020-10-16-exponential.png&quot; height=&quot;300&quot; /&gt;
     &lt;figcaption&gt;Fig.2: p.m.f of exponential distribution.&lt;/figcaption&gt;
@@ -2168,178 +2194,6 @@ For 2D case, if $\sigma^2$ is diagonal, then $f(x,y) = f(x)f(y)$. Therefore, $\s
         <pubDate>Fri, 16 Oct 2020 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2020/10/notes-3.html</link>
         <guid isPermaLink="true">http://localhost:4000/2020/10/notes-3.html</guid>
-        
-        <category>notes</category>
-        
-        <category>math</category>
-        
-        
-        <category>Probability</category>
-        
-      </item>
-    
-      <item>
-        <title>Random Variables</title>
-        <description>&lt;h2 id=&quot;random-variables&quot;&gt;Random variables&lt;/h2&gt;
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Definition 1.&lt;/b&gt; A &lt;b&gt;random variable&lt;/b&gt; is a function $X: \Omega \to \mathbb{R}$ with the property that $\{ \omega\in \Omega \;\vert\; X(\omega) \leq x\} \in \mathcal{F}$ for each $x \in \mathbb{R}$. Such a function is said to be $\mathbf{\mathcal{F}}$-measurable. 
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;remark-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Example 1.&lt;/b&gt; Tossing two dice. We define
-$$
-    X = \begin{cases} 1 &amp;amp; \text{get double ($i=j$)} \\ 0 &amp;amp; \text{not double $(i\neq j)$} \end{cases}.
-$$
-Then $X = (i,j) \in \mathbb{R}$.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;remark-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; We are interested in $g(x) = \mathbf{P}\{ \omega \;\vert\; X(\omega) = x \}$. But sometimes it doesn't work very well. Probability triplet is defined as $\{ \Omega, \mathcal{F}, \mathbf{P} \}$. If $\Omega$ is countable, then $g(x)$ is okay. But if $\Omega$ is uncountable like intervals, then $\mathbf{P}(X=x)$ doesn't make much sense because the cardinality is too large.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Definition 2.&lt;/b&gt; The &lt;b&gt;distribution function&lt;/b&gt; of a random variable $X$ is the function $F: \mathbb{R} \to 
-[0, 1]$ given by $F(x) = \mathbf{P}(X \leq x)$. &lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;remark-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Example 2.&lt;/b&gt; The distribution function of preceeding example is
-$$
-    F(x) = \begin{cases} 0 &amp;amp; x \leq 0, \\ \frac{30}{36} &amp;amp; 0 &amp;lt; x \leq 1, \\ 1 &amp;amp; x &amp;gt; 1. \end{cases}
-$$
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Notice that ${ \omega \;\vert\; X(\omega) \leq x}$ defines an event. It is an element in the corresponding $\sigma$-field. Denote $A(x) = { \omega \;\vert\; X(\omega) \leq x }$. Along with $A(x)$, we can define
-\(A^c(x) = \{ \omega \;\vert\; X(\omega) &amp;gt; x \}, \quad A(x, y) = A^c(x) \cap A(y) = \{ \omega \;\vert\; x &amp;lt; X(\omega) \leq y \}.\)
-Tow points worth noting:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;$F$ must be defined for &lt;strong&gt;all&lt;/strong&gt; $x \in \mathbb{R}$.&lt;/li&gt;
-  &lt;li&gt;$A(x)$ should &lt;strong&gt;belongs to&lt;/strong&gt; $\mathcal{F}$. Otherwise, we cannot talk about the probability of $\mathbf{P}(A(x))$. Then the definition of distribution function is meaningless.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Lemma 1.&lt;/b&gt; A distribution function $F$ has the following properties:&lt;/p&gt;
-&lt;ol&gt;
-    &lt;li&gt;$\lim_{x \to -\infty}F(x) = 0$, $\lim_{x\to\infty} F(x) = 1$,&lt;/li&gt;
-    &lt;li&gt;if $x &amp;lt; y$, then $F(x) \leq F(y)$,&lt;/li&gt;
-    &lt;li&gt;$F$ is right-continuous, that is $F(x+h) \to F(x)$ as $h \downarrow 0$. (left-continuous is not necessary)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;remark-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Example 3.&lt;/b&gt; &lt;b&gt;Indicator functions.&lt;/b&gt; A particular class of Bernoulli variables is very useful in probability theory. Let $A$ be an event and let $I_A : \Omega \to \mathbb{R}$ be the indicator function of $A$; that is,
-$$
-    I_A(\omega) = \begin{cases} 1 &amp;amp; \text{if $\omega \in A$}, \\ 0 &amp;amp; \text{if $\omega \in A^c$}. \end{cases}
-$$
-Then $I_A$ is a Bernoulli random variable taking the values 1 and 0 with probabilities $\mathbf{P}(A)$ and $\mathbf{P}(A^c)$ respectively. Suppose $\{B_i \;\vert\; i \in I\}$ is a family of disjoint events with $A \subseteq \bigcup_{i\in I} B_i$. Then
-$$
-    I_A = \sum_{i} = I_{A\cap B_i},
-$$
-an identity which is often useful.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Lemma 2.&lt;/b&gt; Let $F$ be the distribution function of $X$. Then&lt;/p&gt;
-&lt;ol&gt;
-    &lt;li&gt; $\mathbf{P}(X&amp;gt;x) = 1-F(x)$,&lt;/li&gt; 
-    &lt;li&gt; $\mathbf{P}(x &amp;lt; X \leq y) = F(y) - F(x)$,&lt;/li&gt;
-    &lt;li&gt; $\mathbf{P}(X = x) = F(x) - \lim_{y \uparrow x} F(y)$.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-
-&lt;p&gt;A random variable $X$ with distribution function $F$ is said to have two “tails” given by 
-\(T_1 (X) = \mathbf{P}(X &amp;gt; x) = 1 - F(x), \quad T_2(X) = \mathbf{P}(X \leq -x) = F(-x),\)
-where $x$ is large and positive. The rates at which the $T_i$ decay to zero as $x\to\infty$ have a substantial effect on the existence or non-existence of certain associated quantities called the “moments” of the distribution.&lt;/p&gt;
-
-&lt;h2 id=&quot;different-random-variables&quot;&gt;Different random variables&lt;/h2&gt;
-&lt;h3 id=&quot;discrete-random-variables&quot;&gt;Discrete random variables&lt;/h3&gt;
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Definition 3.&lt;/b&gt; The random variable $X$ is called &lt;b&gt;discrete&lt;/b&gt; if it takes values in some &lt;b&gt;countable&lt;/b&gt; subset $\{ x_1, x_2, \dots \}$, only, of $\mathbb{R}$. The discrete random variable $X$ has &lt;b&gt;(probability) mass function&lt;/b&gt; $f : \mathbb{R} \to [0, 1]$ given by $f(x) = \mathbf{P}(X = x)$.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;We shall see that the distribution function of a discrete variable has jump discontinuities 
-at the values $x_1 , x_2, \dots$ and is constant in between; such a distribution is called &lt;em&gt;atomic&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;continuous-random-variables&quot;&gt;Continuous random variables&lt;/h3&gt;
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Definition 4.&lt;/b&gt; The random variable $X$ is called &lt;b&gt;continuous&lt;/b&gt; if its distribution function can 
-be expressed as 
-$$
-    F(x) = \int_{-\infty}^x f(u) du \qquad x \in \mathbb{R}
-$$
-for some &lt;b&gt;integrable&lt;/b&gt; function $f : \mathbb{R} \to [0, \infty)$ called the **(probability) density function** of $X$.
-&lt;/p&gt; 
-&lt;/div&gt;
-
-&lt;p&gt;Some point worth noting:&lt;/p&gt;
-&lt;ol&gt;
-    &lt;li&gt; The density function $f(x)$ is not unique. We can add some separate points to $f$, and it doesn't affect the integration.&lt;/li&gt;
-    &lt;li&gt; $F$ must be **absolutely continuous**. This implies $F$ is continuous. We can also deduce that the probability at certain point must be zero. \emph{i.e.}, $\mathbf{P}(X=x) = 0$.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;There is another sort of random variable, called “singular”.&lt;/p&gt;
-
-&lt;h2 id=&quot;random-vectors&quot;&gt;Random vectors&lt;/h2&gt;
-&lt;h3 id=&quot;definition&quot;&gt;Definition&lt;/h3&gt;
-&lt;p&gt;The random vector is a function $X : \Omega \to \mathbb{R}^n$. For example, $\mathbf{X} = (X, Y)$ for $n=2$. We can also define the distribution function for such $X$. But we need to first introduce the ordering in $\mathbb{R}^n$.&lt;/p&gt;
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Definition 5.&lt;/b&gt; 
-    By definition, $(x_1, y_1) &amp;lt; (x_2, y_2)$ if and only if $x_1 &amp;lt; x_2$  **AND**  $y_1 &amp;lt; y_2$.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;remark-block&quot;&gt; 
-&lt;p&gt;&lt;b&gt;Definition 6.&lt;/b&gt;
-The &lt;b&gt;joint distribution function&lt;/b&gt; of a random vector $\mathbf{X} = (X_1, X_2 \dots, X_n)$ on the probability space $\{ \Omega, \mathcal{F}, \mathbf{P} \}$ is the function $F_{\mathbf{X}} : \mathbb{R}^n \to [0, 1]$ given by $F_{\mathbf{X}}(x) = \mathbf{P}(\mathbf{X} \leq \mathbf{x})$ for $\mathbf{x} \in \mathbb{R}^n$. 
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;remark-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Remark .&lt;/b&gt; 
-The joint probability $\mathbf{P}(\mathbf{X} \leq \mathbf{x}) = \mathbf{P}(X_1 \leq x_1, \dots, X_n \leq x_n)$. $\{\mathbf{X} \leq \mathbf{x} \}$ is an abbreviation for the event $\{\omega \in \Omega \;\vert\; \mathbf{X}(w) \leq \mathbf{x}\}$.
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Lemma 3.&lt;/b&gt;
-The joint distribution function $F_{X, Y}$ of the random vector $(X, Y)$ has the following properties:&lt;/p&gt;
-&lt;ol&gt;
-    &lt;li&gt; $\lim_{x, y\to -\infty} F_{X, Y}(x, y) = 0, \lim_{x,y\to\infty} F_{X, Y}(x,y) = 1$,&lt;/li&gt;
-    &lt;li&gt; if $(x_1, y_1) \leq (x_2, y_2)$, then $F_{X,Y}(x_1, y_1) \leq F_{X, Y}(x_2, y_2)$,&lt;/li&gt;
-    &lt;li&gt; $F_{X,Y}$ is continuous from above, in that
-    $$
-        F_{X,Y}(x+u, y+v) \to F_{X,Y}(x,y) \quad as \quad u, v \downarrow 0.
-    $$&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;marginalization&quot;&gt;Marginalization&lt;/h3&gt;
-&lt;p&gt;\(\begin{align}
-    \lim_{y\to\infty} F_{X,Y} &amp;amp;= F_X(x) = \mathbf{P}(X \leq x), \\
-    \lim_{x\to\infty} F_{X,Y} &amp;amp;= F_Y(y) = \mathbf{P}(Y \leq y).
-\end{align}\)&lt;/p&gt;
-
-&lt;p&gt;The functions $F_X$ and $F_Y$ are called the “marginal” distribution functions of $F_{X,Y}$. $F_{X,Y}$ can determine two marginals $F_X$ and $F_Y$, but &lt;strong&gt;converse is NOT true&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;discrete-and-continuous-distribution&quot;&gt;Discrete and continuous distribution&lt;/h3&gt;
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Definition 7.&lt;/b&gt; The random variables $X$ and $Y$ on the probability space $\{ \Omega, \mathcal{F}, \mathbf{P} \}$ are called **(jointly) discrete** if the vector $(X, Y)$ takes values in some **countable** subset of $\mathbb{R}^2$ only. The jointly discrete random variables $X, Y$ have **joint (probability) mass function** $f : \mathbb{R}^2 \to [0,1]$ given by $f(x, y) = \mathbf{P}(X = x, Y = y)$. 
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem-block&quot;&gt;
-&lt;p&gt;&lt;b&gt;Definition 8.&lt;/b&gt;
-The random variables $X$ and $Y$ on the probability space $\{ \Omega, \mathcal{F}, \mathbf{P} \}$ are called **(jointly) continuous** if their joint distribution function can be expressed as 
-$$
-    F_{X,Y}(x,y) = \int_{u = -\infty}^x \int_{v = -\infty}^y f(u,v)du dv \qquad x, y\in\mathbb{R},
-$$
-for some **integrable** function $f : \mathbb{R}^2 \to [0, \infty)$ called the **joint (probability) density function** of the pair $(X, Y)$. 
-&lt;/p&gt;&lt;/div&gt;
-</description>
-        <pubDate>Fri, 09 Oct 2020 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2020/10/notes-2.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2020/10/notes-2.html</guid>
         
         <category>notes</category>
         

@@ -7,10 +7,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width initial-scale=1">
 
-<meta property="og:title" content="Static Site Generators">
-<title>Static Site Generators</title>
-<meta property="og:description" content="I have discussed the difference between static and dynamic web pages in the previous post. In this post, I will write some of my understanding of Jekyll and ...">
-<meta property="og:url" content="http://localhost:4000/2019/12/static-site-generators.html">
+<meta property="og:title" content="Optimization">
+<title>Optimization</title>
+<meta property="og:description" content="HuskDev is Yuhan's personal blog.">
+<meta property="og:url" content="http://localhost:4000/topics/optimization/">
 <meta property="og:site_name" content="HuskyDev">
 <meta property="og:locale" content="">
 
@@ -18,7 +18,7 @@
 
 <link rel="icon" href="/assets/images/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/2019/12/static-site-generators.html">
+<link rel="canonical" href="http://localhost:4000/topics/optimization/">
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -76,7 +76,7 @@
                     <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
                     <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
                     <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                    <a href="/2019/12/static-site-generators.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                    <a href="/topics/optimization/index.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
                 </div>
             </li>
             <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
@@ -108,108 +108,75 @@
             
             
                 <div class="col-sm-8">
-                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                    <!--No "post" class defined in css. Only used for group things.-->
+<div class="post" itemscope itemtype="http://schema.org/BlogPosting" >
 
-  <header class="post-header">
-    <h1 itemprop="name" class="post-title"><b>Static Site Generators</b></h1>
-    <meta itemprop="keywords" content="SSG,static site generator,html,css,github pages" />
-    <p class="post-meta">
-      Posted on
-      <time itemprop="datePublished" datetime="2019-12-03">
-        Dec 3, 2019
-      </time>
-      &nbsp;in
-      
-        <a href="/categories/#Web"><b>Web</b></a>
-         
-    </p>
-  </header>
-
-  <article class="post-content" itemprop="articleBody">
-    <p>I have discussed the difference between static and dynamic web pages in the previous post. In this post, I will write some of my understanding of Jekyll and static site generators.</p>
-
-<!--more-->
-
-<h2 id="static-site-generators">Static Site Generators</h2>
-
-<p>Static site generators (SSGs) are the software that generates and publish static HTML files from dynamic writing. In other words, they achieve two goals:</p>
-
-<ul>
-  <li>automate static web page generation;</li>
-  <li>publish the generated web pages locally for preview.</li>
-</ul>
-
-<h3 id="some-background-of-html">Some Background of HTML</h3>
-
-<p>Every static web page is a complete HTML file. A simple example of a complete HTML file is like this:</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-  <span class="nt">&lt;title&gt;</span>Page Title<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-
-  <span class="nt">&lt;h1&gt;</span>This is a Heading<span class="nt">&lt;/h1&gt;</span>
-  <span class="nt">&lt;p&gt;</span>This is a paragraph.<span class="nt">&lt;/p&gt;</span>
-
-  <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div>
-
-<p>The web page title and the style sheet for display are defined in <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>, and the content is written in <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>. In short, an HTML file has to follow some rules to be displayed by the browser correctly. We refer to <a href="https://www.w3schools.com/html/">HTML Tutorial</a> to learn more about the HTML basics.</p>
-
-<h3 id="ssg-as-a-tool">SSG as a Tool</h3>
-
-<p>It can be tedious and troublesome to write HTML files directly, especially when the page content is long. There are so many types of websites. In blogging, what we need is the blog content. The interactions with the website and other fancy components are less required. The primary objective is to display the blog content nicely on a web page. Now SSGs can help. So the idea behind SSGs is simple: use templates to facilitate blog writing and automate web page generation.</p>
-
-<p>In SSGs, we can first create some templates for future display. Then we only need to focus on writing the content (usually in markdown files). SSGs will put the content to the template and generate a complete HTML file for display. After SSGs generate all the page files, we can put them to some web server, for example, GitHub, so that people can access your pages from the Internet.</p>
-
-<p>Another advantage of SSGs is that they can publish the web pages locally. It turns your computer to a local server so that you can view the web pages through the browser as if you view the page from a real server. It is extremely helpful for debugging.</p>
-
-<p>There are many SSGs available. For example, <a href="[https://nextjs.org](https://nextjs.org/)">Next.js</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://gohugo.io/">Hugo</a>. <a href="https://www.gatsbyjs.com/">Gatsby</a>, <a href="https://nuxtjs.org/">Nuxt</a>. Any of them does a good job.</p>
-
-<h2 id="resources">Resources</h2>
-
-<p>There are some resources discussing the functions of SSGs:</p>
-
-<p><a href="https://about.gitlab.com/blog/2016/06/10/ssg-overview-gitlab-pages-part-2/">GitLab SSGs Part 2: What are modern static site generators</a></p>
-
-  </article>
-  <hr />
-</div>
-
-<section class="post-index">
-    <ul>
-        
-            <li class="previous"><a href="/2019/12/static-dynamic-web.html" title="Static vs Dynamic Web Pages">&laquo; Previous</a></li>
-        
-        
-        
-            <li class="next"><a href="/2020/10/notes-1.html" title="Sets and Probability Measures">Next &raquo;</a></li>
-        
-    </ul>
-</section>
+  <!--step 1: print pagniation title except for Blog page.-->
   
-<div id="disqus_thread"></div>
+    
+    
+      <header class="topic-archive-header">
+        <h3>Archive | Optimization</h3>
+      </header>
+    
+  
 
-<script type="text/javascript">
+  <!--step 2: print pagination post title-->
+   
+    
+      <img src="https://www.matthewpeterkelly.com/tutorials/trajectoryOptimization.svg" height="100" width="100" style="float: left; margin-right: 15px;">
+      
+    
+    
+    <header class="post-header">
+      <h1 itemprop="name" class="post-title">
+        <a itemprop="url" class="post-link" href="/2023/04/intro-to-trajopt.html"><b>Introduction to Trajectory Optimization</b></a>
+      </h1>
+      <meta itemprop="keywords" content="optimization,math" />
+      <p class="post-meta">
+        Posted on
+        <time itemprop="datePublished" datetime="2023-04-10">
+          Apr 10, 2023
+        </time>
+        &nbsp;in
+        
+          <a href="/categories/#Optimization"><b>Optimization</b></a>
+        
+      </p>
+    </header>
 
-  var disqus_developer = 1;
-
-var disqus_shortname ='';
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <!--p>For page-paginate test only (temporary)</p-->
+    <!--step 3: print pagination post excerpt content-->
+    <article class="post-content" itemprop="articleBody">
+      <p>I have summarized some mathematical background and common computational approaches in trajectory optimization.</p>
 
 
+      <p><a href="/2023/04/intro-to-trajopt.html">(Continue reading ...)</a></p>
+    </article> <br><br><!--hr /-->
+  
 
+</div> 
+
+<!--using JS for implementation-->
+<div class="page-index">
+
+    <div class="page-index-half-col" style="text-align: left;">
+      	<p>Page 1 of 1</p>
+    </div>
+  
+    <div class="page-index-half-col" id="page-index-icon-col", style="text-align: right;">
+      	<script src="/assets/js/page-index.js"></script>
+      	<script>
+        	curr_page, total_pages, pageurl, base
+        	var curr_page = parseInt('1');
+        	var total_pages = parseInt('1');
+        	var pageurl = '/topics/optimization/index.html';
+        	var base = '';
+        	create_page_index_icon_list(curr_page, total_pages, pageurl, base);
+      	</script> 
+    </div>
+
+</div>
                 </div>
                 <div class="col-sm-2">
     
@@ -430,7 +397,7 @@ var disqus_shortname ='';
                 </a>
             </span>
             <span class="fa-stack">
-                <a href="/2019/12/static-site-generators.htmlfeed.xml" title="RSS feed">
+                <a href="/topics/optimization/index.htmlfeed.xml" title="RSS feed">
                     <i class="fa fa-circle fa-stack-2x icon-background"></i>
                     <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
                 </a>
@@ -440,7 +407,7 @@ var disqus_shortname ='';
                 <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
                 <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
                 <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                <a href="/2019/12/static-site-generators.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+                <a href="/topics/optimization/index.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
             </span>
             -->
         </div>

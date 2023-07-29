@@ -7,10 +7,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width initial-scale=1">
 
-<meta property="og:title" content="Generating Functions">
-<title>Generating Functions</title>
-<meta property="og:description" content="This notes reviews the generating function.">
-<meta property="og:url" content="http://localhost:4000/2020/11/notes-6-1.html">
+<meta property="og:title" content="Introduction to Koopman Operator">
+<title>Introduction to Koopman Operator</title>
+<meta property="og:description" content="I have introduced some prelimiary of the Koopman operator theory, which enables a data-driven control method.">
+<meta property="og:url" content="http://localhost:4000/2023/07/intro-to-koopman.html">
 <meta property="og:site_name" content="HuskyDev">
 <meta property="og:locale" content="">
 
@@ -18,7 +18,7 @@
 
 <link rel="icon" href="/assets/images/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/2020/11/notes-6-1.html">
+<link rel="canonical" href="http://localhost:4000/2023/07/intro-to-koopman.html">
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -76,7 +76,7 @@
                     <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
                     <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
                     <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                    <a href="/2020/11/notes-6-1.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
+                    <a href="/2023/07/intro-to-koopman.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
                 </div>
             </li>
             <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
@@ -111,213 +111,31 @@
                     <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 itemprop="name" class="post-title"><b>Generating Functions</b></h1>
-    <meta itemprop="keywords" content="notes,math" />
+    <h1 itemprop="name" class="post-title"><b>Introduction to Koopman Operator</b></h1>
+    <meta itemprop="keywords" content="optimization,math,control" />
     <p class="post-meta">
       Posted on
-      <time itemprop="datePublished" datetime="2020-11-07">
-        Nov 7, 2020
+      <time itemprop="datePublished" datetime="2023-07-28">
+        Jul 28, 2023
       </time>
       &nbsp;in
       
-        <a href="/categories/#Probability"><b>Probability</b></a>
+        <a href="/categories/#Optimization"><b>Optimization</b></a>
          
     </p>
   </header>
 
   <article class="post-content" itemprop="articleBody">
-    <h2 id="generating-functions">Generating functions</h2>
-<p>A sequence $a = {a_i \;\vert\; i = 0, 1 , 2, \dots }$ of real numbers may contain a lot of information. One concise way of storing this information is to wrap up the numbers together in a ``generating function”. For example, the (ordinary) <strong>generating function</strong> of the sequence $a$ is the function $G_a$ defined by 
-\(\begin{equation}
-    G_{a}(s)=\sum_{i=0}^{\infty} a_{i} s^{i} \quad \text { for } s \in \mathbb{R} \text { for which the sum converges. }
-\end{equation}\)
-In many circumstances it is easier to work with the generating function $G_a$ than with the original sequence $a$.</p>
+    <p>I have introduced some prelimiary of the Koopman operator theory, which enables a data-driven control method.</p>
 
-<div class="theorem"><p><b>Theorem.</b> [Abel's theorem]
-If $a_i \geq 0$ for all $i$ and $G_a(s)$ is finite for $\left\vert s \right\vert &lt; 1$, then $\lim_{s \uparrow 1} G_a (s) = \sum_{i=1}^ \infty a_i$, whether the sum is finite or equals $+\infty$. This standard result is useful when the radius of convergence $R$ satisfies $R = 1$, since then one has no a priori right to take the limit as $s \uparrow 1$.
-</p></div>
+<!--more-->
 
-<h3 id="moment-generating-function">Moment generating function</h3>
-<div class="theorem"><p><b>Definition.</b> 
-The **moment generating function** of the random variable $X$ is the function $M: \mathbb{R} \mapsto [0, \infty)$ given by the Laplace transform of the corresponding p.d.f. $f_X(s)$:
-$$\begin{equation}
-    M_X(t) = \mathbf{E} \left( e^{tX} \right) = \int_{-\infty}^\infty e^{tx} f_X(x) dx,
-\end{equation}$$
-or corresponding p.m.f. $p_X(k)$:
-$$\begin{equation}
-    M_X(t) = \sum_{k} e^{t k} \mathbf{P}(X=k) 
-    = \sum_k \sum_{n=0}^{\infty} \frac{(t k)^{n}}{n !} \mathbf{P}(X=k)
-    = \sum_{n=0}^{\infty} \frac{t^{n}}{n !}\left(\sum_k k^{n} \mathbf{P}(X=k)\right) 
-    = \sum_{n=0}^{\infty} \frac{t^{n}}{n !} \mathbf{E}\left(X^{n}\right).
-\end{equation}$$
-$M_X(-t)$ is so called **bilateral** Laplace transform of $f_X(x)$ or $p_X(k)$.
-</p></div>
+<p><a href="/assets/pdf/Koopman_intro.pdf">koopman slides</a></p>
 
-<p>Under the assumption that $M_X(t)$ is infinitely differentiable at $t=0$, the following statements are true.</p>
-<ol>
-    <li> $M^\prime(0) = \mathbf{E}(0) = \mu$.</li>
-    <li> $M^{(n)}(0) = \mathbf{E}(X^n)$.</li>
-    <li> Using Taylor's theorem, $M_X(t) = \sum_{k=0}^\infty \frac{t^k}{k!} \mathbf{E}(X^k)$.</li>
-</ol>
-
-<div class="theorem"><p><b>Theorem.</b> 
-If $X$ and $Y$ are independent, then
-$$\begin{equation}
-    \begin{split}
-        M_{X+Y}(t) &amp;= \int_{-\infty}^\infty e^{tz} f_{x+y}(z) dz \\
-        &amp;= \int_{-\infty}^\infty e^{tz} \int_{-\infty}^\infty f_X(x) f_Y(z-x) dx dz \\
-        &amp;= \int_{-\infty}^\infty e^{t(x+y)} \int_{-\infty}^\infty f_X(x) f_Y(y) dx dy \\
-        &amp;= M_X(t) M_Y(t).
-    \end{split}
-\end{equation}$$
-</p></div>
-
-<h3 id="characteristic-functions">Characteristic functions</h3>
-<p>Sometimes $\mathbf{E}(e^{tX})$ may blow up. So we consider some transformations in the complex domain, which usually perform better.</p>
-
-<div class="theorem"><p><b>Definition.</b> 
-The **characteristic function** of $X$ is the function $\phi: \mathbb{R} \mapsto \mathbb{C}$ defined by
-$$\begin{equation}
-    \phi(t)=\mathbf{E}\left(e^{i t X}\right) \quad \text { where } \quad i=\sqrt{-1}.
-\end{equation}$$
-We often write $\phi_x$ for the characteristic function of the random variable $X$. Characteristic functions are related to Fourier transforms. 
-</p></div>
-
-<div class="theorem"><p><b>Theorem.</b> 
-The characteristic function $\phi$ satisfies:
-<ol>
-    <li> $\phi(0) = 1$, $\left\vert \phi(t) \right\vert \leq 1$ for all $t$.</li>
-    <li> $\phi$ is uniformly continuous on $\mathbb{R}$ w.r.t. $t$.</li>
-    <li> If $X \sim \mathcal{N}(0,1)$, then $\phi_{X}(t) = e^{-t^2/2}$.</li>
-</ol>
-</p></div>
-
-<div class="proof"><a href="javascript:void(0)" id="pf1-link"><b>Proof &#9656;</b></a>
-<div class="proof-content" id="pf1-content"><p>
-We only prove the first statement.
-$$\begin{equation}
-    \begin{split}
-        \left\vert \phi(t) \right\vert &amp;= \left\vert \int_{-\infty}^\infty e^{itx} f(x)dx  \right\vert \\
-        &amp;\leq \int_{-\infty}^\infty \left\vert e^{itx} \right\vert f(x) dx \quad \text{(triangle inequality)} \\
-        &amp;= \int_{-\infty}^\infty f(x) dx \quad (\left\vert e^{itx} \right\vert=1) \\
-        &amp;= 1
-    \end{split}
-\end{equation}$$
-&#9724;</p>
-</div>
-</div>
-<script>toggle_proof("pf1");</script>
-
-<div class="example"><p><b>Example.</b> [Cauchy distribution]
-If $f(x) = 
-\frac{1}{\pi(1+x^2)}$, then the corresponding characteristic function is 
-$$\begin{equation}
-    \phi(t)=\frac{1}{\pi} \int_{-\infty}^{\infty} \frac{e^{i t x}}{1+x^{2}} d x = e^{-\left\vert t \right\vert}.
-\end{equation}$$
-</p></div>
-
-<div class="theorem"><p><b>Theorem.</b> 
-The following statements are true.
-<ol>
-    <li> If $\phi^{(k)}(0)$ exists, then 
-    $$\begin{equation}
-        \left\{\begin{array}{ll}{\mathbf{E}\left|X^{k}\right|&lt;\infty} &amp; {\text { if $k$}  \text { is even }} \\ {\mathbf{E}\left|X^{k-1}\right|&lt;\infty} &amp; {\text { if $k$ } \text { is odd }}\end{array}\right.
-    \end{equation}$$</li>
-    <li> If $\mathbf{E}(\left\vert X^k \right\vert) &lt; \infty$, then 
-    $$\begin{equation}
-        \phi(t)=\sum_{j=0}^{k} \frac{\mathbb{E}\left(X^{j}\right)}{j !}(i t)^{j}+\mathrm{o}\left(t^{k}\right)
-    \end{equation}$$
-    and so $\phi^{(k)}(0)=i^{k} \mathbb{E}\left(X^{k}\right)$.</li>
-</ol>
-</p></div>
-<div class="theorem"><p><b>Theorem.</b> 
-If $X$ and $Y$ are independent then 
-$$\begin{equation}
-    \phi_{X+Y}(t)=\phi_{X}(t) \phi_{Y}(t).
-\end{equation}$$
-Similarly, if $X_1, \dots, X_n$ are independent, then 
-$$\begin{equation}
-    \phi_{X_1 + \cdots + X_n}(t)= \prod_{i=1}^n \phi_{X_i}(t).
-\end{equation}$$
-</p></div>
-
-<div class="theorem"><p><b>Theorem.</b> 
-If $a, b \in \mathbb{R}$ and $Y = aX+b$, then $\phi_{Y}(t)=e^{i t b} \phi_{X}(a t)$.
-</p></div>
-<div class="proof"><a href="javascript:void(0)" id="pf2-link"><b>Proof &#9656;</b></a>
-<div class="proof-content" id="pf2-content"><p>
-$$\begin{equation}
-    \phi_{Y}(t)=\mathbf{E}\left(e^{i t(a X+b)}\right)=\mathbf{E}\left(e^{i t b} e^{i(a t) X}\right) = e^{i t b} \mathbf{E}\left(e^{i(a t) X}\right)=e^{i t b} \phi_{X}(a t).
-\end{equation}$$
-&#9724;</p>
-</div>
-</div>
-<script>toggle_proof("pf2");</script>
-
-<div class="theorem"><p><b>Theorem.</b> 
-Random variables $X$ and $Y$ are independent if and only if
-$$\begin{equation}
-    \phi_{X, Y}(s, t)=\phi_{X}(s) \phi_{Y}(t) \quad \text { for all } s \text { and } t.
-\end{equation}$$
-</p></div>
-
-<div class="theorem"><p><b>Definition.</b> 
-We say that the sequence $F_1 , F_2, \dots $ of distribution functions converges to the distribution function $F$, written $F_n \to F$, if $F(x) = \lim_{n\to\infty} F_n(x)$ at each point $x$ where $F$ is continuous.
-</p></div>
-
-<div class="theorem"><p><b>Theorem.</b> [Continnity theorem]
-Suppose that $F_1 , F_2, \dots $ is a sequence of distribution functions 
-with corresponding characteristic functions $\phi_1 , \phi_2, \dots $.
-<ol>
-    <li> If $F_n \to F$ for some distribution function $F$ with characteristic function $\phi$, then $\phi_n(t) \to \phi(t)$ for all $t$.</li>
-    <li> Conversely, if $\phi(t) \lim_{n\to\infty} \phi_n(t)$ exists and is continuous at $t=0$, then $\phi$ is the characteristic function of some distribution function $F$, and $F_n \to F$.</li>
-</ol>
-</p></div>
-
-<h2 id="central-limit-theorem">Central limit theorem</h2>
-<div class="theorem"><p><b>Definition.</b> 
-If $X, X_1 , X_2 , \dots$ is a sequence of random variables with respective distribution functions $F, F_1, F_2, \cdots$, we say that $X_n$ converges in distribution to $X$, written $X_{n} \stackrel{\mathrm{D}}{\rightarrow} X$, if $F_n \to F$ as $n \to\infty$.
-</p></div>
-
-<div class="theorem"><p><b>Theorem.</b> [Central limit theorem]
-Let $X_1 , X_2, \dots$ be a sequence of independent identically distributed random variables with finite mean $\mu$ and finite nonzero variance $\sigma^2$, and let $S_n = X_1 + X_2 + \cdots + X_n$. Then
-$$\begin{equation}
-    \frac{S_{n}-n \mu}{\sqrt{n \sigma^{2}}} \stackrel{\mathrm{D}}{\rightarrow} N(0,1) \quad \text { as } \quad n \rightarrow \infty.
-\end{equation}$$
-</p></div>
-
-<div class="proof"><a href="javascript:void(0)" id="pf3-link"><b>Proof &#9656;</b></a>
-<div class="proof-content" id="pf3-content"><p>
-First, write $Y_i = \frac{X_i - \mu}{\sigma}$, and let $\phi_Y$ be the characteristic function of the $Y_i$. We have that 
-$$\begin{equation}
-    \phi_{Y}(t)=1-\frac{1}{2} t^{2}+o\left(t^{2}\right).
-\end{equation}$$
-Note that $Y_i$ are i.i.d. So the characteristic function of $\sum_{i=1}^n Y_i$ is
-$$\begin{equation}
-    \phi_n = [\phi_{Y}(t)]^n = \left[ 1-\frac{1}{2} t^{2}+o\left(t^{2}\right) \right]^n.
-\end{equation}$$
-Also, the characteristic function $\psi_n$ of
-$$\begin{equation}
-    U_{n}=\frac{S_{n}-n \mu}{\sqrt{n \sigma^{2}}}=\frac{1}{\sqrt{n}} \sum_{i=1}^{n} Y_{i}
-\end{equation}$$
-satisfies
-$$\begin{equation}
-    \psi_{n}(t)=\left\{\phi_{Y}(t / \sqrt{n})\right\}^{n}=\left\{1-\frac{t^{2}}{2 n}+o\left(\frac{t^{2}}{n}\right)\right\}^{n} \rightarrow e^{-\frac{1}{2} t^{2}} \quad \text { as } \quad  n \rightarrow \infty,
-\end{equation}$$
-where we used 
-$$\begin{equation}
-    \lim_{n\to\infty} \left( 1 + \frac{a}{n} \right)^n = e^a.
-\end{equation}$$
-The last function is the characteristic function of the $\mathcal{N}(0, 1)$ distribution, and an application of the continuity theorem completes the proof.
-&#9724;</p>
-</div>
-</div>
-<script>toggle_proof("pf3");</script>
-
-<div class="theorem"><p><b>Corollary.</b>
-$Q_n = \frac{1}{n}S_n \to \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right)$, $S_n \to \mathcal{N}(\mu, n \sigma^2)$. The sampling error is proportional to $\frac{1}{\sqrt{n}}$.
-</p></div>
-<p>There is a generalization. If $X_i$ is not i.i.d., we can still use the central limit theorem.</p>
+<figure>
+    <img src="/assets/images/blog/2023/2023-07-28-koopman_intro_outline.png" height="350" />
+    <figcaption>Fig. 1: Outline of Koopman operator theory slides.</figcaption>
+</figure>
 
   </article>
   <hr />
@@ -326,11 +144,11 @@ $Q_n = \frac{1}{n}S_n \to \mathcal{N} \left(\mu, \frac{\sigma^2}{n} \right)$, $S
 <section class="post-index">
     <ul>
         
-            <li class="previous"><a href="/2020/11/notes-6.html" title="Sum of Random Variables">&laquo; Previous</a></li>
+            <li class="previous"><a href="/2023/04/intro-to-trajopt.html" title="Introduction to Trajectory Optimization">&laquo; Previous</a></li>
         
         
         
-            <li class="next"><a href="/2020/11/notes-7.html" title="Markov Chain">Next &raquo;</a></li>
+            <li class="disabled"><a>Next &raquo;</a></li>
         
     </ul>
 </section>
@@ -579,7 +397,7 @@ var disqus_shortname ='';
                 </a>
             </span>
             <span class="fa-stack">
-                <a href="/2020/11/notes-6-1.htmlfeed.xml" title="RSS feed">
+                <a href="/2023/07/intro-to-koopman.htmlfeed.xml" title="RSS feed">
                     <i class="fa fa-circle fa-stack-2x icon-background"></i>
                     <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
                 </a>
@@ -589,7 +407,7 @@ var disqus_shortname ='';
                 <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
                 <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
                 <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                <a href="/2020/11/notes-6-1.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
+                <a href="/2023/07/intro-to-koopman.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
             </span>
             -->
         </div>

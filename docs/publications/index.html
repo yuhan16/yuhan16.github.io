@@ -126,14 +126,7 @@
     
     <div class="pub-content" id="pub-11-abs-content">
         <div class="pub-content-pad">
-            Guided cooperation is a common task in many multi-agent teaming applications. 
-            The planning of the cooperation is difficult when the leader robot has incomplete information about the follower, and there is a need to learn, customize, and adapt the cooperation plan online. 
-            To this end, we develop a learning-based Stackelberg game-theoretic framework to address this challenge to achieve optimal trajectory planning for heterogeneous robots. 
-            We first formulate the guided trajectory planning problem as a dynamic Stackelberg game and design the cooperation plans using open-loop Stackelberg equilibria. 
-            We leverage meta-learning to deal with the unknown follower in the game and propose a Stackelberg meta-learning framework to create online adaptive trajectory guidance plans, 
-            where the leader robot learns a meta-best-response model from a prescribed set of followers offline and then fast adapts to a specific online trajectory guidance task using limited learning data. 
-            We use simulations in three different scenarios to elaborate on the effectiveness of our framework. 
-            Comparison with other learning approaches and no guidance cases show that our framework provides a more time- and data-efficient planning method in trajectory guidance tasks.
+            Trajectory guidance requires a leader robotic agent to assist a follower robotic agent to cooperatively reach the target destination. However, planning cooperation becomes difficult when the leader serves a family of different followers and has incomplete information about the followers. There is a need for learning and fast adaptation of different cooperation plans. We develop a Stackelberg meta-learning approach to address this challenge. We first formulate the guided trajectory planning problem as a dynamic Stackelberg game to capture the leader-follower interactions. Then, we leverage meta-learning to develop cooperative strategies for different followers. The leader learns a meta-best-response model from a prescribed set of followers. When a specific follower initiates a guidance query, the leader quickly adapts to the follower-specific model with a small amount of learning data and uses it to perform trajectory guidance. We use simulations to elaborate that our method provides a better generalization and adaptation performance on learning followers' behavior than other learning approaches. The value and the effectiveness of guidance are also demonstrated by the comparison with zero guidance scenarios.
         </div>
     </div>
     <div class="pub-content" id="pub-11-bib-content">
@@ -164,19 +157,7 @@
     
     <div class="pub-content" id="pub-10-abs-content">
         <div class="pub-content-pad">
-            Guided cooperation allows intelligent agents with heterogeneous capabilities to work
-            together by following a leader-follower type of interaction. However, the associated control
-            problem becomes challenging when the leader agent does not have complete information about
-            follower agents. There is a need for learning and adaptation of cooperation plans. To this
-            end, we develop a meta-learning-based Stackelberg game-theoretic framework to address the
-            challenges in the guided cooperative control for linear systems. We first formulate the guided
-            cooperation between agents as a dynamic Stackelberg game and use the feedback Stackelberg
-            equilibrium as the agent-wise cooperation strategy. We further leverage meta-learning to address
-            the incomplete information of follower agents, where the leader agent learns a meta-response
-            model from a prescribed set of followers offline and adapts to a new coming cooperation task
-            with a small amount of learning data. We use a case study in robot teaming to corroborate the
-            effectiveness of our framework. Comparison with other learning approaches also shows that our
-            learned cooperation strategy provides better transferability for different cooperation tasks.
+            Guided cooperation allows intelligent agents with heterogeneous capabilities to work together by following a leader-follower type of interaction. However, the associated control problem becomes challenging when the leader agent does not have complete information about follower agents. There is a need for learning and adaptation of cooperation plans. To this end, we develop a meta-learning-based Stackelberg game-theoretic framework to address the challenges in the guided cooperative control for linear systems. We first formulate the guided cooperation between agents as a dynamic Stackelberg game and use the feedback Stackelberg equilibrium as the agent-wise cooperation strategy. We further leverage meta-learning to address the incomplete information of follower agents, where the leader agent learns a meta-response model from a prescribed set of followers offline and adapts to a new coming cooperation task with a small amount of learning data. We use a case study in robot teaming to corroborate the effectiveness of our framework. Comparison with other learning approaches also shows that our learned cooperation strategy provides better transferability for different cooperation tasks.
         </div>
     </div>
     <div class="pub-content" id="pub-10-bib-content">
@@ -381,7 +362,7 @@
     </div>
     <div class="pub-content" id="pub-3-bib-content">
         <div class="pub-content-pad">
-            @INPROCEEDINGS{liu2022understanding,<br>
+            @inproceedings{liu2022understanding,<br>
                 author={Liu, Shutian and Zhao, Yuhan and Zhu, Quanyan},<br>
                 booktitle={2022 American Control Conference (ACC)}, <br>
                 title={Understanding the Interplay Between Herd Behaviors and Epidemic Spreading Using Federated Evolutionary Games}, <br>
@@ -522,7 +503,7 @@
 
 
 <div class="pub">
-    <h4 class="pub-title">	Multi-Agent Learning for Resilient Distributed Control Systems</h4>
+    <h4 class="pub-title">Multi-Agent Learning for Resilient Distributed Control Systems</h4>
     <p class="pub-meta"><b>Yuhan Zhao</b>, Quanyan Zhu</p>
     <p class="pub-meta"><em>Submitted as a Chapter for Power Grid Resilience: Theory and Applications</em></p>
     

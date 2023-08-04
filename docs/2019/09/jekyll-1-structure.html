@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Learning Jelly Part 1: Structure">
+<title>Learning Jelly Part 1: Structure</title>
+<meta property="og:description" content="This post introduces the directory structure of Jekyll to help people undertand the Jekyll project environments. We also discuss some basic concepts such as ...">
+<meta property="og:url" content="http://localhost:4000/2019/09/jekyll-1-structure.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2019/09/jekyll-1-structure.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/categories">Categories</a></li>
+                
+            
+                
+                    <li><a href="/tags">Tags</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Learning Jelly Part 1: Structure</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="far fa-calendar-alt">&nbsp;</i>2019-09-24
+		</span>
+
+		<span class="post-meta">
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="far fa-clock"></i>&nbsp;15 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#web">web,</a>
+                
+            
+                
+                <a href="/tags/#jekyll">jekyll,</a>
+                
+            
+                
+                <a href="/tags/#templating">templating</a>
+                
+            
+		</span-->
+	</div>
+
+    <!--post content-->
+    <article class="post-content">
+        <p>This post introduces the directory structure of Jekyll to help people undertand the Jekyll project environments. We also discuss some basic concepts such as templates and includes.</p>
+
+<!--more-->
+
+<h2 id="jekyll">Jekyll</h2>
+
+<p><a href="https://jekyllrb.com/">Jekyll</a> is one of the most popular static site generators (SSGs). It is written in <a href="https://www.ruby-lang.org/en/">Ruby</a> and is supported by <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+
+<p>The Jekyll document is comprehensive and instructive. So I do encourage people to read the documentation if they decide to use it. Here, I will introduce Jekyll from my perspective and provide a general idea of how Jekyll works.</p>
+
+<h3 id="prerequisites-and-installation">Prerequisites and Installation</h3>
+
+<p>Since jekyll is software written in Ruby, we first need to make sure the Ruby programming language is installed in our computer. It comes with Linux distrirbutions. We can check it using the command</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ruby <span class="nt">-v</span>	<span class="c"># display ruby version info</span>
+</code></pre></div></div>
+
+<p>We can also follow the <a href="https://jekyllrb.com/docs/">Quickstart</a> in Jekyll documentation to create a quick jekyll project and view it in the browser.</p>
+
+<h3 id="directory-structure">Directory Structure</h3>
+
+<p>Jekyll creates a series of directories. It is important to understand their functions so that we can create the pages we want. A typical jekyll directory is like the following (from Jekyll documentation):</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── _config.yml
+├── _data
+│   └── members.yml
+├── _drafts
+│   └── on-simplicity-in-technology.md
+├── _includes
+│   ├── footer.html
+│   └── header.html
+├── _layouts
+│   ├── default.html
+│   └── post.html
+├── _posts
+│   ├── 2007-10-29-why-every-programmer-should-play-nethack.md
+│   └── 2009-04-26-barcamp-boston-4-roundup.md
+├── _sass
+│   ├── _base.scss
+│   └── _layout.scss
+├── _site
+└── index.html    # can also be an 'index.md' with valid front matter
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">_posts</code> directory contains all blog contents. The content is usually written by <a href="https://www.markdownguide.org/">Markdown</a>. Each file corresponds to an individual post page and the filename should follow the convention <code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.md</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">_draft</code> directory stores the drafts, and the files in the directory will not be generated to pages, acting like unpublished <code class="language-plaintext highlighter-rouge">_post</code> directory.</li>
+  <li><code class="language-plaintext highlighter-rouge">_layout</code> directory contains the templates written in <code class="language-plaintext highlighter-rouge">HTML</code>, which describes the skeleton for web pages.</li>
+  <li><code class="language-plaintext highlighter-rouge">_include</code> directory stores the frequently used HTML snippets which are used by <code class="language-plaintext highlighter-rouge">include</code> command.</li>
+  <li><code class="language-plaintext highlighter-rouge">_sass</code> directory stores the cascade style sheets (CSS), which specify the display format of HTML file.</li>
+  <li><code class="language-plaintext highlighter-rouge">_data</code> (or <code class="language-plaintext highlighter-rouge">assets</code>) directory stores resources to build the website, such as images, pdf, and js codes.</li>
+  <li><code class="language-plaintext highlighter-rouge">_config.yml</code> is the configuration file for Jekyll. We can can specify build configurations and define global variables in this file.</li>
+  <li><code class="language-plaintext highlighter-rouge">index.html</code> (or <code class="language-plaintext highlighter-rouge">index.md</code>) is the index page, which is the default page to show when accessing the blog.</li>
+  <li><code class="language-plaintext highlighter-rouge">_site</code> directory stores the generated static web pages.</li>
+</ul>
+
+<p>To summarize, the following three directories relates to web page design and display:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">_layout</code></li>
+  <li><code class="language-plaintext highlighter-rouge">_include</code></li>
+  <li><code class="language-plaintext highlighter-rouge">_sass</code></li>
+</ul>
+
+<p>The following three are the most edited ones after we set page style:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">_posts</code></li>
+  <li><code class="language-plaintext highlighter-rouge">_draft</code></li>
+  <li><code class="language-plaintext highlighter-rouge">_data</code> (or <code class="language-plaintext highlighter-rouge">asset</code>)</li>
+</ul>
+
+<p>For any build or global configuration, we check</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">_config.yml</code></li>
+</ul>
+
+<p>Some comments for <code class="language-plaintext highlighter-rouge">index.html</code> and <code class="language-plaintext highlighter-rouge">_sites</code>.</p>
+
+<p>When we access a web server, there is always an index page for each directory. By default, the web server will send the index page back to the user if the user does not specify in detail which HTML file to look for. Therefore, <code class="language-plaintext highlighter-rouge">index.html</code> serves as the homepage of the blog.</p>
+
+<p>Jekyll is a SSG and it does not render the page dynamically. It generates everything in compete HTML pages in advance and output them to <code class="language-plaintext highlighter-rouge">_site</code>. We can upload <code class="language-plaintext highlighter-rouge">_site</code> directory to the web server (e.g. Github Page) for online views.</p>
+
+<h3 id="layouts">Layouts</h3>
+<p>A layout file is a HTML file that specify the structure of a web page. It defines the template that all pages will follow. We can define different layout files for different styles.</p>
+
+<p>In general, we have a base layout named <code class="language-plaintext highlighter-rouge">default.html</code>, which defines the skelenton of all web pages. It needs to contain the <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> element (a complete HTML file). A typical <code class="language-plaintext highlighter-rouge">default.html</code> looks like the following.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+{% include head.html %}
+    <span class="nt">&lt;body&gt;</span>
+      
+      	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+      	{% include header.html %}
+      	<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"page-content wrapper"</span><span class="nt">&gt;</span>
+        	{{ content }}
+      	<span class="nt">&lt;/div&gt;</span>
+      	{% include footer.html %}
+    	<span class="nt">&lt;/div&gt;</span>
+      
+  	<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>The base layout does not need to include detailed structures. We can use other templates and HTML snippets for finner decorations.</p>
+
+<p>For convenience, other layouts (e.g., <code class="language-plaintext highlighter-rouge">post.html</code>) can inherit the structure in <code class="language-plaintext highlighter-rouge">default.html</code> and do finner templating. For example, a typical <code class="language-plaintext highlighter-rouge">post.html</code> looks like the following.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+---
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"post"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">"post-header"</span><span class="nt">&gt;</span>
+      	<span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"post-title"</span><span class="nt">&gt;</span>{{ page.title }}<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/header&gt;</span>
+  
+    <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"post-content"</span><span class="nt">&gt;</span> 
+      	{{ content }}
+    <span class="nt">&lt;/article&gt;</span>
+  <span class="nt">&lt;/div&gt;</span> 
+</code></pre></div></div>
+
+<p>Three things for notice:</p>
+<ul>
+  <li>We add the variable <code class="language-plaintext highlighter-rouge">layout: default</code> in the front matter to make the <code class="language-plaintext highlighter-rouge">post.html</code> inherit from <code class="language-plaintext highlighter-rouge">default.html</code>.</li>
+  <li>The inheritance means that all contents of <code class="language-plaintext highlighter-rouge">post.html</code> will replace  <code class="language-plaintext highlighter-rouge">{{ content }}</code>  in the <code class="language-plaintext highlighter-rouge">default.html</code>.</li>
+  <li>The inherited layouts do not need to be a complete HTML file. i.e., does not need to contain <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> elements.</li>
+</ul>
+
+<h3 id="includes">Includes</h3>
+<p>Includes are the frequently used HTML snippets which are used by <code class="language-plaintext highlighter-rouge">include</code> command. For example, a typical <code class="language-plaintext highlighter-rouge">footer.html</code> snippets looks like the following.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;footer</span> <span class="na">class=</span><span class="s">"site-footer"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Copyright <span class="ni">&amp;copy;</span> <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>HuskyDev<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Powered by <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://github.com/jekyll/jekyll"</span><span class="nt">&gt;</span>Jekyll<span class="nt">&lt;/a&gt;</span> 
+<span class="nt">&lt;/footer&gt;</span>
+</code></pre></div></div>
+
+<p>Includes are not layouts. They are independent HTML snippets and does not need a template. We can include them anytime we want.</p>
+
+<h2 id="how-to-get-started">How to Get Started</h2>
+<p>My suggestion is to start from understanding basics of HTML and CSS, such as grammars and formats. There already have many nice tutorial websites, for example, <a href="https://www.w3schools.com/html/default.asp">W3Schools HTML Tutorial</a> and <a href="https://www.w3schools.com/css/">W3Schools CSS Tutorial</a>.</p>
+
+<p>Then, navigate the <code class="language-plaintext highlighter-rouge">_layout</code> directory to understand the structure of templates that used in the website. Start from <code class="language-plaintext highlighter-rouge">default.html</code> (or default layout with other names). Try to ignore the templating variables and statements in the layouts. Take a look into the <code class="language-plaintext highlighter-rouge">_include</code> directory if any template uses includes.</p>
+
+<p>After that, we will have a basic knowledge of how the web page is designed and which part of template takes control of the web page. Now it is the time to start to learn the templating language and Jekyll.</p>
+
+<p>Always remember that <u><i>Jekyll is an automation tool that help us to fill the designed template with the written posts</i></u>. The posts written by Markdown are easy to read and understand. However, they are not well format, and they are not in the HTML format used in the web. Jekyll converts all the things in HTML files. This perspective helps us to quickly grasp the big picture of Jelyll and SSGs.</p>
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/web">web,</a>
+                
+            
+                
+                <a href="/tags/jekyll">jekyll,</a>
+                
+            
+                
+                <a href="/tags/templating">templating</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+<section class="pagination" style="margin-bottom: 0;">
+    
+        <a class="pagination-pre-next" href="/2019/09/scss-notes.html">Previous: Notes on CSS files</a>
+    
+
+    
+        <a class="pagination-pre-next" href="/2019/09/jekyll-2-template.html" title="Learning Jelly Part 2: Templating Language">Next: Learning Jelly Part 2: Templating Language</a>
+    
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+// Get the button
+let mybutton = document.getElementById("back-top-button");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2023 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

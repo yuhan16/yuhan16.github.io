@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Learning Jelly Part 2: Templating Language">
+<title>Learning Jelly Part 2: Templating Language</title>
+<meta property="og:description" content="This post introduces the concept of templating languages and the Liquid templating language used in Jekyll. We also introduce how to define templating variab...">
+<meta property="og:url" content="http://localhost:4000/2019/09/jekyll-2-template.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2019/09/jekyll-2-template.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/categories">Categories</a></li>
+                
+            
+                
+                    <li><a href="/tags">Tags</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Learning Jelly Part 2: Templating Language</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="far fa-calendar-alt">&nbsp;</i>2019-09-28
+		</span>
+
+		<span class="post-meta">
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="far fa-clock"></i>&nbsp;15 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#web">web,</a>
+                
+            
+                
+                <a href="/tags/#jekyll">jekyll,</a>
+                
+            
+                
+                <a href="/tags/#templating">templating</a>
+                
+            
+		</span-->
+	</div>
+
+    <!--post content-->
+    <article class="post-content">
+        <p>This post introduces the concept of templating languages and the Liquid templating language used in Jekyll. We also introduce how to define templating variables in the front matter to control the page layout.</p>
+
+<!--more-->
+
+<h2 id="templating-language">Templating Language</h2>
+
+<blockquote>
+  <p>A templating language basically is a language which allows defining placeholders that should later on be replaced for the purpose of implementing designs. Obviously modern template languages not only support placeholders, but also loops and conditions which are often necessary for designing a web page.</p>
+
+  <p><em>—From <a href="https://stackoverflow.com/questions/4026597/what-is-a-templating-language">Stack Overflow: What is a templating language?</a></em></p>
+</blockquote>
+
+<p>Jekyll uses the <a href="https://shopify.github.io/liquid/">Liquid</a> templating language to process templates. We can think the templating language as a “scripting language” in HTML files. It defines how Jekyll process the HTML files and generate the final version.</p>
+
+<p><strong>Note:</strong> The templating language is different from other real scripting language such as JavaScript and Python. The browser cannot read it. All the template statements will be replaced by HTML after Jekyll process them. So in the final versions of the generated HTML file, there is no templating Language.</p>
+
+<p>Liquid has ample functions such as <code class="language-plaintext highlighter-rouge">include</code> function and other string processing functions, which facilitate the static web page writing.</p>
+
+<h3 id="front-matter-and-variables">Front Matter and Variables</h3>
+
+<p>The front matter is specified by <code class="language-plaintext highlighter-rouge">---</code> block at the front of each file. If we add the front matter to a file, it means that we want Jekyll to process this file. The process can be including other HTML snippets, or replacing template statements.</p>
+
+<p>The front matter specifies variables for processing. For example, in <code class="language-plaintext highlighter-rouge">post.html</code>  layout, we add <code class="language-plaintext highlighter-rouge">layout</code> variable to the front matter. So Jekyll will first substitute the HTML snippets and then put every thing to back to the <code class="language-plaintext highlighter-rouge">default.html</code> template to generate the final HTML file.</p>
+
+<p>Some global variables are reserved by Jekyll, for example, <code class="language-plaintext highlighter-rouge">layout</code>, <code class="language-plaintext highlighter-rouge">content</code>, <code class="language-plaintext highlighter-rouge">site</code>, <code class="language-plaintext highlighter-rouge">page</code>. See <a href="https://jekyllrb.com/docs/variables/">Jekyll Variables</a> for more information. These variables are useful when we write the template HTML files.</p>
+
+<p>We can also define local variables (user-defined variables) in the front matter and reference it. For example, we define <code class="language-plaintext highlighter-rouge">mylogo-link</code> variable in the following post file:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">mylogo_link</span><span class="pi">:</span> <span class="s">https://path/to/image/.png</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>Then we can reference this variable in the file by writting <code class="language-plaintext highlighter-rouge">{{ mylogo_link }}</code>.</p>
+
+<p>We can also define variables in <code class="language-plaintext highlighter-rouge">_config.yml</code>. The variables are in the <code class="language-plaintext highlighter-rouge">site</code> domain and can be accessed by <code class="language-plaintext highlighter-rouge">{{site.my_variable}}</code>.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>We have introduced the general framework of Jekyll and the idea of how Jekyll works. In the future posts, I will write more details about Jekyll usage and the problems I have met when I use Jekyll.</p>
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/web">web,</a>
+                
+            
+                
+                <a href="/tags/jekyll">jekyll,</a>
+                
+            
+                
+                <a href="/tags/templating">templating</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+<section class="pagination" style="margin-bottom: 0;">
+    
+        <a class="pagination-pre-next" href="/2019/09/jekyll-1-structure.html">Previous: Learning Jelly Part 1: Structure</a>
+    
+
+    
+        <a class="pagination-pre-next" href="/2019/11/mathjax-notes.html" title="Mathjax in Jekyll Notes">Next: Mathjax in Jekyll Notes</a>
+    
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+// Get the button
+let mybutton = document.getElementById("back-top-button");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2023 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

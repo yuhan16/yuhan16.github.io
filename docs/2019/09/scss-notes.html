@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+    <head>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,8 +22,11 @@
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
 <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+
 
 <link rel="stylesheet" href="/assets/css/github.min.css">
+<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -49,84 +51,78 @@
 
 
 <body>
-<div class="container-all">
-        
-    <header class="header-container" id="header-container">
-    <nav class="navbar" id="navbar">
-        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
-        
-        <div class="navbar-right" id="navbar-right">
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
         <ul class="main-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
-                <ul class="sub-menu">
-                    <li><a href="/topics/probability">Probability</a></li>
-                    <li><a href="/topics/optimization">Optimization</a></li>
-                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
-                    <li><a href="/topics/web">Web</a></li>
-                    <li><a href="/topics/programming">Programming</a></li>
-                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
-                </ul>
-            </li>
-            <li><a href="/publications">Publications</a></li>
-            <!--li><a href="/projects">Projects</a></li-->
-            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
-                <div class="sub-menu-contact">
-                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
-                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
-                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                    <a href="/2019/09/scss-notes.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
-                </div>
-            </li>
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/categories">Categories</a></li>
+                
+            
+                
+                    <li><a href="/tags">Tags</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
             <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
         </ul>
-        </div>
-
+    </div>
     </nav>
-</header>
 
-<script>
-    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
-    window.onscroll = function() {scrollFunction()};
-    
-    function scrollFunction() {
-      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("header-container").style.padding = "1px 5px";
-        document.getElementById("navbar-logo").style.height = "55px";
-        document.getElementById("navbar-right").style.height = "55px";
-      } else {
-        document.getElementById("header-container").style.padding = "20px 5px";
-        document.getElementById("navbar-logo").style.height = "80px";
-        document.getElementById("navbar-right").style.height = "80px";
-      }
-    }
-</script>
 
-    <div class="body-container">
-        <div class="page-content">
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Notes on CSS files</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="far fa-calendar-alt">&nbsp;</i>2019-09-10
+		</span>
+
+		<span class="post-meta">
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/miscellaneous">Miscellaneous</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="far fa-clock"></i>&nbsp;
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
             
+                
+                <a href="/tags/#css">css</a>
+                
             
-                <div class="col-sm-8">
-                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+		</span-->
+	</div>
 
-  <header class="post-header">
-    <h1 itemprop="name" class="post-title"><b>Notes on CSS files</b></h1>
-    <meta itemprop="keywords" content="css" />
-    <p class="post-meta">
-      Posted on
-      <time itemprop="datePublished" datetime="2019-09-10">
-        Sep 10, 2019
-      </time>
-      &nbsp;in
-      
-        <a href="/categories/#Miscellaneous"><b>Miscellaneous</b></a>
-         
-    </p>
-  </header>
-
-  <article class="post-content" itemprop="articleBody">
-    <p>This notes documents the usage of css classes for the personal website.
+    <!--post content-->
+    <article class="post-content">
+        <p>This notes documents the usage of css classes for the personal website.
 <!--more--></p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>container-all  <span class="c"># entire body</span>
@@ -158,20 +154,32 @@
   <li><code class="language-plaintext highlighter-rouge">post-index</code>: previous and next posts. not in <code class="language-plaintext highlighter-rouge">post</code> class.</li>
 </ul>
 
-  </article>
-  <hr />
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/css">css</a>
+                
+            
+		</span>
+	</div>
+
 </div>
 
-<section class="post-index">
-    <ul>
-        
-            <li class="previous"><a href="/2019/09/wellcome.html" title="Build Up My Own Website!">&laquo; Previous</a></li>
-        
-        
-        
-            <li class="next"><a href="/2019/09/jekyll-notes.html" title="jekyll test notes">Next &raquo;</a></li>
-        
-    </ul>
+<section class="pagination" style="margin-bottom: 0;">
+    
+        <a class="pagination-pre-next" href="/2019/09/jekyll-tests.html">Previous: jekyll tests</a>
+    
+
+    
+        <a class="pagination-pre-next" href="/2019/09/jekyll-1-structure.html" title="Learning Jelly Part 1: Structure">Next: Learning Jelly Part 1: Structure</a>
+    
 </section>
   
 <div id="disqus_thread"></div>
@@ -192,250 +200,40 @@ var disqus_shortname ='';
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
-
-                </div>
-                <div class="col-sm-2">
-    
-    <div class="sidebar-module">
-  <h4>Recent Posts</h4>
-  
-  <li>
-  <a href="/2023/07/intro-to-koopman.html" title="Introduction to Koopman Operator" rel="bookmark">Introduction to Koopman Operator</a>
-  </li>
-  
-  <li>
-  <a href="/2023/04/intro-to-trajopt.html" title="Introduction to Trajectory Optimization" rel="bookmark">Introduction to Trajectory Optimization</a>
-  </li>
-  
-  <li>
-  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
-  </li>
-  
-  <li>
-  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
-  </li>
-  
-  <li>
-  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
-  </li>
-  
-</div>
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
 
 
-    <div class="sidebar-module">
-  <h4>Categories</h4>
-  
-    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
-  
-    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
-  
-    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
-  
-    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
-  
-    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
-  
-    <li><a href="/categories/#Optimization" title="Optimization" rel="2">Optimization (2)</a></li>
-  
-</div>
+<script>
+// Get the button
+let mybutton = document.getElementById("back-top-button");
 
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
 
-    <div class="sidebar-module">
-  <h4>Tags</h4>
-  
-    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
-  
-    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
-  
-    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
-  
-    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
-  
-    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
-  
-    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
-  
-    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
-  
-    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
-  
-    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
-  
-    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
-  
-    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
-  
-    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
-  
-    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
-  
-    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
-  
-    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
-  
-    <a href="/tags/#math" title="math" rel="13">math</a> &nbsp;
-  
-    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
-  
-    <a href="/tags/#optimization" title="optimization" rel="2">optimization</a> &nbsp;
-  
-    <a href="/tags/#control" title="control" rel="1">control</a> &nbsp;
-  
-</div>
+function scrollFunction() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
 
-
-    <div class="sidebar-module">
-  <h4>Archive</h4>
-
-  
-    
-    
-      
-      
-      <li id="2023" > <a href="/archives/#2023">2023</a></li>
-    
-  
-    
-    
-  
-    
-    
-      
-      
-      <li id="2022" > <a href="/archives/#2022">2022</a></li>
-    
-  
-    
-    
-      
-      
-      <li id="2020" > <a href="/archives/#2020">2020</a></li>
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-      
-      
-      <li id="2019" > <a href="/archives/#2019">2019</a></li>
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-
-</div>
-
-
-</div>
-    
-    
-
-            
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
         </div>
-    </div>
+	</div>
 
-    <footer class="footer-container">
-    
-    <div class="footer-content">
-        
-        <div class="footer-half-col" style="text-align: left;">
-            <p>
-                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
-                <span style="padding-left:30px"></span>
-                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
-            </p>
-        </div>
-        
-        <div class="footer-half-col" style="text-align: right;">
-            <!--display menu-->
-            <span>
-                <a href="/">Home</a> | 
-                <a href="/blog">Blog</a> | 
-                <a href="/categories">Topics</a> | 
-                <a href="/publications">Publications</a> | 
-                <a href="/projects">Projects</a>
-            </span>
-            <span style="padding-left:15px"></span>
-            <!--display contact icons-->
-            <span class="fa-stack">
-                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
-                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
-                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
-                </a>
-            </span>
-            <span class="fa-stack">
-                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
-                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
-                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
-                </a>
-            </span>
-            <span class="fa-stack">
-                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
-                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
-                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
-                </a>
-            </span>
-            <span class="fa-stack">
-                <a href="/2019/09/scss-notes.htmlfeed.xml" title="RSS feed">
-                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
-                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
-                </a>
-            </span>
-            <!--
-            <span>
-                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
-                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
-                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                <a href="/2019/09/scss-notes.htmlfeed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
-            </span>
-            -->
-        </div>
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2023 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
     </div>
 </footer>
-
-</div>
 </body>
 
 </html>

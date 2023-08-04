@@ -5,17 +5,19 @@
     <description>HuskDev is Yuhan&apos;s personal blog.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 02 Aug 2023 18:19:34 -0400</pubDate>
-    <lastBuildDate>Wed, 02 Aug 2023 18:19:34 -0400</lastBuildDate>
+    <pubDate>Thu, 03 Aug 2023 23:02:43 -0400</pubDate>
+    <lastBuildDate>Thu, 03 Aug 2023 23:02:43 -0400</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
         <title>Introduction to Koopman Operator</title>
-        <description>&lt;p&gt;I have introduced some prelimiary of the Koopman operator theory, which enables a data-driven control method.&lt;/p&gt;
+        <description>&lt;p&gt;Koopman operator theory provides a linear model of a dynamical system in the infinite dimensional space. In this post, I have summarized some basics of the Koopman operator and its extention to control systems.&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-&lt;p&gt;&lt;a href=&quot;/assets/pdf/Koopman_intro.pdf&quot;&gt;koopman slides&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;By finding the Koopman operator of a dynamical (control) system, we can leverage existing and well-studied theory in linear systems to approach any nonlinear systems. Koopman operator theory also provides a data-driven control method.&lt;/p&gt;
+
+&lt;p&gt;More details can be found in &lt;a href=&quot;/assets/pdf/Koopman_intro.pdf&quot;&gt;Koopman operator slides&lt;/a&gt;.&lt;/p&gt;
 
 &lt;figure&gt;
     &lt;img src=&quot;/assets/images/blog/2023/2023-07-28-koopman_intro_outline.png&quot; height=&quot;350&quot; /&gt;
@@ -39,14 +41,14 @@
     
       <item>
         <title>Introduction to Trajectory Optimization</title>
-        <description>&lt;p&gt;I have summarized some mathematical background and common computational approaches in trajectory optimization.&lt;/p&gt;
+        <description>&lt;p&gt;Trajectory optimization has been widely used in robotics for various tasks such as navigation and manipulation. In this post, I have summarized related mathematical background and common computational approaches in trajectory optimization.&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-&lt;p&gt;&lt;a href=&quot;/assets/pdf/Trajopt_intro.pdf&quot;&gt;TrajectOpt slides&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;More detials can be found in &lt;a href=&quot;/assets/pdf/Trajopt_intro.pdf&quot;&gt;TrajectOpt slides&lt;/a&gt;.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/blog/2023/2023-04-10-trajopt_intro_outline.png&quot; height=&quot;350&quot; /&gt;
+    &lt;img src=&quot;/assets/images/blog/2023/2023-04-10-traj_intro_outline.png&quot; height=&quot;350&quot; /&gt;
     &lt;figcaption&gt;Fig. 1: Outline of trajectory optimization slides.&lt;/figcaption&gt;
 &lt;/figure&gt;
 </description>
@@ -54,9 +56,11 @@
         <link>http://localhost:4000/2023/04/intro-to-trajopt.html</link>
         <guid isPermaLink="true">http://localhost:4000/2023/04/intro-to-trajopt.html</guid>
         
-        <category>optimization</category>
-        
         <category>math</category>
+        
+        <category>collocation</category>
+        
+        <category>trajectory optimization</category>
         
         
         <category>Optimization</category>
@@ -65,11 +69,13 @@
     
       <item>
         <title>Introduction to Reinforcement Learning</title>
-        <description>&lt;p&gt;I have been learning Reinforcement Learning (RL) recently and I want to share some slides as a personal summary on RL.&lt;/p&gt;
+        <description>&lt;p&gt;Reinforcement Learning (RL) has been a hot research area in the past two decades. It refers to the learning paradigm that an intelligent agent learns the optimal policy to take actions by interacting with the environments. In this post, I have summarized some basics of RL and provides an overview of classical approaches to RL.&lt;/p&gt;
 
 &lt;!--more--&gt;
 
-&lt;p&gt;&lt;a href=&quot;/assets/pdf/RL_intro.pdf&quot;&gt;RL slides&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The main mathematical formulation (not the only one) of RL is based on the Markov Decision Process (MDP). At time $t$, the agent observes the state $s_t$ and takes an action $a_t$ to interact with the environments. Then the agents observes the reward $r_t$ and the next state $s_{t+1}$. Based on such interactions, the agent gradually learns an optimal policy $\pi^*$ to select actions in different states.&lt;/p&gt;
+
+&lt;p&gt;More details can be found in the &lt;a href=&quot;/assets/pdf/RL_intro.pdf&quot;&gt;RL slides&lt;/a&gt;.&lt;/p&gt;
 
 &lt;figure&gt;
     &lt;img src=&quot;/assets/images/blog/2022/2022-06-10-RL_intro_outline.png&quot; height=&quot;350&quot; /&gt;
@@ -80,9 +86,9 @@
         <link>http://localhost:4000/2022/06/intro-to-rl.html</link>
         <guid isPermaLink="true">http://localhost:4000/2022/06/intro-to-rl.html</guid>
         
-        <category>RL</category>
-        
         <category>math</category>
+        
+        <category>RL</category>
         
         
         <category>Reinforcement Learning</category>

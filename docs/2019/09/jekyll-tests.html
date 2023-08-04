@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="jekyll tests">
+<title>jekyll tests</title>
+<meta property="og:description" content="This post is for miscellaneous tests and quick notes. Ignore all the contents">
+<meta property="og:url" content="http://localhost:4000/2019/09/jekyll-tests.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="http://localhost:4000/2019/09/jekyll-tests.html">
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/categories">Categories</a></li>
+                
+            
+                
+                    <li><a href="/tags">Tags</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">jekyll tests</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="far fa-calendar-alt">&nbsp;</i>2019-09-02
+		</span>
+
+		<span class="post-meta">
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/miscellaneous">Miscellaneous</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="far fa-clock"></i>&nbsp;0 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#jekyll">jekyll,</a>
+                
+            
+                
+                <a href="/tags/#test">test</a>
+                
+            
+		</span-->
+	</div>
+
+    <!--post content-->
+    <article class="post-content">
+        <p>This blog collects quick notes in developing jekyll notes. We also perform different general tests in this notes.</p>
+
+<h2 id="some-notes">Some notes</h2>
+
+<p>Make entire Div Clickable:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://example.com"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"example"</span><span class="nt">&gt;</span> anything <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+<p>This is perfectly valid HTML.</p>
+
+<p>In liquid, we can use composite filter. The exection order is from left to right. For example.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% assign var = site.baseurl | append: "/page" | append: 2 | string %}
+</code></pre></div></div>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">{ int | string }</code> convert integer to strings.</p>
+
+<p>Also, we need to find a way to write liquid in code block.</p>
+
+<h2 id="publish-github-page-with-no-jekyll">Publish github page with no jekyll</h2>
+<p>Github page only accepts specific jekyll plugins. Some plugins such as <code class="language-plaintext highlighter-rouge">jekyll-paginate-v2</code> cannot be recgnized by github pages. Therefore, one way to publish github page is to <strong>publish the generated pages to Github</strong> instead of letting github complie pages online. The generated pages are in <code class="language-plaintext highlighter-rouge">_site</code> folder.</p>
+
+<p>We should note two things when using jekyll to generate pages and publish to github:</p>
+<ul>
+  <li>in <code class="language-plaintext highlighter-rouge">_config.yaml</code>, set <code class="language-plaintext highlighter-rouge">baseurl: /your-repo-name</code></li>
+  <li>include an empty file named <code class="language-plaintext highlighter-rouge">.nojekyll</code> in the <code class="language-plaintext highlighter-rouge">_site</code> folder</li>
+  <li>change <code class="language-plaintext highlighter-rouge">_site</code> to <code class="language-plaintext highlighter-rouge">docs</code>. Or move everything out of the <code class="language-plaintext highlighter-rouge">_site</code> folder.</li>
+</ul>
+
+<h3 id="set-z-index-to-overlay">set <code class="language-plaintext highlighter-rouge">z-index</code> to overlay</h3>
+<p>The dropdown menu has <code class="language-plaintext highlighter-rouge">position: relative</code>. However, the two column layout also have the same property. Therefore, the two column layout may overlay the dropdown menu. To solve the problem, we have two ways:</p>
+<ul>
+  <li>Set <code class="language-plaintext highlighter-rouge">position: static</code> to the two column layout. (May not feasible in some scenarios)</li>
+  <li>Set <code class="language-plaintext highlighter-rouge">z-index</code> of the dropdown menu higher than the two column layout.</li>
+</ul>
+
+<p>The superscript can be written like this<sup>[1]</sup></p>
+
+<h3 id="font-matter-settings">font matter settings</h3>
+<p>Jekyll can distinguish plural. But the reserved keyword is pluarl. So it is suggested to use pluarl. For example,</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>category:
+- ca
+- cb
+</code></pre></div></div>
+<p>is equivalent to</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>categories: ca cb
+</code></pre></div></div>
+<p><strong>Note:</strong> there is no comma <code class="language-plaintext highlighter-rouge">,</code> when using the plural.
+If we want to add a category or tag with space, we need to use brackets:</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tags: [ha ha, la la]
+</code></pre></div></div>
+<p>Note using double quotes does not help. For example,</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tags: "ha ha"
+</code></pre></div></div>
+<p>will interprete two tags.</p>
+
+<p>The same applies for <code class="language-plaintext highlighter-rouge">tag</code> and <code class="language-plaintext highlighter-rouge">tags</code>.</p>
+
+<h3 id="link-in-markdown">link in markdown</h3>
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
+
+<h3 id="for-excerpt">For excerpt</h3>
+<p>We have two ways to display partial posts in the blog pages:</p>
+<ul>
+  <li>use <code class="language-plaintext highlighter-rouge">excerpt</code> in the front matter</li>
+  <li>use <code class="language-plaintext highlighter-rouge">excerpt_separator</code> in the front matter</li>
+</ul>
+
+<p>For example,</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">excerpt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">These</span><span class="nv"> </span><span class="s">pre-written</span><span class="nv"> </span><span class="s">contents</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">displayed</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">blog</span><span class="nv"> </span><span class="s">page</span><span class="nv"> </span><span class="s">instead</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">content</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">post."</span>
+<span class="c1"># or</span>
+<span class="na">excerpt_separator</span><span class="pi">:</span> <span class="s">&lt;!--more--&gt;</span>
+</code></pre></div></div>
+
+<p>The second methods displays the post content before <code class="language-plaintext highlighter-rouge">&lt;!--more--&gt;</code>.</p>
+
+<h3 id="margin-collaps">margin collaps</h3>
+<p>when we use <code class="language-plaintext highlighter-rouge">container-all</code> with 0 margin and 0 padding to cover the background, we may encounter a margin collapse. The container will automatically have margin. We can use a fack padding to solve this problem <code class="language-plaintext highlighter-rouge">padding: 0.1px</code>.</p>
+
+<p>See <a href="https://cmichel.io/css-margin-top-not-working">Collapsing Margins of Block Elements</a></p>
+
+<h3 id="github-pages">github pages</h3>
+<p>In order to use the github page domain name <code class="language-plaintext highlighter-rouge">yuhan16.github.io</code>, we need to create a repo with the name <code class="language-plaintext highlighter-rouge">yuhan16.github.io</code>. Then we go to the GitHub page settings. The page will be automatically published to this domain.</p>
+
+<p>See <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages">About GitHub Pages</a></p>
+
+<h3 id="markup-text-in-div-and-mathjax">markup text in div and mathjax</h3>
+<div> This is a paragraph without &amp;lt p &amp;gt.
+This is a paragraph without &amp;lt p &amp;gt.
+</div>
+
+<div>
+	<p>This is a paragraph without &lt;p&gt;.</p>
+	<p>This is a paragraph without &lt;p&gt;.</p>
+</div>
+
+<h3 id="for-testing">For testing</h3>
+<p><i class="fa fa-car" style="font-size:48px;"></i></p>
+
+<p>/2019/09/jekyll-tests.html</p>
+
+<p><a href="javascript:void(0)">test empty link</a></p>
+
+<p>deeplearning</p>
+
+<p>Output all filtered tags:</p>
+<p>
+
+'welcome', 
+
+'jekyll', 
+
+'test', 
+
+'css', 
+
+'web', 
+
+'templating', 
+
+'html', 
+
+'mathjax', 
+
+'tutorial', 
+
+'static-web', 
+
+'dynamic-web', 
+
+'php', 
+
+'ssg', 
+
+'static-site-generator', 
+
+'github-pages', 
+
+'notes', 
+
+'math', 
+
+'rl', 
+
+'collocation', 
+
+'trajectory-optimization', 
+
+'optimization', 
+
+'control', 
+
+</p>
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/jekyll">jekyll,</a>
+                
+            
+                
+                <a href="/tags/test">test</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+<section class="pagination" style="margin-bottom: 0;">
+    
+        <a class="pagination-pre-next" href="/2019/09/wellcome.html">Previous: Build Up My Own Website!</a>
+    
+
+    
+        <a class="pagination-pre-next" href="/2019/09/scss-notes.html" title="Notes on CSS files">Next: Notes on CSS files</a>
+    
+</section>
+  
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+
+  var disqus_developer = 1;
+
+var disqus_shortname ='';
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+// Get the button
+let mybutton = document.getElementById("back-top-button");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2023 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

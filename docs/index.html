@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+    <head>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,8 +22,11 @@
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
 <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+
 
 <link rel="stylesheet" href="/assets/css/github.min.css">
+<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -49,350 +51,94 @@
 
 
 <body>
-<div class="container-all">
-        
-    <header class="header-container" id="header-container">
-    <nav class="navbar" id="navbar">
-        <a href="/"><img src="/assets/images/huskydev_logo.png" class="navbar-logo" id="navbar-logo"></a>
-        
-        <div class="navbar-right" id="navbar-right">
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
         <ul class="main-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li class="menu-item-dropdown"><a href="javascript:void(0)">Topics &#9662;</a>
-                <ul class="sub-menu">
-                    <li><a href="/topics/probability">Probability</a></li>
-                    <li><a href="/topics/optimization">Optimization</a></li>
-                    <li><a href="/topics/reinforcement-learning">Reinforcement Learning</a></li>
-                    <li><a href="/topics/web">Web</a></li>
-                    <li><a href="/topics/programming">Programming</a></li>
-                    <li><a href="/topics/miscellaneous">Miscellaneous</a></li>
-                </ul>
-            </li>
-            <li><a href="/publications">Publications</a></li>
-            <!--li><a href="/projects">Projects</a></li-->
-            <li class="menu-item-dropdown"><a href="javascript:void(0)">Contact</a>
-                <div class="sub-menu-contact">
-                    <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin"></i></a>
-                    <a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github"></i></a>
-                    <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                    <a href="/feed.xml" title="RSS feed"><i class="fa fa-rss"></i></a>
-                </div>
-            </li>
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/categories">Categories</a></li>
+                
+            
+                
+                    <li><a href="/tags">Tags</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
             <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
         </ul>
-        </div>
-
-    </nav>
-</header>
-
-<script>
-    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
-    window.onscroll = function() {scrollFunction()};
-    
-    function scrollFunction() {
-      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-        document.getElementById("header-container").style.padding = "1px 5px";
-        document.getElementById("navbar-logo").style.height = "55px";
-        document.getElementById("navbar-right").style.height = "55px";
-      } else {
-        document.getElementById("header-container").style.padding = "20px 5px";
-        document.getElementById("navbar-logo").style.height = "80px";
-        document.getElementById("navbar-right").style.height = "80px";
-      }
-    }
-</script>
-
-    <div class="body-container">
-        <div class="page-content">
-            
-            
-                <div class="col-sm-8">
-                    <div class="post">
-<div class="post-content about">
-	<img class="img-about" src="/assets/images/aboutme.jpg">
-  	<p>
-    	Hello and Welcom! My name is Yuhan. I am a forth-year PhD candidate at <a href="https://www.nyu.edu">New York University</a>, 
-    	majored in <a href="https://engineering.nyu.edu/academics/departments/electrical-and-computer-engineering">Electrical and Computer Engineering</a>. 
-    	My research interest centers around <b>game theory</b>,  <b>robotics</b>, and <b>control and optimization in multi-agent systems</b>.
-  	</p>
-  	
-  	<p>
-		I received my master's degree in <a ref="https://www.grasp.upenn.edu/">Robotics (GRASP lab)</a> at the <a href="https://www.upenn.edu/">University Pennsylvania</a> and my bachelor's in Automation at <a href="https://english.bit.edu.cn/">Beijing Institute of Techonology</a>. 
-  	</p>
-
-	<p><br>
-	  Please find my CV: <a href="/assets/pdf/CV-YuhanZhao.pdf">Curriculum Vitae</a>.
-	</p>
-
-	<p></br></p>
-	<p></br></p>
-  	<p>
-    	<b>HuskyDev</b> is my blog, where I share my research projects and learning notes. During my PhD, I found a lot of valuable tools and knowledge that not only facilitated my research but also deepened my understanding of other related research fields.
-		I believe that mastery of everything comes from the basics. Besides, the fastest way to understand something is to teach people. Therefore, I decide to write down my understanding of the way to learn new things.
-  	</p>
-
-	<p>
-		It is beneficial to summarize what I have learned because it helps me build the knowledge framework, especially the way of thinking and learning. 
-  		Also, I think writing things down can help me organize myself and become more logical and make sure that I understand them.
-  		Finally, it is a great pleasure to share the knowledge and keep learning the unknown stuff.
-	</p>
-
-	<p>Feel free to contact me or leave a comment if you find any thing interesting.</p>
-
-  <!--p>Feel free to leave a comment or reach me by: <br>
-  <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao" style="border-bottom: none;"><i class="fa fa-linkedin fa-2x"></i></a> &nbsp;
-  <a href="https://github.com/yuhan16" title="GithubID: yuhan16" style="border-bottom: none;"><i class="fa fa-github fa-2x"></i></a> &nbsp;
-  <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com" style="border-bottom: none;"><i class="fa fa-envelope fa-2x"></i></a>
-  </p-->
-  <p></br></p>
-  <p></br></p>
-  <p></br></p>
-</div>
-</div>
-                </div>
-                <div class="col-sm-2">
-    
-    <div class="sidebar-module">
-  <h4>Recent Posts</h4>
-  
-  <li>
-  <a href="/2023/07/intro-to-koopman.html" title="Introduction to Koopman Operator" rel="bookmark">Introduction to Koopman Operator</a>
-  </li>
-  
-  <li>
-  <a href="/2023/04/intro-to-trajopt.html" title="Introduction to Trajectory Optimization" rel="bookmark">Introduction to Trajectory Optimization</a>
-  </li>
-  
-  <li>
-  <a href="/2022/06/intro-to-rl.html" title="Introduction to Reinforcement Learning" rel="bookmark">Introduction to Reinforcement Learning</a>
-  </li>
-  
-  <li>
-  <a href="/2020/11/notes-9.html" title="Random Walk" rel="bookmark">Random Walk</a>
-  </li>
-  
-  <li>
-  <a href="/2020/11/notes-8.html" title="Markov Chain 2" rel="bookmark">Markov Chain 2</a>
-  </li>
-  
-</div>
-
-
-    <div class="sidebar-module">
-  <h4>Categories</h4>
-  
-    <li><a href="/categories/#Miscellaneous" title="Miscellaneous" rel="4">Miscellaneous (4)</a></li>
-  
-    <li><a href="/categories/#Programming" title="Programming" rel="1">Programming (1)</a></li>
-  
-    <li><a href="/categories/#Web" title="Web" rel="3">Web (3)</a></li>
-  
-    <li><a href="/categories/#Probability" title="Probability" rel="10">Probability (10)</a></li>
-  
-    <li><a href="/categories/#Reinforcement Learning" title="Reinforcement Learning" rel="1">Reinforcement Learning (1)</a></li>
-  
-    <li><a href="/categories/#Optimization" title="Optimization" rel="2">Optimization (2)</a></li>
-  
-</div>
-
-
-    <div class="sidebar-module">
-  <h4>Tags</h4>
-  
-    <a href="/tags/#welcome" title="welcome" rel="1">welcome</a> &nbsp;
-  
-    <a href="/tags/#css" title="css" rel="2">css</a> &nbsp;
-  
-    <a href="/tags/#jekyll" title="jekyll" rel="3">jekyll</a> &nbsp;
-  
-    <a href="/tags/#html" title="html" rel="3">html</a> &nbsp;
-  
-    <a href="/tags/#web programming" title="web programming" rel="1">web programming</a> &nbsp;
-  
-    <a href="/tags/#templating language" title="templating language" rel="1">templating language</a> &nbsp;
-  
-    <a href="/tags/#mathjax" title="mathjax" rel="1">mathjax</a> &nbsp;
-  
-    <a href="/tags/#tutorial" title="tutorial" rel="1">tutorial</a> &nbsp;
-  
-    <a href="/tags/#static web" title="static web" rel="1">static web</a> &nbsp;
-  
-    <a href="/tags/#dynamic web" title="dynamic web" rel="1">dynamic web</a> &nbsp;
-  
-    <a href="/tags/#php" title="php" rel="1">php</a> &nbsp;
-  
-    <a href="/tags/#SSG" title="SSG" rel="1">SSG</a> &nbsp;
-  
-    <a href="/tags/#static site generator" title="static site generator" rel="1">static site generator</a> &nbsp;
-  
-    <a href="/tags/#github pages" title="github pages" rel="1">github pages</a> &nbsp;
-  
-    <a href="/tags/#notes" title="notes" rel="10">notes</a> &nbsp;
-  
-    <a href="/tags/#math" title="math" rel="13">math</a> &nbsp;
-  
-    <a href="/tags/#RL" title="RL" rel="1">RL</a> &nbsp;
-  
-    <a href="/tags/#optimization" title="optimization" rel="2">optimization</a> &nbsp;
-  
-    <a href="/tags/#control" title="control" rel="1">control</a> &nbsp;
-  
-</div>
-
-
-    <div class="sidebar-module">
-  <h4>Archive</h4>
-
-  
-    
-    
-      
-      
-      <li id="2023" > <a href="/archives/#2023">2023</a></li>
-    
-  
-    
-    
-  
-    
-    
-      
-      
-      <li id="2022" > <a href="/archives/#2022">2022</a></li>
-    
-  
-    
-    
-      
-      
-      <li id="2020" > <a href="/archives/#2020">2020</a></li>
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-      
-      
-      <li id="2019" > <a href="/archives/#2019">2019</a></li>
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-
-</div>
-
-
-</div>
-    
-    
-
-            
-        </div>
     </div>
+    </nav>
 
-    <footer class="footer-container">
-    
-    <div class="footer-content">
-        
-        <div class="footer-half-col" style="text-align: left;">
-            <p>
-                Copyright &copy; 2022 <a href="/">HuskyDev</a> 
-                <span style="padding-left:30px"></span>
-                Powered by <a href="https://github.com/jekyll/jekyll"><b>Jekyll</b></a> &nbsp; | &nbsp; Design by Yuhan
-            </p>
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <h1 id="-welcome-to-yuhans-blog">👋 Welcome to Yuhan’s Blog</h1>
+<p><br />
+<img class="about-img" src="/assets/images/aboutme.jpg" /></p>
+
+<p>Hello and Welcom!</p>
+
+<p>My name is Yuhan. I am a Ph.D. candidate at <a href="https://www.nyu.edu">New York University</a>, majored in Electrical and Computer Engineering. My research interest centers around <strong>game theory</strong>, <strong>optimization</strong>, and <strong>control</strong> in multi-agent systems, especially in <strong>robotics</strong>.</p>
+
+<p>I received my master’s degree in Robotics (GRASP lab) at the University Pennsylvania and my bachelor’s in Automation at Beijing Institute of Techonology.</p>
+
+<p><br /></p>
+<div style="display:flex; align-items: center">
+<div class="about-cv">
+    <a href="/assets/pdf/CV-YuhanZhao.pdf">Curriculum Vitae</a>
+</div>
+<span style="padding-left:50px"></span>
+<div class="about-icon">
+    <span style="padding-right:20px"><a href="https://scholar.google.com/citations?hl=en&amp;user=Ot3wv5YAAAAJ" title="Google Scholar: https://scholar.google.com/citations?hl=en&amp;user=Ot3wv5YAAAAJ"><i class="ai ai-google-scholar-square ai-2x"></i></a></span>
+    <span style="padding-right:20px"><a href="https://github.com/yuhan16" title="GithubID: yuhan16"><i class="fa fa-github fa-2x"></i></a></span>
+    <span style="padding-right:20px"><a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-linkedin fa-2x"></i></a></span>
+    <span style="padding-right:20px"><a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope fa-2x"></i></a></span>
+</div>
+</div>
+<p><br /><br /></p>
+
+<h2 id="about-this-blog">About this blog</h2>
+
+<p>This blog is a space where I want to share some interesting learning notes and experience that I have acquired during my Ph.D.. Throughout this journey, I have come across many invaluable tools and knowledge that facilitate my research and strengthen my understanding of new subjects.</p>
+
+<p>I believe that mastery of any subject begins with a grasp of its fundamentals. By having a mindset with a fundamental perspective, one can naturally comprehend the coming complexities in her studies.
+This is the reason for me to document my thoughts and discoveries. Writing allows me to organize my ideas and ensure a logical flow of information. Through this process, I can also quickly refresh myself on various concepts and solidify my comprehension, such as how they come and how they work.
+Besides, it is also a great joy to share knowledge with others and keep the journey of continual learning and exploration.</p>
+
+<p>Thank you for visiting, and feel free to leave comments sharing your own insights if you find anything interesting.</p>
+
+
         </div>
-        
-        <div class="footer-half-col" style="text-align: right;">
-            <!--display menu-->
-            <span>
-                <a href="/">Home</a> | 
-                <a href="/blog">Blog</a> | 
-                <a href="/categories">Topics</a> | 
-                <a href="/publications">Publications</a> | 
-                <a href="/projects">Projects</a>
-            </span>
-            <span style="padding-left:15px"></span>
-            <!--display contact icons-->
-            <span class="fa-stack">
-                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao">
-                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
-                    <i class="fa fa-linkedin fa-stack-1x icon-footer"></i>
-                </a>
-            </span>
-            <span class="fa-stack">
-                <a href="https://github.com/yuhan16" title="Github ID: yuhan16">
-                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
-                    <i class="fa fa-github fa-stack-1x icon-footer"></i> 
-                </a>
-            </span>
-            <span class="fa-stack">
-                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com">
-                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
-                    <i class="fa fa-envelope fa-stack-1x icon-footer"></i> 
-                </a>
-            </span>
-            <span class="fa-stack">
-                <a href="/feed.xml" title="RSS feed">
-                    <i class="fa fa-circle fa-stack-2x icon-background"></i>
-                    <i class="fa fa-rss fa-stack-1x icon-footer"></i> 
-                </a>
-            </span>
-            <!--
-            <span>
-                <a href="https://www.linkedin.com/in/yhzhao" title="LinkedIn: https://www.linkedin.com/in/yhzhao"><i class="fa fa-circle fa-stack-2x icon-background"></i></a>
-                <a href="https://github.com/yuhan16" title="Github ID: yuhan16"><i class="fa fa-github"></i></a>
-                <a href="mailto:yuhan-zhao@outlook.com" title="mailto: yuhan-zhao@outlook.com"><i class="fa fa-envelope"></i></a>
-                <a href="/feed.xml" title="RSS feed"><i class="fa fa-rss"></i></a> 
-            </span>
-            -->
-        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2023 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
     </div>
 </footer>
-
-</div>
 </body>
 
 </html>

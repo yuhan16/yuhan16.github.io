@@ -123,6 +123,18 @@
         "bib": "",
         "code": "",
         "video": ""
+    },
+
+    {
+        "title": " Stackelberg Game-Theoretic Trajectory Guidance for Multi-Robot Systems with Koopman Operator",
+        "authors": ["Yuhan Zhao", "Quanyan Zhu"],
+        "hightlight": "Yuhan Zhao",
+        "journal": "Submitted to ICRA 2024",
+        "abs": "Guided trajectory planning involves a leader robotic agent strategically directing a follower robotic agent to collaboratively reach a designated destination. However, this task becomes notably challenging when the leader lacks complete knowledge of the follower's decision-making model. There is a need for learning-based methods to effectively design the cooperative plan. To this end, we develop a Stackelberg game-theoretic approach based on Koopman operator to address the challenge. We first formulate the guided trajectory planning problem through the lens of a dynamic Stackelberg game. We then leverage Koopman operator theory to acquire a learning-based linear system model that approximates the follower's feedback dynamics. Based on this learned model, the leader devises a collision-free trajectory to guide the follower, employing receding horizon planning. We use simulations to elaborate the effectiveness of our approach in generating learning models that accurately predict the follower's multi-step behavior when compared to alternative learning techniques. Moreover, our approach successfully accomplishes the guidance task and notably reduces the leader's planning time to nearly half when contrasted with the model-based baseline method.",
+        "bib": "",
+        "pdf": "",
+        "code": "https://github.com/yuhan16/Stackelberg-Koopman-Learning",
+        "video": ""
     }
 ]
 }

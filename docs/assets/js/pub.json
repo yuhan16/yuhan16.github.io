@@ -1,6 +1,30 @@
 {
 "published": [
     {
+        "title": "Stackelberg Game-Theoretic Trajectory Guidance for Multi-Robot Systems with Koopman Operator",
+        "authors": ["Yuhan Zhao", "Quanyan Zhu"],
+        "hightlight": "Yuhan Zhao",
+        "journal": "Accepted by ICRA 2024",
+        "abs": "Guided trajectory planning involves a leader robotic agent strategically directing a follower robotic agent to collaboratively reach a designated destination. However, this task becomes notably challenging when the leader lacks complete knowledge of the follower's decision-making model. There is a need for learning-based methods to effectively design the cooperative plan. To this end, we develop a Stackelberg game-theoretic approach based on Koopman operator to address the challenge. We first formulate the guided trajectory planning problem through the lens of a dynamic Stackelberg game. We then leverage Koopman operator theory to acquire a learning-based linear system model that approximates the follower's feedback dynamics. Based on this learned model, the leader devises a collision-free trajectory to guide the follower, employing receding horizon planning. We use simulations to elaborate the effectiveness of our approach in generating learning models that accurately predict the follower's multi-step behavior when compared to alternative learning techniques. Moreover, our approach successfully accomplishes the guidance task and notably reduces the leader's planning time to nearly half when contrasted with the model-based baseline method.",
+        "bib": "@article{zhao2023stackelberg,<br> title={Stackelberg Game-Theoretic Trajectory Guidance for Multi-Robot Systems with Koopman Operator},<br> author={Zhao, Yuhan and Zhu, Quanyan},<br> journal={arXiv preprint arXiv:2309.16098},<br> year={2023}<br> }",
+        "pdf": "https://arxiv.org/pdf/2309.16098.pdf",
+        "code": "https://github.com/yuhan16/Stackelberg-Koopman-Learning",
+        "video": ""
+    },
+
+    {
+        "title": "Integrated Cyber-Physical Resiliency for Power Grids under IoT-Enabled Dynamic Botnet Attacks",
+        "authors": ["Yuhan Zhao", "Juntao Chen", "Quanyan Zhu"],
+        "hightlight": "Yuhan Zhao",
+        "journal": "Accepted by IEEE Transactions on Control Systems Technology",
+        "abs": "The wide adoption of Internet of Things (IoT)-enabled energy devices improves the quality of life, but simultaneously, it enlarges the attack surface of the power grid system. The adversary can gain illegitimate control of a large number of these devices and use them as a means to compromise the physical grid operation, a mechanism known as the IoT botnet attack. This paper aims to improve the resiliency of cyber-physical power grids to such attacks. Specifically, we use an epidemic model to understand the dynamic botnet formation which facilitates the assessment of the cyber layer vulnerability of the grid. The attacker aims to exploit this vulnerability to enable a successful physical compromise, while the system operator's goal is to ensure a normal operation of the grid by mitigating cyber risks. We develop a cross-layer game-theoretic framework for strategic decision-making to enhance cyber-physical grid resiliency. The cyber-layer game guides the system operator on how to defend against the botnet attacker as the first layer of defense, while the dynamic game strategy at the physical layer further counteracts the adversarial behavior in real-time for improved physical resilience.",
+        "bib": "@article{zhao2024integrated,<br> title={Integrated Cyber-Physical Resiliency for Power Grids under IoT-Enabled Dynamic Botnet Attacks},<br> author={Zhao, Yuhan and Chen, Juntao and Zhu, Quanyan},<br> journal={arXiv preprint arXiv:2401.01963},<br> year={2024}<br> }",
+        "pdf": "https://arxiv.org/pdf/2401.01963.pdf",
+        "code": "",
+        "video": ""
+    }, 
+
+    {
         "title": "Stackelberg Meta-Learning for Strategic Guidance in Multi-Robot Trajectory Planning",
         "authors": ["Yuhan Zhao", "Quanyan Zhu"],
         "hightlight": "Yuhan Zhao",
@@ -112,29 +136,6 @@
         "abs": "Resilience describes a system's ability to function under disturbances and threats. Many critical infrastructures, including smart grids and transportation networks, are large-scale complex systems consisting of many interdependent subsystems. Decentralized architecture becomes a key resilience design paradigm for large-scale systems. In this book chapter, we present a multi-agent system (MAS) framework for distributed large-scale control systems and discuss the role of MAS learning in resiliency. This chapter introduces the creation of an artificial intelligence (AI) stack in the MAS to provide computational intelligence for subsystems to detect, respond, and recover. We discuss the application of learning methods at the cyber and physical layers of the system. The discussions focus on distributed learning algorithms for subsystems to respond to each other, and game-theoretic learning for them to respond to disturbances and adversarial behaviors. The book chapter presents a case study of distributed renewable energy systems to elaborate on the MAS architecture and its interface with the AI stack.",
         "bib": "@article{zhao2022multi,<br> title={Multi-Agent Learning for Resilient Distributed Control Systems},<br> author={Zhao, Yuhan and Rieger, Craig and Zhu, Quanyan},<br> journal={arXiv preprint arXiv:2208.05060},<br> year={2022}<br> }", 
         "pdf": "https://arxiv.org/pdf/2208.05060.pdf"
-    },
-
-    {
-        "title": "Integrated Cyber-Physical Resiliency for Power Grids under IoT-Enabled Dynamic Botnet Attacks",
-        "authors": ["Yuhan Zhao", "Juntao Chen", "Quanyan Zhu"],
-        "hightlight": "Yuhan Zhao",
-        "journal": "Submitted to IEEE Transactions on Control Systems Technology",
-        "abs": "The wide adoption of Internet of Things (IoT)-enabled energy devices improves the quality of life, but simultaneously, it enlarges the attack surface of the power grid system. The adversary can gain illegitimate control of a large number of these devices and use them as a means to compromise the physical grid operation, a mechanism known as the IoT botnet attack. This paper aims to improve the resiliency of cyber-physical power grids to such attacks. Specifically, we use an epidemic model to understand the dynamic botnet formation which facilitates the assessment of the cyber layer vulnerability of the grid. The attacker aims to exploit this vulnerability to enable a successful physical compromise, while the system operator's goal is to ensure a normal operation of the grid by mitigating cyber risks. We develop a cross-layer game-theoretic framework for strategic decision-making to enhance cyber-physical grid resiliency. The cyber-layer game guides the system operator on how to defend against the botnet attacker as the first layer of defense, while the dynamic game strategy at the physical layer further counteracts the adversarial behavior in real-time for improved physical resilience.",
-        "bib": "",
-        "code": "",
-        "video": ""
-    },
-
-    {
-        "title": "Stackelberg Game-Theoretic Trajectory Guidance for Multi-Robot Systems with Koopman Operator",
-        "authors": ["Yuhan Zhao", "Quanyan Zhu"],
-        "hightlight": "Yuhan Zhao",
-        "journal": "Submitted to ICRA 2024",
-        "abs": "Guided trajectory planning involves a leader robotic agent strategically directing a follower robotic agent to collaboratively reach a designated destination. However, this task becomes notably challenging when the leader lacks complete knowledge of the follower's decision-making model. There is a need for learning-based methods to effectively design the cooperative plan. To this end, we develop a Stackelberg game-theoretic approach based on Koopman operator to address the challenge. We first formulate the guided trajectory planning problem through the lens of a dynamic Stackelberg game. We then leverage Koopman operator theory to acquire a learning-based linear system model that approximates the follower's feedback dynamics. Based on this learned model, the leader devises a collision-free trajectory to guide the follower, employing receding horizon planning. We use simulations to elaborate the effectiveness of our approach in generating learning models that accurately predict the follower's multi-step behavior when compared to alternative learning techniques. Moreover, our approach successfully accomplishes the guidance task and notably reduces the leader's planning time to nearly half when contrasted with the model-based baseline method.",
-        "bib": "@article{zhao2023stackelberg,<br> title={Stackelberg Game-Theoretic Trajectory Guidance for Multi-Robot Systems with Koopman Operator},<br> author={Zhao, Yuhan and Zhu, Quanyan},<br> journal={arXiv preprint arXiv:2309.16098},<br> year={2023}<br> }",
-        "pdf": "https://arxiv.org/pdf/2309.16098.pdf",
-        "code": "https://github.com/yuhan16/Stackelberg-Koopman-Learning",
-        "video": ""
     }
 ]
 }

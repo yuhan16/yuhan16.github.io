@@ -280,6 +280,7 @@ q:after {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  /*following is border bottom transition animation*/
 }
 .main-menu > li {
   display: inline-block;
@@ -291,7 +292,19 @@ q:after {
 }
 .main-menu > li > a:hover {
   text-decoration: none;
-  font-weight: bold;
+}
+.main-menu > li::after {
+  content: "";
+  display: block;
+  margin: auto;
+  height: 2px;
+  width: 0px;
+  background: transparent;
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
+.main-menu > li:hover::after {
+  width: 100%;
+  background: #828282;
 }
 
 /*aboutme page */

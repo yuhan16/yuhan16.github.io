@@ -21,12 +21,11 @@
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
-<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
 <script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
 
 
 <link rel="stylesheet" href="/assets/css/github.min.css">
-<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -99,15 +98,15 @@
 	<!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
 		<span class="post-meta">
-			<i class="far fa-calendar-alt">&nbsp;</i>2019-12-03
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2019-12-03
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/web">Web</a>
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/web">Web</a>
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
 		</span>
 
         <!--span class="post-meta">
@@ -136,13 +135,29 @@
 		</span-->
 	</div>
 
-    <!--post content-->
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#static-site-generators">Static Site Generators</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#some-background-of-html">Some Background of HTML</a></li>
+<li class="toc-entry toc-h2"><a href="#ssg-as-a-tool">SSG as a Tool</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#resources">Resources</a></li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
     <article class="post-content">
         <p>I have discussed the difference between static and dynamic web pages in the previous post. In this post, I will write some of my understanding of Jekyll and static site generators.</p>
 
 <!--more-->
 
-<h2 id="static-site-generators">Static Site Generators</h2>
+<h1 id="static-site-generators">Static Site Generators</h1>
 
 <p>Static site generators (SSGs) are the software that generates and publish static HTML files from dynamic writing. In other words, they achieve two goals:</p>
 
@@ -151,7 +166,7 @@
   <li>publish the generated web pages locally for preview.</li>
 </ul>
 
-<h3 id="some-background-of-html">Some Background of HTML</h3>
+<h2 id="some-background-of-html">Some Background of HTML</h2>
 
 <p>Every static web page is a complete HTML file. A simple example of a complete HTML file is like this:</p>
 
@@ -171,7 +186,7 @@
 
 <p>The web page title and the style sheet for display are defined in <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>, and the content is written in <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>. In short, an HTML file has to follow some rules to be displayed by the browser correctly. We refer to <a href="https://www.w3schools.com/html/">HTML Tutorial</a> to learn more about the HTML basics.</p>
 
-<h3 id="ssg-as-a-tool">SSG as a Tool</h3>
+<h2 id="ssg-as-a-tool">SSG as a Tool</h2>
 
 <p>It can be tedious and troublesome to write HTML files directly, especially when the page content is long. There are so many types of websites. In blogging, what we need is the blog content. The interactions with the website and other fancy components are less required. The primary objective is to display the blog content nicely on a web page. Now SSGs can help. So the idea behind SSGs is simple: use templates to facilitate blog writing and automate web page generation.</p>
 
@@ -181,7 +196,7 @@
 
 <p>There are many SSGs available. For example, <a href="[https://nextjs.org](https://nextjs.org/)">Next.js</a>, <a href="https://jekyllrb.com">Jekyll</a>, <a href="https://gohugo.io/">Hugo</a>. <a href="https://www.gatsbyjs.com/">Gatsby</a>, <a href="https://nuxtjs.org/">Nuxt</a>. Any of them does a good job.</p>
 
-<h2 id="resources">Resources</h2>
+<h1 id="resources">Resources</h1>
 
 <p>There are some resources discussing the functions of SSGs:</p>
 
@@ -221,58 +236,58 @@
 
 </div>
 
-<section class="pagination" style="margin-bottom: 0;">
+
+<section class="post-pagination">
     
-        <a class="pagination-pre-next" href="/2019/12/static-dynamic-web.html">Previous: Static vs Dynamic Web Pages</a>
+        <a href="/2019/12/static-dynamic-web.html">Previous: Static vs Dynamic Web Pages</a>
     
 
     
-        <a class="pagination-pre-next" href="/2020/10/notes-1.html" title="Sets and Probability Measures">Next: Sets and Probability Measures</a>
+        <a href="/2020/10/notes-1.html">Next: Sets and Probability Measures</a>
     
 </section>
   
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-
-  var disqus_developer = 1;
-
-var disqus_shortname ='';
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 
 <a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
 
 
 <script>
-// Get the button
-let mybutton = document.getElementById("back-top-button");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
 
 function scrollFunction() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
 }
 </script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
         </div>
 	</div>
 

@@ -21,12 +21,11 @@
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
-<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
 <script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
 
 
 <link rel="stylesheet" href="/assets/css/github.min.css">
-<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -99,15 +98,15 @@
 	<!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
 		<span class="post-meta">
-			<i class="far fa-calendar-alt">&nbsp;</i>2019-09-28
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2019-09-28
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/programming">Programming</a>
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;15 minutes
+			<i class="fa-regular fa-clock"></i>&nbsp;15 minutes
 		</span>
 
         <!--span class="post-meta">
@@ -128,13 +127,28 @@
 		</span-->
 	</div>
 
-    <!--post content-->
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#templating-language">Templating Language</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#front-matter-and-variables">Front Matter and Variables</a></li>
+<li class="toc-entry toc-h2"><a href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
     <article class="post-content">
         <p>This post introduces the concept of templating languages and the Liquid templating language used in Jekyll. We also introduce how to define templating variables in the front matter to control the page layout.</p>
 
 <!--more-->
 
-<h2 id="templating-language">Templating Language</h2>
+<h1 id="templating-language">Templating Language</h1>
 
 <blockquote>
   <p>A templating language basically is a language which allows defining placeholders that should later on be replaced for the purpose of implementing designs. Obviously modern template languages not only support placeholders, but also loops and conditions which are often necessary for designing a web page.</p>
@@ -148,7 +162,7 @@
 
 <p>Liquid has ample functions such as <code class="language-plaintext highlighter-rouge">include</code> function and other string processing functions, which facilitate the static web page writing.</p>
 
-<h3 id="front-matter-and-variables">Front Matter and Variables</h3>
+<h2 id="front-matter-and-variables">Front Matter and Variables</h2>
 
 <p>The front matter is specified by <code class="language-plaintext highlighter-rouge">---</code> block at the front of each file. If we add the front matter to a file, it means that we want Jekyll to process this file. The process can be including other HTML snippets, or replacing template statements.</p>
 
@@ -167,7 +181,7 @@
 
 <p>We can also define variables in <code class="language-plaintext highlighter-rouge">_config.yml</code>. The variables are in the <code class="language-plaintext highlighter-rouge">site</code> domain and can be accessed by <code class="language-plaintext highlighter-rouge">{{site.my_variable}}</code>.</p>
 
-<h3 id="summary">Summary</h3>
+<h2 id="summary">Summary</h2>
 
 <p>We have introduced the general framework of Jekyll and the idea of how Jekyll works. In the future posts, I will write more details about Jekyll usage and the problems I have met when I use Jekyll.</p>
 
@@ -197,58 +211,58 @@
 
 </div>
 
-<section class="pagination" style="margin-bottom: 0;">
+
+<section class="post-pagination">
     
-        <a class="pagination-pre-next" href="/2019/09/jekyll-1-structure.html">Previous: Learning Jelly Part 1: Structure</a>
+        <a href="/2019/09/jekyll-1-structure.html">Previous: Learning Jelly Part 1: Structure</a>
     
 
     
-        <a class="pagination-pre-next" href="/2019/11/mathjax-notes.html" title="Mathjax in Jekyll Notes">Next: Mathjax in Jekyll Notes</a>
+        <a href="/2019/11/mathjax-notes.html">Next: Mathjax in Jekyll Notes</a>
     
 </section>
   
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-
-  var disqus_developer = 1;
-
-var disqus_shortname ='';
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 
 <a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
 
 
 <script>
-// Get the button
-let mybutton = document.getElementById("back-top-button");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
 
 function scrollFunction() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
 }
 </script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
         </div>
 	</div>
 

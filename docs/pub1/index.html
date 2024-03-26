@@ -6,10 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width initial-scale=1">
 
-<meta property="og:title" content="mathjax">
-<title>mathjax</title>
+<meta property="og:title" content="Publications">
+<title>Publications</title>
 <meta property="og:description" content="HuskDev is Yuhan's personal blog.">
-<meta property="og:url" content="http://localhost:4000/tags/mathjax/">
+<meta property="og:url" content="http://localhost:4000/pub1/">
 <meta property="og:site_name" content="HuskyDev">
 <meta property="og:locale" content="">
 
@@ -17,7 +17,7 @@
 
 <link rel="icon" href="/assets/images/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/tags/mathjax/">
+<link rel="canonical" href="http://localhost:4000/pub1/">
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -90,96 +90,78 @@
     </nav>
 
 
-	<div class="card-container"><!--default_2 only defines card-container, suitable for multiple cards pages like post.-->
-        <!--add a small div: cat or tag / xxx to indicate pages.-->
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <h2 id="publications">Publications</h2>
 
-    <div class="card post-meta" style="padding: 20px;">
-        
-        Tags / mathjax
+<p style="margin-bottom: 2rem;"></p>
+<div id="published"></div>
+
+<h3 id="preprints">Preprints</h3>
+
+<p style="margin-bottom: 1rem;"></p>
+<div id="preprint"></div>
+
+<script src="/assets/js/generate_pub.js"></script>
+
+<div class="pub-container">
+    <h4 class="pub-meta">test 2</h4>
+    <p class="pub-meta">Yuhan</p>
+    <p class="pub-meta">Accepted by 123</p>
+    <div style="display: flex">
+        <a class="pub-icon" id="icon-pdf1">pdf</a>
+        <a class="pub-icon" id="icon-abs1">abs</a>
     </div>
-
-
-
-<!--Each post is a single card-->
-
-
-<div class="card">
-    <h1 style="margin: 0 auto;"><a href="/2019/11/mathjax-notes.html">Mathjax in Jekyll Notes</a></h1>
-        
-    <!--pose meta data-->
-	<div style="display: flex; gap: 10px; margin-bottom: 0.5rem;">
-        <span class="post-meta">
-			<i class="far fa-calendar-alt"></i>&nbsp; 2019-11-03
-		</span>
-		
-        <span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/miscellaneous">Miscellaneous</a>
-		</span>
-		
-        <span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;5 minutes
-		</span>
-	</div>
-
-    <!--post content excerption-->
-    <article>
-        Basic usage of MathJax in Jekyll notes and  examples of writing math equations.
-    </article>
-
-    <!--additional addons-->
-    <hr style="height: 1px; margin: 1rem 0;">
-    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
-	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
-		<span>
-			<i class="fas fa-tags"></i>&nbsp;
-            
-                
-                <a href="/tags/jekyll">jekyll,</a>
-                
-            
-                
-                <a href="/tags/html">html,</a>
-                
-            
-                
-                <a href="/tags/mathjax">mathjax</a>
-                
-            
-		</span>
-
-		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2019/11/mathjax-notes.html">
-			<i class="fas fa-book-reader"></i>&nbsp;Read more
-        </a>
-	</div>
+    <div class="pub-content1" id="div-pdf1">
+            <p>this is a test</p>
+    </div>
+    <div class="pub-content1" id="div-abs1">
+        <p>this is another test</p>
+    </div>
 </div>
 
-
-
-<!--add pagination js script-->
-<section class="pagination">
-    
-        <span style="margin-right: 2rem;"></span>
-        <!--a style="display: none;">&laquo; Previous</a-->
-    
-        
-    <div id="pagination-icon-container" style="display: flex; align-items: center;"> 
-        <script src="/assets/js/generate_pagination.js"></script>
-        <script>
-            let curr_page = parseInt('1');
-        	let total_pages = parseInt('1');
-        	let pageurl = '/tags/mathjax/index.html';
-        	createPaginationIconList(curr_page, total_pages, pageurl);
-        </script>
+<div class="pub-container">
+    <h4 class="pub-meta">test 2</h4>
+    <p class="pub-meta">Yuhan</p>
+    <p class="pub-meta">Accepted by 123</p>
+    <div style="display: flex">
+        <a class="pub-icon" id="icon-pdf2">pdf</a>
+        <a class="pub-icon" id="icon-abs2">abs</a>
     </div>
+    <div class="pub-content1" id="div-pdf2">
+        <p>this is a test</p>
+    </div>
+    <div class="pub-content1" id="div-abs2">
+        <p>this is another test</p>
+    </div>
+</div>
 
-    
-        <span style="margin-right: 2rem;"></span>  
-        <!--a style="display: none;">Next &raquo;</a-->
-    
-</section>
+<script>
+    const total_pub = 2;
+    const ll = ["pdf", "abs"]
+    for (let j = 1; j <= total_pub; j++) {
+        for (aa of ll){
+            ename = "icon-" + aa + j.toString()
+            //alert(ename)
+            var coll = document.getElementById(ename);
+            coll.addEventListener("click", function() {
+                //this.classList.toggle("active");    // active class is not needed for collapsible if there is nothing to change after click.
+                tname = "div-" + aa + j.toString()
+                //alert(tname)
+                var content = document.getElementById(tname);
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                } 
+                else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } 
+            });
+        }
+    }
+</script>
 
 
-
+        </div>
 	</div>
 
     <footer class="footerbar">

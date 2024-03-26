@@ -5,8 +5,8 @@
     <description>HuskDev is Yuhan&apos;s personal blog.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 10 Mar 2024 23:47:39 -0400</pubDate>
-    <lastBuildDate>Sun, 10 Mar 2024 23:47:39 -0400</lastBuildDate>
+    <pubDate>Mon, 25 Mar 2024 21:38:23 -0400</pubDate>
+    <lastBuildDate>Mon, 25 Mar 2024 21:38:23 -0400</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -92,6 +92,155 @@
         
         
         <category>Reinforcement Learning</category>
+        
+      </item>
+    
+      <item>
+        <title>Git Cheatsheet</title>
+        <description>&lt;h1 id=&quot;git-cheatsheet&quot;&gt;Git Cheatsheet&lt;/h1&gt;
+
+&lt;h2 id=&quot;git-init&quot;&gt;git init&lt;/h2&gt;
+
+&lt;p&gt;See &lt;a href=&quot;https://kbroman.org/github_tutorial/pages/init.html&quot;&gt;Start a new git repo for detailed instructions&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;create-a-new-local-repo-on-the-command-line&quot;&gt;Create a new local repo on the command line&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /path/to/repo &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;# repo_name&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; README.md
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git init              		&lt;span class=&quot;c&quot;&gt;# create .git directory to track files&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git add README.md
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;first commit&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-M&lt;/span&gt; main                  	&lt;span class=&quot;c&quot;&gt;# rename branch name to main, default is master&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote add origin &amp;lt;REMOTE_URL&amp;gt;	&lt;span class=&quot;c&quot;&gt;# example url: git@github.com:username/new_repo&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;add-local-repo-to-github&quot;&gt;Add local repo to Github&lt;/h3&gt;
+
+&lt;p&gt;First create a new repo with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repo_name&lt;/code&gt; in the Github &lt;strong&gt;manually&lt;/strong&gt;.  Then push the local repo the remote.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote add origin &amp;lt;REMOTE_URL&amp;gt; 	&lt;span class=&quot;c&quot;&gt;# remote url should be git@github.com:username/new_repo&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git push &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; origin main 	&lt;span class=&quot;c&quot;&gt;# branch name should be specified&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;git-clone&quot;&gt;git clone&lt;/h2&gt;
+
+&lt;h3 id=&quot;command-line&quot;&gt;Command line&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone git@github.com:username/repo_name		&lt;span class=&quot;c&quot;&gt;# clone using SSH&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/ysername/repo_name	&lt;span class=&quot;c&quot;&gt;# clone using URL&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; By default, git clones the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt; branch.&lt;/p&gt;
+
+&lt;h3 id=&quot;clone-a-specific-branch-in-the-first-place&quot;&gt;Clone a specific branch in the first place&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &amp;lt;branchname&amp;gt; &amp;lt;remote-repo-url&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;git-branch&quot;&gt;git branch&lt;/h2&gt;
+
+&lt;p&gt;Show all branches:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch		&lt;span class=&quot;c&quot;&gt;# show all local branches&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;		&lt;span class=&quot;c&quot;&gt;# show all local and remote branches&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Example of showing all branches:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git branch &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; main
+  remotes/origin/HEAD -&amp;gt; origin/main
+  remotes/origin/main
+  remotes/origin/test-dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Show detail of a specific branch:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-vv&lt;/span&gt; 					&lt;span class=&quot;c&quot;&gt;# show details for all branch&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-vv&lt;/span&gt; &amp;lt;branchname&amp;gt;		&lt;span class=&quot;c&quot;&gt;# show details for &amp;lt;branchname&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Switch to an existing local branch:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout &amp;lt;existing_branch&amp;gt;	&lt;span class=&quot;c&quot;&gt;# switch to &amp;lt;existing_branch&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can also switch to remote branches&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout origin/main			&lt;span class=&quot;c&quot;&gt;# You are in &apos;detached HEAD&apos; state.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add a new local branch (with the same name) to track an existing remote branch&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout &amp;lt;branchname&amp;gt; 		&lt;span class=&quot;c&quot;&gt;# create a new local branch (e.g., test-dev) to track the remote branch&lt;/span&gt;
+
+Branch &lt;span class=&quot;s1&quot;&gt;&apos;test-dev&apos;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;up to track remote branch &lt;span class=&quot;s1&quot;&gt;&apos;test-dev&apos;&lt;/span&gt; from &lt;span class=&quot;s1&quot;&gt;&apos;origin&apos;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+Switched to a new branch &lt;span class=&quot;s1&quot;&gt;&apos;test-dev&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create a new local branch:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &amp;lt;branchname&amp;gt; 			&lt;span class=&quot;c&quot;&gt;# create a branch called &amp;lt;branchname&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout &amp;lt;branchname&amp;gt; 		&lt;span class=&quot;c&quot;&gt;# switch to &amp;lt;branchname&amp;gt; branch&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; &amp;lt;branchname&amp;gt;		&lt;span class=&quot;c&quot;&gt;# equivalent to the above two commands&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git branch &amp;lt;branchname&amp;gt;&lt;/code&gt; does not switch to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;branchname&amp;gt;&lt;/code&gt; automatically.&lt;/p&gt;
+
+&lt;p&gt;Delete, rename, and copy local branch:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &amp;lt;branchname&amp;gt;	&lt;span class=&quot;c&quot;&gt;# “safe” operation, prevents from deleting the branch if it has unmerged changes&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &amp;lt;branchname&amp;gt;	&lt;span class=&quot;c&quot;&gt;# deleting the branch even if it has unmerged changes&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&amp;lt;oldbranch&amp;gt;] &amp;lt;newbranch&amp;gt;		&lt;span class=&quot;c&quot;&gt;# &amp;lt;oldbranch&amp;gt; is optional if rename current branch&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-M&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&amp;lt;oldbranch&amp;gt;] &amp;lt;newbranch&amp;gt;		&lt;span class=&quot;c&quot;&gt;# If &amp;lt;newbranch&amp;gt; exists, -M must be used to force the rename to happen&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&amp;lt;oldbranch&amp;gt;] &amp;lt;newbranch&amp;gt; 		&lt;span class=&quot;c&quot;&gt;# &amp;lt;oldbranch&amp;gt; is optional if copy current branch. -C similar to -M&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Push a new local branch to remote or reset the upstream branch:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git push origin &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &amp;lt;upstream&amp;gt;		&lt;span class=&quot;c&quot;&gt;# Branch &apos;local&apos; set up to track remote branch &apos;&amp;lt;upstream&amp;gt;&apos; from &apos;origin&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Run the command when pushing a local branch to the remote for the first time.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;upstream&amp;gt;&lt;/code&gt; name can be different from the local branch name. A local branch can be used to track any remote branch as long as the remote branch name is given. It is recommended to set the local branch name the same as the remote branch.&lt;/p&gt;
+
+&lt;p&gt;Delete a remote branch:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git push origin --delete &amp;lt;oldname&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Track local branch: (in contrast with track remote branches)&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &amp;lt;newlocal&amp;gt;		&lt;span class=&quot;c&quot;&gt;# Branch &apos;local&apos; set up to track local branch &apos;&amp;lt;newlocal&amp;gt;&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;git-remote&quot;&gt;git remote&lt;/h2&gt;
+
+&lt;h3 id=&quot;check-current-remote-repo-url&quot;&gt;Check current remote repo URL&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;		&lt;span class=&quot;c&quot;&gt;# output fetch and push url&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;set-new-url-for-remote&quot;&gt;Set new URL for remote&lt;/h3&gt;
+
+&lt;p&gt;First check existing remotes and their names. Commonly there is only one remote &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;origin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote set-url origin https://github.com/user/repo2.git	&lt;span class=&quot;c&quot;&gt;# use origin as an example &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Sat, 12 Mar 2022 00:00:00 -0500</pubDate>
+        <link>http://localhost:4000/2022/03/git-cheatsheet.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2022/03/git-cheatsheet.html</guid>
+        
+        <category>git</category>
+        
+        
+        <category>Programming</category>
         
       </item>
     
@@ -1599,421 +1748,6 @@ Let $F$ be a distribution function, and let $U$ be uniformly distributed on the 
         <pubDate>Fri, 30 Oct 2020 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/2020/10/notes-5.html</link>
         <guid isPermaLink="true">http://localhost:4000/2020/10/notes-5.html</guid>
-        
-        <category>notes</category>
-        
-        <category>math</category>
-        
-        
-        <category>Probability</category>
-        
-      </item>
-    
-      <item>
-        <title>Expectation and Dependence</title>
-        <description>&lt;h2 id=&quot;expectation-of-discrete-random-variables&quot;&gt;Expectation of discrete random variables&lt;/h2&gt;
-&lt;p&gt;The intuition of expectation is the &lt;em&gt;average value&lt;/em&gt; of an experiment. Suppose we do an experiment for $N$ repeated times. The probability of each possible outcome $x$ can be approximately defined by 
-\begin{equation}
-    \mathbf{P}(x) \approx f(x) = \frac{freq(x)}{N}.
-\end{equation}
-Then the average outcome is
-\begin{equation}
-    m \approx \frac{1}{N}\sum_{x} \text{freq}(x)x = \sum_x f(x)x.
-\end{equation}&lt;/p&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 1.&lt;/b&gt; 
-The &lt;strong&gt;mean value&lt;/strong&gt;, or &lt;strong&gt;expectation&lt;/strong&gt;, or &lt;strong&gt;expected value&lt;/strong&gt; of the random variable $X$ with mass function $f$ is defined to be 
-$$\begin{equation}
-    \mathbf{E}(X) = \sum_{x:f(x)&amp;gt;0} xf(x)
-\end{equation}$$
-whenever this sum is absolutely convergent.
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
-&lt;ol&gt;
-    &lt;li&gt;For notation convenience, we also write $\mathbf{E}(X) = \sum_x xf(x)$.&lt;/li&gt;
-    &lt;li&gt;We require **absolute convergence** in order that $\mathbf{E}(X)$ be unchanged by reordering the $x_i$.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 1.&lt;/b&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Riemann_series_theorem&quot;&gt; Riemann Rearrangement Theorem&lt;/a&gt;.
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
-If $X$ has mass function $f$ and $g:\mathbb{R}\to\mathbb{R}$, then
-$$\begin{equation}
-    \mathbf{E}(g(x)) = \sum_x g(x) f(x)
-\end{equation}$$
-whenever this sum is absolutely convergent.
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; 
-If $X$ is a random variable with mass function f, and $g(x) = x^2$, then 
-$$\begin{equation}
-    \mathbf{E}(X^2) = \sum_x g(x)f(x) = x^2 f(x).
-\end{equation}$$
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 2.&lt;/b&gt; 
-If $k$ is a positive integer, the $k$th &lt;b&gt;moment&lt;/b&gt; $m_k$ of $X$ is defined to be 
-\begin{equation}
-    m_k = \mathbf{E}(X^k).
-\end{equation}
-The $k$th &lt;b&gt;central moment&lt;/b&gt; $\sigma_k$ is defined as
-\begin{equation}
-    \sigma_k = \mathbf{E}\left( (X-m_1)^k \right) = \mathbf{E}\left( (X-E(X))^k \right).
-\end{equation}
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;p&gt;The two moments of most use are $m_1 = \mathbf{E}(X)$ and $\sigma_2 = \mathbf{E}( (X - \mathbf{E}(X))^2$, called the &lt;strong&gt;mean&lt;/strong&gt; (or &lt;strong&gt;expectation)&lt;/strong&gt; and &lt;strong&gt;variance&lt;/strong&gt; of $X$. These two quantities are measures of the mean and dispersion of $X$; that is, $m_1$ is the average value of $X$, and $\sigma_2$ measures the amount by which $X$ tends to deviate from this average. The mean $m_1$ is often denoted $\mu$, and the variance of $X$ is often denoted $\mathbf{Var}(X)$. The positive square root $\sigma = \mathbf{Var}(X)$ is called the &lt;strong&gt;standard deviation&lt;/strong&gt;, and in this notation $\sigma_2 = \sigma^2$.&lt;/p&gt;
-
-&lt;p&gt;The central moments ${\sigma_i}$ can be expressed in terms of the ordinary moments ${m_i}$. For example, $\sigma_1 = 0$, and&lt;/p&gt;
-
-\[\begin{equation}
-    \begin{aligned} 
-        \sigma_{2} &amp;amp;=\sum_{x}\left(x-m_{1}\right)^{2} f(x) \\ 
-        &amp;amp;=\sum_{x} x^{2} f(x)-2 m_{1} \sum_{x} x f(x)+m_{1}^{2} \sum_{x} f(x) \\ 
-        &amp;amp;=m_{2}-m_{1}^{2} ,
-    \end{aligned}
-\end{equation}\]
-
-&lt;p&gt;which may be written as 
-\(\begin{equation}
-    \tag{4-1}
-    \mathbf{Var}(X) = \mathbf{E}\left( (X-E(X))^2 \right) = \mathbf{E}(X^2) - \mathbf{E}(X)^2.
-\end{equation}\)&lt;/p&gt;
-
-&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [Binomial variables]
-Let $X$ be a random variable with binomial distribution. The p.m.f. is 
-$$\begin{equation}
-    f(k) = \binom{n}{k} p^k q^{n-k} \quad k = 0,\dots, n,
-\end{equation}$$
-where $q = 1-p$. The expectation of $X$ is
-$$\begin{equation}
-    \mathbf{E}(X) = \sum_{k=0}^n k f(k) = \sum_{k=0}^n k\binom{n}{k} p^k q^{n-k}.
-\end{equation}$$
-We use the following algebraic identity to compute $\mathbf{E}(X)$.
-$$\begin{equation}
-    \label{eq:4.2}
-    \tag{4-2}
-    \sum_{k=0}^n \binom{n}{k} x^k = (1+x)^n, 
-\end{equation}$$
-Differentiate it and multiply by $x$, we obtain 
-$$\begin{equation}
-    \label{eq:4.3}
-    \tag{4-3}
-    \sum_{k=0}^n k \binom{n}{k} x^k = nx(1+x)^{n-1}. 
-\end{equation}$$
-We substitute $x = p / q$ to obtain $\mathbf{E}(X) = np$. A similar argument shows that the variance of $X$ is given by $\mathbf{Var}(X) = npq$. 
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;p&gt;We can think of the process of calculating expectations as a &lt;strong&gt;linear operator&lt;/strong&gt; on the space of random variables.&lt;/p&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 2.&lt;/b&gt; 
-The expectation operator $\mathbf{E}$ has the following properties: 
-&lt;ol&gt;
-    &lt;li&gt; if $X\geq 0$, then $\mathbf{E}(X) \geq 0$,&lt;/li&gt;
-    &lt;li&gt; if $a, b \in \mathbb{R}$, then $\mathbf{E}(aX+bY) = a\mathbf{E}(X) + b\mathbf{E}(Y)$,&lt;/li&gt;
-    &lt;li&gt; the random variable 1, taking the value 1 always, has expectation $\mathbf{E}(1) = 1$.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf1-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
-&lt;div class=&quot;proof-content&quot; id=&quot;pf1-content&quot;&gt;&lt;p&gt;
-We only prove the second property, which is also called the linear property.
-
-We must use the joint p.m.f. of $X$ and $Y$ to compute the expectation. 
-$$\begin{equation}
-    \begin{split}
-        \mathbf{E}(aX+bY) &amp;amp;= \sum_{i, j} (ax_i + by_j) f(x_i, y_j) \\
-        &amp;amp;= a \sum_{i,j} x_i f(x_i, y_j) + b\sum_{i,j} y_j f(x_i, y_j) \\
-        &amp;amp;= a\sum_{i} x_i f_X(x_i) + b\sum_{j}y_j f_Y(y_j) \\ 
-        &amp;amp;= a\mathbf{E}(X) + b\mathbf{E}(Y),
-    \end{split}
-\end{equation}$$
-where $f_X(x)$ and $f_Y(y)$ are marginal p.m.f. of $X$ and $Y$ respectively.
-&amp;#9724;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;script&gt;toggle_proof(&quot;pf1&quot;);&lt;/script&gt;
-
-&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
-It is &lt;b&gt;NOT&lt;/b&gt; in general true that $\mathbf{E}(XY)$ is the same as $\mathbf{E}(X)\mathbf{E}(Y)$. 
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
-If $X$ and $Y$ are independent, then $\mathbf{E}(XY) = \mathbf{E}(X)\mathbf{E}(Y)$. 
-&lt;/p&gt;&lt;/div&gt;
-&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf2-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
-&lt;div class=&quot;proof-content&quot; id=&quot;pf2-content&quot;&gt;&lt;p&gt;
-If $X, Y$ are independent, $f(x,y) = f_X(x) f_Y(y)$. Then
-$$\begin{equation}
-    \mathbf{E}(XY) = \sum_{ij} x_i y_j f(x,y) = \sum_{i} \left( x_i f_X(x_i) \right) \sum_{j} \left( y_j f_Y(y_j) \right) = \mathbf{E}(X) \mathbf{E}(Y).
-\end{equation}$$
-\end{proof}
-&amp;#9724;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;script&gt;toggle_proof(&quot;pf2&quot;);&lt;/script&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 3.&lt;/b&gt; 
-$X$ and $Y$ are called **uncorrelated** if $\mathbf{E}(XY) = \mathbf{E}(X)\mathbf{E}(Y)$.
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
-Independent variables are uncorrelated. But the converse is **NOT** true.
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 3.&lt;/b&gt; 
-For random variables $X$ and $Y$, 
-&lt;ol&gt;
-    &lt;li&gt; $\mathbf{Var}(aX) = a^2 \mathbf{Var}(X)$ for $a \in \mathbb{R}$,&lt;/li&gt;
-    &lt;li&gt; $\mathbf{Var}(X+Y) = \mathbf{Var}(X) + \mathbf{Var}(Y)$ is $X$ and $Y$ are uncorrelated.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
-The above theorem shows that the variance operator $\mathbf{Var}$ is **NOT** a linear operator, even when it 
-is applied only to uncorrelated variables. 
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;p&gt;Sometimes the sum $S = \sum xf(x)$ does not converge absolutely, which means the mean of the distribution does not exist. Here is an example.&lt;/p&gt;
-&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [A distribution without a mean] Let $X$ have mass function 
-$$\begin{equation}
-    f(k) = Ak^{-1} \quad k = \pm 1, \pm 2, \dots,
-\end{equation}$$
-where $A$ is chosen so that $\sum_k f(k) = 1$. The sum $\sum_k kf(k) = A\sum_{k\neq 0} k^{-1}$ doesn&apos;t converge absolutely, because both the positive and the negative parts diverge. 
-&lt;/p&gt;&lt;/div&gt;
-&lt;p&gt;This example is suitable to point out that we can base probability theory upon the expectation operator $\mathbf{E}$ rather than upon the probability measure $\mathbf{P}$. Roughly speaking, the way we proceed is to postulate axioms, such as (a)-(c) of the above Theorem, for a so-called “expectation operator” $\mathbf{E}$ acting on a space of ``random variables”. The probability of an event can then be recaptured by defining $\mathbf{P}(A) = \mathbf{E}(I_A)$.&lt;/p&gt;
-
-&lt;p&gt;Recall the indicator function of a set $A$ is defined as
-\(\begin{equation}
-    I_A(\omega) = \begin{cases} 1 &amp;amp; \omega \in A, \\
-    0 &amp;amp; \omega \not\in A. \end{cases}
-\end{equation}\)
-In addition, we have $\mathbf{E}(I_A) = \mathbf{P}(A)$.&lt;/p&gt;
-
-&lt;h2 id=&quot;dependence-of-discrete-random-variables&quot;&gt;Dependence of discrete random variables&lt;/h2&gt;
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 4.&lt;/b&gt; 
-The **joint distribution function** $F:\mathbb{R}^2 \to [0,1]$ of $X$ and $Y$, where $X$ and $Y$ are discrete variables, is given by 
-$$\begin{equation}
-    F(x, y) = \mathbf{P}(X\leq x \text{ and } Y \leq y). 
-\end{equation}$$
-Their **joint mass function** $f:\mathbb{R}^2 \to [0,1]$ is given by 
-$$\begin{equation}
-    f(x,y) = \mathbf{P}(X = x \text{ and } Y = y). 
-\end{equation}$$
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;p&gt;We write $F_{X,Y}$ and $f_{X,Y}$ when we need to stress the role of $X$ and $Y$. We may think of the joint mass function in the following way. If $A_x = {X = x}$ and $B_y = {Y = y}$, then 
-\(\begin{equation}
-    f(x,y) = \mathbf{P}(A_x \cap B_y).
-\end{equation}\)&lt;/p&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
-The discrete random variables $X$ and $Y$ are **independent** if and only if 
-$$\begin{equation}
-    \tag{4-4}
-    f_{X,Y}(x,y) = f_X(x)f_Y(y) \quad \forall x,y \in \mathbb{R}.
-\end{equation}$$
-More generally, $X$ and $Y$ are independent if and only if $f_{X,Y}(x, y)$ can be **factorized as the product** $g(x)h (y)$ of a function of $x$ alone and a function of $y$ alone. 
-&lt;/p&gt;&lt;/div&gt;
-&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
-We stress that the factorization Eq.(4-4) must hold for all $x$ and $y$ in order that $X$ and $Y$ be independent. 
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
-$$\begin{equation}
-    \mathbf{E}(g(X, Y))=\sum_{x, y} g(x, y) f_{X, Y}(x, y).
-\end{equation}$$
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 5.&lt;/b&gt; 
-The covariance of $X$ and $Y$ is
-$$\begin{equation}
-    \mathbf{cov}(X,Y) = \mathbf{E}\left( (X-\mathbf{E}(X))(Y-\mathbf{E}(Y)) \right).
-\end{equation}$$
-The correlation (coefficient) of $X$ and $Y$ is 
-$$\begin{equation}
-\mathbf{corr}(X, Y) = \rho(X,Y) = \frac{\mathbf{cov}(X,Y)}{\sqrt{\mathbf{Var}(X)\mathbf{Var}(Y)}}
-\end{equation}$$
-as long as the variances are non-zero. 
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;remark&quot;&gt;&lt;p&gt;&lt;b&gt;Remark.&lt;/b&gt; 
-Notice the following two equations.
-&lt;ol&gt;
-    &lt;li&gt; $\mathbf{cov}(X,X) = \mathbf{Var}(X)$,&lt;/li&gt;
-    &lt;li&gt; $\mathbf{cov}(X,Y) = \mathbf{E}(XY) - \mathbf{E}(X)\mathbf{E}(Y)$.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;p&gt;Covariance itself is not a satisfactory measure of dependence because the scale of values which $\mathbf{cov}(X, Y)$ may take contains no points which are clearly interpretable in terms of the relationship between $X$ and $Y$.&lt;/p&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 4.&lt;/b&gt; [Cauchy-Schwarz inequality] For random variables $X$ and $Y$, 
-$$\begin{equation}
-    \mathbf{E}(XY)^2 \leq \mathbf{E}(X^2) \mathbf{E}(Y^2)
-\end{equation}$$ 
-with equality if and only if $\mathbf{P}(aX = bY) = 1$ for some real $a$ and $b$, at least one of which is non-zero. 
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;proof&quot;&gt;&lt;a href=&quot;javascript:void(0)&quot; id=&quot;pf3-link&quot;&gt;&lt;b&gt;Proof &amp;#9656;&lt;/b&gt;&lt;/a&gt;
-&lt;div class=&quot;proof-content&quot; id=&quot;pf3-content&quot;&gt;&lt;p&gt;
-For $a, b \in \mathbb{R}$, let $Z = aX - bY$. Then 
-$$\begin{equation}
-    0 \leq \mathbf{E}(Z^2) = a^2 \mathbf{E}(X^2) - 2ab\mathbf{E}(XY) + b^2\mathbf{E}(Y^2).
-\end{equation}$$
-Thus the right-hand side is a quadratic in the variable $a$ with at most one real root. Its discriminant must be non-positive. That is to say, if $b \neq 0$, 
-$$\begin{equation}
-    \mathbf{E}(XY)^2 - \mathbf{E}(X^2) \mathbf{E}(Y^2) \leq 0. 
-\end{equation}$$
-The discriminant is zero if and only if the quadratic has a real root. This occurs if and only if 
-$$\begin{equation}
-    \mathbf{E}\left( (aX-bY)^2 \right) = 0
-\end{equation}$$
-for some $a$ and $b$.
-&amp;#9724;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;script&gt;toggle_proof(&quot;pf3&quot;);&lt;/script&gt;
-
-&lt;p&gt;We define $X’ = X-\mathbf{E}(X), Y’ = Y - \mathbf{E}(Y)$. Since all $X, Y$ satisfy the Cauchy-Schwarz inequality, so do $X’$ and $Y’$. Therefore, 
-\(\begin{equation}
-    \mathbf{E}(X&apos;Y&apos;)^2 \leq \mathbf{E}(X&apos;^2) \mathbf{E}(Y&apos;^2) \quad \Leftrightarrow \quad \mathbf{cov}(X, Y)^2 \leq \mathbf{Var}(X)\mathbf{Var}(Y).
-\end{equation}\)
-Therefore, 
-\(\begin{equation}
-    \rho(X,Y)^2 \leq 1 \quad \mathbb{R}ightarrow \quad \rho(X,Y) \in [-1, 1].
-\end{equation}\)
-which gives the following lemma.&lt;/p&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Lemma.&lt;/b&gt; 
-The correlation coefficient $\rho$ satisfies $\left\vert \rho (X, Y)  \right\vert \leq 1$ with equality if and only if $\mathbf{P}(aX + bY = c) = 1$ for some $a, b, c \in \mathbb{R}$. 
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;expectation-of-continuous-random-variables&quot;&gt;Expectation of continuous random variables&lt;/h2&gt;
-&lt;h3 id=&quot;idea-of-translating-expectation-from-discrete-to-continuous&quot;&gt;Idea of translating expectation from discrete to continuous&lt;/h3&gt;
-&lt;p&gt;Suppose we have a continuous random variable $X$ with $f$ being the probability density function. We split $X$ into small intervals $\Delta x$. Then $p_i = f(x_i)\Delta x$. $\frac{p_i}{\Delta x}$ is an approximation of probability density function. Therefore, 
-\(\begin{equation}
-    \mathbf{E}(X) \approx \sum_{i} x_i p_i = \sum_{i} x_i f(x_i) \Delta x,
-\end{equation}\)
-which is the Remann sum. We take the limit and get
-\(\begin{equation}
-    \mathbf{E}(x) = \int_{-\infty}^\infty x f(x)dx.
-\end{equation}\)&lt;/p&gt;
-
-&lt;h3 id=&quot;expectation&quot;&gt;Expectation&lt;/h3&gt;
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 6.&lt;/b&gt; 
-The **expectation** of a continuous random variable $X$ with density function $f$ is given by 
-$$\begin{equation}
-    \mathbf{E}(X) = \int_{-\infty}^\infty xf(x) dx
-\end{equation}$$
-whenever this integral exists.
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 5.&lt;/b&gt; 
-If $X$ and $g(X)$ are continuous random variables, then $$\begin{equation}
-    \mathbf{E}\left( g(X) \right) = \int_{-\infty}^\infty g(x)f(x) dx.
-\end{equation}$$
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 7.&lt;/b&gt; 
-The $k$th **moment** of a continuous variable $X$ is defined as
-$$\begin{equation}
-    \mathbf{E}(X^k) = \int_{-\infty}^\infty x^k f(x) dx
-\end{equation}$$
-whenever the integral converges.
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;example&quot;&gt;&lt;p&gt;&lt;b&gt;Example.&lt;/b&gt; [Cauchy distribution] The random variable $X$ has the Cauchy distribution t if it has density 
-function 
-$$\begin{equation}
-    f(x) = \frac{1}{\pi (1+x^2)}, \quad x \in \mathbb{R}.
-\end{equation}$$
-This distribution is notable for having no moments.
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;dependence-of-continuous-random-variables&quot;&gt;Dependence of continuous random variables&lt;/h2&gt;
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 8.&lt;/b&gt; 
-The **joint distribution function** of $X$ and $Y$ is the function $F: \mathbb{R}^2 \to [0, 1]$ given by 
-$$\begin{equation}
-    F(x,y) = \mathbf{P}(X\leq x, Y \leq y).
-\end{equation}$$
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Definition 9.&lt;/b&gt; 
-The random variables $X$ and $Y$ are **(jointly) continuous** with **joint (probability) density function** $f : \mathbb{R}^2 \to [0, \infty)$ if
-$$\begin{equation}
-    F(x, y)=\int_{v=-\infty}^{y} \int_{u=-\infty}^{x} f(u, v) d u d v \quad \text{for each } x, y\in\mathbb{R}. 
-\end{equation}$$
-If $F$ is sufficiently differentiable at the point $(x , y)$, then we usually specify 
-$$\begin{equation}
-    f(x, y)=\frac{\partial^{2}}{\partial x \partial y} F(x, y).
-\end{equation}$$
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Probabilities&lt;/strong&gt;:&lt;/p&gt;
-
-\[\begin{equation}
-    \begin{aligned} 
-        \mathbf{P}(a \leq X \leq b, c \leq Y \leq d) &amp;amp;=F(b, d)-F(a, d)-F(b, c)+F(a, c) \\ 
-        &amp;amp;=\int_{y=c}^{d} \int_{x=a}^{b} f(x, y) d x d y. \end{aligned}
-\end{equation}\]
-
-&lt;p&gt;If $B$ is a sufficiently nice subset of $\mathbb{R}^2$, then
-\(\begin{equation}
-    \mathbf{P} \left( (X, Y) \in B \right)=\iint_{B} f(x, y) d x d y.
-\end{equation}\)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Marginal distributions&lt;/strong&gt;: The marginal distribution functions of $X$ and $Y$ are&lt;/p&gt;
-
-\[\begin{equation}
-    F_{X}(x)=\mathbf{P}(X \leq x)=F(x, \infty), \quad F_{Y}(y)=\mathbf{P}(Y \leq y)=F(\infty, y). 
-\end{equation}\]
-
-\[\begin{equation}
-    F_{X}(x)=\int_{-\infty}^{x}\left(\int_{-\infty}^{\infty} f(u, y) d y\right) d u.
-\end{equation}\]
-
-&lt;p&gt;Marginal density function of $X$ and $Y$:
-\(\begin{equation}
-    f_{X}(x)=\int_{-\infty}^{\infty} f(x, y) d y, \quad f_{Y}(y)=\int_{-\infty}^{\infty} f(x, y) d x.
-\end{equation}\)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Expectation&lt;/strong&gt;: If $g: \mathbb{R}^2 \to \mathbb{R}$ is a sufficiently nice function, then&lt;/p&gt;
-
-\[\begin{equation}
-    \mathbf{E}(g(X, Y))=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f(x, y) d x d y;
-\end{equation}\]
-
-&lt;p&gt;in particular, setting $g(x, y) = ax + by$,&lt;/p&gt;
-
-\[\begin{equation}
-    \mathbf{E}(aX+bY) = a\mathbf{E}(X) + b\mathbf{E}(Y).
-\end{equation}\]
-
-&lt;p&gt;&lt;strong&gt;Independence&lt;/strong&gt;: The random variables $X$ and $Y$ are independent if and only if&lt;/p&gt;
-
-\[\begin{equation}
-    F(x,y) = F_X(x) F_Y(y) \quad \forall x, y \in \mathbb{R},
-\end{equation}\]
-
-&lt;p&gt;which, for &lt;strong&gt;continuous random variables&lt;/strong&gt;, is equivalent to requiring that&lt;/p&gt;
-
-\[\begin{equation}
-    f(x,y) = f_X(x) f_Y(y).
-\end{equation}\]
-
-&lt;div class=&quot;theorem&quot;&gt;&lt;p&gt;&lt;b&gt;Theorem 6.&lt;/b&gt; [Cauchy-Schwarz inequality] For any pair $X, Y$ of jointly continuous variables, we have that 
-$$\begin{equation}
-    \mathbf{E}(XY)^2 \leq \mathbf{E}(X^2) \mathbf{E}(Y^2), 
-\end{equation}$$
-with equality if and only if $\mathbf{P}(aX = bY) = 1$ for some real $a$ and $b$, at least one of which is non-zero. 
-&lt;/p&gt;&lt;/div&gt;
-</description>
-        <pubDate>Fri, 23 Oct 2020 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2020/10/notes-4.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2020/10/notes-4.html</guid>
         
         <category>notes</category>
         

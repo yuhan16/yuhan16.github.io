@@ -8,7 +8,7 @@
 
 <meta property="og:title" content="Mathjax in Jekyll Notes">
 <title>Mathjax in Jekyll Notes</title>
-<meta property="og:description" content="We summarize the basic usage of mathjax in Jekyll notes. We also provide some examples of writing math equations.">
+<meta property="og:description" content="Basic usage of MathJax in Jekyll notes and  examples of writing math equations.">
 <meta property="og:url" content="http://localhost:4000/2019/11/mathjax-notes.html">
 <meta property="og:site_name" content="HuskyDev">
 <meta property="og:locale" content="">
@@ -21,12 +21,11 @@
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
-<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
 <script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
 
 
 <link rel="stylesheet" href="/assets/css/github.min.css">
-<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -99,15 +98,15 @@
 	<!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
 		<span class="post-meta">
-			<i class="far fa-calendar-alt">&nbsp;</i>2019-11-03
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2019-11-03
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/miscellaneous">Miscellaneous</a>
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/miscellaneous">Miscellaneous</a>
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
 		</span>
 
         <!--span class="post-meta">
@@ -128,9 +127,27 @@
 		</span-->
 	</div>
 
-    <!--post content-->
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#mathjax">MathJax</a></li>
+<li class="toc-entry toc-h1"><a href="#mathjax-configurations">MathJax Configurations</a></li>
+<li class="toc-entry toc-h1"><a href="#examples">Examples</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#display-in-a-separate-line">Display in a Separate Line</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#some-tips">Some Tips</a></li>
+<li class="toc-entry toc-h1"><a href="#reference">Reference</a></li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
     <article class="post-content">
-        <h2 id="mathjax">MathJax</h2>
+        <h1 id="mathjax">MathJax</h1>
 <p>We can use <a href="https://www.mathjax.org/">MathJax</a> to nicely display latex math formula in Jekyll notes.</p>
 
 <p>We can use a picture to show math formula in a webpage, but it can be troublesome to make modifications. The most efficient way to write math formula is by LaTex. MathJax can be viewed as a plugin that converts the LaTex code to HTML and then display it.</p>
@@ -148,7 +165,7 @@
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre></div></div>
 
-<h2 id="mathjax-configurations">MathJax Configurations</h2>
+<h1 id="mathjax-configurations">MathJax Configurations</h1>
 <p>We add inline math delimiter pairs <code class="language-plaintext highlighter-rouge">[$,$]</code> so that mathjax can recognize it. Note that <code class="language-plaintext highlighter-rouge">$ $</code> is not recognized by default.</p>
 
 <p>The option <code class="language-plaintext highlighter-rouge">processEscapes: true</code> means that we can use <code class="language-plaintext highlighter-rouge">\$</code> to produce a literal dollar sign. Otherwise, MathJax will interpret every <code class="language-plaintext highlighter-rouge">$</code> sign as inline math delimiters.</p>
@@ -159,7 +176,7 @@
 
 <p>See <a href="https://docs.mathjax.org/en/latest/options/input/tex.html">TeX Input Processor Options</a> for more detailed configurations.</p>
 
-<h2 id="examples">Examples</h2>
+<h1 id="examples">Examples</h1>
 <p>For inline math, we can simple write $f(x) = \log(x) + e^{2y}$ or \( f(x) = 3x + 2y \).</p>
 
 <p>For independent math equations, we can either use the <code class="language-plaintext highlighter-rouge">equation</code> environment or the <code class="language-plaintext highlighter-rouge">$$</code> environments:
@@ -188,7 +205,7 @@ We reference the equation \eqref{eq:1} here.</p>
 
 <p><strong>Note:</strong> the <code class="language-plaintext highlighter-rouge">label</code> and <code class="language-plaintext highlighter-rouge">tag</code> attributes should appear or disappear in the <code class="language-plaintext highlighter-rouge">equation</code> environment at the same time. If both of them are not used in the <code class="language-plaintext highlighter-rouge">equation</code> environment, the equation will act as the <code class="language-plaintext highlighter-rouge">equation*</code> environment.</p>
 
-<h3 id="display-in-a-separate-line">Display in a Separate Line</h3>
+<h2 id="display-in-a-separate-line">Display in a Separate Line</h2>
 <p>Mathjax will interpret the <code class="language-plaintext highlighter-rouge">$$</code> environment in the Markdown file to <code class="language-plaintext highlighter-rouge">\[ \]</code> and then display the content. It will not translate the <code class="language-plaintext highlighter-rouge">equation</code> environment. However, in Markdown we need a blank line to separate the content. Therefore, the equation in the following case will be treated as inline math:</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is a beginning line without extra blank lines after.
 $$ f(x) = ax + by. $$
@@ -226,7 +243,7 @@ I have an equation here
 and this is a line after the equation.
 </p>
 
-<h2 id="some-tips">Some Tips</h2>
+<h1 id="some-tips">Some Tips</h1>
 <ol>
   <li>
     <p>MathJax does not support the <code class="language-plaintext highlighter-rouge">split</code> environment. Instead, we can use the <code class="language-plaintext highlighter-rouge">align</code> environments or <code class="language-plaintext highlighter-rouge">aligned</code> within the <code class="language-plaintext highlighter-rouge">equation</code> environment.</p>
@@ -240,7 +257,7 @@ and this is a line after the equation.
   </li>
 </ol>
 
-<h2 id="reference">Reference</h2>
+<h1 id="reference">Reference</h1>
 <p>[1] <a href="http://blog.lostinmyterminal.com/webpages/2015/01/09/math-support-in-jekyll.html">Math Support in Jekyll</a></p>
 
 <p>[2] <a href="http://zjuwhw.github.io/2017/06/04/MathJax.html">Use MathJax to write Equations in Jekyll blogs</a></p>
@@ -271,58 +288,58 @@ and this is a line after the equation.
 
 </div>
 
-<section class="pagination" style="margin-bottom: 0;">
+
+<section class="post-pagination">
     
-        <a class="pagination-pre-next" href="/2019/09/jekyll-2-template.html">Previous: Learning Jelly Part 2: Templating Language</a>
+        <a href="/2019/09/jekyll-2-template.html">Previous: Learning Jelly Part 2: Templating Language</a>
     
 
     
-        <a class="pagination-pre-next" href="/2019/12/static-dynamic-web.html" title="Static vs Dynamic Web Pages">Next: Static vs Dynamic Web Pages</a>
+        <a href="/2019/12/static-dynamic-web.html">Next: Static vs Dynamic Web Pages</a>
     
 </section>
   
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-
-  var disqus_developer = 1;
-
-var disqus_shortname ='';
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 
 <a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
 
 
 <script>
-// Get the button
-let mybutton = document.getElementById("back-top-button");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
 
 function scrollFunction() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
 }
 </script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
         </div>
 	</div>
 

@@ -21,12 +21,11 @@
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
-<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
 <script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
 
 
 <link rel="stylesheet" href="/assets/css/github.min.css">
-<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -99,15 +98,15 @@
 	<!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
 		<span class="post-meta">
-			<i class="far fa-calendar-alt">&nbsp;</i>2019-09-02
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2019-09-02
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/miscellaneous">Miscellaneous</a>
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/miscellaneous">Miscellaneous</a>
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;0 minutes
+			<i class="fa-regular fa-clock"></i>&nbsp;0 minutes
 		</span>
 
         <!--span class="post-meta">
@@ -124,11 +123,47 @@
 		</span-->
 	</div>
 
-    <!--post content-->
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#some-notes">Some notes</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#publish-github-page-with-no-jekyll">Publish github page with no jekyll</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#set-z-index-to-overlay">set z-index to overlay</a></li>
+<li class="toc-entry toc-h3"><a href="#font-matter-settings">font matter settings</a></li>
+<li class="toc-entry toc-h3"><a href="#link-in-markdown">link in markdown</a></li>
+<li class="toc-entry toc-h3"><a href="#for-excerpt">For excerpt</a></li>
+<li class="toc-entry toc-h3"><a href="#margin-collaps">margin collaps</a></li>
+<li class="toc-entry toc-h3"><a href="#github-pages">github pages</a></li>
+<li class="toc-entry toc-h3"><a href="#markup-text-in-div-and-mathjax">markup text in div and mathjax</a></li>
+<li class="toc-entry toc-h3"><a href="#for-testing">For testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#h1-title">h1 title</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#h2-title">h2 title</a></li>
+<li class="toc-entry toc-h2"><a href="#h2-title-1">h2 title</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#h3-title">h3 title</a></li>
+<li class="toc-entry toc-h3"><a href="#h3-title-1">h3 title</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
     <article class="post-content">
         <p>This blog collects quick notes in developing jekyll notes. We also perform different general tests in this notes.</p>
 
-<h2 id="some-notes">Some notes</h2>
+<h1 id="some-notes">Some notes</h1>
 
 <p>Make entire Div Clickable:</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://example.com"</span><span class="nt">&gt;</span>
@@ -235,8 +270,6 @@ This is a paragraph without &amp;lt p &amp;gt.
 <p>Output all filtered tags:</p>
 <p>
 
-'welcome', 
-
 'jekyll', 
 
 'test', 
@@ -269,6 +302,8 @@ This is a paragraph without &amp;lt p &amp;gt.
 
 'math', 
 
+'git', 
+
 'rl', 
 
 'collocation', 
@@ -280,6 +315,23 @@ This is a paragraph without &amp;lt p &amp;gt.
 'control', 
 
 </p>
+
+<h1 style="font-size: 32px">h1 title</h1>
+
+<h2 style="font-size: 24px">h2 title</h2>
+<h2>h2 title</h2>
+
+<h3>h3 title</h3>
+<h3 style="font-size: 20px">h3 title</h3>
+
+<h4>h4 title</h4>
+
+<p>This is a paragraph.</p>
+
+<ul>
+  <li>abc</li>
+  <li><a>fjdjfdk</a></li>
+</ul>
 
     </article>
 
@@ -303,58 +355,58 @@ This is a paragraph without &amp;lt p &amp;gt.
 
 </div>
 
-<section class="pagination" style="margin-bottom: 0;">
+
+<section class="post-pagination">
     
-        <a class="pagination-pre-next" href="/2019/09/wellcome.html">Previous: Build Up My Own Website!</a>
+        <span style="margin-right: 2rem;"></span>
     
 
     
-        <a class="pagination-pre-next" href="/2019/09/scss-notes.html" title="Notes on CSS files">Next: Notes on CSS files</a>
+        <a href="/2019/09/scss-notes.html">Next: Notes on CSS files</a>
     
 </section>
   
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-
-  var disqus_developer = 1;
-
-var disqus_shortname ='';
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 
 <a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
 
 
 <script>
-// Get the button
-let mybutton = document.getElementById("back-top-button");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
 
 function scrollFunction() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
 }
 </script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
         </div>
 	</div>
 

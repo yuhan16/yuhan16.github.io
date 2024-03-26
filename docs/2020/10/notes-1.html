@@ -21,12 +21,11 @@
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
-<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
 <script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
 
 
 <link rel="stylesheet" href="/assets/css/github.min.css">
-<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -99,15 +98,15 @@
 	<!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
 		<span class="post-meta">
-			<i class="far fa-calendar-alt">&nbsp;</i>2020-10-02
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2020-10-02
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/probability">Probability</a>
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/probability">Probability</a>
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;15 minutes
+			<i class="fa-regular fa-clock"></i>&nbsp;15 minutes
 		</span>
 
         <!--span class="post-meta">
@@ -124,7 +123,15 @@
 		</span-->
 	</div>
 
-    <!--post content-->
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			
+		</div>
+	</div>
+    
+	<!--post content-->
     <article class="post-content">
         <h2 id="event-as-sets">Event as sets</h2>
 <p>Probability studies the <strong>repeatable (or ideal) experiments</strong>. The result of an experiment is called an <strong>outcome</strong>.</p>
@@ -368,58 +375,58 @@ The probability space $(\mathcal{F}_1 \times \mathcal{F}_2, \mathcal{G}, \mathbf
 
 </div>
 
-<section class="pagination" style="margin-bottom: 0;">
+
+<section class="post-pagination">
     
-        <a class="pagination-pre-next" href="/2019/12/static-site-generators.html">Previous: Static Site Generators</a>
+        <a href="/2019/12/static-site-generators.html">Previous: Static Site Generators</a>
     
 
     
-        <a class="pagination-pre-next" href="/2020/10/notes-2.html" title="Random Variables">Next: Random Variables</a>
+        <a href="/2020/10/notes-2.html">Next: Random Variables</a>
     
 </section>
   
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-
-  var disqus_developer = 1;
-
-var disqus_shortname ='';
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 
 <a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
 
 
 <script>
-// Get the button
-let mybutton = document.getElementById("back-top-button");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
 
 function scrollFunction() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
 }
 </script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
         </div>
 	</div>
 

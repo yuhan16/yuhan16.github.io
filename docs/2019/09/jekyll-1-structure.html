@@ -21,12 +21,11 @@
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
-<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
 <script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
 
 
 <link rel="stylesheet" href="/assets/css/github.min.css">
-<link rel="stylesheet" href="/assets/css/academicons-1.9.4/css/academicons.min.css">
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
@@ -99,15 +98,15 @@
 	<!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
 		<span class="post-meta">
-			<i class="far fa-calendar-alt">&nbsp;</i>2019-09-24
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2019-09-24
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/programming">Programming</a>
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
 		</span>
 
 		<span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;15 minutes
+			<i class="fa-regular fa-clock"></i>&nbsp;15 minutes
 		</span>
 
         <!--span class="post-meta">
@@ -128,19 +127,37 @@
 		</span-->
 	</div>
 
-    <!--post content-->
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#jekyll">Jekyll</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#prerequisites-and-installation">Prerequisites and Installation</a></li>
+<li class="toc-entry toc-h2"><a href="#directory-structure">Directory Structure</a></li>
+<li class="toc-entry toc-h2"><a href="#layouts">Layouts</a></li>
+<li class="toc-entry toc-h2"><a href="#includes">Includes</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#how-to-get-started">How to Get Started</a></li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
     <article class="post-content">
         <p>This post introduces the directory structure of Jekyll to help people undertand the Jekyll project environments. We also discuss some basic concepts such as templates and includes.</p>
 
 <!--more-->
 
-<h2 id="jekyll">Jekyll</h2>
+<h1 id="jekyll">Jekyll</h1>
 
 <p><a href="https://jekyllrb.com/">Jekyll</a> is one of the most popular static site generators (SSGs). It is written in <a href="https://www.ruby-lang.org/en/">Ruby</a> and is supported by <a href="https://pages.github.com/">GitHub Pages</a>.</p>
 
 <p>The Jekyll document is comprehensive and instructive. So I do encourage people to read the documentation if they decide to use it. Here, I will introduce Jekyll from my perspective and provide a general idea of how Jekyll works.</p>
 
-<h3 id="prerequisites-and-installation">Prerequisites and Installation</h3>
+<h2 id="prerequisites-and-installation">Prerequisites and Installation</h2>
 
 <p>Since jekyll is software written in Ruby, we first need to make sure the Ruby programming language is installed in our computer. It comes with Linux distrirbutions. We can check it using the command</p>
 
@@ -149,7 +166,7 @@
 
 <p>We can also follow the <a href="https://jekyllrb.com/docs/">Quickstart</a> in Jekyll documentation to create a quick jekyll project and view it in the browser.</p>
 
-<h3 id="directory-structure">Directory Structure</h3>
+<h2 id="directory-structure">Directory Structure</h2>
 
 <p>Jekyll creates a series of directories. It is important to understand their functions so that we can create the pages we want. A typical jekyll directory is like the following (from Jekyll documentation):</p>
 
@@ -212,7 +229,7 @@
 
 <p>Jekyll is a SSG and it does not render the page dynamically. It generates everything in compete HTML pages in advance and output them to <code class="language-plaintext highlighter-rouge">_site</code>. We can upload <code class="language-plaintext highlighter-rouge">_site</code> directory to the web server (e.g. Github Page) for online views.</p>
 
-<h3 id="layouts">Layouts</h3>
+<h2 id="layouts">Layouts</h2>
 <p>A layout file is a HTML file that specify the structure of a web page. It defines the template that all pages will follow. We can define different layout files for different styles.</p>
 
 <p>In general, we have a base layout named <code class="language-plaintext highlighter-rouge">default.html</code>, which defines the skelenton of all web pages. It needs to contain the <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> element (a complete HTML file). A typical <code class="language-plaintext highlighter-rouge">default.html</code> looks like the following.</p>
@@ -259,7 +276,7 @@ layout: default
   <li>The inherited layouts do not need to be a complete HTML file. i.e., does not need to contain <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> elements.</li>
 </ul>
 
-<h3 id="includes">Includes</h3>
+<h2 id="includes">Includes</h2>
 <p>Includes are the frequently used HTML snippets which are used by <code class="language-plaintext highlighter-rouge">include</code> command. For example, a typical <code class="language-plaintext highlighter-rouge">footer.html</code> snippets looks like the following.</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;footer</span> <span class="na">class=</span><span class="s">"site-footer"</span><span class="nt">&gt;</span>
@@ -270,7 +287,7 @@ layout: default
 
 <p>Includes are not layouts. They are independent HTML snippets and does not need a template. We can include them anytime we want.</p>
 
-<h2 id="how-to-get-started">How to Get Started</h2>
+<h1 id="how-to-get-started">How to Get Started</h1>
 <p>My suggestion is to start from understanding basics of HTML and CSS, such as grammars and formats. There already have many nice tutorial websites, for example, <a href="https://www.w3schools.com/html/default.asp">W3Schools HTML Tutorial</a> and <a href="https://www.w3schools.com/css/">W3Schools CSS Tutorial</a>.</p>
 
 <p>Then, navigate the <code class="language-plaintext highlighter-rouge">_layout</code> directory to understand the structure of templates that used in the website. Start from <code class="language-plaintext highlighter-rouge">default.html</code> (or default layout with other names). Try to ignore the templating variables and statements in the layouts. Take a look into the <code class="language-plaintext highlighter-rouge">_include</code> directory if any template uses includes.</p>
@@ -305,58 +322,58 @@ layout: default
 
 </div>
 
-<section class="pagination" style="margin-bottom: 0;">
+
+<section class="post-pagination">
     
-        <a class="pagination-pre-next" href="/2019/09/scss-notes.html">Previous: Notes on CSS files</a>
+        <a href="/2019/09/scss-notes.html">Previous: Notes on CSS files</a>
     
 
     
-        <a class="pagination-pre-next" href="/2019/09/jekyll-2-template.html" title="Learning Jelly Part 2: Templating Language">Next: Learning Jelly Part 2: Templating Language</a>
+        <a href="/2019/09/jekyll-2-template.html">Next: Learning Jelly Part 2: Templating Language</a>
     
 </section>
   
-<div id="disqus_thread"></div>
-
-<script type="text/javascript">
-
-  var disqus_developer = 1;
-
-var disqus_shortname ='';
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 
 <a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
 
 
 <script>
-// Get the button
-let mybutton = document.getElementById("back-top-button");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
 
 function scrollFunction() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
 }
 </script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
         </div>
 	</div>
 

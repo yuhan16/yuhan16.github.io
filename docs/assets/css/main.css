@@ -237,6 +237,7 @@ pre {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .main-menu {
@@ -508,6 +509,33 @@ pre {
 }
 .archive-content > ul > li {
   margin: 0;
+}
+
+.archive-btn-container {
+  display: flex;
+}
+
+.archive-btn {
+  font-weight: bold;
+  padding: 8px 15px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.archive-btn.active {
+  background-color: #e8e8e8;
+}
+
+.archive-content-container {
+  display: none;
+  margin: auto;
+}
+
+.archive-content-container.active {
+  display: block;
 }
 
 /* tags */

@@ -5,8 +5,8 @@
     <description>HuskDev is Yuhan&apos;s personal blog.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 01 Apr 2024 16:58:04 -0400</pubDate>
-    <lastBuildDate>Mon, 01 Apr 2024 16:58:04 -0400</lastBuildDate>
+    <pubDate>Mon, 01 Apr 2024 20:50:02 -0400</pubDate>
+    <lastBuildDate>Mon, 01 Apr 2024 20:50:02 -0400</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -60,7 +60,7 @@
         
         <category>collocation</category>
         
-        <category>trajectory-optimization</category>
+        <category>trajectory optimization</category>
         
         
         <category>Optimization</category>
@@ -91,7 +91,7 @@
         <category>RL</category>
         
         
-        <category>Reinforcement Learning</category>
+        <category>Machine Learning</category>
         
       </item>
     

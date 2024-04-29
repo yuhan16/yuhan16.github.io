@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Python Virtual Environments">
+<title>Python Virtual Environments</title>
+<meta property="og:description" content="Python virtual environment packages.">
+<meta property="og:url" content="http://localhost:4000/2022/05/python-virtualenv.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2022/05/python-virtualenv.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Python Virtual Environments</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-05-16
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#python">python,</a>
+                
+            
+                
+                <a href="/tags/#virtualenv">virtualenv,</a>
+                
+            
+                
+                <a href="/tags/#venv">venv</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <p>There are many packages that relates to python virtual environments. For example,</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">virtualenv</code></li>
+  <li><code class="language-plaintext highlighter-rouge">pyenv</code></li>
+  <li><code class="language-plaintext highlighter-rouge">pipenv</code></li>
+  <li>Standard python library <code class="language-plaintext highlighter-rouge">venv</code> module</li>
+</ul>
+
+<p>All the modules are python packages and can be installed by <code class="language-plaintext highlighter-rouge">pip</code> command. The standard <code class="language-plaintext highlighter-rouge">venv</code> module is shipped with python. So we do not need to install it if we have python.</p>
+
+<p>See <a href="https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe">What is the difference between venv, pyvenv, pyenv, virtualenv, virtualenvwrapper, pipenv, etc?</a></p>
+
+<h2 id="difference">Difference</h2>
+
+<p>Standard <a href="https://docs.python.org/3/library/venv.html"><code class="language-plaintext highlighter-rouge">venv</code></a> vs <a href="https://virtualenv.pypa.io/en/latest/index.html"><code class="language-plaintext highlighter-rouge">virtualenv</code></a>.</p>
+
+<ul>
+  <li>
+    <p>The <code class="language-plaintext highlighter-rouge">venv</code> module supports creating <strong>lightweight</strong> “virtual environments”, each with their own independent set of Python packages installed in their <a href="https://docs.python.org/3/library/site.html#module-site"><code class="language-plaintext highlighter-rouge">site</code></a> directories. A virtual environment is created on top of an <strong>existing Python installation</strong>, known as the virtual environment’s “base” Python, and may optionally be isolated from the packages in the base environment, so only those explicitly installed in the virtual environment are available.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">virtualenv</code> is a tool to create isolated Python environments. Since Python <code class="language-plaintext highlighter-rouge">3.3</code>, a subset of it has been <strong>integrated into the standard library</strong> under the <code class="language-plaintext highlighter-rouge">venv</code> module. However, the <code class="language-plaintext highlighter-rouge">venv</code> module does <strong>not</strong> offer all features of this library. <code class="language-plaintext highlighter-rouge">virtualenv</code> can be installed by <code class="language-plaintext highlighter-rouge">pip</code>:</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">--user</span> virtualenv
+</code></pre></div></div>
+
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/python">python,</a>
+                
+            
+                
+                <a href="/tags/virtualenv">virtualenv,</a>
+                
+            
+                
+                <a href="/tags/venv">venv</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2022/05/requirements-vs-pyproject.html">Previous: Requirements vs pyptoject</a>
+    
+
+    
+        <a href="/2022/05/python-exception.html">Next: Python Exception Related</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2024 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

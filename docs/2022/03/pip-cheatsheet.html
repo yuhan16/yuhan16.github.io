@@ -6,18 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width initial-scale=1">
 
-<meta property="og:title" content="Notes on CSS files">
-<title>Notes on CSS files</title>
-<meta property="og:description" content="This notes documents the usage of css classes for the personal website.">
-<meta property="og:url" content="http://localhost:4000/2019/09/scss-notes.html">
+<meta property="og:title" content="Python pip Cheatsheet">
+<title>Python pip Cheatsheet</title>
+<meta property="og:description" content="Useful Python pip commands for quick reference.">
+<meta property="og:url" content="http://localhost:4000/2022/03/pip-cheatsheet.html">
 <meta property="og:site_name" content="HuskyDev">
 <meta property="og:locale" content="">
 
 <meta name="keywords" content="YuhanHuskyDev">
 
-<link rel="icon" href="/assets/images/favicon.ico">
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/2019/09/scss-notes.html">
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2022/03/pip-cheatsheet.html"/>
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -29,7 +30,7 @@
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
-<script type="text/x-mathjax-config">
+<!--script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ['\\(','\\)'] ],
@@ -38,9 +39,36 @@
       },
       "HTML-CSS": { scale: 90 }
     });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script src="/assets/js/myjavascript.js"></script>
     
@@ -85,27 +113,31 @@
 	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
         <div class="card">
             <div class="post">
-    <h1 class="post-title">Notes on CSS files</h1>
+    <h1 class="post-title">Python pip Cheatsheet</h1>
 	
 	<!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
 		<span class="post-meta">
-			<i class="fa-regular fa-calendar-check">&nbsp;</i>2019-09-10
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-03-14
 		</span>
 
 		<span class="post-meta">
-			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/miscellaneous">Miscellaneous</a>
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
 		</span>
 
 		<span class="post-meta">
-			<i class="fa-regular fa-clock"></i>&nbsp;0 minutes
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
 		</span>
 
         <!--span class="post-meta">
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/#css">css</a>
+                <a href="/tags/#python">python,</a>
+                
+            
+                
+                <a href="/tags/#pip">pip</a>
                 
             
 		</span-->
@@ -116,43 +148,59 @@
 		<p class="toc-meta">Table of Contents</p>
 		<div class="toc-content">
 			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#python-pip-cheatsheet">Python pip Cheatsheet</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#general">General</a></li>
+<li class="toc-entry toc-h2"><a href="#installation">Installation</a></li>
+</ul>
+</li>
 </ul>
 		</div>
 	</div>
     
 	<!--post content-->
     <article class="post-content">
-        <p>This notes documents the usage of css classes for the personal website.
-<!--more--></p>
+        <h1 id="python-pip-cheatsheet">Python pip Cheatsheet</h1>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>container-all  <span class="c"># entire body</span>
-|- header-container    <span class="c"># through header, format only</span>
-|  <span class="sb">`</span>- navbar           <span class="c"># small header, container only with clearfix</span>
-|- body-container      <span class="c"># through body, format only</span>
-|   <span class="sb">`</span>- page-content    <span class="c"># small body page, container only with clearfix</span>
-|- footer-container    <span class="c"># through footer, format only</span>
-|  <span class="sb">`</span>- footer-content   <span class="c"># small footer, container only with clearfix</span>
+<h2 id="general">General</h2>
+
+<p>Check locally installed package:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip list <span class="nt">--local</span>
 </code></pre></div></div>
 
-<p>There is only one <code class="language-plaintext highlighter-rouge">page</code> class: <code class="language-plaintext highlighter-rouge">page-content</code>, which defines the format of the page content.</p>
+<p>Check outdated package:</p>
 
-<p>There is a series of <code class="language-plaintext highlighter-rouge">post</code> class:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">post</code>: no css definition, only used to group things.</li>
-  <li><code class="language-plaintext highlighter-rouge">post-header</code>: contains <code class="language-plaintext highlighter-rouge">post-title</code> and <code class="language-plaintext highlighter-rouge">post-meta</code></li>
-  <li><code class="language-plaintext highlighter-rouge">post-title</code>: defines post titile formats, including h1-h4</li>
-  <li><code class="language-plaintext highlighter-rouge">post-meta</code>: defines meta information under post title</li>
-  <li><code class="language-plaintext highlighter-rouge">post-content</code>: defines post content format.</li>
-  <li><code class="language-plaintext highlighter-rouge">post-link:</code>: defines link format in the post.</li>
-</ul>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip list <span class="nt">--outdated</span>
+</code></pre></div></div>
 
-<p>There is another css file <code class="language-plaintext highlighter-rouge">layout_research.scss</code>, which defines the formats of math related posts and publications.</p>
+<p>Export <code class="language-plaintext highlighter-rouge">requirements.txt</code> file:</p>
 
-<p>There are two different <code class="language-plaintext highlighter-rouge">index</code> classes:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">page-index</code>: display current page and JS. not in <code class="language-plaintext highlighter-rouge">post</code> class.</li>
-  <li><code class="language-plaintext highlighter-rouge">post-index</code>: previous and next posts. not in <code class="language-plaintext highlighter-rouge">post</code> class.</li>
-</ul>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip freeze <span class="o">&gt;</span> requirements.txt
+</code></pre></div></div>
+
+<h2 id="installation">Installation</h2>
+
+<p>Install package:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install</span> &lt;pkg1&gt; &lt;pkg2&gt;<span class="o">=</span>1.1		<span class="c"># we can specify package version</span>
+</code></pre></div></div>
+
+<p>Update outdated package:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-U</span> &lt;pkg1&gt; &lt;pkg2&gt;		<span class="c"># -U is equivalent to --upgrade </span>
+</code></pre></div></div>
+
+<p>Install package using <code class="language-plaintext highlighter-rouge">requirements.txt</code> file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<p>Install package in the development mode. The project needs to have <code class="language-plaintext highlighter-rouge">setup.py</code> or <code class="language-plaintext highlighter-rouge">pyproject.toml</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-e</span> <span class="nb">.</span>
+</code></pre></div></div>
+
 
     </article>
 
@@ -164,7 +212,11 @@
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/css">css</a>
+                <a href="/tags/python">python,</a>
+                
+            
+                
+                <a href="/tags/pip">pip</a>
                 
             
 		</span>
@@ -175,11 +227,11 @@
 
 <section class="post-pagination">
     
-        <a href="/2019/09/jekyll-tests.html">Previous: jekyll tests</a>
+        <a href="/2022/03/git-cheatsheet.html">Previous: Git Cheatsheet</a>
     
 
     
-        <a href="/2019/09/jekyll-1-structure.html">Next: Learning Jelly Part 1: Structure</a>
+        <a href="/2022/04/python-string-format.html">Next: Python String Format</a>
     
 </section>
   

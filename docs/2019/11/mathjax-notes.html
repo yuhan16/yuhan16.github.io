@@ -8,16 +8,17 @@
 
 <meta property="og:title" content="Mathjax in Jekyll Notes">
 <title>Mathjax in Jekyll Notes</title>
-<meta property="og:description" content="Basic usage of MathJax in Jekyll notes and  examples of writing math equations.">
+<meta property="og:description" content="Basic usage of MathJax in Jekyll notes and examples of writing math equations.">
 <meta property="og:url" content="http://localhost:4000/2019/11/mathjax-notes.html">
 <meta property="og:site_name" content="HuskyDev">
 <meta property="og:locale" content="">
 
 <meta name="keywords" content="YuhanHuskyDev">
 
-<link rel="icon" href="/assets/images/favicon.ico">
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/2019/11/mathjax-notes.html">
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2019/11/mathjax-notes.html"/>
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -29,7 +30,7 @@
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
-<script type="text/x-mathjax-config">
+<!--script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ['\\(','\\)'] ],
@@ -38,9 +39,36 @@
       },
       "HTML-CSS": { scale: 90 }
     });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script src="/assets/js/myjavascript.js"></script>
     
@@ -94,11 +122,11 @@
 		</span>
 
 		<span class="post-meta">
-			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/miscellaneous">Miscellaneous</a>
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/web">Web</a>
 		</span>
 
 		<span class="post-meta">
-			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
+			<i class="fa-regular fa-clock"></i>&nbsp;10 minutes
 		</span>
 
         <!--span class="post-meta">
@@ -124,15 +152,19 @@
 		<p class="toc-meta">Table of Contents</p>
 		<div class="toc-content">
 			<ul id="toc-list" class="toc-list">
-<li class="toc-entry toc-h1"><a href="#mathjax">MathJax</a></li>
-<li class="toc-entry toc-h1"><a href="#mathjax-configurations">MathJax Configurations</a></li>
-<li class="toc-entry toc-h1"><a href="#examples">Examples</a>
+<li class="toc-entry toc-h1"><a href="#mathjax">MathJax</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#display-in-a-separate-line">Display in a Separate Line</a></li>
+<li class="toc-entry toc-h2"><a href="#mathjax-v3">MathJax v3</a></li>
+<li class="toc-entry toc-h2"><a href="#mathjax-v2">MathJax v2</a></li>
+<li class="toc-entry toc-h2"><a href="#some-examples">Some Examples</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#display-in-a-separate-line">Display in a Separate Line</a></li>
+<li class="toc-entry toc-h3"><a href="#some-notes">Some Notes</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#some-tips">Some Tips</a></li>
-<li class="toc-entry toc-h1"><a href="#reference">Reference</a></li>
+<li class="toc-entry toc-h2"><a href="#useful-references">Useful References</a></li>
+</ul>
+</li>
 </ul>
 		</div>
 	</div>
@@ -140,36 +172,68 @@
 	<!--post content-->
     <article class="post-content">
         <h1 id="mathjax">MathJax</h1>
-<p>We can use <a href="https://www.mathjax.org/">MathJax</a> to nicely display latex math formula in Jekyll notes.</p>
+<p>We can use <a href="https://www.mathjax.org/">MathJax</a> to nicely display LaTex math equations in HTML. The latest MathJax has upgraded to version 3, although version 2 is still available. It is encouraged to use the lastest version.</p>
 
-<p>We can use a picture to show math formula in a webpage, but it can be troublesome to make modifications. The most efficient way to write math formula is by LaTex. MathJax can be viewed as a plugin that converts the LaTex code to HTML and then display it.</p>
+<h2 id="mathjax-v3">MathJax v3</h2>
+<p>To enable MathJax v3, we add the following to <code class="language-plaintext highlighter-rouge">_include/head.html</code>:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+<span class="nx">MathJax</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">tex</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">inlineMath</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\\</span><span class="s1">(</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="se">\\</span><span class="s1">)</span><span class="dl">'</span><span class="p">]</span> <span class="p">],</span>
+    <span class="na">displayMath</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="dl">'</span><span class="s1">$$</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\\</span><span class="s1">[</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="se">\\</span><span class="s1">]</span><span class="dl">'</span><span class="p">]</span> <span class="p">],</span>
+    <span class="na">processEscapes</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="na">macros</span><span class="p">:</span> <span class="p">{</span>
+	  <span class="na">RR</span><span class="p">:</span> <span class="dl">"</span><span class="s2">{</span><span class="se">\\</span><span class="s2">bf R}</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">bold</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">{</span><span class="se">\\</span><span class="s2">bf #1}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+	<span class="p">}</span>
+  <span class="p">},</span>
+  <span class="na">chtml</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">scale</span><span class="p">:</span> <span class="mf">0.9</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">id=</span><span class="s">"MathJax-script"</span> <span class="na">async</span> <span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
 
-<p>To enable MathJax, we simply need to add the following to <code class="language-plaintext highlighter-rouge">_include/head.html</code>:</p>
+<ul>
+  <li>The inline math delimiter pairs <code class="language-plaintext highlighter-rouge">[$,$]</code> allows MathJax to recognize inline equations. Note that <code class="language-plaintext highlighter-rouge">$ $</code> is not recognized by default.</li>
+  <li>The option <code class="language-plaintext highlighter-rouge">processEscapes: true</code> means that MathJax interprets <code class="language-plaintext highlighter-rouge">\$</code> as a literal dollar sign. Otherwise, MathJax will interpret <code class="language-plaintext highlighter-rouge">$</code> as inline math delimiters.</li>
+  <li>We can define LaTex macros such as <code class="language-plaintext highlighter-rouge">\RR</code> as <code class="language-plaintext highlighter-rouge">\bf{R}</code>, as shown in <a href="https://docs.mathjax.org/en/latest/input/tex/macros.html">Defining TeX macros</a>.</li>
+  <li>We can change the math font size in the <code class="language-plaintext highlighter-rouge">chtml</code> option.</li>
+</ul>
+
+<p>We refer to <a href="https://docs.mathjax.org/en/latest/options/input/tex.html">TeX Input Processor Options</a> for more detailed configurations.</p>
+
+<h2 id="mathjax-v2">MathJax v2</h2>
+
+<p>To enable MathJax v2, we add the following to <code class="language-plaintext highlighter-rouge">_include/head.html</code>:</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/x-mathjax-config"</span><span class="nt">&gt;</span>
     <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nc">Config</span><span class="p">({</span>
       <span class="na">tex2jax</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">inlineMath</span><span class="p">:</span> <span class="p">[[</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\\</span><span class="s1">(</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="se">\\</span><span class="s1">)</span><span class="dl">'</span><span class="p">]],</span>
         <span class="na">processEscapes</span><span class="p">:</span> <span class="kc">true</span>
       <span class="p">},</span>
-      <span class="dl">"</span><span class="s2">HTML-CSS</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="na">scale</span><span class="p">:</span> <span class="mi">90</span> <span class="p">}</span>
+      <span class="dl">"</span><span class="s2">HTML-CSS</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="na">scale</span><span class="p">:</span> <span class="mi">90</span> <span class="p">},</span>
+      <span class="na">TeX</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">Macros</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">RR</span><span class="p">:</span> <span class="dl">"</span><span class="s2">{</span><span class="se">\\</span><span class="s2">bf R}</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">bold</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">{</span><span class="se">\\</span><span class="s2">bf #1}</span><span class="dl">"</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
     <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre></div></div>
 
-<h1 id="mathjax-configurations">MathJax Configurations</h1>
-<p>We add inline math delimiter pairs <code class="language-plaintext highlighter-rouge">[$,$]</code> so that mathjax can recognize it. Note that <code class="language-plaintext highlighter-rouge">$ $</code> is not recognized by default.</p>
+<ul>
+  <li>We can define LaTex macros such as <code class="language-plaintext highlighter-rouge">\RR</code> as <code class="language-plaintext highlighter-rouge">\bf{R}</code>, as shown in <a href="https://docs.mathjax.org/en/v2.7-latest/tex.html#defining-tex-macros">Defining TeX macros</a>.</li>
+  <li>We can change the math font size with <code class="language-plaintext highlighter-rouge">HTML-CSS</code> option: <a href="https://stackoverflow.com/questions/19086152/changing-mathjaxs-font-size">Changing mathjax’s font size</a>.</li>
+</ul>
 
-<p>The option <code class="language-plaintext highlighter-rouge">processEscapes: true</code> means that we can use <code class="language-plaintext highlighter-rouge">\$</code> to produce a literal dollar sign. Otherwise, MathJax will interpret every <code class="language-plaintext highlighter-rouge">$</code> sign as inline math delimiters.</p>
+<p><strong>Note:</strong> MathJax provides a configuration converter to convert the configuration in version 2 to version 3. See <a href="https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html">MathJax Configuration Converter</a>.</p>
 
-<p>We can also define LaTex macros such as <code class="language-plaintext highlighter-rouge">\R</code> as <code class="language-plaintext highlighter-rouge">\mathbb{R}</code>, as shown in <a href="https://docs.mathjax.org/en/latest/options/input/tex.html#tex-extension-options-1">TeX Extension Options</a>.</p>
-
-<p>We can also change the math font size with <code class="language-plaintext highlighter-rouge">HTML-CSS</code> option: <a href="https://stackoverflow.com/questions/19086152/changing-mathjaxs-font-size">Changing mathjax’s font size</a>. Note that we need <code class="language-plaintext highlighter-rouge">.</code> for different settings in <code class="language-plaintext highlighter-rouge">MathJax.Hub.Config</code>.</p>
-
-<p>See <a href="https://docs.mathjax.org/en/latest/options/input/tex.html">TeX Input Processor Options</a> for more detailed configurations.</p>
-
-<h1 id="examples">Examples</h1>
-<p>For inline math, we can simple write $f(x) = \log(x) + e^{2y}$ or \( f(x) = 3x + 2y \).</p>
+<h2 id="some-examples">Some Examples</h2>
+<p>For inline math, we can write $f(x) = \log(x) + e^{2y}$ or \( f(x) = 3x + 2y \).</p>
 
 <p>For independent math equations, we can either use the <code class="language-plaintext highlighter-rouge">equation</code> environment or the <code class="language-plaintext highlighter-rouge">$$</code> environments:
 \begin{equation}
@@ -185,7 +249,7 @@ or</p>
 	g(x) &amp;= kx+b
 \end{align}\]
 
-<p><strong>Note:</strong> we do not need to add additional <code class="language-plaintext highlighter-rouge">$$</code> before the <code class="language-plaintext highlighter-rouge">equation</code> environment. The two have the same function.</p>
+<p><strong>Note:</strong> we do not need to add additional <code class="language-plaintext highlighter-rouge">$$</code> before the <code class="language-plaintext highlighter-rouge">equation</code> environment. The two are the same</p>
 
 <p>We can also use <code class="language-plaintext highlighter-rouge">label</code> and <code class="language-plaintext highlighter-rouge">tag</code> to reference the equation in the same webpage.
 \begin{equation}
@@ -197,8 +261,8 @@ We reference the equation \eqref{eq:1} here.</p>
 
 <p><strong>Note:</strong> the <code class="language-plaintext highlighter-rouge">label</code> and <code class="language-plaintext highlighter-rouge">tag</code> attributes should appear or disappear in the <code class="language-plaintext highlighter-rouge">equation</code> environment at the same time. If both of them are not used in the <code class="language-plaintext highlighter-rouge">equation</code> environment, the equation will act as the <code class="language-plaintext highlighter-rouge">equation*</code> environment.</p>
 
-<h2 id="display-in-a-separate-line">Display in a Separate Line</h2>
-<p>Mathjax will interpret the <code class="language-plaintext highlighter-rouge">$$</code> environment in the Markdown file to <code class="language-plaintext highlighter-rouge">\[ \]</code> and then display the content. It will not translate the <code class="language-plaintext highlighter-rouge">equation</code> environment. However, in Markdown we need a blank line to separate the content. Therefore, the equation in the following case will be treated as inline math:</p>
+<h3 id="display-in-a-separate-line">Display in a Separate Line</h3>
+<p>MathJax interprets the <code class="language-plaintext highlighter-rouge">$$</code> environment in the Markdown file to <code class="language-plaintext highlighter-rouge">\[ \]</code> and then display the content. It does not translate the <code class="language-plaintext highlighter-rouge">equation</code> environment. However, in Markdown we need a blank line to separate the content. Therefore, the equation in the following case will be treated as inline math:</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is a beginning line without extra blank lines after.
 $$ f(x) = ax + by. $$
 This is an ending line with out extra blank lines before.
@@ -210,7 +274,7 @@ This is an ending line with out extra blank lines before.</p>
 
 <p><strong>Note:</strong> In Markdown files, we need an extra <strong>blank line</strong> before and after <code class="language-plaintext highlighter-rouge">$$</code> to display the formula in a separate line.</p>
 
-<p>However, in an HTML element, for example &lt;p&gt;, we do not need to worry about the extra blank lines because Markdown interpreter will not change the content. For example,</p>
+<p>However, if we write math equations directly in an HTML element, for example &lt;p&gt;, we do not need to worry about the extra blank lines because Markdown interpreter will not change the content. For example,</p>
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>
 This a line before the equation.
 $$ f(x) = ax^2 + \log(x). $$
@@ -235,13 +299,13 @@ I have an equation here
 and this is a line after the equation.
 </p>
 
-<h1 id="some-tips">Some Tips</h1>
+<h3 id="some-notes">Some Notes</h3>
 <ol>
   <li>
     <p>MathJax does not support the <code class="language-plaintext highlighter-rouge">split</code> environment. Instead, we can use the <code class="language-plaintext highlighter-rouge">align</code> environments or <code class="language-plaintext highlighter-rouge">aligned</code> within the <code class="language-plaintext highlighter-rouge">equation</code> environment.</p>
   </li>
   <li>
-    <p>We can use <code class="language-plaintext highlighter-rouge">code</code> environment to display LaTex code:</p>
+    <p>We use <code class="language-plaintext highlighter-rouge">code</code> environment to display LaTex code:</p>
     <div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{equation}</span>
  f(x) = ax<span class="p">^</span>2 + <span class="k">\log</span>(x)
 <span class="nt">\end{equation}</span>
@@ -249,7 +313,7 @@ and this is a line after the equation.
   </li>
 </ol>
 
-<h1 id="reference">Reference</h1>
+<h2 id="useful-references">Useful References</h2>
 <p>[1] <a href="http://blog.lostinmyterminal.com/webpages/2015/01/09/math-support-in-jekyll.html">Math Support in Jekyll</a></p>
 
 <p>[2] <a href="http://zjuwhw.github.io/2017/06/04/MathJax.html">Use MathJax to write Equations in Jekyll blogs</a></p>

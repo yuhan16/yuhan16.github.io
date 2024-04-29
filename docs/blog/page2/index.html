@@ -15,9 +15,10 @@
 
 <meta name="keywords" content="YuhanHuskyDev">
 
-<link rel="icon" href="/assets/images/favicon.ico">
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/blog/page2/">
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/blog/page2/"/>
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -29,7 +30,7 @@
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
-<script type="text/x-mathjax-config">
+<!--script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ['\\(','\\)'] ],
@@ -38,9 +39,36 @@
       },
       "HTML-CSS": { scale: 90 }
     });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script src="/assets/js/myjavascript.js"></script>
     
@@ -91,26 +119,26 @@
 
 
 <div class="card">
-    <h1 style="margin: 0 auto;"><a href="/2020/11/notes-8.html">Markov Chain 2</a></h1>
+    <h1 style="margin: 0 auto;"><a href="/2022/06/python-copy.html">Python Copy</a></h1>
         
     <!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 0.5rem;">
         <span class="post-meta">
-			<i class="far fa-calendar-alt"></i>&nbsp; 2020-11-20
+			<i class="far fa-calendar-alt"></i>&nbsp; 2022-06-03
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/probability">Probability</a>
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/programming">Programming</a>
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;
+			<i class="far fa-clock"></i>&nbsp;5 minutes
 		</span>
 	</div>
 
     <!--post content excerption-->
     <article>
-        This note reviews the irrducible and regular markov chains.
+        Quicks notes on Python copy functions.
     </article>
 
     <!--additional addons-->
@@ -121,16 +149,12 @@
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/notes">notes,</a>
-                
-            
-                
-                <a href="/tags/math">math</a>
+                <a href="/tags/python">python</a>
                 
             
 		</span>
 
-		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2020/11/notes-8.html">
+		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2022/06/python-copy.html">
 			<i class="fas fa-book-reader"></i>&nbsp;Read more
         </a>
 	</div>
@@ -139,26 +163,26 @@
 
 
 <div class="card">
-    <h1 style="margin: 0 auto;"><a href="/2020/11/notes-7.html">Markov Chain</a></h1>
+    <h1 style="margin: 0 auto;"><a href="/2022/05/python-exception.html">Python Exception Related</a></h1>
         
     <!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 0.5rem;">
         <span class="post-meta">
-			<i class="far fa-calendar-alt"></i>&nbsp; 2020-11-13
+			<i class="far fa-calendar-alt"></i>&nbsp; 2022-05-22
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/probability">Probability</a>
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/programming">Programming</a>
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;
+			<i class="far fa-clock"></i>&nbsp;15 minutes
 		</span>
 	</div>
 
     <!--post content excerption-->
     <article>
-        This note reviews the basics of Markov chains.
+        Python exception related notes.
     </article>
 
     <!--additional addons-->
@@ -169,16 +193,16 @@
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/notes">notes,</a>
+                <a href="/tags/python">python,</a>
                 
             
                 
-                <a href="/tags/math">math</a>
+                <a href="/tags/exception">exception</a>
                 
             
 		</span>
 
-		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2020/11/notes-7.html">
+		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2022/05/python-exception.html">
 			<i class="fas fa-book-reader"></i>&nbsp;Read more
         </a>
 	</div>
@@ -187,26 +211,26 @@
 
 
 <div class="card">
-    <h1 style="margin: 0 auto;"><a href="/2020/11/notes-6-1.html">Generating Functions</a></h1>
+    <h1 style="margin: 0 auto;"><a href="/2022/05/python-virtualenv.html">Python Virtual Environments</a></h1>
         
     <!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 0.5rem;">
         <span class="post-meta">
-			<i class="far fa-calendar-alt"></i>&nbsp; 2020-11-07
+			<i class="far fa-calendar-alt"></i>&nbsp; 2022-05-16
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/probability">Probability</a>
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/programming">Programming</a>
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;
+			<i class="far fa-clock"></i>&nbsp;5 minutes
 		</span>
 	</div>
 
     <!--post content excerption-->
     <article>
-        This notes reviews the generating function.
+        Python virtual environment packages.
     </article>
 
     <!--additional addons-->
@@ -217,16 +241,20 @@
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/notes">notes,</a>
+                <a href="/tags/python">python,</a>
                 
             
                 
-                <a href="/tags/math">math</a>
+                <a href="/tags/virtualenv">virtualenv,</a>
+                
+            
+                
+                <a href="/tags/venv">venv</a>
                 
             
 		</span>
 
-		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2020/11/notes-6-1.html">
+		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2022/05/python-virtualenv.html">
 			<i class="fas fa-book-reader"></i>&nbsp;Read more
         </a>
 	</div>
@@ -235,26 +263,26 @@
 
 
 <div class="card">
-    <h1 style="margin: 0 auto;"><a href="/2020/11/notes-6.html">Sum of Random Variables</a></h1>
+    <h1 style="margin: 0 auto;"><a href="/2022/05/requirements-vs-pyproject.html">Requirements vs pyptoject</a></h1>
         
     <!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 0.5rem;">
         <span class="post-meta">
-			<i class="far fa-calendar-alt"></i>&nbsp; 2020-11-06
+			<i class="far fa-calendar-alt"></i>&nbsp; 2022-05-13
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/probability">Probability</a>
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/programming">Programming</a>
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;
+			<i class="far fa-clock"></i>&nbsp;5 minutes
 		</span>
 	</div>
 
     <!--post content excerption-->
     <article>
-        This notes reviews the property of the sum of random variables.
+        Difference between requirements.txt and pyproject.md.
     </article>
 
     <!--additional addons-->
@@ -265,16 +293,20 @@
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/notes">notes,</a>
+                <a href="/tags/python">python,</a>
                 
             
                 
-                <a href="/tags/math">math</a>
+                <a href="/tags/packaging">packaging,</a>
+                
+            
+                
+                <a href="/tags/environment">environment</a>
                 
             
 		</span>
 
-		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2020/11/notes-6.html">
+		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2022/05/requirements-vs-pyproject.html">
 			<i class="fas fa-book-reader"></i>&nbsp;Read more
         </a>
 	</div>
@@ -283,26 +315,26 @@
 
 
 <div class="card">
-    <h1 style="margin: 0 auto;"><a href="/2020/10/notes-5.html">LLN and conditional probability</a></h1>
+    <h1 style="margin: 0 auto;"><a href="/2022/05/python-packaging.html">Python Packaging</a></h1>
         
     <!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 0.5rem;">
         <span class="post-meta">
-			<i class="far fa-calendar-alt"></i>&nbsp; 2020-10-30
+			<i class="far fa-calendar-alt"></i>&nbsp; 2022-05-11
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/probability">Probability</a>
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/programming">Programming</a>
 		</span>
 		
         <span class="post-meta">
-			<i class="far fa-clock"></i>&nbsp;
+			<i class="far fa-clock"></i>&nbsp;15 minutes
 		</span>
 	</div>
 
     <!--post content excerption-->
     <article>
-        This note reviews the concepts of law of large numbers and conditional probability.
+        Ways to package Python project code.
     </article>
 
     <!--additional addons-->
@@ -313,16 +345,16 @@
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/notes">notes,</a>
+                <a href="/tags/python">python,</a>
                 
             
                 
-                <a href="/tags/math">math</a>
+                <a href="/tags/packaging">packaging</a>
                 
             
 		</span>
 
-		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2020/10/notes-5.html">
+		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2022/05/python-packaging.html">
 			<i class="fas fa-book-reader"></i>&nbsp;Read more
         </a>
 	</div>
@@ -340,7 +372,7 @@
         <script src="/assets/js/generate_pagination.js"></script>
         <script>
             let curr_page = parseInt('2');
-        	let total_pages = parseInt('5');
+        	let total_pages = parseInt('7');
         	let pageurl = '/blog/page2/index.html';
         	createPaginationIconList(curr_page, total_pages, pageurl);
         </script>

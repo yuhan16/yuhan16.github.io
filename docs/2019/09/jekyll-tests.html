@@ -15,9 +15,10 @@
 
 <meta name="keywords" content="YuhanHuskyDev">
 
-<link rel="icon" href="/assets/images/favicon.ico">
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/2019/09/jekyll-tests.html">
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2019/09/jekyll-tests.html"/>
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -29,7 +30,7 @@
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
-<script type="text/x-mathjax-config">
+<!--script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ['\\(','\\)'] ],
@@ -38,9 +39,36 @@
       },
       "HTML-CSS": { scale: 90 }
     });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script src="/assets/js/myjavascript.js"></script>
     
@@ -90,7 +118,7 @@
 	<!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
 		<span class="post-meta">
-			<i class="fa-regular fa-calendar-check">&nbsp;</i>2019-09-02
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2019-09-01
 		</span>
 
 		<span class="post-meta">
@@ -268,11 +296,90 @@ Programming
 
 Web
 
+Optimization
+
 Probability
 
 Machine Learning
 
-Optimization
+</p>
+
+<p>Output all tags:</p>
+<p>
+
+jekyll,
+
+test,
+
+web,
+
+templating,
+
+html,
+
+mathjax,
+
+tutorial,
+
+static web,
+
+dynamic web,
+
+php,
+
+SSG,
+
+static site generator,
+
+css,
+
+github pages,
+
+math,
+
+shortest path,
+
+Dijkstra,
+
+notes,
+
+RLS,
+
+python,
+
+practice,
+
+git,
+
+pip,
+
+string,
+
+packaging,
+
+environment,
+
+virtualenv,
+
+venv,
+
+exception,
+
+numpy,
+
+scipy,
+
+MDP,
+
+RL,
+
+collocation,
+
+trajectory optimization,
+
+optimization,
+
+control,
 
 </p>
 
@@ -282,8 +389,6 @@ Optimization
 'jekyll', 
 
 'test', 
-
-'css', 
 
 'web', 
 
@@ -305,13 +410,45 @@ Optimization
 
 'static-site-generator', 
 
-'github-pages', 
+'css', 
 
-'notes', 
+'github-pages', 
 
 'math', 
 
+'shortest-path', 
+
+'dijkstra', 
+
+'notes', 
+
+'rls', 
+
+'python', 
+
+'practice', 
+
 'git', 
+
+'pip', 
+
+'string', 
+
+'packaging', 
+
+'environment', 
+
+'virtualenv', 
+
+'venv', 
+
+'exception', 
+
+'numpy', 
+
+'scipy', 
+
+'mdp', 
 
 'rl', 
 
@@ -342,6 +479,10 @@ Optimization
   <li><a>fjdjfdk</a></li>
 </ul>
 
+<p>$x_t$, $x^\ast_t$ $y^\star_t$,</p>
+
+<p>Now we let $\bar{y}_i (w^\ast_m) = y_i - f(x_i, w^\ast_m) + \nabla_w f(x_i, w^\ast_m)^T w^\ast_m$ and $\bar{x}_i (w^\ast_m) = \nabla_w f(x_i,w^\ast_m)$. We can formulate a new data matrix $\bar{Y}_m(w^\ast_m)$ and $\bar{X}_m (w^\ast_m)$. At step $m+1$, we receive $(x_{m+1}, y_{m+1})$</p>
+
     </article>
 
     <!--additional addons-->
@@ -371,7 +512,7 @@ Optimization
     
 
     
-        <a href="/2019/09/scss-notes.html">Next: Notes on CSS files</a>
+        <a href="/2019/09/jekyll-notes.html">Next: Jekyll Notes</a>
     
 </section>
   

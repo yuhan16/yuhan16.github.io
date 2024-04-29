@@ -15,9 +15,10 @@
 
 <meta name="keywords" content="YuhanHuskyDev">
 
-<link rel="icon" href="/assets/images/favicon.ico">
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/archives/">
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/archives/"/>
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -29,7 +30,7 @@
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
-<script type="text/x-mathjax-config">
+<!--script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ['\\(','\\)'] ],
@@ -38,9 +39,36 @@
       },
       "HTML-CSS": { scale: 90 }
     });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script src="/assets/js/myjavascript.js"></script>
     
@@ -124,8 +152,75 @@
                 </li>
             
                 <li>
+                <time>06-10</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/06/intro-mdp.html">Introduction to mdp</a><br />
+                </li>
+            
+                <li>
+                <time>06-08</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/06/numpy-scipy.html">Python numpy and scipy</a><br />
+                </li>
+            
+                <li>
+                <time>06-03</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/06/python-copy.html">Python copy</a><br />
+                </li>
+            
+                <li>
+                <time>05-22</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/05/python-exception.html">Python exception related</a><br />
+                </li>
+            
+                <li>
+                <time>05-16</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/05/python-virtualenv.html">Python virtual environments</a><br />
+                </li>
+            
+                <li>
+                <time>05-13</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/05/requirements-vs-pyproject.html">Requirements vs pyptoject</a><br />
+                </li>
+            
+                <li>
+                <time>05-11</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/05/python-packaging.html">Python packaging</a><br />
+                </li>
+            
+                <li>
+                <time>04-20</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/04/python-string-format.html">Python string format</a><br />
+                </li>
+            
+                <li>
+                <time>03-14</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/03/pip-cheatsheet.html">Python pip cheatsheet</a><br />
+                </li>
+            
+                <li>
                 <time>03-12</time> &nbsp;&raquo;&nbsp;
                 <a href="/2022/03/git-cheatsheet.html">Git cheatsheet</a><br />
+                </li>
+            
+                <li>
+                <time>03-11</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/03/python-install.html">Python source installation</a><br />
+                </li>
+            
+                <li>
+                <time>01-01</time> &nbsp;&raquo;&nbsp;
+                <a href="/2022/01/python-project-practice.html">Coding practice for python projects</a><br />
+                </li>
+            
+            </ul>
+        </div>
+    
+        <h3 id="archive-2021" class="archive-button" type="margin: 0">2021</h3>
+        <div class="archive-content" style="max-height: 500px;">
+            <ul>
+            
+                <li>
+                <time>11-13</time> &nbsp;&raquo;&nbsp;
+                <a href="/2021/11/recursive-least-square.html">Recursive least squares</a><br />
                 </li>
             
             </ul>
@@ -185,6 +280,11 @@
                 <a href="/2020/10/notes-1.html">Sets and probability measures</a><br />
                 </li>
             
+                <li>
+                <time>08-14</time> &nbsp;&raquo;&nbsp;
+                <a href="/2020/08/shorest-path.html">Shortest path problem</a><br />
+                </li>
+            
             </ul>
         </div>
     
@@ -208,7 +308,7 @@
                 </li>
             
                 <li>
-                <time>09-28</time> &nbsp;&raquo;&nbsp;
+                <time>09-25</time> &nbsp;&raquo;&nbsp;
                 <a href="/2019/09/jekyll-2-template.html">Learning jelly part 2: templating language</a><br />
                 </li>
             
@@ -218,12 +318,12 @@
                 </li>
             
                 <li>
-                <time>09-10</time> &nbsp;&raquo;&nbsp;
-                <a href="/2019/09/scss-notes.html">Notes on css files</a><br />
+                <time>09-12</time> &nbsp;&raquo;&nbsp;
+                <a href="/2019/09/jekyll-notes.html">Jekyll notes</a><br />
                 </li>
             
                 <li>
-                <time>09-02</time> &nbsp;&raquo;&nbsp;
+                <time>09-01</time> &nbsp;&raquo;&nbsp;
                 <a href="/2019/09/jekyll-tests.html">Jekyll tests</a><br />
                 </li>
             
@@ -238,17 +338,22 @@
     
     <a class="category-box" href="/categories/miscellaneous">
         <span>Miscellaneous</span> 
-        <span>3</span>
+        <span>1</span>
     </a>
     
     <a class="category-box" href="/categories/programming">
         <span>Programming</span> 
-        <span>3</span>
+        <span>14</span>
     </a>
     
     <a class="category-box" href="/categories/web">
         <span>Web</span> 
-        <span>2</span>
+        <span>3</span>
+    </a>
+    
+    <a class="category-box" href="/categories/optimization">
+        <span>Optimization</span> 
+        <span>5</span>
     </a>
     
     <a class="category-box" href="/categories/probability">
@@ -261,11 +366,6 @@
         <span>1</span>
     </a>
     
-    <a class="category-box" href="/categories/optimization">
-        <span>Optimization</span> 
-        <span>2</span>
-    </a>
-    
     </div>
 </div>
 
@@ -275,17 +375,12 @@
         
             <a id="tag-a" title="jekyll" href="/tags/jekyll">
                 <span class="tag-left">jekyll</span>
-                <span class="tag-right">4</span>
+                <span class="tag-right">5</span>
             </a>
         
             <a id="tag-a" title="test" href="/tags/test">
                 <span class="tag-left">test</span>
                 <span class="tag-right">1</span>
-            </a>
-        
-            <a id="tag-a" title="css" href="/tags/css">
-                <span class="tag-left">css</span>
-                <span class="tag-right">2</span>
             </a>
         
             <a id="tag-a" title="web" href="/tags/web">
@@ -338,8 +433,28 @@
                 <span class="tag-right">1</span>
             </a>
         
+            <a id="tag-a" title="css" href="/tags/css">
+                <span class="tag-left">css</span>
+                <span class="tag-right">1</span>
+            </a>
+        
             <a id="tag-a" title="github pages" href="/tags/github-pages">
                 <span class="tag-left">github pages</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="math" href="/tags/math">
+                <span class="tag-left">math</span>
+                <span class="tag-right">16</span>
+            </a>
+        
+            <a id="tag-a" title="shortest path" href="/tags/shortest-path">
+                <span class="tag-left">shortest path</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="Dijkstra" href="/tags/dijkstra">
+                <span class="tag-left">Dijkstra</span>
                 <span class="tag-right">1</span>
             </a>
         
@@ -348,9 +463,19 @@
                 <span class="tag-right">10</span>
             </a>
         
-            <a id="tag-a" title="math" href="/tags/math">
-                <span class="tag-left">math</span>
-                <span class="tag-right">13</span>
+            <a id="tag-a" title="RLS" href="/tags/rls">
+                <span class="tag-left">RLS</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="python" href="/tags/python">
+                <span class="tag-left">python</span>
+                <span class="tag-right">10</span>
+            </a>
+        
+            <a id="tag-a" title="practice" href="/tags/practice">
+                <span class="tag-left">practice</span>
+                <span class="tag-right">1</span>
             </a>
         
             <a id="tag-a" title="git" href="/tags/git">
@@ -358,9 +483,59 @@
                 <span class="tag-right">1</span>
             </a>
         
+            <a id="tag-a" title="pip" href="/tags/pip">
+                <span class="tag-left">pip</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="string" href="/tags/string">
+                <span class="tag-left">string</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="packaging" href="/tags/packaging">
+                <span class="tag-left">packaging</span>
+                <span class="tag-right">2</span>
+            </a>
+        
+            <a id="tag-a" title="environment" href="/tags/environment">
+                <span class="tag-left">environment</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="virtualenv" href="/tags/virtualenv">
+                <span class="tag-left">virtualenv</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="venv" href="/tags/venv">
+                <span class="tag-left">venv</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="exception" href="/tags/exception">
+                <span class="tag-left">exception</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="numpy" href="/tags/numpy">
+                <span class="tag-left">numpy</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="scipy" href="/tags/scipy">
+                <span class="tag-left">scipy</span>
+                <span class="tag-right">1</span>
+            </a>
+        
+            <a id="tag-a" title="MDP" href="/tags/mdp">
+                <span class="tag-left">MDP</span>
+                <span class="tag-right">1</span>
+            </a>
+        
             <a id="tag-a" title="RL" href="/tags/rl">
                 <span class="tag-left">RL</span>
-                <span class="tag-right">1</span>
+                <span class="tag-right">2</span>
             </a>
         
             <a id="tag-a" title="collocation" href="/tags/collocation">

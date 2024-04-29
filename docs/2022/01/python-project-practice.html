@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Coding Practice for Python Projects">
+<title>Coding Practice for Python Projects</title>
+<meta property="og:description" content="Some coding practice for better code readability and maintenance.">
+<meta property="og:url" content="http://localhost:4000/2022/01/python-project-practice.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2022/01/python-project-practice.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Coding Practice for Python Projects</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-01-01
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;10 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#python">python,</a>
+                
+            
+                
+                <a href="/tags/#practice">practice</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h2"><a href="#common-practice">Common Practice</a></li>
+<li class="toc-entry toc-h2"><a href="#reference-structure-for-python-projects">Reference Structure for Python Projects</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#python-parallelization">Python Parallelization</a></li>
+<li class="toc-entry toc-h3"><a href="#useful-references">Useful References</a></li>
+</ul>
+</li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <p>When writing a Python project, we summarize the following coding practice for better code readability and maintenance.</p>
+
+<h2 id="common-practice">Common Practice</h2>
+
+<ol>
+  <li>Draw functionality blocks first. Then implement each block by <strong>module</strong> or <strong>class</strong>.
+    <ol>
+      <li>Classes organize functions of a specific object. For example, a class can be defined to create a NN, train the NN, and get the parameter of NN. It implements necessary APIs to the NN.</li>
+      <li>Modules are higher level abstraction of classes. A module can have several classes with <strong>similar functionalities</strong>. For example, scipy has <code class="language-plaintext highlighter-rouge">optimize</code> module and <code class="language-plaintext highlighter-rouge">linalg</code> module. Inside each modules, there are classes and functions</li>
+    </ol>
+  </li>
+  <li>Scripts should be used to
+    <ol>
+      <li>call functions</li>
+      <li>testing small tasks</li>
+      <li>define parameter files</li>
+    </ol>
+  </li>
+  <li>Encapsulate scripts using <strong>functions</strong>, especially for testing scripts. Easy for debugging and parallel implementation.</li>
+  <li>Create <strong>separate</strong> virtual environments for different projects.
+    <ol>
+      <li>Put the virtual environment in the project root directory.</li>
+      <li>Recommended virtual environment naming format: <code class="language-plaintext highlighter-rouge">.venv-3.x</code>. Use hidden directory; specify python version.</li>
+    </ol>
+  </li>
+  <li>Use a <code class="language-plaintext highlighter-rouge">tmp</code> directory to store the unrelated or intermediate testing results.</li>
+  <li>Always write a <code class="language-plaintext highlighter-rouge">README</code> for a project. A README should contain at least the following:
+    <ol>
+      <li>General project objective and necessary descriptions.</li>
+      <li>Package requirements and code instructions.</li>
+      <li>Code block diagram or code structure specifications.</li>
+    </ol>
+  </li>
+  <li>In the project structure, the directory <code class="language-plaintext highlighter-rouge">project_name</code> or <code class="language-plaintext highlighter-rouge">src</code> stores all the source files but no scripts for debugging. Create new scripts in the <code class="language-plaintext highlighter-rouge">scripts</code> directory to call functions and classes in <code class="language-plaintext highlighter-rouge">project_name</code> or <code class="language-plaintext highlighter-rouge">src</code>.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">json</code> or <code class="language-plaintext highlighter-rouge">yaml</code> file to define project parameters, including environment parameters etc.</li>
+</ol>
+
+<p>Use <code class="language-plaintext highlighter-rouge">parseArg</code> to allow user-level parameter modification from bash scripts. Also change the parameter in <code class="language-plaintext highlighter-rouge">parseArg</code> function.</p>
+
+<h2 id="reference-structure-for-python-projects">Reference Structure for Python Projects</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project_root_directory
+├── LICENSE
+├── README.md
+├── data
+│   ├── raw/external		&lt;- data from thrid party
+│   ├── processed 		&lt;- final data, or other name
+│   └── tmp			&lt;- tmp data
+│
+├── docs			&lt;- project documents, can be a website 
+│
+├── project_name		&lt;- project source code, flat-layout
+│   ├── __init__.py		&lt;- make project_name a module
+│   │
+│   ├── data			&lt;- data related, constant, configurations, download or generate data scripts
+│   │   ├── __init__.py
+│   │   ├── locconfig.json
+│   │   └── locconfig.py
+│   │
+│   ├── module1			&lt;- module1 implementation
+│   │
+│   ├── visualization		&lt;- visualization
+│   │   ├── __init__.py
+│   │   └── plot_utils.py
+│   │
+│   └── module2.py		&lt;- module2 or other utilities
+│
+├── examples		        &lt;- example scripts of using package utilities
+│   └── example_demo.py
+│
+├── tests			&lt;- test scripts
+│   └── test_1.py
+│
+├── scripts			&lt;- bash scripts
+│   └── bash_script.sh
+│
+├── requirements.txt 	&lt;- the requirements for reproducing the environment. `pip freeze &gt; requirements.txt`
+└── pyproject.toml      &lt;- package configuration
+</code></pre></div></div>
+
+<p>Note:</p>
+<ul>
+  <li>Modern Python packaging perfer the use of <code class="language-plaintext highlighter-rouge">pyproject.toml</code> to <code class="language-plaintext highlighter-rouge">setup.py</code> and <code class="language-plaintext highlighter-rouge">setup.cfg</code>.</li>
+  <li>A project may contain data like configurations. For ML projects, data can be hyperparameters or scripts to download dataset.</li>
+  <li><code class="language-plaintext highlighter-rouge">examples</code> can also be named by <code class="language-plaintext highlighter-rouge">experiments</code> in ML projects.</li>
+  <li><code class="language-plaintext highlighter-rouge">project_name</code> does not have to contain subdirectories, depending on project requirements. Subdirectories in the package should have serve for distinct purposes.</li>
+  <li>external data or interim data generated by examples or testing should be separated by the project code. Put them in the <code class="language-plaintext highlighter-rouge">data</code> directory for better management.</li>
+</ul>
+
+<p>For a typical Python project, refer to the structure of <a href="https://github.com/kingyiusuen/image-to-latex">Image To Latex Project</a></p>
+
+<h3 id="python-parallelization">Python Parallelization</h3>
+<p>There are two ways to achieve parallelization: Python <code class="language-plaintext highlighter-rouge">multiprocessing</code> module and bash parallel <code class="language-plaintext highlighter-rouge">for</code> loops.</p>
+
+<p>To parallelize training tasks, Python <code class="language-plaintext highlighter-rouge">multiprocessing</code> is easier to write and store results. We can write a wrapper to parallelize functions. It is recommended to parallelize <strong>similar tasks</strong> instead of different tasks using the <code class="language-plaintext highlighter-rouge">multiprocessing</code> module. For example, the <strong>mean-std</strong> training.</p>
+
+<p>Bash parallel for loop is more suitable for parallelizing different tasks. For example, training with different hyperparameters. It is not friendly to store things. We need to write script to store things inside the python scripts.</p>
+
+<h3 id="useful-references">Useful References</h3>
+<ul>
+  <li><a href="https://stackoverflow.com/questions/193161/what-is-the-best-project-structure-for-a-python-application">What is the best project structure for a Python application? </a></li>
+  <li><a href="https://medium.com/mlearning-ai/a-practical-guide-to-python-project-structure-and-packaging-90c7f7a04f95">Guide to Python Project Structure and Packaging</a></li>
+  <li><a href="https://neptune.ai/blog/how-to-organize-deep-learning-projects-best-practices">How to Organize Deep Learning Projects – Examples of Best Practices</a></li>
+  <li><a href="https://julienbeaulieu.github.io/2020/03/16/building-a-flexible-configuration-system-for-deep-learning-models/#:~:text=Experiments%20is%20where%20we%20store,something%20I'll%20detail%20later.">Building A Flexible Configuration System For Deep Learning Models</a></li>
+</ul>
+
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/python">python,</a>
+                
+            
+                
+                <a href="/tags/practice">practice</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2021/11/recursive-least-square.html">Previous: Recursive Least Squares</a>
+    
+
+    
+        <a href="/2022/03/python-install.html">Next: Python Source Installation</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2024 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

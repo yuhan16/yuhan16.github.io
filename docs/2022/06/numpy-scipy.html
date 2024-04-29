@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Python Numpy and Scipy">
+<title>Python Numpy and Scipy</title>
+<meta property="og:description" content="Quicks notes on numpy and scipy packages.">
+<meta property="og:url" content="http://localhost:4000/2022/06/numpy-scipy.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2022/06/numpy-scipy.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Python Numpy and Scipy</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-06-08
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#python">python,</a>
+                
+            
+                
+                <a href="/tags/#numpy">numpy,</a>
+                
+            
+                
+                <a href="/tags/#scipy">scipy</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#numpy-related">NumPy Related</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#array-dimension">Array dimension</a></li>
+<li class="toc-entry toc-h2"><a href="#tensordot">Tensordot</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#matrix-multiplication-with-tensordot">Matrix multiplication with tensordot</a></li>
+<li class="toc-entry toc-h3"><a href="#tensordot-with-custom-multiplication">Tensordot with custom multiplication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#scipy-related">SciPy Related</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#scipy-optimization">SciPy optimization</a></li>
+</ul>
+</li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <h1 id="numpy-related">NumPy Related</h1>
+
+<p>In NumPy, 1D array only have 1-d shape, and it can only be indexed  by one index. For example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">a</span><span class="p">.</span><span class="n">shape</span>		<span class="c1"># (5,1)
+</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>		<span class="c1"># 2
+</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>		<span class="c1"># IndexError: too many indices for array: array is 1-dimensional, but 2 were indexed
+</span></code></pre></div></div>
+
+<p>When we want to perform 1d array matrix multiplication, we can simply use <code class="language-plaintext highlighter-rouge">@</code>. For example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="c1"># want a^T * b, no need to perform reshape
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>When use <code class="language-plaintext highlighter-rouge">@</code> for matrix and 1d array multiplication, the result is also a 1d array. For example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">b</span>		<span class="c1"># returns a (3,) array
+</span><span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">@</span> <span class="n">A</span>		<span class="c1"># ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)-&gt;(n?,m?) (size 3 is different from 4)
+</span></code></pre></div></div>
+
+<p>Therefore, if our objective is to get a scalar, it is ok to use 1d array in matrix multiplication.</p>
+
+<p>Note that the order of <code class="language-plaintext highlighter-rouge">@</code> can also affect the results. For example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">@</span> <span class="n">A</span> 	<span class="c1"># return [4,6], equivalent to b.T@A, treating b as a row vector.
+</span><span class="n">c</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">b</span> 	<span class="c1"># return [3,7], equivalent to A @ b, treating b as a column vector.
+</span></code></pre></div></div>
+
+<h2 id="array-dimension">Array dimension</h2>
+
+<p>For N-dim array, we should be familiar with how the axis is defined. For example, if we have a 2d matrix, the row direction is <code class="language-plaintext highlighter-rouge">axis=0</code> and the column direction is <code class="language-plaintext highlighter-rouge">axis=1</code>. We can also print the k-th axis data with</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,...,</span><span class="mi">0</span><span class="p">,:,</span><span class="mf">0.</span><span class="p">..,</span><span class="mi">0</span><span class="p">])</span> 	<span class="c1"># fix other axis coordinate (for example 0) and only print k-th axis data. 	
+</span></code></pre></div></div>
+
+<p><img src="https://miro.medium.com/max/640/1*T3Brxoh34F5L9fUxze0K5g.png" alt="img" /></p>
+
+<h2 id="tensordot">Tensordot</h2>
+
+<p>For multi-dimensional array multiplication, we need <code class="language-plaintext highlighter-rouge">tensordot</code>, which in fact uses <code class="language-plaintext highlighter-rouge">dot</code> operation to generate new arrays. <code class="language-plaintext highlighter-rouge">tensordot</code> reduces the given axis dimensions based on <code class="language-plaintext highlighter-rouge">a.shape x b.shape</code>. For example, suppose we have two 3d array, we specify the axis to reduce</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">tensordot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>The original multiplication can generate <code class="language-plaintext highlighter-rouge">2x3x4 x 4x2x3</code> shape array, and we reduce the <code class="language-plaintext highlighter-rouge">axis=2</code> in <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">axis=0</code> in <code class="language-plaintext highlighter-rouge">b</code>, so that <code class="language-plaintext highlighter-rouge">c</code> has a shape <code class="language-plaintext highlighter-rouge">2x3 x 2x3</code>. We can write <code class="language-plaintext highlighter-rouge">c[i,j, m,n] = np.dot(a[i,j,:], b[:, m,n])</code>, which is a scalar. The layout index is shown.</p>
+
+<p>When there are multiple axis, for example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">tensordot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">d</code> has a shape <code class="language-plaintext highlighter-rouge">3x3</code>. We have <code class="language-plaintext highlighter-rouge">d[i,j] = np.sum(a[:,i,:] * b[:,:,j])</code>, which is the sum of elementwise multiplication. Here <code class="language-plaintext highlighter-rouge">a[:,i,:]</code> and <code class="language-plaintext highlighter-rouge">b[:,:,j]</code> are matrices with shape <code class="language-plaintext highlighter-rouge">2x4</code> and <code class="language-plaintext highlighter-rouge">4x2</code>. This shape follows the natural order of the original array. However, we cannot use this shape to do elementwise multiplication and then sum. So we should specify the axes order. We should use <code class="language-plaintext highlighter-rouge">axis=2</code> of <code class="language-plaintext highlighter-rouge">a</code> to multiply <code class="language-plaintext highlighter-rouge">axis=0</code> of <code class="language-plaintext highlighter-rouge">b</code>. Therefore, we actually perform <code class="language-plaintext highlighter-rouge">4x2</code> and <code class="language-plaintext highlighter-rouge">4x2</code> elementwise multiplication and them sum them up. The code will report error if we use</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">tensordot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)))</span>
+<span class="c1"># ValueError: shape-mismatch for sum
+</span></code></pre></div></div>
+
+<p>Although we eventually sum the elementwise multiplication, we should ensure every corresponding axis has the same dimension.</p>
+
+<ul>
+  <li>
+    <p><a href="https://stackoverflow.com/questions/41870228/understanding-tensordot">Understanding tensordot</a></p>
+  </li>
+  <li>
+    <p><a href="https://stackoverflow.com/questions/47752324/matrix-multiplication-on-4d-numpy-arrays">Matrix multiplication on 4D numpy arrays</a></p>
+  </li>
+  <li>
+    <p><a href="https://medium.com/analytics-vidhya/tensordot-explained-6673cfa5697f">Tensordot — Multidimensional Dot Product — Explained</a></p>
+  </li>
+</ul>
+
+<h3 id="matrix-multiplication-with-tensordot">Matrix multiplication with tensordot</h3>
+
+<p>A 2d matrix multiplication can better explain <code class="language-plaintext highlighter-rouge">tensordot</code> works. Suppose we have</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">tensordot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>	<span class="c1"># C is equivalent to D
+</span></code></pre></div></div>
+
+<p>When we compute <code class="language-plaintext highlighter-rouge">C[i,j]</code>, we need to perform dot product of <code class="language-plaintext highlighter-rouge">A[i,:]</code> and <code class="language-plaintext highlighter-rouge">B[:,j]</code>. Therefore, we in fact sum over <code class="language-plaintext highlighter-rouge">axis=1</code> of <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">axis=0</code> of <code class="language-plaintext highlighter-rouge">B</code> in matrix multiplication. Both <code class="language-plaintext highlighter-rouge">A[i,:]</code> and <code class="language-plaintext highlighter-rouge">B[:,j]</code> are 1d vectors, so the dot product is easy to understand. We multiply and sum them to obtain a single value as <code class="language-plaintext highlighter-rouge">C[i,j]</code>.</p>
+
+<p>The same applies to multiple axes in the previous example. We can think <code class="language-plaintext highlighter-rouge">a[:,i,:]</code> and <code class="language-plaintext highlighter-rouge">b[:,:,j]</code> as elongated vectors. We multiply and sum them to obtain a single element <code class="language-plaintext highlighter-rouge">d[i,j]</code> in the new matrix.</p>
+
+<h3 id="tensordot-with-custom-multiplication">Tensordot with custom multiplication</h3>
+
+<p>Suppose we have a 4D matrix times 2D matrix:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Then <code class="language-plaintext highlighter-rouge">A</code> is a 4D matrix with <code class="language-plaintext highlighter-rouge">A[m,n]</code> as new <code class="language-plaintext highlighter-rouge">pxq</code> matrix. We want the first two dimensions of <code class="language-plaintext highlighter-rouge">A</code> to follow the arithmetic rule of matrix multiplication. In other words, we want <code class="language-plaintext highlighter-rouge">C = A*B</code> such that <code class="language-plaintext highlighter-rouge">C</code> still have <code class="language-plaintext highlighter-rouge">mxn x pxq</code> and <code class="language-plaintext highlighter-rouge">C[m,n]</code> is <code class="language-plaintext highlighter-rouge">pxq</code> matrix, but <code class="language-plaintext highlighter-rouge">C[i,j]</code> is obtained by $\sum_{k=1}^n A[i,k,:,:] \times B[k,j]$. We simply treat each <code class="language-plaintext highlighter-rouge">(m,n)</code> blocks of <code class="language-plaintext highlighter-rouge">A</code> as a number and perform matrix multiplication. We can write</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">tensordot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)).</span><span class="nf">transpose</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>to obtain the result. Note that we need to rearrange the axis because <code class="language-plaintext highlighter-rouge">tensordot</code> by default gives <code class="language-plaintext highlighter-rouge">mxpxqxn</code> array. Similarly, if we have</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>and perform <code class="language-plaintext highlighter-rouge">E = D*A</code> with $E[i,j] = \sum_{k=1}^m D[i,k] \times B[k,j,:,:]$, we can write</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">tensordot</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>without doing transpose because the dimension is correct.</p>
+
+<p>However, if we have</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>and we want to obtain <code class="language-plaintext highlighter-rouge">F: mxn x pxr</code>, where <code class="language-plaintext highlighter-rouge">F[m,n]</code> is obtained by multiplying <code class="language-plaintext highlighter-rouge">A[m,n, :,:] G</code>. The latter is a standard matrix multiplication. We can write</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">tensordot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>without doing transpose.</p>
+
+<p><strong>Note:</strong> the key to use <code class="language-plaintext highlighter-rouge">tensordot</code> is to figure out which axes of <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code> are going to be added and eliminated. Then we rearrange the axis of the result if necessary.</p>
+
+<h1 id="scipy-related">SciPy Related</h1>
+
+<h2 id="scipy-optimization">SciPy optimization</h2>
+
+<p>In SciPy optimization, we can use <code class="language-plaintext highlighter-rouge">minimize</code> function to optimize multivariable problem. SciPy <code class="language-plaintext highlighter-rouge">minimize</code> provides many algorithms to perform optimization, such as <code class="language-plaintext highlighter-rouge">'BFGS'</code> and <code class="language-plaintext highlighter-rouge">'SLSQP'</code>. We can specify which algorithm to use in the attribute <code class="language-plaintext highlighter-rouge">method</code>. Note three things:</p>
+
+<ul>
+  <li>Every method can have its own option settings, for example, maximum iteration and tolerance. We refer to <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">SciPy Optimize API reference</a> for more details.</li>
+  <li>Not every method can solve the same problem. For example, BFGS can only solve unconstrained optimization. For constrained optimization, SciPy provides three methods: <code class="language-plaintext highlighter-rouge">'trust-constr'</code> , <code class="language-plaintext highlighter-rouge">'SLSQP'</code> and <code class="language-plaintext highlighter-rouge">'COBYLA'</code>. The <strong>default</strong> method for constrained optimization is <code class="language-plaintext highlighter-rouge">'SLSQP'</code>. For more details about unconstrained and constrained optimization, we refer to <a href="https://docs.scipy.org/doc/scipy/tutorial/optimize.html#constrained-minimization-of-multivariate-scalar-functions-minimize">Optimization User Guide</a>.</li>
+  <li>The constraints in SciPy can be formulated as <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.LinearConstraint.html#scipy.optimize.LinearConstraint">LinearConstraint</a> and <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.NonlinearConstraint.html#scipy.optimize.NonlinearConstraint">NonlinearConstraint</a>.</li>
+</ul>
+
+<p>The objective should be a scalar. The decision variable is a 1d array. So the Jacobian is also a 1d array.</p>
+
+<p>The constraints’ Jacobian should be a $(m\times n)$ sparse matrix. We can <code class="language-plaintext highlighter-rouge">from scipy.sparse import csr_matrix</code>.</p>
+
+<p>Note that SciPy optimization also provides other useful tools such as global optimization, root finding, least square fitting, linear programming, assignment problem. We can simply use existing APIs. There is no need to reformulate these problems to optimization problems and use <code class="language-plaintext highlighter-rouge">minimize</code>.</p>
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/python">python,</a>
+                
+            
+                
+                <a href="/tags/numpy">numpy,</a>
+                
+            
+                
+                <a href="/tags/scipy">scipy</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2022/06/python-copy.html">Previous: Python Copy</a>
+    
+
+    
+        <a href="/2022/06/intro-mdp.html">Next: Introduction to MDP</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2024 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

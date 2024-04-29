@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Requirements vs pyptoject">
+<title>Requirements vs pyptoject</title>
+<meta property="og:description" content="Difference between requirements.txt and pyproject.md.">
+<meta property="og:url" content="http://localhost:4000/2022/05/requirements-vs-pyproject.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2022/05/requirements-vs-pyproject.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Requirements vs pyptoject</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-05-13
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#python">python,</a>
+                
+            
+                
+                <a href="/tags/#packaging">packaging,</a>
+                
+            
+                
+                <a href="/tags/#environment">environment</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <p>Although there are repeated contents in two files, i.e., dependencies, we should understand that they serve completely different purposes. The same applies to <code class="language-plaintext highlighter-rouge">requirements.txt</code> and <code class="language-plaintext highlighter-rouge">setup.py</code>. See <a href="https://packaging.python.org/en/latest/discussions/install-requires-vs-requirements/">install_requires vs requirements files</a></p>
+
+<p><code class="language-plaintext highlighter-rouge">pyptoject.toml</code> describes the dependency through <code class="language-plaintext highlighter-rouge">dependencies</code> and <code class="language-plaintext highlighter-rouge">optional-dependencies</code> tables. The dependencies are used for building the project. It is designed for build tools. We can think it  is a listing of “Abstract” requirements that a project <strong>minimally</strong> needs to run correctly.</p>
+
+<p>However, one dependency may further depend on other dependencies. <code class="language-plaintext highlighter-rouge">requirements.txt</code> lists all <code class="language-plaintext highlighter-rouge">pip install</code> arguments placed into a file. It aims to show what packages are needed to configure the package running environment. In other words, <code class="language-plaintext highlighter-rouge">requirements.txt</code> let you knows what are all the packages to achieve a complete environment. It often contain an exhaustive listing of pinned versions.</p>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">requirements.txt</code> is not used for building the package. We run <code class="language-plaintext highlighter-rouge">pip install -r requirements.txt</code> to configure the environment that supports the package running. But package itself is not built yet. It is more like a design document for deployment stuff, letting you know the environment.</p>
+
+<p>If we simply write scripts and do not want to build a package, then <code class="language-plaintext highlighter-rouge">requirements.txt</code> is sufficient. We simply install necessary packages and we can run the script. But we need to pay attention that <code class="language-plaintext highlighter-rouge">import</code> and <code class="language-plaintext highlighter-rouge">from ... import ...</code> for self-written scripts are not good practice if we do not organize scripts in a package structure.</p>
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/python">python,</a>
+                
+            
+                
+                <a href="/tags/packaging">packaging,</a>
+                
+            
+                
+                <a href="/tags/environment">environment</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2022/05/python-packaging.html">Previous: Python Packaging</a>
+    
+
+    
+        <a href="/2022/05/python-virtualenv.html">Next: Python Virtual Environments</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2024 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

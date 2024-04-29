@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Python String Format">
+<title>Python String Format</title>
+<meta property="og:description" content="Three ways to format Python strings.">
+<meta property="og:url" content="http://localhost:4000/2022/04/python-string-format.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2022/04/python-string-format.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Python String Format</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-04-20
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#python">python,</a>
+                
+            
+                
+                <a href="/tags/#string">string</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h2"><a href="#1-use--operator">1. Use % Operator</a></li>
+<li class="toc-entry toc-h2"><a href="#2-use-format-method">2. Use .format() method</a></li>
+<li class="toc-entry toc-h2"><a href="#3-use-f-string-python--36">3. Use F-string (Python &gt;= 3.6)</a></li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <p>Python has three ways to format the string.</p>
+
+<h2 id="1-use--operator">1. Use <code class="language-plaintext highlighter-rouge">%</code> Operator</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="sh">'</span><span class="s">John</span><span class="sh">'</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">money</span> <span class="o">=</span> <span class="mf">10.72</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">Hello, %s. You are %d years old.</span><span class="sh">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">))</span>
+
+<span class="c1"># Output: "Hello, John. You are 30 years old."
+</span></code></pre></div></div>
+
+<p>We can set different formats. For example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">a: %2d, b: %5.2f</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">05.333</span><span class="p">))</span>     <span class="c1"># a: 1, b: 5.33
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">%7.3o</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="mi">25</span><span class="p">))</span>           <span class="c1"># 031 (octal value)
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">%10.3e</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="mf">356.08977</span><span class="p">))</span>   <span class="c1"># 3.561e+02 (exponential value)
+</span></code></pre></div></div>
+
+<h2 id="2-use-format-method">2. Use <code class="language-plaintext highlighter-rouge">.format()</code> method</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="sh">'</span><span class="s">John</span><span class="sh">'</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">Hello, {}. You are {} years old.</span><span class="sh">'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">))</span>
+
+<span class="c1"># Output: "Hello, John. You are 30 years old."
+</span></code></pre></div></div>
+
+<p>We can also set more detailed formats in the curly bracket, including print orders, number formats, and keywords. For example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">{0} and {1}</span><span class="sh">'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span><span class="p">))</span>	<span class="c1"># a and b
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">{1} and {0}</span><span class="sh">'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span><span class="p">))</span>	<span class="c1"># b and a
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">a: {0:2d}, b: {1:8.2f}</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">00.546</span><span class="p">))</span>	<span class="c1"># a: 12, b: 0.55
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">b: {1:3d}, a: {0:7.2f}</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="mf">47.42</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>	<span class="c1"># b: 11, a: 47.42
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">a: {x:5d},  b: {y:8.2f}</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">453</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">59.058</span><span class="p">))</span>	<span class="c1"># a: 453,  b: 59.06
+</span></code></pre></div></div>
+
+<h2 id="3-use-f-string-python--36">3. Use F-string (Python &gt;= 3.6)</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="sh">'</span><span class="s">John</span><span class="sh">'</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">. You are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s"> years old.</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Output: "Hello, John. You are 30 years old."
+</span></code></pre></div></div>
+
+<p>F-string literals are the most concise and easy-to-read way to format strings. It also accepts formats like <code class="language-plaintext highlighter-rouge">:8.2f</code>.</p>
+
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/python">python,</a>
+                
+            
+                
+                <a href="/tags/string">string</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2022/03/pip-cheatsheet.html">Previous: Python pip Cheatsheet</a>
+    
+
+    
+        <a href="/2022/05/python-packaging.html">Next: Python Packaging</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2024 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

@@ -15,9 +15,10 @@
 
 <meta name="keywords" content="YuhanHuskyDev">
 
-<link rel="icon" href="/assets/images/favicon.ico">
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/2022/03/git-cheatsheet.html">
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2022/03/git-cheatsheet.html"/>
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -29,7 +30,7 @@
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
-<script type="text/x-mathjax-config">
+<!--script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ['\\(','\\)'] ],
@@ -38,9 +39,36 @@
       },
       "HTML-CSS": { scale: 90 }
     });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script src="/assets/js/myjavascript.js"></script>
     
@@ -204,23 +232,23 @@
 
 <p>Show detail of a specific branch:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch <span class="nt">-vv</span> 					<span class="c"># show details for all branch</span>
-<span class="nv">$ </span>git branch <span class="nt">-vv</span> &lt;branchname&gt;		<span class="c"># show details for &lt;branchname&gt;</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch <span class="nt">-vv</span>                <span class="c"># show details for all branch</span>
+<span class="nv">$ </span>git branch <span class="nt">-vv</span> &lt;branchname&gt;	<span class="c"># show details for &lt;branchname&gt;</span>
 </code></pre></div></div>
 
 <p>Switch to an existing local branch:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout &lt;existing_branch&gt;	<span class="c"># switch to &lt;existing_branch&gt;</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout &lt;existing_branch&gt;    <span class="c"># switch to &lt;existing_branch&gt;</span>
 </code></pre></div></div>
 
 <p>We can also switch to remote branches</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout origin/main			<span class="c"># You are in 'detached HEAD' state.</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout origin/main      <span class="c"># You are in 'detached HEAD' state.</span>
 </code></pre></div></div>
 
 <p>Add a new local branch (with the same name) to track an existing remote branch</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout &lt;branchname&gt; 		<span class="c"># create a new local branch (e.g., test-dev) to track the remote branch</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout &lt;branchname&gt;     <span class="c"># create a new local branch (e.g., test-dev) to track the remote branch</span>
 
 Branch <span class="s1">'test-dev'</span> <span class="nb">set </span>up to track remote branch <span class="s1">'test-dev'</span> from <span class="s1">'origin'</span><span class="nb">.</span>
 Switched to a new branch <span class="s1">'test-dev'</span>
@@ -228,10 +256,10 @@ Switched to a new branch <span class="s1">'test-dev'</span>
 
 <p>Create a new local branch:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch &lt;branchname&gt; 			<span class="c"># create a branch called &lt;branchname&gt;</span>
-<span class="nv">$ </span>git checkout &lt;branchname&gt; 		<span class="c"># switch to &lt;branchname&gt; branch</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch &lt;branchname&gt;         <span class="c"># create a branch called &lt;branchname&gt;</span>
+<span class="nv">$ </span>git checkout &lt;branchname&gt;       <span class="c"># switch to &lt;branchname&gt; branch</span>
 
-<span class="nv">$ </span>git checkout <span class="nt">-b</span> &lt;branchname&gt;		<span class="c"># equivalent to the above two commands</span>
+<span class="nv">$ </span>git checkout <span class="nt">-b</span> &lt;branchname&gt;    <span class="c"># equivalent to the above two commands</span>
 </code></pre></div></div>
 
 <p><strong>Note:</strong> <code class="language-plaintext highlighter-rouge">git branch &lt;branchname&gt;</code> does not switch to <code class="language-plaintext highlighter-rouge">&lt;branchname&gt;</code> automatically.</p>
@@ -241,15 +269,15 @@ Switched to a new branch <span class="s1">'test-dev'</span>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch <span class="nt">-d</span> &lt;branchname&gt;	<span class="c"># “safe” operation, prevents from deleting the branch if it has unmerged changes</span>
 <span class="nv">$ </span>git branch <span class="nt">-D</span> &lt;branchname&gt;	<span class="c"># deleting the branch even if it has unmerged changes</span>
 
-<span class="nv">$ </span>git branch <span class="nt">-m</span> <span class="o">[</span>&lt;oldbranch&gt;] &lt;newbranch&gt;		<span class="c"># &lt;oldbranch&gt; is optional if rename current branch</span>
-<span class="nv">$ </span>git branch <span class="nt">-M</span> <span class="o">[</span>&lt;oldbranch&gt;] &lt;newbranch&gt;		<span class="c"># If &lt;newbranch&gt; exists, -M must be used to force the rename to happen</span>
+<span class="nv">$ </span>git branch <span class="nt">-m</span> <span class="o">[</span>&lt;oldbranch&gt;] &lt;newbranch&gt;    <span class="c"># &lt;oldbranch&gt; is optional if rename current branch</span>
+<span class="nv">$ </span>git branch <span class="nt">-M</span> <span class="o">[</span>&lt;oldbranch&gt;] &lt;newbranch&gt;    <span class="c"># If &lt;newbranch&gt; exists, -M must be used to force the rename to happen</span>
 
-<span class="nv">$ </span>git branch <span class="nt">-c</span> <span class="o">[</span>&lt;oldbranch&gt;] &lt;newbranch&gt; 		<span class="c"># &lt;oldbranch&gt; is optional if copy current branch. -C similar to -M</span>
+<span class="nv">$ </span>git branch <span class="nt">-c</span> <span class="o">[</span>&lt;oldbranch&gt;] &lt;newbranch&gt;    <span class="c"># &lt;oldbranch&gt; is optional if copy current branch. -C similar to -M</span>
 </code></pre></div></div>
 
 <p>Push a new local branch to remote or reset the upstream branch:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git push origin <span class="nt">-u</span> &lt;upstream&gt;		<span class="c"># Branch 'local' set up to track remote branch '&lt;upstream&gt;' from 'origin'</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git push origin <span class="nt">-u</span> &lt;upstream&gt;	    <span class="c"># Branch 'local' set up to track remote branch '&lt;upstream&gt;' from 'origin'</span>
 </code></pre></div></div>
 
 <p><strong>Note:</strong> Run the command when pushing a local branch to the remote for the first time.</p>
@@ -263,14 +291,14 @@ Switched to a new branch <span class="s1">'test-dev'</span>
 
 <p>Track local branch: (in contrast with track remote branches)</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch <span class="nt">-u</span> &lt;newlocal&gt;		<span class="c"># Branch 'local' set up to track local branch '&lt;newlocal&gt;'</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch <span class="nt">-u</span> &lt;newlocal&gt;     <span class="c"># Branch 'local' set up to track local branch '&lt;newlocal&gt;'</span>
 </code></pre></div></div>
 
 <h2 id="git-remote">git remote</h2>
 
 <h3 id="check-current-remote-repo-url">Check current remote repo URL</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote <span class="nt">-v</span>		<span class="c"># output fetch and push url</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote <span class="nt">-v</span>	    <span class="c"># output fetch and push url</span>
 </code></pre></div></div>
 
 <h3 id="set-new-url-for-remote">Set new URL for remote</h3>
@@ -302,11 +330,11 @@ Switched to a new branch <span class="s1">'test-dev'</span>
 
 <section class="post-pagination">
     
-        <a href="/2020/11/notes-9.html">Previous: Random Walk</a>
+        <a href="/2022/03/python-install.html">Previous: Python Source Installation</a>
     
 
     
-        <a href="/2022/06/intro-to-rl.html">Next: Introduction to Reinforcement Learning</a>
+        <a href="/2022/03/pip-cheatsheet.html">Next: Python pip Cheatsheet</a>
     
 </section>
   

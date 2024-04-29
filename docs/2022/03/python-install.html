@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Python Source Installation">
+<title>Python Source Installation</title>
+<meta property="og:description" content="Install Python from source in Linux environments.">
+<meta property="og:url" content="http://localhost:4000/2022/03/python-install.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2022/03/python-install.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Python Source Installation</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-03-11
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#python">python</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#python-install">Python Install</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#optional">Optional</a></li>
+</ul>
+</li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <h1 id="python-install">Python Install</h1>
+
+<p>Download source files and do configure.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure <span class="nt">--prefix</span><span class="o">=</span>/path/to/python/Python-xxx <span class="nt">--enable-optimizations</span>		<span class="c"># use Python-xxx for naming convention</span>
+</code></pre></div></div>
+
+<p><strong>Note:</strong> Use <code class="language-plaintext highlighter-rouge">./configure --help less</code> to check detailed configurations.</p>
+
+<p>Then use <code class="language-plaintext highlighter-rouge">make</code> to build Python and install the binary after the building:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make <span class="nt">-j</span><span class="si">$(</span><span class="nb">nproc</span><span class="si">)</span>       <span class="c"># use all cpus for compile</span>
+<span class="nv">$ </span><span class="nb">sudo </span>make <span class="nb">install</span>     <span class="c"># add sudo for admin install</span>
+</code></pre></div></div>
+
+<p>Then add to path in <code class="language-plaintext highlighter-rouge">.bashrc</code> and source it:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/opt/Python-xxx
+<span class="nv">$ </span><span class="nb">source</span> .bashrc
+</code></pre></div></div>
+
+<h2 id="optional">Optional</h2>
+<p>Install the package <code class="language-plaintext highlighter-rouge">virtualenv</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo</span> /path/to/python/Python-xxx/bin/pip3 <span class="nb">install </span>virtualenv 
+</code></pre></div></div>
+
+<p>The package will be installed in <code class="language-plaintext highlighter-rouge">opt</code> directory if using <code class="language-plaintext highlighter-rouge">sudo</code> instead of <code class="language-plaintext highlighter-rouge">.local</code> directory.</p>
+
+<p><strong>Note:</strong> <code class="language-plaintext highlighter-rouge">venv</code> module is contained with official Python distributions. It contains partial features of the python package <code class="language-plaintext highlighter-rouge">virtualenv</code>.</p>
+
+<p><strong>Note:</strong> in <code class="language-plaintext highlighter-rouge">/opt/Python-xxx/bin</code> directory, there are <code class="language-plaintext highlighter-rouge">python</code> and <code class="language-plaintext highlighter-rouge">pip</code> executables. So we should treat them as two independent executables. So we can directly use <code class="language-plaintext highlighter-rouge">pip install xxx</code> instead of <code class="language-plaintext highlighter-rouge">python -m pip install xxx</code>. The latter will report an error: <code class="language-plaintext highlighter-rouge">No module named pip3</code>.</p>
+
+<p><strong>Note:</strong> when use <code class="language-plaintext highlighter-rouge">sudo</code> in front of <code class="language-plaintext highlighter-rouge">/opt/Python-xxx/bin/python</code> and <code class="language-plaintext highlighter-rouge">pip</code>, the packages/updates willl be installed in <code class="language-plaintext highlighter-rouge">opt</code> instead of <code class="language-plaintext highlighter-rouge">.local</code>.</p>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">virtualenv</code> is a package of python. Unlike executable <code class="language-plaintext highlighter-rouge">pip3</code>, we create a new virtual environment using:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.x <span class="nt">-m</span> venv myvenv    <span class="c"># create myvenv environment in the current directory.</span>
+</code></pre></div></div>
+
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/python">python</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2022/01/python-project-practice.html">Previous: Coding Practice for Python Projects</a>
+    
+
+    
+        <a href="/2022/03/git-cheatsheet.html">Next: Git Cheatsheet</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2024 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

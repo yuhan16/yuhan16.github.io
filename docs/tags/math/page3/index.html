@@ -15,9 +15,10 @@
 
 <meta name="keywords" content="YuhanHuskyDev">
 
-<link rel="icon" href="/assets/images/favicon.ico">
-<link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="http://localhost:4000/tags/math/page3/">
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/tags/math/page3/"/>
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -29,7 +30,7 @@
 <script src="/assets/js/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 
-<script type="text/x-mathjax-config">
+<!--script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ['\\(','\\)'] ],
@@ -38,9 +39,36 @@
       },
       "HTML-CSS": { scale: 90 }
     });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-<!--script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script-->
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script src="/assets/js/myjavascript.js"></script>
     
@@ -93,6 +121,102 @@
 
 
 <!--Each post is a single card-->
+
+
+<div class="card">
+    <h1 style="margin: 0 auto;"><a href="/2020/10/notes-5.html">LLN and conditional probability</a></h1>
+        
+    <!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 0.5rem;">
+        <span class="post-meta">
+			<i class="far fa-calendar-alt"></i>&nbsp; 2020-10-30
+		</span>
+		
+        <span class="post-meta">
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/probability">Probability</a>
+		</span>
+		
+        <span class="post-meta">
+			<i class="far fa-clock"></i>&nbsp;
+		</span>
+	</div>
+
+    <!--post content excerption-->
+    <article>
+        This note reviews the concepts of law of large numbers and conditional probability.
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0;">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/notes">notes,</a>
+                
+            
+                
+                <a href="/tags/math">math</a>
+                
+            
+		</span>
+
+		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2020/10/notes-5.html">
+			<i class="fas fa-book-reader"></i>&nbsp;Read more
+        </a>
+	</div>
+</div>
+
+
+
+<div class="card">
+    <h1 style="margin: 0 auto;"><a href="/2020/10/notes-4.html">Expectation and Dependence</a></h1>
+        
+    <!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 0.5rem;">
+        <span class="post-meta">
+			<i class="far fa-calendar-alt"></i>&nbsp; 2020-10-23
+		</span>
+		
+        <span class="post-meta">
+			<i class="far fa-folder-open has-text-grey"></i>&nbsp;<a href="/categories/probability">Probability</a>
+		</span>
+		
+        <span class="post-meta">
+			<i class="far fa-clock"></i>&nbsp;
+		</span>
+	</div>
+
+    <!--post content excerption-->
+    <article>
+        This note reviews the concepts of expectation and dependence of random variables.
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0;">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/notes">notes,</a>
+                
+            
+                
+                <a href="/tags/math">math</a>
+                
+            
+		</span>
+
+		<a style="background-color: #f5f5f5; padding: 3px 10px; border-radius: 4px;" href="/2020/10/notes-4.html">
+			<i class="fas fa-book-reader"></i>&nbsp;Read more
+        </a>
+	</div>
+</div>
+
 
 
 <div class="card">
@@ -249,15 +373,14 @@
         <script src="/assets/js/generate_pagination.js"></script>
         <script>
             let curr_page = parseInt('3');
-        	let total_pages = parseInt('3');
+        	let total_pages = parseInt('4');
         	let pageurl = '/tags/math/page3/index.html';
         	createPaginationIconList(curr_page, total_pages, pageurl);
         </script>
     </div>
 
     
-        <span style="margin-right: 2rem;"></span>  
-        <!--a style="display: none;">Next &raquo;</a-->
+        <a class="pagination-pre-next no-hover-effect" href="/tags/math/page4/">Next</a>
     
 </section>
 

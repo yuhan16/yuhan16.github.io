@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Shortest Path Problem">
+<title>Shortest Path Problem</title>
+<meta property="og:description" content="We introduce the shortest path problem and summarize some common algorihtms.">
+<meta property="og:url" content="http://localhost:4000/2020/08/shorest-path.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2020/08/shorest-path.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Shortest Path Problem</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2020-08-14
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/optimization">Optimization</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;15 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#math">math,</a>
+                
+            
+                
+                <a href="/tags/#shortest path">shortest path,</a>
+                
+            
+                
+                <a href="/tags/#Dijkstra">Dijkstra</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#shortest-path-problem">Shortest Path Problem</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#useful-resources">Useful Resources</a></li>
+<li class="toc-entry toc-h2"><a href="#problem-definition">Problem definition</a></li>
+<li class="toc-entry toc-h2"><a href="#common-algorithms">Common Algorithms</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dijkstras-algorithm">Dijkstra’s algorithm</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#bellman-ford-algorithm">Bellman-Ford algorithm</a></li>
+<li class="toc-entry toc-h2"><a href="#floydwarshall-algorithm">Floyd–Warshall algorithm</a></li>
+</ul>
+</li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <h1 id="shortest-path-problem">Shortest Path Problem</h1>
+
+<h2 id="useful-resources">Useful Resources</h2>
+<ul>
+  <li><a href="https://brilliant.org/wiki/shortest-path-algorithms/#:~:text=There are two main types,because of the added complexity.">Shortest Path Algorithms</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Shortest_path_problem">Shortest path problem</a></li>
+</ul>
+
+<h2 id="problem-definition">Problem definition</h2>
+
+<p>Given a directed or undirected graph $G(V,E)$, find the shortest path from one vertex $u$ to another vertex $v$.</p>
+
+<p>The above problem the basic problem, which is <strong>single-source single-destination problem</strong>. There are also variations:</p>
+
+<ul>
+  <li>The <strong>single-source shortest path problem</strong>, in which we have to find shortest paths from a source vertex $v$ to all other vertices in the graph.</li>
+  <li>The <strong>single-destination shortest path problem</strong>, in which we have to find shortest paths from all vertices in the directed graph to a single destination vertex $v$. This can be reduced to the single-source shortest path problem by reversing the arcs in the directed graph.</li>
+  <li>The <strong>all-pairs shortest path problem</strong>, in which we have to find shortest paths between every pair of vertices $u, v$ in the graph.</li>
+</ul>
+
+<h2 id="common-algorithms">Common Algorithms</h2>
+
+<p>Below are the most important algorithms for solving the shortest path problem.</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Dijkstra's_algorithm">Dijkstra’s algorithm</a> solves the single-source shortest path problem with non-negative edge weight.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Bellman–Ford_algorithm">Bellman–Ford algorithm</a> solves the single-source problem if edge weights may be negative.</li>
+  <li><a href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* search algorithm</a> solves for single-pair shortest path using heuristics to try to speed up the search.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm">Floyd–Warshall algorithm</a> solves all pairs shortest paths.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Johnson's_algorithm">Johnson’s algorithm</a> solves all pairs shortest paths, and may be faster than Floyd–Warshall on <a href="https://en.wikipedia.org/wiki/Sparse_graph">sparse graphs</a>.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Viterbi_algorithm">Viterbi algorithm</a> solves the shortest stochastic path problem with an additional probabilistic weight on each node.</li>
+</ul>
+
+<h3 id="dijkstras-algorithm">Dijkstra’s algorithm</h3>
+
+<p>The Dijkstra’s algorithm can solve both <strong>single-source single-target problem</strong> and <strong>single source problem</strong>. There are two features of the algorithm:</p>
+
+<ul>
+  <li>It is a greedy algorithm.</li>
+  <li>It use breath first search (BFS) to find the shortest path.</li>
+</ul>
+
+<p>Time complexity: $O(V^2)$.</p>
+
+<p>The pseudo code is as follows.</p>
+
+<pre><code class="language-pseudocode">function Dijkstra(Graph, source):
+	create vertex set Q
+    
+    for each vertex v in Graph:             
+    	dist[v] ← INFINITY                  
+		prev[v] ← UNDEFINED                 
+		add v to Q                      
+	dist[source] ← 0                        
+ 
+	while Q is not empty:
+		u ← vertex in Q with min dist[u]    
+                                            
+        remove u from Q 
+        
+        for each neighbor v of u:           // only v that are still in Q
+	        alt ← dist[u] + length(u, v)
+            if alt &lt; dist[v]:               
+                dist[v] ← alt 
+                prev[v] ← u 
+                
+    return dist[], prev[]
+</code></pre>
+
+<p>The code solves the <strong>single-source problem</strong>, i.e. it finds shortest paths for all other nodes. If we are only interested in finding the shortest path from <strong>source to destination</strong>, we don’t need to traverse all $Q$. When <code class="language-plaintext highlighter-rouge">prev[u] == target</code>, we can terminate the algorithm.</p>
+
+<h2 id="bellman-ford-algorithm">Bellman-Ford algorithm</h2>
+
+<p>The Bellman-Ford algorithm can solve <strong>single-source problem</strong> in a weighted digraph. Although it is slower than the Dijkstra’s algorithm for the same problem, it is more <strong>versatile</strong> because it can handle the graphs with <strong>negative edge weight</strong>.</p>
+
+<p>If a graph contains a “negative cycle” that is reachable from the source, then there is no <strong>cheapest path</strong>: any path that has a point on the negative cycle can be made cheaper by one more walk around the negative cycle. The Bellman-Fold algorithm can <strong>detect and report the negative cycle</strong>.</p>
+
+<p>The Bellman-Ford algorithm is very like the <strong>value iteration</strong> in optimal control. In optimal control, we first partition the state space and input space, and then assign $\infty$ to each state as the initial value. Next, we perform Bellman’s equation: $V_{k+1}(x) \gets \min_u g(x, u) + V_k(f(x,u))$ to update the value at state $x$ until $V_{k+1}$ and $V_k$ are close enough.</p>
+
+<p>In the Bellman-Fold algorithm,  the vertices are like states $x$ and link weights are like inputs $u$. But unlike the valuation iteration in the optimal control, we are sure that <strong>the value (which is the distance) must converge in $\vert V \vert-1$ steps</strong> as there is only $\vert V \vert - 1$ states in total.  Another understanding is the following. At each iteration $i$ that the edges are scanned, the algorithm finds all shortest paths of at most length $i$ edges (and possibly some paths longer than $i$ edges). Since the longest possible path without a cycle can be  edges $\vert V \vert - 1$ edges, the edges must be scanned $\vert V \vert - 1$ times to ensure the shortest path has been found for all nodes.</p>
+
+<p>Time complexity: $O(VE)$.</p>
+
+<p>The pseudo code is as follows.</p>
+
+<pre><code class="language-pseudocode">function BellmanFold(Graph, source):
+	create vertices list V and edges list E
+	
+	// Step 1: initialize graph
+	for each vertex v in V do
+		dist[v] := inf
+		pred[v] := Null
+	
+	dist[source] := 0 	// the distance from the source is zero
+	
+	// Step 2: do distance iteration
+    for i from 1 to |V|-1 do 	// i is never referenced, only a counter
+    	for each edge (u,v) with weight w in E do 
+    		if dist[u] + w &lt; dist[v] then
+    			dist[v] := dist[u] + w
+    			pred[v] := u
+    
+    // Step 3: check for negative-weight cycles
+    for each edge (u,v) with weight w in E do
+    	if dist[u] + w &lt; dist[v] then
+    		error "Graph contains a negative-weight cycle."
+    
+    return dist[], pred[]
+</code></pre>
+
+<p>Note that since the Step 2 has already find the best distance <code class="language-plaintext highlighter-rouge">dist</code> function, which is equivalent to the value function. Therefore, if all weights are nonnegative, then for every edge $(u,v)$, we should have <code class="language-plaintext highlighter-rouge">dist[u] + w = dist[v]</code>. If it is not satisfied, there must be a negative-weight cycle.</p>
+
+<h2 id="floydwarshall-algorithm">Floyd–Warshall algorithm</h2>
+
+<p>This algorithm can be used for finding shortest paths in a weighted graph with <strong>positive or negative edge weights (but with no negative cycles)</strong>. It solves the <strong>all-pair problem</strong>.</p>
+
+<p>The main idea of the algorithm uses dynamic programming. Given a graph $G(V,E)$, we number the vertices as $1,2,\dots, N$ where $N = \vert V \vert$. Consider a function $f(i,j,k)$ which represents the shortest path from node $i$ to node $j$ passing through nodes ${ 1,2,\dots, k }$. Note that a path from $i$ to $j$ using the intermediate nodes ${1,2,\dots, k}$ has two possibilities.</p>
+
+<ul>
+  <li>The path only use the intermediate nodes ${1,2,\dots, k-1}$.</li>
+  <li>The path first pass from node $i$ to node $k$ using ${1,2,\dots, k-1}$, and then pass from node $k$ to node $j$ using ${1,2,\dots, k-1}$.</li>
+</ul>
+
+<p>Therefore, this gives a recursive formula</p>
+
+\[f(i,j,k) = \min\{ f(i,j,k-1), f(i,k,k-1) + f(k,j,k-1) \}, f(i,j,0) = w(i,j).\]
+
+<p>We want to find $f(i,j,N)$.</p>
+
+<p>Time complexity: $O(V^3)$.</p>
+
+<p>The pseudo code is as follows.</p>
+
+<pre><code class="language-pseudocode">function FloydWarshall(Graph):
+	let dist be a |V| × |V| array of minimum distances initialized to ∞ (infinity)
+	for each edge (u, v) do
+    	dist[u][v] ← w(u, v)  // The weight of the edge (u, v)
+	for each vertex v do
+    	dist[v][v] ← 0
+	for k from 1 to |V|
+    	for i from 1 to |V|
+        	for j from 1 to |V|
+            	if dist[i][j] &gt; dist[i][k] + dist[k][j] 
+                	dist[i][j] ← dist[i][k] + dist[k][j]
+            	end if
+</code></pre>
+
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/math">math,</a>
+                
+            
+                
+                <a href="/tags/shortest-path">shortest path,</a>
+                
+            
+                
+                <a href="/tags/dijkstra">Dijkstra</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2019/12/static-site-generators.html">Previous: Static Site Generators</a>
+    
+
+    
+        <a href="/2020/10/notes-1.html">Next: Sets and Probability Measures</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2024 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

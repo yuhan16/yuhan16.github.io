@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Python Exception Related">
+<title>Python Exception Related</title>
+<meta property="og:description" content="Python exception related notes.">
+<meta property="og:url" content="http://localhost:4000/2022/05/python-exception.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://localhost:4000/2022/05/python-exception.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+    
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Python Exception Related</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-05-22
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;15 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#python">python,</a>
+                
+            
+                
+                <a href="/tags/#exception">exception</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <h1 id="python-exception">Python Exception</h1>
+
+<p>When a python program leads to an uncepected error, it will terminate. Such event is called an <strong>exception</strong>. An exception refers to the event the disrupt the normal flow of the python program.</p>
+
+<p>Tow useful tutorials:</p>
+<ul>
+  <li><a href="https://www.tutorialspoint.com/python/python_exceptions.htm">Python - Exceptions Handling</a></li>
+  <li><a href="https://www.programiz.com/python-programming/exception-handling">Python Exception Handling</a></li>
+</ul>
+
+<p>Exception can be either user-defined or built-in. For built-in exception, we refer to official document <a href="https://docs.python.org/3/library/exceptions.html">exceptions</a>. The built-in exceptions are defined under the base class <code class="language-plaintext highlighter-rouge">Exception</code>. Note that <code class="language-plaintext highlighter-rouge">BaseException</code> is the base class of <code class="language-plaintext highlighter-rouge">Exception</code>. As we will mention later, the exception handling only applies to <code class="language-plaintext highlighter-rouge">Exception</code> class.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">BaseException</span>
+ <span class="o">+--</span> <span class="nb">SystemExit</span>
+ <span class="o">+--</span> <span class="nb">KeyboardInterrupt</span>
+ <span class="o">+--</span> <span class="nb">GeneratorExit</span>
+ <span class="o">+--</span> <span class="nb">Exception</span>
+      <span class="o">+--</span> <span class="nb">StopIteration</span>
+      <span class="o">+--</span> <span class="nb">StopAsyncIteration</span>
+      <span class="o">+--</span> <span class="nb">ArithmeticError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">FloatingPointError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">OverflowError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ZeroDivisionError</span>
+      <span class="o">+--</span> <span class="nb">AssertionError</span>
+      <span class="o">+--</span> <span class="nb">AttributeError</span>
+      <span class="o">+--</span> <span class="nb">BufferError</span>
+      <span class="o">+--</span> <span class="nb">EOFError</span>
+      <span class="o">+--</span> <span class="nb">ImportError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ModuleNotFoundError</span>
+      <span class="o">+--</span> <span class="nb">LookupError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">IndexError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">KeyError</span>
+      <span class="o">+--</span> <span class="nb">MemoryError</span>
+      <span class="o">+--</span> <span class="nb">NameError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">UnboundLocalError</span>
+      <span class="o">+--</span> <span class="nb">OSError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">BlockingIOError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ChildProcessError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ConnectionError</span>
+      <span class="o">|</span>    <span class="o">|</span>    <span class="o">+--</span> <span class="nb">BrokenPipeError</span>
+      <span class="o">|</span>    <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ConnectionAbortedError</span>
+      <span class="o">|</span>    <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ConnectionRefusedError</span>
+      <span class="o">|</span>    <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ConnectionResetError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">FileExistsError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">FileNotFoundError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">InterruptedError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">IsADirectoryError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">NotADirectoryError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="n">PermissionError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">ProcessLookupError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">TimeoutError</span>
+      <span class="o">+--</span> <span class="nb">ReferenceError</span>
+      <span class="o">+--</span> <span class="nb">RuntimeError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">NotImplementedError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">RecursionError</span>
+      <span class="o">+--</span> <span class="nb">SyntaxError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">IndentationError</span>
+      <span class="o">|</span>         <span class="o">+--</span> <span class="nb">TabError</span>
+      <span class="o">+--</span> <span class="nb">SystemError</span>
+      <span class="o">+--</span> <span class="nb">TypeError</span>
+      <span class="o">+--</span> <span class="nb">ValueError</span>
+      <span class="o">|</span>    <span class="o">+--</span> <span class="nb">UnicodeError</span>
+      <span class="o">|</span>         <span class="o">+--</span> <span class="nb">UnicodeDecodeError</span>
+      <span class="o">|</span>         <span class="o">+--</span> <span class="nb">UnicodeEncodeError</span>
+      <span class="o">|</span>         <span class="o">+--</span> <span class="nb">UnicodeTranslateError</span>
+      <span class="o">+--</span> <span class="nb">Warning</span>
+           <span class="o">+--</span> <span class="nb">DeprecationWarning</span>
+           <span class="o">+--</span> <span class="nb">PendingDeprecationWarning</span>
+           <span class="o">+--</span> <span class="nb">RuntimeWarning</span>
+           <span class="o">+--</span> <span class="nb">SyntaxWarning</span>
+           <span class="o">+--</span> <span class="nb">UserWarning</span>
+           <span class="o">+--</span> <span class="nb">FutureWarning</span>
+           <span class="o">+--</span> <span class="nb">ImportWarning</span>
+           <span class="o">+--</span> <span class="nb">UnicodeWarning</span>
+           <span class="o">+--</span> <span class="nb">BytesWarning</span>
+           <span class="o">+--</span> <span class="nb">ResourceWarning</span>
+</code></pre></div></div>
+
+<h2 id="exception-handling">Exception Handling</h2>
+
+<p>Exception handling refers to catching the exception and then do corresponding operations. The following keywords are related to exception handling: <code class="language-plaintext highlighter-rouge">try</code>, <code class="language-plaintext highlighter-rouge">except</code>, <code class="language-plaintext highlighter-rouge">finally</code>, <code class="language-plaintext highlighter-rouge">with</code>.</p>
+
+<h3 id="try-exceptelse-block"><code class="language-plaintext highlighter-rouge">try... except...else...</code> block</h3>
+
+<p>The basic way to do exception is to use <code class="language-plaintext highlighter-rouge">try... except... else...</code> block. The following is the syntax.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+   <span class="c1"># You do your operations here;
+</span>   <span class="c1"># ......................
+</span><span class="k">except</span> <span class="n">ExceptionI</span><span class="p">:</span>
+   <span class="c1"># If there is ExceptionI, then execute this block.
+</span><span class="k">except</span> <span class="n">ExceptionII</span><span class="p">:</span>
+   <span class="c1"># If there is ExceptionII, then execute this block.
+</span>   <span class="c1"># ......................
+</span><span class="k">else</span><span class="p">:</span>
+   <span class="c1"># If there is no exception then execute this block. 
+</span></code></pre></div></div>
+
+<p>There are also many variants of the block.</p>
+
+<p>(1) The <code class="language-plaintext highlighter-rouge">else</code> is not necessary.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">an exception occurs.</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>(2) Catching specific exceptions</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># do some thing 
+</span><span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+    <span class="c1"># handle ValueError exception
+</span>    <span class="c1"># do somthing
+</span>    <span class="k">pass</span>
+<span class="nf">except </span><span class="p">(</span><span class="nb">TypeError</span><span class="p">,</span> <span class="nb">ZeroDivisionError</span><span class="p">):</span>
+    <span class="c1"># handle multiple exceptions
+</span>   	<span class="c1"># TypeError and ZeroDivisionError
+</span>    <span class="k">pass</span>
+<span class="k">except</span><span class="p">:</span> 
+    <span class="c1"># handle all other exceptions
+</span>    <span class="k">pass</span>
+</code></pre></div></div>
+
+<p>For each specific exception type, we can refer to the built-in exception list mentioned at the beginning.</p>
+
+<p>The advantage of this variant is that we can only hadle specific types of exceptions instead of all of them, which can save time.</p>
+
+<p>(3) Evaluate exception type</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># do something
+</span><span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Oops!</span><span class="sh">"</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">__class__</span><span class="p">,</span> <span class="sh">"</span><span class="s">occurred.</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>If we do not know what type of exception will occur, we can assign the exception to a variable and access its class to read the exception type.</p>
+
+<h3 id="tryfinally-block"><code class="language-plaintext highlighter-rouge">try...finally</code> block</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">finally</code> block is a place to put any code that must execute, whether the <code class="language-plaintext highlighter-rouge">try</code> block raised an exception or not. Syntax is as follows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+   <span class="c1">#You do your operations here;
+</span>   <span class="c1"># ......................
+</span>   <span class="c1">#Due to any exception, this may be skipped.
+</span><span class="k">finally</span><span class="p">:</span>
+   <span class="c1"># This would always be executed.
+</span>   <span class="c1">#......................
+</span></code></pre></div></div>
+
+<p>It can be nested to <code class="language-plaintext highlighter-rouge">try...except</code> block. For example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+   <span class="n">fh</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">testfile</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">w</span><span class="sh">"</span><span class="p">)</span>
+   <span class="k">try</span><span class="p">:</span>
+      <span class="n">fh</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">This is my test file for exception handling!!</span><span class="sh">"</span><span class="p">)</span>
+   <span class="k">finally</span><span class="p">:</span>
+      <span class="k">print</span> <span class="sh">"</span><span class="s">Going to close the file</span><span class="sh">"</span>
+      <span class="n">fh</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<span class="k">except</span> <span class="nb">IOError</span><span class="p">:</span>
+   <span class="k">print</span> <span class="sh">"</span><span class="s">Error: can</span><span class="se">\'</span><span class="s">t find file or read data</span><span class="sh">"</span>
+</code></pre></div></div>
+
+<h3 id="with-block"><code class="language-plaintext highlighter-rouge">with</code> block</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">with</code> statement clarifies code that previously would use <code class="language-plaintext highlighter-rouge">try...finally</code> blocks to ensure that clean-up code is executed. It can be viewed as a simplification of <code class="language-plaintext highlighter-rouge">try...finally</code> block. The basic structure is:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">expression</span> <span class="p">[</span><span class="k">as</span> <span class="n">variable</span><span class="p">]:</span>
+    <span class="c1"># do something equivalent to the finally block
+</span></code></pre></div></div>
+
+<p>It is usually used in the file operation, for example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">output.txt</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+     <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">'</span><span class="s">Hi there!</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="raising-an-exception">Raising an Exception</h2>
+
+<p>The keyword <code class="language-plaintext highlighter-rouge">raise</code> is used to raise an exception. The syntax goes as follows:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="sh">"</span><span class="s">hello</span><span class="sh">"</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="nf">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+  <span class="k">raise</span> <span class="nc">TypeError</span><span class="p">(</span><span class="sh">"</span><span class="s">Only integers are allowed</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="user-defined-exception">User-defined Exception</h2>
+
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/python">python,</a>
+                
+            
+                
+                <a href="/tags/exception">exception</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2022/05/python-virtualenv.html">Previous: Python Virtual Environments</a>
+    
+
+    
+        <a href="/2022/06/python-copy.html">Next: Python Copy</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2024 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

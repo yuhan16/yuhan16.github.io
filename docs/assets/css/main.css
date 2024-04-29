@@ -361,6 +361,11 @@ pre {
   color: #333333;
 }
 
+.footnotes {
+  font-size: 14px;
+  color: #808080;
+}
+
 /* back-to-top button */
 #back-top-button {
   display: none;

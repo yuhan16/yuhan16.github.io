@@ -133,7 +133,15 @@ MathJax = {
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/#python">python</a>
+                <a href="/tags/#python">python,</a>
+                
+            
+                
+                <a href="/tags/#venv">venv,</a>
+                
+            
+                
+                <a href="/tags/#virtualenv">virtualenv</a>
                 
             
 		</span-->
@@ -146,7 +154,11 @@ MathJax = {
 			<ul id="toc-list" class="toc-list">
 <li class="toc-entry toc-h1"><a href="#python-install">Python Install</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#optional">Optional</a></li>
+<li class="toc-entry toc-h2"><a href="#optional">Optional</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#standard-venv-module">Standard venv Module</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -157,43 +169,45 @@ MathJax = {
     <article class="post-content">
         <h1 id="python-install">Python Install</h1>
 
-<p>Download source files and do configure.</p>
+<p>First, Download source files and perform configurations. <code class="language-plaintext highlighter-rouge">enable-optimizations</code> is a commonly selected option for source installation.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure <span class="nt">--prefix</span><span class="o">=</span>/path/to/python/Python-xxx <span class="nt">--enable-optimizations</span>		<span class="c"># use Python-xxx for naming convention</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure <span class="nt">--prefix</span><span class="o">=</span>/path-to-python/Python-xxx <span class="nt">--enable-optimizations</span>		<span class="c"># use Python-xxx for naming convention</span>
 </code></pre></div></div>
 
 <p><strong>Note:</strong> Use <code class="language-plaintext highlighter-rouge">./configure --help less</code> to check detailed configurations.</p>
 
-<p>Then use <code class="language-plaintext highlighter-rouge">make</code> to build Python and install the binary after the building:</p>
+<p>Then, build Python source with <code class="language-plaintext highlighter-rouge">make</code> and install the binary after the building with <code class="language-plaintext highlighter-rouge">make install</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make <span class="nt">-j</span><span class="si">$(</span><span class="nb">nproc</span><span class="si">)</span>       <span class="c"># use all cpus for compile</span>
-<span class="nv">$ </span><span class="nb">sudo </span>make <span class="nb">install</span>     <span class="c"># add sudo for admin install</span>
+<span class="nv">$ </span><span class="nb">sudo </span>make <span class="nb">install</span>     <span class="c"># add sudo for admin install if python-path is set to /opt or /usr</span>
 </code></pre></div></div>
 
-<p>Then add to path in <code class="language-plaintext highlighter-rouge">.bashrc</code> and source it:</p>
+<p>Next, add the Python executable path in <code class="language-plaintext highlighter-rouge">.bashrc</code> and source it:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/opt/Python-xxx
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/path-to-python/Python-xxx
 <span class="nv">$ </span><span class="nb">source</span> .bashrc
 </code></pre></div></div>
 
 <h2 id="optional">Optional</h2>
 <p>Install the package <code class="language-plaintext highlighter-rouge">virtualenv</code>:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo</span> /path/to/python/Python-xxx/bin/pip3 <span class="nb">install </span>virtualenv 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/path-to-python/Python-xxx/bin/pip3 <span class="nb">install </span>virtualenv 
 </code></pre></div></div>
 
-<p>The package will be installed in <code class="language-plaintext highlighter-rouge">opt</code> directory if using <code class="language-plaintext highlighter-rouge">sudo</code> instead of <code class="language-plaintext highlighter-rouge">.local</code> directory.</p>
+<p><strong>Note:</strong> If Python is installed system-wide (in <code class="language-plaintext highlighter-rouge">/opt</code> or <code class="language-plaintext highlighter-rouge">/usr</code>), we need <code class="language-plaintext highlighter-rouge">sudo</code> to install the <code class="language-plaintext highlighter-rouge">virtualenv</code> package in the Python directory. Otherwise, the package will be installed in the current user’s <code class="language-plaintext highlighter-rouge">.local</code> directory.</p>
 
-<p><strong>Note:</strong> <code class="language-plaintext highlighter-rouge">venv</code> module is contained with official Python distributions. It contains partial features of the python package <code class="language-plaintext highlighter-rouge">virtualenv</code>.</p>
-
-<p><strong>Note:</strong> in <code class="language-plaintext highlighter-rouge">/opt/Python-xxx/bin</code> directory, there are <code class="language-plaintext highlighter-rouge">python</code> and <code class="language-plaintext highlighter-rouge">pip</code> executables. So we should treat them as two independent executables. So we can directly use <code class="language-plaintext highlighter-rouge">pip install xxx</code> instead of <code class="language-plaintext highlighter-rouge">python -m pip install xxx</code>. The latter will report an error: <code class="language-plaintext highlighter-rouge">No module named pip3</code>.</p>
-
-<p><strong>Note:</strong> when use <code class="language-plaintext highlighter-rouge">sudo</code> in front of <code class="language-plaintext highlighter-rouge">/opt/Python-xxx/bin/python</code> and <code class="language-plaintext highlighter-rouge">pip</code>, the packages/updates willl be installed in <code class="language-plaintext highlighter-rouge">opt</code> instead of <code class="language-plaintext highlighter-rouge">.local</code>.</p>
-
-<p>Note that <code class="language-plaintext highlighter-rouge">virtualenv</code> is a package of python. Unlike executable <code class="language-plaintext highlighter-rouge">pip3</code>, we create a new virtual environment using:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.x <span class="nt">-m</span> venv myvenv    <span class="c"># create myvenv environment in the current directory.</span>
+<p>Then, create a virtual environment and source the environment:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python3.x <span class="nt">-m</span> virtualenv env_name      <span class="c"># create env_name environment in the current directory</span>
+<span class="nv">$ </span><span class="nb">source </span>env_name/bin/activate
 </code></pre></div></div>
+
+<h3 id="standard-venv-module">Standard <code class="language-plaintext highlighter-rouge">venv</code> Module</h3>
+<p>Since Python 3.3, the <code class="language-plaintext highlighter-rouge">venv</code> module, which creates lightweight virtual environments, has been integrated into Python official distributions. The <code class="language-plaintext highlighter-rouge">venv</code> module contains partial features of the <code class="language-plaintext highlighter-rouge">virtualenv</code> module. Therefore, for simple virtual environment creation and usage, there is no need to install the <code class="language-plaintext highlighter-rouge">virtualenv</code> package.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python3.x <span class="nt">-m</span> venv myvenv    <span class="c"># create myvenv environment in the current directory using venv module</span>
+</code></pre></div></div>
+
+<p>Check the post <a href="/2022/05/python-virtualenv.html">Python Virtual Environments</a> for more details.</p>
 
 
     </article>
@@ -206,7 +220,15 @@ MathJax = {
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/python">python</a>
+                <a href="/tags/python">python,</a>
+                
+            
+                
+                <a href="/tags/venv">venv,</a>
+                
+            
+                
+                <a href="/tags/virtualenv">virtualenv</a>
                 
             
 		</span>

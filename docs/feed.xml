@@ -5,8 +5,8 @@
     <description>HuskDev is Yuhan&apos;s personal blog.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Apr 2024 22:48:23 -0400</pubDate>
-    <lastBuildDate>Sun, 28 Apr 2024 22:48:23 -0400</lastBuildDate>
+    <pubDate>Sun, 12 May 2024 13:15:11 -0400</pubDate>
+    <lastBuildDate>Sun, 12 May 2024 13:15:11 -0400</lastBuildDate>
     <generator>Jekyll v4.3.2</generator>
     
       <item>
@@ -64,6 +64,40 @@
         
         
         <category>Optimization</category>
+        
+      </item>
+    
+      <item>
+        <title>Python Parallelization</title>
+        <description>&lt;p&gt;In general, there are two ways to achieve parallelization:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Python &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;multiprocessing&lt;/code&gt; module&lt;/li&gt;
+  &lt;li&gt;bash parallel &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loops.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;multiprocessing-module&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;multiprocessing&lt;/code&gt; Module&lt;/h2&gt;
+&lt;p&gt;The Python &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;multiprocessing&lt;/code&gt; module is more suitable for parallelizing similar tasks. For example, in a Machine Learning project, we want to obtain the mean-variance training performance of the image classifier using different random seeds. The hyperparameters are fixed, and thus, it is easier to implement the parallel training using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;multiprocessing&lt;/code&gt; module.&lt;/p&gt;
+
+&lt;h2 id=&quot;bash-for-loop&quot;&gt;Bash &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; Loop&lt;/h2&gt;
+&lt;p&gt;Bash parallel for loop is more suitable for parallelizing &lt;strong&gt;different&lt;/strong&gt; tasks. For example, we want to train an image classifier with different hyperparameters. Generally, the configurations or parameters for different tasks are stored in separate configuration files, which makes the bash &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;for&lt;/code&gt; loop easier to access.&lt;/p&gt;
+
+&lt;p&gt;Note that all data saving and loading operations should be coded in Python instead of bash scripts.&lt;/p&gt;
+
+&lt;h2 id=&quot;some-notes&quot;&gt;Some Notes&lt;/h2&gt;
+&lt;p&gt;These two parallelization approaches can achieve similar functionalities. There are no strict rules to specify which one to use. The choice should depend on the specific project.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 12 Jul 2022 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/2022/07/python-parallel.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2022/07/python-parallel.html</guid>
+        
+        <category>python</category>
+        
+        <category>parallelization</category>
+        
+        <category>parallel computing</category>
+        
+        
+        <category>Programming</category>
         
       </item>
     
@@ -671,9 +705,9 @@
         <title>Requirements vs pyptoject</title>
         <description>&lt;p&gt;Although there are repeated contents in two files, i.e., dependencies, we should understand that they serve completely different purposes. The same applies to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt;. See &lt;a href=&quot;https://packaging.python.org/en/latest/discussions/install-requires-vs-requirements/&quot;&gt;install_requires vs requirements files&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyptoject.toml&lt;/code&gt; describes the dependency through &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;optional-dependencies&lt;/code&gt; tables. The dependencies are used for building the project. It is designed for build tools. We can think it  is a listing of “Abstract” requirements that a project &lt;strong&gt;minimally&lt;/strong&gt; needs to run correctly.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyptoject.toml&lt;/code&gt; describes the dependency through &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;optional-dependencies&lt;/code&gt; tables. The dependencies are used to build the project. It is designed for build tools. We can think of it as a listing of “Abstract” requirements that a project needs to run correctly.&lt;/p&gt;
 
-&lt;p&gt;However, one dependency may further depend on other dependencies. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; lists all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip install&lt;/code&gt; arguments placed into a file. It aims to show what packages are needed to configure the package running environment. In other words, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; let you knows what are all the packages to achieve a complete environment. It often contain an exhaustive listing of pinned versions.&lt;/p&gt;
+&lt;p&gt;However, one dependency may further depend on other dependencies. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; lists all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip install&lt;/code&gt; arguments in a file. It aims to show what packages are needed to configure the package running environment. In other words, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; tells you what packages are needed to achieve a complete environment. It often contains an exhaustive listing of pinned versions.&lt;/p&gt;
 
 &lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; is not used for building the package. We run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip install -r requirements.txt&lt;/code&gt; to configure the environment that supports the package running. But package itself is not built yet. It is more like a design document for deployment stuff, letting you know the environment.&lt;/p&gt;
 
@@ -688,156 +722,6 @@
         <category>packaging</category>
         
         <category>environment</category>
-        
-        
-        <category>Programming</category>
-        
-      </item>
-    
-      <item>
-        <title>Python Packaging</title>
-        <description>&lt;h1 id=&quot;write-python-project-as-a-package&quot;&gt;Write Python Project as a Package&lt;/h1&gt;
-
-&lt;p&gt;A &lt;strong&gt;package&lt;/strong&gt; is a collection of python modules that can be imported into python scripts. Examples include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scipy&lt;/code&gt;. The basic usage includes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;import&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;from ... import ...&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The good thing about python package is that it provides an well-organized structure of the python code to achieve a specific functionality (implement a project). The scripts in the package should be self-contained and all focus to implement project requirements. It is not like general scripts for arbitrary purposes.&lt;/p&gt;
-
-&lt;p&gt;A project should has a clear goal and requirements. For example, a ML project aims to implement a new algorithm; a web development project aims to design a tool to facilitate webpage design. When we start any project, since it is not a single-script task, it is recommended to organize the code into a package structure, which facilitate future distribution and development.&lt;/p&gt;
-
-&lt;p&gt;It is a good practice to write necessary functions and classes to the package and then import and combine them to achieve different purposes. How to design and separate functions into the smallest implementable functions is an art. It also depends on the project.&lt;/p&gt;
-
-&lt;p&gt;We refer to the post &lt;a href=&quot;/2022/01/python-project-practice.html&quot;&gt;Coding Practice for Python Projects&lt;/a&gt; for a reference structure for python projects.&lt;/p&gt;
-
-&lt;p&gt;src layout vs flat layout. &lt;a href=&quot;https://setuptools.pypa.io/en/latest/userguide/package_discovery.html&quot;&gt;Package Discovery and Namespace Packages&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;packaging-configuration&quot;&gt;Packaging Configuration&lt;/h1&gt;
-&lt;p&gt;There are three files related to Python project packaging: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;. These files are used to package the python code into distributable libraries. It is useful when we package our code to python packages, which is commonly used in editable development, final distribution, etc. If we only write simple scripts for tests, there is no need for packaging.&lt;/p&gt;
-
-&lt;p&gt;When we want to distribute Python code, we need to first package the code to make it onto an agreed format and then ship it. The distributed package is also called the library. For python packages, there are two types of distributions: source and binary, see &lt;a href=&quot;https://packaging.python.org/en/latest/overview/&quot;&gt;Overview of Python Packaging&lt;/a&gt;. Python creates the wheel, a package format to ship libraries with compiled artifacts. Mature python libraries can be uploaded to PyPI to be found and used by all python users.&lt;/p&gt;
-
-&lt;h2 id=&quot;a-brief-history-of-python-build-tools&quot;&gt;A Brief History of Python Build Tools&lt;/h2&gt;
-
-&lt;p&gt;This post is helpful. &lt;a href=&quot;https://carpentries-incubator.github.io/python_packaging/instructor/04-history-of-packaging.html#:~:text=the%20latest%20standards.-,In%20the%20beginning%2C%20there%20was%20distutils,having%20been%20superceded%20by%20setuptools%20.&quot;&gt;Extra: A History of Python Build Tools&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;As we see, especially for binary libraries, we need tools to compile it (build it) and then package it. People have developed many tools to achieve this. This tool is also called the Python build tool. At the very beginning, in Python 2.2, &lt;a href=&quot;https://docs.python.org/3.10/library/distutils.html#module-distutils&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distutils&lt;/code&gt;&lt;/a&gt; was a module of Python’s standard library that allowed users to install and distribute their own packages. Then, it is superseded by &lt;a href=&quot;https://setuptools.pypa.io/en/latest/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt;&lt;/a&gt; and was deprecated in &lt;a href=&quot;https://peps.python.org/pep-0632/&quot;&gt;PEP 632&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;To use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; to build python project, we generally need &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup()&lt;/code&gt; functions in the module. What we do is that we create a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; script in the project which call functions &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt;, and run the script to build our python project. Up to now people need to write a python script to build project. If we want to change some building parameters to the project, we need to read and understand the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; script and change it, which is considered as a good style since there are too much logic in to configure a project. Therefore, to make the configuration more clear, people extract settings (or options) in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; (more specifically, settings in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup()&lt;/code&gt; function) to a new configuration file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;. Then, it is sufficient to change building options in the configuration file. There is need to write complex code in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt;. See &lt;a href=&quot;https://stackoverflow.com/questions/39484863/whats-the-difference-between-setup-py-and-setup-cfg-in-python-projects&quot;&gt;What’s the difference between setup.py and setup.cfg in python projects&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;However, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; is not in the Python’s standard library. It means that, if we want to package a Python project, we first need to install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; package and use it to parse the required packages. For example, I create a python package &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;foo&lt;/code&gt; which uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt;. In order to build the package, I first install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; and tell it my required package is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt;. In fact, I need both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; to build my project. In the era of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distutils&lt;/code&gt;, this was not a problem for Python developers, as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distutils&lt;/code&gt; was shipped as part of Python’s standard library. Therefore, can we use a configuration file that write &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; as a required package? Besides, there are other python building tools, for example,  &lt;a href=&quot;https://packaging.python.org/en/latest/key_projects/#flit&quot;&gt;flit&lt;/a&gt;, &lt;a href=&quot;https://packaging.python.org/en/latest/key_projects/#hatch&quot;&gt;hatch&lt;/a&gt;, &lt;a href=&quot;https://packaging.python.org/en/latest/key_projects/#pdm&quot;&gt;pdm&lt;/a&gt;, &lt;a href=&quot;https://packaging.python.org/en/latest/key_projects/#poetry&quot;&gt;poetry&lt;/a&gt;,  &lt;a href=&quot;https://pypi.org/project/trampolim/&quot;&gt;trampolim&lt;/a&gt;, and &lt;a href=&quot;https://pypi.org/project/whey/&quot;&gt;whey&lt;/a&gt;. Can we also use a configuration file that specify which build tool to use?&lt;/p&gt;
-
-&lt;p&gt;This consideration is reflected in &lt;a href=&quot;https://peps.python.org/pep-0517/&quot;&gt;PEP 517&lt;/a&gt;/&lt;a href=&quot;https://peps.python.org/pep-0518/&quot;&gt;518&lt;/a&gt; in 2015, where people try to use a standardized configuration file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; to specify the build configurations. Since majority of Python projects were built by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt;. As first, two configuration files &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; were used to specify built configurations, where the first specifies using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; and the second specifies the setup options.&lt;/p&gt;
-
-&lt;p&gt;Now move to 2020, &lt;a href=&quot;https://peps.python.org/pep-0621/&quot;&gt;PEP 621&lt;/a&gt; decided to incorporate project metadata (build options) to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;. In this way, there is no need for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; since everything can be written into a single &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;.  With &lt;a href=&quot;https://peps.python.org/pep-0660/&quot;&gt;PEP 660&lt;/a&gt;, the Python community standardized a way to use wheel files to create editable installs, and therefore the use of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; is no longer required. Therefore, for current python project, we only need to include one &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; are no longer needed for build configurations. It is also recommended by PyPA that modern Python project use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; for build configurations.&lt;/p&gt;
-
-&lt;h2 id=&quot;difference-between-three-files&quot;&gt;Difference Between Three Files&lt;/h2&gt;
-
-&lt;p&gt;From the history, we know that&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; is a python script to build python project using utilities from the package &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; is a configuration file of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup()&lt;/code&gt; function in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; with straightforward format. It is created to reduce the complex logic to set build configurations. People can modify configurations directly in this file.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.tmol&lt;/code&gt; is a new configuration file that unifies the build end selection and build configurations. It is recommended to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; for build configuration.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This post is helpful. &lt;a href=&quot;https://ianhopkinson.org.uk/2022/02/understanding-setup-py-setup-cfg-and-pyproject-toml-in-python/&quot;&gt;Understanding setup.py, setup.cfg and pyproject.toml in Python&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
-
-&lt;p&gt;Some useful references:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://xebia.com/blog/a-practical-guide-to-using-setup-py/&quot;&gt;A Practical Guide to Using Setup.py&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://xebia.com/blog/a-practical-guide-to-setuptools-and-pyproject-toml/&quot;&gt;A Practical Guide to Setuptools and Pyproject.toml&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#writing-pyproject-toml&quot;&gt;Writing your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; Tutorial by PyPA&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html&quot;&gt;Configuring setuptools using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; files Tutorial by SETUPTOOLS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;use-setuppy-only&quot;&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; Only&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setuptools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find_packages&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;my_proj&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0.0.1&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;pip install test with setup.py only&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;packages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_packages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;my_proj&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;my_proj.*&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;install_requires&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-        &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;numpy&amp;gt;=1.26.0&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;scipy&amp;gt;=1.13.0&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;extras_require&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;interactive&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;matplotlib&amp;gt;=3.6.0&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,],&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;use-setuppy-and-setupcfg&quot;&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setuptools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find_packages&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-ini highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;[metadata]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;my_proj&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.1&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;pip install test with setup.cfg&lt;/span&gt;
-    
-&lt;span class=&quot;nn&quot;&gt;[options]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;packages&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;find:&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;install_requires&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;1.26.0&lt;/span&gt;
-    &lt;span class=&quot;err&quot;&gt;scipy&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;1.13.0&lt;/span&gt;
-
-&lt;span class=&quot;nn&quot;&gt;[options.extras_require]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;interactive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;matplotlib&amp;gt;=3.6.0&lt;/span&gt;
-
-&lt;span class=&quot;nn&quot;&gt;[options.packages.find]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;my_proj, my_proj*&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We can find more specifications of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; in &lt;a href=&quot;https://setuptools.pypa.io/en/latest/userguide/declarative_config.html&quot;&gt;Configuring setuptools using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; files&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We cannot use a single &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; for building. A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; file containing a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup()&lt;/code&gt; function call is still required even if the configuration resides in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;. They need to be used together. See &lt;a href=&quot;https://setuptools.pypa.io/en/latest/userguide/declarative_config.html&quot;&gt;Configuring setuptools using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; files&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;use-pyprojecttoml-and-setupcfg&quot;&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; remains the same as the previous approach.&lt;/p&gt;
-
-&lt;div class=&quot;language-toml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;[build-system]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;requires&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;setuptools&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;build-backend&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;setuptools.build_meta&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;use-pyprojecttoml-only&quot;&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; Only&lt;/h3&gt;
-
-&lt;div class=&quot;language-toml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;[build-system]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;requires&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;setuptools &amp;gt;= 61.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;build-backend&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;setuptools.build_meta&quot;&lt;/span&gt;
-
-&lt;span class=&quot;nn&quot;&gt;[project]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my_proj&quot;&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0.0.1&quot;&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;pip install test with pyproject.toml only.&quot;&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;requires-python&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;&quot;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;py&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-    &lt;span class=&quot;py&quot;&gt;&quot;numpy&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.26&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;    &lt;span class=&quot;py&quot;&gt;&quot;scipy&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.13&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;,&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-&lt;span class=&quot;nn&quot;&gt;[project.optional-dependencies]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;interactive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;[&quot;matplotlib&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.6&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;
-&lt;span class=&quot;nn&quot;&gt;[tool.setuptools.packages.find]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;py&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my_proj&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my_proj.*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-</description>
-        <pubDate>Wed, 11 May 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022/05/python-packaging.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/05/python-packaging.html</guid>
-        
-        <category>python</category>
-        
-        <category>packaging</category>
         
         
         <category>Programming</category>

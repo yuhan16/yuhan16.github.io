@@ -151,7 +151,6 @@ MathJax = {
 <li class="toc-entry toc-h2"><a href="#common-practice">Common Practice</a></li>
 <li class="toc-entry toc-h2"><a href="#reference-structure-for-python-projects">Reference Structure for Python Projects</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#python-parallelization">Python Parallelization</a></li>
 <li class="toc-entry toc-h3"><a href="#useful-references">Useful References</a></li>
 </ul>
 </li>
@@ -161,44 +160,44 @@ MathJax = {
     
 	<!--post content-->
     <article class="post-content">
-        <p>When writing a Python project, we summarize the following coding practice for better code readability and maintenance.</p>
+        <p>We summarize some coding practices when writing Python projects for better code readability and maintenance.</p>
 
 <h2 id="common-practice">Common Practice</h2>
 
 <ol>
-  <li>Draw functionality blocks first. Then implement each block by <strong>module</strong> or <strong>class</strong>.
-    <ol>
+  <li>Draw functionality blocks first. Then, implement each block by <strong>module</strong> or <strong>class</strong>.
+    <ul>
       <li>Classes organize functions of a specific object. For example, a class can be defined to create a NN, train the NN, and get the parameter of NN. It implements necessary APIs to the NN.</li>
-      <li>Modules are higher level abstraction of classes. A module can have several classes with <strong>similar functionalities</strong>. For example, scipy has <code class="language-plaintext highlighter-rouge">optimize</code> module and <code class="language-plaintext highlighter-rouge">linalg</code> module. Inside each modules, there are classes and functions</li>
-    </ol>
+      <li>Modules are higher-level abstractions of classes. A module can have several classes with <strong>similar functionalities</strong>. For example, scipy has <code class="language-plaintext highlighter-rouge">optimize</code> module and <code class="language-plaintext highlighter-rouge">linalg</code> module. Inside each module, there are classes and functions</li>
+    </ul>
   </li>
   <li>Scripts should be used to
-    <ol>
+    <ul>
       <li>call functions</li>
       <li>testing small tasks</li>
       <li>define parameter files</li>
-    </ol>
+    </ul>
   </li>
   <li>Encapsulate scripts using <strong>functions</strong>, especially for testing scripts. Easy for debugging and parallel implementation.</li>
   <li>Create <strong>separate</strong> virtual environments for different projects.
-    <ol>
+    <ul>
       <li>Put the virtual environment in the project root directory.</li>
-      <li>Recommended virtual environment naming format: <code class="language-plaintext highlighter-rouge">.venv-3.x</code>. Use hidden directory; specify python version.</li>
-    </ol>
+      <li>Recommended virtual environment naming format: <code class="language-plaintext highlighter-rouge">.venv-3.x</code>. Use a hidden directory; specify the Python version.</li>
+    </ul>
   </li>
   <li>Use a <code class="language-plaintext highlighter-rouge">tmp</code> directory to store the unrelated or intermediate testing results.</li>
   <li>Always write a <code class="language-plaintext highlighter-rouge">README</code> for a project. A README should contain at least the following:
-    <ol>
+    <ul>
       <li>General project objective and necessary descriptions.</li>
       <li>Package requirements and code instructions.</li>
       <li>Code block diagram or code structure specifications.</li>
-    </ol>
+    </ul>
   </li>
   <li>In the project structure, the directory <code class="language-plaintext highlighter-rouge">project_name</code> or <code class="language-plaintext highlighter-rouge">src</code> stores all the source files but no scripts for debugging. Create new scripts in the <code class="language-plaintext highlighter-rouge">scripts</code> directory to call functions and classes in <code class="language-plaintext highlighter-rouge">project_name</code> or <code class="language-plaintext highlighter-rouge">src</code>.</li>
-  <li>Use <code class="language-plaintext highlighter-rouge">json</code> or <code class="language-plaintext highlighter-rouge">yaml</code> file to define project parameters, including environment parameters etc.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">json</code> or <code class="language-plaintext highlighter-rouge">yaml</code> file to define project parameters, including environment parameters, etc.</li>
 </ol>
 
-<p>Use <code class="language-plaintext highlighter-rouge">parseArg</code> to allow user-level parameter modification from bash scripts. Also change the parameter in <code class="language-plaintext highlighter-rouge">parseArg</code> function.</p>
+<p>Use <code class="language-plaintext highlighter-rouge">parseArg</code> to allow user-level parameter modification from bash scripts. Also, change the parameter in the <code class="language-plaintext highlighter-rouge">parseArg</code> function.</p>
 
 <h2 id="reference-structure-for-python-projects">Reference Structure for Python Projects</h2>
 
@@ -206,11 +205,11 @@ MathJax = {
 ├── LICENSE
 ├── README.md
 ├── data
-│   ├── raw/external		&lt;- data from thrid party
-│   ├── processed 		&lt;- final data, or other name
+│   ├── raw/external		&lt;- data from third party
+│   ├── processed 		&lt;- final data or other names
 │   └── tmp			&lt;- tmp data
 │
-├── docs			&lt;- project documents, can be a website 
+├── docs			&lt;- project documents, which can be a website 
 │
 ├── project_name		&lt;- project source code, flat-layout
 │   ├── __init__.py		&lt;- make project_name a module
@@ -241,23 +240,16 @@ MathJax = {
 └── pyproject.toml      &lt;- package configuration
 </code></pre></div></div>
 
-<p>Note:</p>
+<p><strong>Note:</strong></p>
 <ul>
-  <li>Modern Python packaging perfer the use of <code class="language-plaintext highlighter-rouge">pyproject.toml</code> to <code class="language-plaintext highlighter-rouge">setup.py</code> and <code class="language-plaintext highlighter-rouge">setup.cfg</code>.</li>
-  <li>A project may contain data like configurations. For ML projects, data can be hyperparameters or scripts to download dataset.</li>
-  <li><code class="language-plaintext highlighter-rouge">examples</code> can also be named by <code class="language-plaintext highlighter-rouge">experiments</code> in ML projects.</li>
-  <li><code class="language-plaintext highlighter-rouge">project_name</code> does not have to contain subdirectories, depending on project requirements. Subdirectories in the package should have serve for distinct purposes.</li>
-  <li>external data or interim data generated by examples or testing should be separated by the project code. Put them in the <code class="language-plaintext highlighter-rouge">data</code> directory for better management.</li>
+  <li>Modern Python packaging prefers the use of <code class="language-plaintext highlighter-rouge">pyproject.toml</code> to <code class="language-plaintext highlighter-rouge">setup.py</code> and <code class="language-plaintext highlighter-rouge">setup.cfg</code>.</li>
+  <li>A project may contain data like configurations. For ML projects, data can be hyperparameters or scripts to download datasets.</li>
+  <li><code class="language-plaintext highlighter-rouge">examples</code> can also be named by <code class="language-plaintext highlighter-rouge">experiments</code> in ML projects.
+Depending on the project requirements, <code class="language-plaintext highlighter-rouge">project_name</code> does not have to contain subdirectories. Subdirectories in the package should serve distinct purposes.</li>
+  <li>External data or interim data generated by examples or testing should be separated by the project code. Put them in the <code class="language-plaintext highlighter-rouge">data</code> directory for better management.</li>
 </ul>
 
-<p>For a typical Python project, refer to the structure of <a href="https://github.com/kingyiusuen/image-to-latex">Image To Latex Project</a></p>
-
-<h3 id="python-parallelization">Python Parallelization</h3>
-<p>There are two ways to achieve parallelization: Python <code class="language-plaintext highlighter-rouge">multiprocessing</code> module and bash parallel <code class="language-plaintext highlighter-rouge">for</code> loops.</p>
-
-<p>To parallelize training tasks, Python <code class="language-plaintext highlighter-rouge">multiprocessing</code> is easier to write and store results. We can write a wrapper to parallelize functions. It is recommended to parallelize <strong>similar tasks</strong> instead of different tasks using the <code class="language-plaintext highlighter-rouge">multiprocessing</code> module. For example, the <strong>mean-std</strong> training.</p>
-
-<p>Bash parallel for loop is more suitable for parallelizing different tasks. For example, training with different hyperparameters. It is not friendly to store things. We need to write script to store things inside the python scripts.</p>
+<p>For a typical Python project structure, we refer to <a href="https://github.com/kingyiusuen/image-to-latex">Image To Latex Project</a>.</p>
 
 <h3 id="useful-references">Useful References</h3>
 <ul>

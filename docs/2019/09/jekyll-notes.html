@@ -8,7 +8,7 @@
 
 <meta property="og:title" content="Jekyll Notes">
 <title>Jekyll Notes</title>
-<meta property="og:description" content="Quick notes and tips of using jekyll.">
+<meta property="og:description" content="Quick notes and tips for using Jekyll.">
 <meta property="og:url" content="http://localhost:4000/2019/09/jekyll-notes.html">
 <meta property="og:site_name" content="HuskyDev">
 <meta property="og:locale" content="">
@@ -146,7 +146,7 @@ MathJax = {
 			<ul id="toc-list" class="toc-list">
 <li class="toc-entry toc-h1"><a href="#jekyll-notes-and-tips">Jekyll Notes and Tips</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#jekyll-categories-and-tags">Jekyll categories and tags</a></li>
+<li class="toc-entry toc-h3"><a href="#jekyll-categories-and-tags">Jekyll Categories and Tags</a></li>
 <li class="toc-entry toc-h3"><a href="#jekyll-excerpt">Jekyll excerpt</a></li>
 <li class="toc-entry toc-h3"><a href="#reference-style-links">Reference-style Links</a></li>
 </ul>
@@ -160,39 +160,41 @@ MathJax = {
         <h1 id="jekyll-notes-and-tips">Jekyll Notes and Tips</h1>
 
 <p>Every jekyll post must follow the following filename format. Otherwise, the post will NOT be recognized by jekyll.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>YEAR-MONTH-DAY-title.MARKUP
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>YEAR-MONTH-DAY-title.md
 </code></pre></div></div>
 <p>where <code class="language-plaintext highlighter-rouge">YEAR</code> is a four-digit number, <code class="language-plaintext highlighter-rouge">MONTH</code> and <code class="language-plaintext highlighter-rouge">DAY</code> are both two-digit numbers. For example,</p>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2011-12-31-new-years-eve-is-awesome.md
 2012-09-12-how-to-write-a-blog.md
 </code></pre></div></div>
-<p>Note that the title in the filename does not have to be the same as the title in the front matter.</p>
+<p><strong>Note:</strong> The title in the filename does not have to match the title in the front matter.</p>
 
-<h3 id="jekyll-categories-and-tags"><a href="https://jekyllrb.com/docs/posts/#tags-and-categories">Jekyll categories and tags</a></h3>
-<p>Categories and Tags are two important keys in jekyll. Note the difference of the two in the front matter and in the liquid template.</p>
+<h3 id="jekyll-categories-and-tags"><a href="https://jekyllrb.com/docs/posts/#tags-and-categories">Jekyll Categories and Tags</a></h3>
+<p>Categories and Tags are two important keys in jekyll. We need to pay attention to their usage in the front matter.</p>
 
-<p>In the post’s front matter, we can use either the key <code class="language-plaintext highlighter-rouge">tag</code> for a single entry or <code class="language-plaintext highlighter-rouge">tags</code> for multiple entries. The same for the keys <code class="language-plaintext highlighter-rouge">category</code> and <code class="language-plaintext highlighter-rouge">categories</code>.</p>
+<p>In the post’s front matter, we can use either the key <code class="language-plaintext highlighter-rouge">tag</code> for a single entry or <code class="language-plaintext highlighter-rouge">tags</code> for multiple entries.</p>
 
 <p>For multiple items in <code class="language-plaintext highlighter-rouge">tags</code>, jekyll will automatically split a string entry if it contains <strong>whitespace</strong>. For example, front matter <code class="language-plaintext highlighter-rouge">tag: classic hollywood</code> will be processed into a singular entity <code class="language-plaintext highlighter-rouge">"classic hollywood"</code>, front matter <code class="language-plaintext highlighter-rouge">tags: classic hollywood</code> will be processed into an array of entries <code class="language-plaintext highlighter-rouge">["classic", "hollywood"]</code>.</p>
 
-<p>We can also use brackets and comma to define multiple tags where elements can contain whitespace. For example, <code class="language-plaintext highlighter-rouge">tags: [weather, classic hollywood]</code> will be processed into <code class="language-plaintext highlighter-rouge">["weather", "classic hollywood"]</code>.</p>
+<p>We can also use brackets and commas to define multiple tags where elements can contain whitespace. For example, <code class="language-plaintext highlighter-rouge">tags: [weather, classic hollywood]</code> will be processed into <code class="language-plaintext highlighter-rouge">["weather", "classic hollywood"]</code>.</p>
 
-<p><strong>Note:</strong> It is suggested to use <code class="language-plaintext highlighter-rouge">tags</code> with brackets for multiple tags and <code class="language-plaintext highlighter-rouge">category</code> for one category. For example,</p>
+<p>The same applies to the keys <code class="language-plaintext highlighter-rouge">category</code> and <code class="language-plaintext highlighter-rouge">categories</code>.</p>
+
+<p><strong>Note:</strong> It is recommended to use <code class="language-plaintext highlighter-rouge">tags</code> with brackets for multiple tags and <code class="language-plaintext highlighter-rouge">category</code> for one category. For example,</p>
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>category: cat
 tags: [ta, tb and tc, td]
 </code></pre></div></div>
 
-<p>All tags registered in the current site are exposed to Liquid templates via <code class="language-plaintext highlighter-rouge">site.tags</code>. The same for <code class="language-plaintext highlighter-rouge">site.categories</code>.</p>
+<p>All tags and categories registered on the current site are exposed to liquid templates via <code class="language-plaintext highlighter-rouge">site.tags</code> and <code class="language-plaintext highlighter-rouge">site.categories</code>.</p>
 
 <h3 id="jekyll-excerpt">Jekyll excerpt</h3>
-<p>We have two ways to display partial posts in the blog pages:</p>
+<p>We have two ways to display partial posts on the blog pages:</p>
 <ul>
   <li>use <code class="language-plaintext highlighter-rouge">excerpt</code> in the front matter</li>
   <li>use <code class="language-plaintext highlighter-rouge">excerpt_separator</code> in the front matter</li>
 </ul>
 
 <p>For example,</p>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">excerpt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">These</span><span class="nv"> </span><span class="s">pre-written</span><span class="nv"> </span><span class="s">contents</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">displayed</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">blog</span><span class="nv"> </span><span class="s">page</span><span class="nv"> </span><span class="s">instead</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">content</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">post."</span>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">excerpt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">These</span><span class="nv"> </span><span class="s">pre-written</span><span class="nv"> </span><span class="s">contents</span><span class="nv"> </span><span class="s">will</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">displayed</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">blog</span><span class="nv"> </span><span class="s">page</span><span class="nv"> </span><span class="s">instead</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">any</span><span class="nv"> </span><span class="s">content</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">post."</span>
 <span class="c1"># or</span>
 <span class="na">excerpt_separator</span><span class="pi">:</span> <span class="s">&lt;!--more--&gt;</span>
 </code></pre></div></div>
@@ -202,7 +204,7 @@ tags: [ta, tb and tc, td]
 
 [link-ref]: https://www.xxx.com
 </code></pre></div></div>
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>.</p>
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll.</p>
 
 
     </article>
@@ -226,7 +228,7 @@ tags: [ta, tb and tc, td]
 
 <section class="post-pagination">
     
-        <a href="/2019/09/jekyll-tests.html">Previous: jekyll tests</a>
+        <span style="margin-right: 2rem;"></span>
     
 
     

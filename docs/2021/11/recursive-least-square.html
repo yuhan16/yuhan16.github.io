@@ -168,17 +168,17 @@ MathJax = {
     <article class="post-content">
         <h1 id="recursive-least-squares">Recursive Least Squares</h1>
 
-<p>Recursive least squares (RLS) is an <strong>adaptive filtering</strong> algorithm that recursively finds the coefficients to minimize a <strong>weighted linear least squares cost function</strong> relating to the input signals. Let $x_i \in \mathbb{R}^n$ and $y_i \in \mathbb{R}$ be the $i$-th input and output signals which satisfies the following linear relationship:</p>
+<p>Recursive least squares (RLS) is an <strong>adaptive filtering</strong> algorithm that recursively finds the coefficients to minimize a <strong>weighted linear least squares cost function</strong> relating to the input signals. Let $x_i \in \mathbb{R}^n$ and $y_i \in \mathbb{R}$ be the $i$-th input and output signals which satisfy the following linear relationship:</p>
 
 \[y_i = x_i^T w + v_i,\]
 
-<p>where $v_i$ is a random noise and $w\in \mathbb{R}^n$ is the parameter that we want to find. Assume we have $m$ signal pairs. We denote $Y_m = [y_1,\dots,y_m] \in \mathbb{R}^m$ and $X_m = [x_1,\dots, x_n] \in \mathbb{R}^{n\times m}$. $V_m = [v_1, \dots, v_m] \in \mathbb{R}^m$. Then we can write a compact form</p>
+<p>where $v_i$ is a random noise and $w\in \mathbb{R}^n$ is the parameter that we want to find. Assume we have $m$ signal pairs. We denote $Y_m = [y_1,\dots,y_m] \in \mathbb{R}^m$ and $X_m = [x_1,\dots, x_n] \in \mathbb{R}^{n\times m}$. $V_m = [v_1, \dots, v_m] \in \mathbb{R}^m$. Then, we can write a compact form</p>
 
 \[Y_m = X_m^T w + V_m.\]
 
 <p><strong>Note:</strong> some reference denote $X \in \mathbb{R}^{m\times n}$ such that we have $Y_m = X_m w + V_m$. We use our notations.</p>
 
-<p>Our objective is to find an estimated parameter $w$ such that the least square error of $m$ signal pairs are minimized. Define the error $e_i = y_i - x_i^T w$. Our objective is</p>
+<p>Our objective is to find an estimated parameter $w$ to minimize the least square error of $m$ signal pairs. Define the error $e_i = y_i - x_i^T w$. Our objective is</p>
 
 \[\min_w \quad \sum_{i=1}^m \| e_i \|^2_2 := \| Y_m - X_m^T w \|_2^2.\]
 
@@ -202,7 +202,7 @@ MathJax = {
 
 \[P_{m+1} = P_m - P_m x_{m+1} (I_1 + x_{m+1}^T P_m x_{m+1})^{-1} x_{m+1}^T P_m.\]
 
-<p>Then we can write</p>
+<p>Then, we can write</p>
 
 \[w^\ast_{m+1} = P_{m+1}(P_m^{-1} w^\ast_m + x_{m+1} y_{m+1}).\]
 
@@ -220,25 +220,25 @@ MathJax = {
 
 <h2 id="initialization">Initialization</h2>
 
-<p>We should note that RLS can start from zero data set. We need to set $P_0$ and $w_0$. It is easy to get confused with solving linear systems. Suppose we want to solve $b = Ax$, where $A \in \mathbb{R}^{m\times n}$. When $m &lt; n$, the system is <strong>under-determined</strong>, i.e., there are more variables than equations. Therefore, there can be infinite solutions if $b \in \mathrm{col}(A)$.</p>
+<p>We should note that RLS can start from a zero data set. We need to set $P_0$ and $w_0$. It is easy to get confused when solving linear systems. Suppose we want to solve $b = Ax$, where $A \in \mathbb{R}^{m\times n}$. When $m &lt; n$, the system is <strong>under-determined</strong>, i.e., there are more variables than equations. Therefore, infinite solutions can exist if $b \in \mathrm{col}(A)$.</p>
 
-<p>In RLS, when there is one data, the system is under-determined. So can we solve $w^\ast$ for only one data point from the optimization? The answer is no because $(x x^T)^{-1}$ does not exist for a single point. Therefore, at the very beginning when the data is less than the amount of decision variables $(m &lt; n)$. We may not able  to use the formula $(XX^T)^{-1}XY$ to find the optimal $w^\ast$. This formula only holds when $m \geq n$. Therefore, we need to assume an invertible $P_0$ and follow the rules to update.</p>
+<p>In RLS, when there is one data, the system is under-determined. So can we solve $w^\ast$ for only one data point from the optimization? The answer is no because $(x x^T)^{-1}$ does not exist for a single point. Therefore, at the beginning, when the data is less than the number of decision variables $(m &lt; n)$. We may be unable  to use the formula $(XX^T)^{-1}XY$ to find the optimal $w^\ast$. This formula only holds when $m \geq n$. Therefore, we need to assume an invertible $P_0$ and follow the rules to update.</p>
 
-<p>In fact, when $m &lt; n$, $Ax = b$ only have two possibilities. If $b \in \mathrm{col}(A)$, we have infinite many solutions. If $b \not\in \mathrm{col}(A)$, then there is no solution.</p>
+<p>In fact, when $m &lt; n$, $Ax = b$ only has two possibilities. If $b \in \mathrm{col}(A)$, we have infinitely many solutions. If $b \not\in \mathrm{col}(A)$, there is no solution.</p>
 
 <h2 id="decayed-error">Decayed Error</h2>
 
 <p>We can add decay factors to the objective. The past data contribute less to the loss than the current data. The objective becomes
 \(\min_w \quad \sum_{i=1}^m \lambda^{m-i} \| e_i \|^2_2.\)
-for $\lambda \in (0,1)$. The update role is the same but $\lambda$ is evolved.</p>
+for $\lambda \in (0,1)$. The update role is the same, but $\lambda$ is evolved.</p>
 
 <h2 id="multi-dimensional-signals">Multi-dimensional Signals</h2>
 
-<p>The idea can naturally extend to $y_i \in \mathbb{R}^p$ for $p &gt; 1$. In this case, the input signal is in general a matrix $x_i \in \mathbb{R}^{n\times p}$. We have $y_i = x_i^T w$.  The formulation does not change.</p>
+<p>The idea can naturally extend to $y_i \in \mathbb{R}^p$ for $p &gt; 1$. In this case, the input signal is generally a matrix $x_i \in \mathbb{R}^{n\times p}$. We have $y_i = x_i^T w$.  The formulation does not change.</p>
 
 <h2 id="nonlinear-rls">Nonlinear RLS</h2>
 
-<p>Previously, we use a linear filter to achieve the least square estimation. The input-output signal can also follow some nonlinear rules</p>
+<p>Previously, we used a linear filter to achieve the least square estimation. The input-output signal can also follow some nonlinear rules</p>
 
 \[y_i = f(x_i) + v_i.\]
 
@@ -246,11 +246,11 @@ for $\lambda \in (0,1)$. The update role is the same but $\lambda$ is evolved.</
 
 \[\min_w \quad \sum_{i=1}^m \lambda^{m-i} \| y_i - f(x_i, w) \|^2_2.\]
 
-<p>However, the general nonlinear functions can be hard to optimize, we in fact first linearize $f$ at some $\hat{w}$ and then minimize the linearized loss. We want to perform it in an incremental (or recursive) manner to reduce computational burden. Assume we already have some $w^\ast_{m-1}$. The optimal $w^\ast_m$ on the data set $X_m$ and $Y_m$ solves the following problem:</p>
+<p>However, the general nonlinear functions can be hard to optimize, we in fact first linearize $f$ at some $\hat{w}$ and then minimize the linearized loss. We want to perform it incrementally (or recursively) to reduce the computational burden. Assume we already have some $w^\ast_{m-1}$. The optimal $w^\ast_m$ on the data set $X_m$ and $Y_m$ solves the following problem:</p>
 
 \[w^\ast_m = \arg\min_w \sum_{i=1}^{m} \lambda^{m-i} \| y_i - f(x_i, w^\ast_{m-1}) - \nabla_w f(x_i, w^\ast_{m-1})^T (w - w^\ast_{m-1}) \|^2_2.\]
 
-<p>Now we let $\bar{y}_i (w^\ast_m) = y_i - f(x_i, w^\ast_m) + \nabla_w f(x_i, w^\ast_m)^T w^\ast_m$ and $\bar{x}_i (w^\ast_m) = \nabla_w f(x_i,w^\ast_m)$. We can formulate a new data matrix $\bar{Y}_m(w^\ast_m)$ and $\bar{X}_m (w^\ast_m)$.  At step $m+1$, we receive $(x_{m+1}, y_{m+1})$ and we can compute $\bar{y}_{m+1} (w^\ast_m)$ and $\bar{x}_{m+1} (w^\ast_m)$. Then we can use the same method in linear RLS to update $w^\ast_m$. The difference is that we need to compute $\bar{Y}_m$ and $\bar{X}$ at $w^\ast_m$ in every $m$ step.</p>
+<p>Now we let $\bar{y}_i (w^\ast_m) = y_i - f(x_i, w^\ast_m) + \nabla_w f(x_i, w^\ast_m)^T w^\ast_m$ and $\bar{x}_i (w^\ast_m) = \nabla_w f(x_i,w^\ast_m)$. We can formulate a new data matrix $\bar{Y}_m(w^\ast_m)$ and $\bar{X}_m (w^\ast_m)$.  At step $m+1$, we receive $(x_{m+1}, y_{m+1})$ and we can compute $\bar{y}_{m+1} (w^\ast_m)$ and $\bar{x}_{m+1} (w^\ast_m)$. Then, we can use the same method in linear RLS to update $w^\ast_m$. The difference is that we need to compute $\bar{Y}_m$ and $\bar{X}$ at $w^\ast_m$ in every $m$ step.</p>
 
 <p>The convergence issue of nonlinear RLS can be found in Bertsekas’ book <em>Nonlinear Programming</em>.</p>
 

@@ -4,7 +4,7 @@ if not os.path.exists('tmp-tag-pages'):
 
 # get tags from jekyll-test post
 tags = ['jekyll', 'test', 'css', 'web', 'templating', 'html', 'mathjax', 'tutorial', 'static web', 'dynamic web', 'php', 'ssg', 'static site generator', 'github pages', 'notes', 'math', 'git', 'rl', 'collocation', 'trajectory optimization', 'optimization', 'control',]
-tags = ['jekyll', 'test', 'web', 'templating', 'html', 'mathjax', 'tutorial', 'static web', 'dynamic web', 'php', 'ssg', 'static site generator', 'css', 'github pages', 'math', 'shortest path', 'dijkstra', 'notes', 'rls', 'python', 'practice', 'git', 'pip', 'string', 'packaging', 'environment', 'virtualenv', 'venv', 'exception', 'numpy', 'scipy', 'mdp', 'rl', 'collocation', 'trajectory optimization', 'optimization', 'control',]
+tags = ['jekyll', 'test', 'web', 'templating', 'html', 'mathjax', 'tutorial', 'static web', 'dynamic web', 'php', 'ssg', 'static site generator', 'css', 'github pages', 'math', 'shortest path', 'dijkstra', 'notes', 'rls', 'python', 'practice', 'venv', 'virtualenv', 'git', 'pip', 'string', 'packaging', 'environment', 'exception', 'numpy', 'scipy', 'mdp', 'rl', 'parallelization', 'parallel computing', 'collocation', 'trajectory optimization', 'optimization', 'control',]
 
 for tag in tags:
     fname = 'tmp_tag_pages/' + tag.replace(" ", "-") + '.md'

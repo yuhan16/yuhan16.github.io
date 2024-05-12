@@ -6,10 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width initial-scale=1">
 
-<meta property="og:title" content="Introduction to Trajectory Optimization">
-<title>Introduction to Trajectory Optimization</title>
-<meta property="og:description" content="Trajectory optimization has been widely used in robotics for various tasks such as navigation and manipulation. In this post, I have summarized related mathe...">
-<meta property="og:url" content="http://localhost:4000/2023/04/intro-to-trajopt.html">
+<meta property="og:title" content="Python Parallelization">
+<title>Python Parallelization</title>
+<meta property="og:description" content="Approaches to achieve Python parallelization.">
+<meta property="og:url" content="http://localhost:4000/2022/07/python-parallel.html">
 <meta property="og:site_name" content="HuskyDev">
 <meta property="og:locale" content="">
 
@@ -18,7 +18,7 @@
 <link rel="icon" href="/assets/images/favicon.ico"/>
 <link rel="shortcut icon" href="/assets/images/favicon.ico" />
 <link rel="stylesheet" href="/assets/css/main.css"/>
-<link rel="canonical" href="http://localhost:4000/2023/04/intro-to-trajopt.html"/>
+<link rel="canonical" href="http://localhost:4000/2022/07/python-parallel.html"/>
 <link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://localhost:4000/feed.xml" />
 
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
@@ -113,35 +113,35 @@ MathJax = {
 	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
         <div class="card">
             <div class="post">
-    <h1 class="post-title">Introduction to Trajectory Optimization</h1>
+    <h1 class="post-title">Python Parallelization</h1>
 	
 	<!--pose meta data-->
 	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
 		<span class="post-meta">
-			<i class="fa-regular fa-calendar-check">&nbsp;</i>2023-04-10
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-07-12
 		</span>
 
 		<span class="post-meta">
-			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/optimization">Optimization</a>
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
 		</span>
 
 		<span class="post-meta">
-			<i class="fa-regular fa-clock"></i>&nbsp;10 minutes
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
 		</span>
 
         <!--span class="post-meta">
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/#math">math,</a>
+                <a href="/tags/#python">python,</a>
                 
             
                 
-                <a href="/tags/#collocation">collocation,</a>
+                <a href="/tags/#parallelization">parallelization,</a>
                 
             
                 
-                <a href="/tags/#trajectory optimization">trajectory optimization</a>
+                <a href="/tags/#parallel computing">parallel computing</a>
                 
             
 		</span-->
@@ -151,22 +151,32 @@ MathJax = {
 	<div class="toc">
 		<p class="toc-meta">Table of Contents</p>
 		<div class="toc-content">
-			
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h2"><a href="#multiprocessing-module">multiprocessing Module</a></li>
+<li class="toc-entry toc-h2"><a href="#bash-for-loop">Bash for Loop</a></li>
+<li class="toc-entry toc-h2"><a href="#some-notes">Some Notes</a></li>
+</ul>
 		</div>
 	</div>
     
 	<!--post content-->
     <article class="post-content">
-        <p>Trajectory optimization has been widely used in robotics for various tasks such as navigation and manipulation. In this post, I have summarized related mathematical background and common computational approaches in trajectory optimization.</p>
+        <p>In general, there are two ways to achieve parallelization:</p>
+<ul>
+  <li>Python <code class="language-plaintext highlighter-rouge">multiprocessing</code> module</li>
+  <li>bash parallel <code class="language-plaintext highlighter-rouge">for</code> loops.</li>
+</ul>
 
-<!--more-->
+<h2 id="multiprocessing-module"><code class="language-plaintext highlighter-rouge">multiprocessing</code> Module</h2>
+<p>The Python <code class="language-plaintext highlighter-rouge">multiprocessing</code> module is more suitable for parallelizing similar tasks. For example, in a Machine Learning project, we want to obtain the mean-variance training performance of the image classifier using different random seeds. The hyperparameters are fixed, and thus, it is easier to implement the parallel training using the <code class="language-plaintext highlighter-rouge">multiprocessing</code> module.</p>
 
-<p>More detials can be found in <a href="/assets/pdf/Trajopt_intro.pdf">TrajectOpt slides</a>.</p>
+<h2 id="bash-for-loop">Bash <code class="language-plaintext highlighter-rouge">for</code> Loop</h2>
+<p>Bash parallel for loop is more suitable for parallelizing <strong>different</strong> tasks. For example, we want to train an image classifier with different hyperparameters. Generally, the configurations or parameters for different tasks are stored in separate configuration files, which makes the bash <code class="language-plaintext highlighter-rouge">for</code> loop easier to access.</p>
 
-<figure>
-    <img src="/assets/images/blog/2023/2023-04-10-trajopt_intro_outline.png" height="350" />
-    <figcaption>Fig. 1: Outline of trajectory optimization slides.</figcaption>
-</figure>
+<p>Note that all data saving and loading operations should be coded in Python instead of bash scripts.</p>
+
+<h2 id="some-notes">Some Notes</h2>
+<p>These two parallelization approaches can achieve similar functionalities. There are no strict rules to specify which one to use. The choice should depend on the specific project.</p>
 
     </article>
 
@@ -178,15 +188,15 @@ MathJax = {
 			<i class="fas fa-tags"></i>&nbsp;
             
                 
-                <a href="/tags/math">math,</a>
+                <a href="/tags/python">python,</a>
                 
             
                 
-                <a href="/tags/collocation">collocation,</a>
+                <a href="/tags/parallelization">parallelization,</a>
                 
             
                 
-                <a href="/tags/trajectory-optimization">trajectory optimization</a>
+                <a href="/tags/parallel-computing">parallel computing</a>
                 
             
 		</span>
@@ -197,11 +207,11 @@ MathJax = {
 
 <section class="post-pagination">
     
-        <a href="/2022/07/python-parallel.html">Previous: Python Parallelization</a>
+        <a href="/2022/06/intro-to-rl.html">Previous: Introduction to Reinforcement Learning</a>
     
 
     
-        <a href="/2023/07/intro-to-koopman.html">Next: Introduction to Koopman Operator</a>
+        <a href="/2023/04/intro-to-trajopt.html">Next: Introduction to Trajectory Optimization</a>
     
 </section>
   

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="XML Validator">
+<title>XML Validator</title>
+<meta property="og:description" content="HuskDev is Yuhan's personal blog.">
+<meta property="og:url" content="http://0.0.0.0:4000/tools/xml/">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://0.0.0.0:4000/tools/xml/"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://0.0.0.0:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+
+
+
+
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+                
+                    <li><a href="/tools">Tools</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <a class="tool-back-link" href="/tools/">
+  <i class="fa-solid fa-arrow-left"></i> Tools
+</a>
+
+<h2 style="margin-top: 0;">XML Validator</h2>
+<p class="post-meta">Paste or upload an XML file to validate its format and pretty-print it.</p>
+
+<div class="tool-workspace">
+
+  <!-- Input -->
+  <div>
+    <div class="tool-label">XML input <span style="font-weight: normal; color: #888; margin-left: 8px;">Ctrl+Enter to validate</span></div>
+    <div class="tool-editor">
+      <div class="tool-line-numbers" id="xml-lines">1</div>
+      <textarea id="xml-input" class="tool-textarea" style="min-height: 200px;"
+        placeholder="<?xml version=&quot;1.0&quot;?>&#10;<root>&#10;  <item>Hello</item>&#10;</root>"
+        spellcheck="false" wrap="off"></textarea>
+    </div>
+  </div>
+
+  <!-- Options -->
+  <div class="tool-options">
+    <label>
+      Indent:
+      <select id="indent-select">
+        <option value="2" selected>2 spaces</option>
+        <option value="4">4 spaces</option>
+        <option value="tab">Tab</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- Actions -->
+  <div class="tool-actions">
+    <button class="tool-btn" id="btn-validate">
+      <i class="fa-solid fa-check"></i>&nbsp; Validate &amp; Format
+    </button>
+    <label for="file-input" class="tool-btn secondary" style="cursor: pointer;">
+      <i class="fa-solid fa-folder-open"></i>&nbsp; Open file
+    </label>
+    <input type="file" id="file-input" accept=".xml,text/xml,application/xml" style="display: none;">
+    <button class="tool-btn secondary" id="btn-copy" style="display: none;">
+      <i class="fa-regular fa-copy"></i>&nbsp; Copy
+    </button>
+    <button class="tool-btn secondary" id="btn-clear">
+      <i class="fa-solid fa-xmark"></i>&nbsp; Clear
+    </button>
+  </div>
+
+  <!-- Output -->
+  <div id="output-section" style="display: none;">
+    <div class="tool-label" id="output-label">Output</div>
+    <pre id="xml-output" class="tool-output"></pre>
+  </div>
+
+</div>
+
+
+<script>
+(function () {
+  'use strict';
+
+  var inputEl     = document.getElementById('xml-input');
+  var outputEl    = document.getElementById('xml-output');
+  var outputSec   = document.getElementById('output-section');
+  var outputLabel = document.getElementById('output-label');
+  var btnValidate = document.getElementById('btn-validate');
+  var btnCopy     = document.getElementById('btn-copy');
+  var btnClear    = document.getElementById('btn-clear');
+  var fileInput   = document.getElementById('file-input');
+  var lineNumEl   = document.getElementById('xml-lines');
+
+  // ── Line numbers ──────────────────────────────────────────────────
+
+  function updateLineNumbers() {
+    var count = inputEl.value.split('\n').length;
+    var nums = '';
+    for (var i = 1; i <= count; i++) nums += (i < count ? i + '\n' : i);
+    lineNumEl.textContent = nums;
+    lineNumEl.scrollTop   = inputEl.scrollTop;
+  }
+
+  inputEl.addEventListener('input', updateLineNumbers);
+  inputEl.addEventListener('scroll', function () {
+    lineNumEl.scrollTop = inputEl.scrollTop;
+  });
+  updateLineNumbers();
+
+  // ── Helpers ──────────────────────────────────────────────────────
+
+  function getTab() {
+    var val = document.getElementById('indent-select').value;
+    return val === 'tab' ? '\t' : new Array(parseInt(val) + 1).join(' ');
+  }
+
+  function escapeText(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function escapeAttr(s) {
+    return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  }
+
+  // ── Pretty-printer ───────────────────────────────────────────────
+  // Recursively serialize a DOM node into indented XML text.
+
+  function serializeNode(node, indent, tab) {
+    var out = '';
+    switch (node.nodeType) {
+
+      case 1: // ELEMENT_NODE
+        var attrs = '';
+        for (var i = 0; i < node.attributes.length; i++) {
+          var a = node.attributes[i];
+          attrs += ' ' + a.name + '="' + escapeAttr(a.value) + '"';
+        }
+        if (node.childNodes.length === 0) {
+          out += indent + '<' + node.nodeName + attrs + '/>\n';
+        } else if (
+          node.childNodes.length === 1 &&
+          node.firstChild.nodeType === 3 &&
+          node.firstChild.nodeValue.indexOf('\n') === -1
+        ) {
+          // Single-line text content — keep on one line
+          out += indent + '<' + node.nodeName + attrs + '>'
+               + escapeText(node.firstChild.nodeValue)
+               + '</' + node.nodeName + '>\n';
+        } else {
+          out += indent + '<' + node.nodeName + attrs + '>\n';
+          for (var j = 0; j < node.childNodes.length; j++) {
+            out += serializeNode(node.childNodes[j], indent + tab, tab);
+          }
+          out += indent + '</' + node.nodeName + '>\n';
+        }
+        break;
+
+      case 3: // TEXT_NODE
+        var text = node.nodeValue.trim();
+        if (text) out += indent + escapeText(text) + '\n';
+        break;
+
+      case 4: // CDATA_SECTION_NODE
+        out += indent + '<![CDATA[' + node.nodeValue + ']]>\n';
+        break;
+
+      case 8: // COMMENT_NODE
+        out += indent + '<!--' + node.nodeValue + '-->\n';
+        break;
+
+      case 7: // PROCESSING_INSTRUCTION_NODE
+        out += indent + '<?' + node.nodeName + ' ' + node.nodeValue + '?>\n';
+        break;
+
+      case 9: // DOCUMENT_NODE
+        for (var k = 0; k < node.childNodes.length; k++) {
+          out += serializeNode(node.childNodes[k], '', tab);
+        }
+        break;
+    }
+    return out;
+  }
+
+  // ── Validate & Format ─────────────────────────────────────────────
+
+  function validate() {
+    var xml = inputEl.value.trim();
+    if (!xml) return;
+
+    var parser = new DOMParser();
+    var doc    = parser.parseFromString(xml, 'application/xml');
+    var errors = doc.getElementsByTagName('parsererror');
+
+    outputSec.style.display = 'block';
+
+    if (errors.length > 0) {
+      outputEl.textContent = errors[0].textContent.trim();
+      outputEl.className   = 'tool-output tool-output-error';
+      outputLabel.textContent = '\u2717 Invalid XML';
+      btnCopy.style.display   = 'none';
+    } else {
+      var formatted = serializeNode(doc, '', getTab()).trimEnd();
+      outputEl.textContent = formatted;
+      outputEl.className   = 'tool-output tool-output-success';
+      outputLabel.textContent = '\u2713 Valid XML';
+      btnCopy.style.display   = '';
+    }
+  }
+
+  btnValidate.addEventListener('click', validate);
+
+  // ── Copy ──────────────────────────────────────────────────────────
+
+  btnCopy.addEventListener('click', function () {
+    var text = outputEl.textContent;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(function () {
+      var orig = btnCopy.innerHTML;
+      btnCopy.innerHTML = '<i class="fa-solid fa-check"></i>&nbsp; Copied!';
+      btnCopy.disabled  = true;
+      setTimeout(function () {
+        btnCopy.innerHTML = orig;
+        btnCopy.disabled  = false;
+      }, 2000);
+    });
+  });
+
+  // ── File upload ───────────────────────────────────────────────────
+
+  fileInput.addEventListener('change', function () {
+    var file = fileInput.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      inputEl.value = e.target.result;
+      updateLineNumbers();
+      validate();
+    };
+    reader.readAsText(file);
+    fileInput.value = '';   // reset so the same file can be re-uploaded
+  });
+
+  // ── Keyboard shortcut ─────────────────────────────────────────────
+
+  inputEl.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      validate();
+    }
+  });
+
+  // ── Clear ─────────────────────────────────────────────────────────
+
+  btnClear.addEventListener('click', function () {
+    inputEl.value           = '';
+    outputSec.style.display = 'none';
+    outputEl.textContent    = '';
+    outputEl.className      = 'tool-output';
+    btnCopy.style.display   = 'none';
+    updateLineNumbers();
+    inputEl.focus();
+  });
+
+})();
+</script>
+
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2026 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Mathjax in Jekyll Notes">
+<title>Mathjax in Jekyll Notes</title>
+<meta property="og:description" content="Basic usage of MathJax in Jekyll notes and examples of writing math equations.">
+<meta property="og:url" content="http://0.0.0.0:4000/2019/11/03/mathjax-notes.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://0.0.0.0:4000/2019/11/03/mathjax-notes.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://0.0.0.0:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+
+
+
+
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+                
+                    <li><a href="/tools">Tools</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Mathjax in Jekyll Notes</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2019-11-03
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/web">Web</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;10 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#jekyll">jekyll,</a>
+                
+            
+                
+                <a href="/tags/#html">html,</a>
+                
+            
+                
+                <a href="/tags/#mathjax">mathjax</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#mathjax">MathJax</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#mathjax-v3">MathJax v3</a></li>
+<li class="toc-entry toc-h2"><a href="#mathjax-v2">MathJax v2</a></li>
+<li class="toc-entry toc-h2"><a href="#some-examples">Some Examples</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#display-in-a-separate-line">Display in a Separate Line</a></li>
+<li class="toc-entry toc-h3"><a href="#some-notes">Some Notes</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#useful-references">Useful References</a></li>
+</ul>
+</li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <h1 id="mathjax">MathJax</h1>
+<p>We can use <a href="https://www.mathjax.org/">MathJax</a> to nicely display LaTex math equations in HTML. The latest MathJax has upgraded to version 3, although version 2 is still available. It is encouraged to use the lastest version.</p>
+
+<h2 id="mathjax-v3">MathJax v3</h2>
+<p>To enable MathJax v3, we add the following to <code class="language-plaintext highlighter-rouge">_include/head.html</code>:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+<span class="nx">MathJax</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">tex</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">inlineMath</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\\</span><span class="s1">(</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="se">\\</span><span class="s1">)</span><span class="dl">'</span><span class="p">]</span> <span class="p">],</span>
+    <span class="na">displayMath</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="dl">'</span><span class="s1">$$</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\\</span><span class="s1">[</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="se">\\</span><span class="s1">]</span><span class="dl">'</span><span class="p">]</span> <span class="p">],</span>
+    <span class="na">processEscapes</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+	<span class="na">macros</span><span class="p">:</span> <span class="p">{</span>
+	  <span class="na">RR</span><span class="p">:</span> <span class="dl">"</span><span class="s2">{</span><span class="se">\\</span><span class="s2">bf R}</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">bold</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">{</span><span class="se">\\</span><span class="s2">bf #1}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+	<span class="p">}</span>
+  <span class="p">},</span>
+  <span class="na">chtml</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">scale</span><span class="p">:</span> <span class="mf">0.9</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">id=</span><span class="s">"MathJax-script"</span> <span class="na">async</span> <span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The inline math delimiter pairs <code class="language-plaintext highlighter-rouge">[$,$]</code> allows MathJax to recognize inline equations. Note that <code class="language-plaintext highlighter-rouge">$ $</code> is not recognized by default.</li>
+  <li>The option <code class="language-plaintext highlighter-rouge">processEscapes: true</code> means that MathJax interprets <code class="language-plaintext highlighter-rouge">\$</code> as a literal dollar sign. Otherwise, MathJax will interpret <code class="language-plaintext highlighter-rouge">$</code> as inline math delimiters.</li>
+  <li>We can define LaTex macros such as <code class="language-plaintext highlighter-rouge">\RR</code> as <code class="language-plaintext highlighter-rouge">\bf{R}</code>, as shown in <a href="https://docs.mathjax.org/en/latest/input/tex/macros.html">Defining TeX macros</a>.</li>
+  <li>We can change the math font size in the <code class="language-plaintext highlighter-rouge">chtml</code> option.</li>
+</ul>
+
+<p>We refer to <a href="https://docs.mathjax.org/en/latest/options/input/tex.html">TeX Input Processor Options</a> for more detailed configurations.</p>
+
+<h2 id="mathjax-v2">MathJax v2</h2>
+
+<p>To enable MathJax v2, we add the following to <code class="language-plaintext highlighter-rouge">_include/head.html</code>:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/x-mathjax-config"</span><span class="nt">&gt;</span>
+    <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nc">Config</span><span class="p">({</span>
+      <span class="na">tex2jax</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">inlineMath</span><span class="p">:</span> <span class="p">[[</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\\</span><span class="s1">(</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="se">\\</span><span class="s1">)</span><span class="dl">'</span><span class="p">]],</span>
+        <span class="na">processEscapes</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="dl">"</span><span class="s2">HTML-CSS</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="na">scale</span><span class="p">:</span> <span class="mi">90</span> <span class="p">},</span>
+      <span class="na">TeX</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">Macros</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">RR</span><span class="p">:</span> <span class="dl">"</span><span class="s2">{</span><span class="se">\\</span><span class="s2">bf R}</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">bold</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">{</span><span class="se">\\</span><span class="s2">bf #1}</span><span class="dl">"</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>We can define LaTex macros such as <code class="language-plaintext highlighter-rouge">\RR</code> as <code class="language-plaintext highlighter-rouge">\bf{R}</code>, as shown in <a href="https://docs.mathjax.org/en/v2.7-latest/tex.html#defining-tex-macros">Defining TeX macros</a>.</li>
+  <li>We can change the math font size with <code class="language-plaintext highlighter-rouge">HTML-CSS</code> option: <a href="https://stackoverflow.com/questions/19086152/changing-mathjaxs-font-size">Changing mathjax’s font size</a>.</li>
+</ul>
+
+<p><strong>Note:</strong> MathJax provides a configuration converter to convert the configuration in version 2 to version 3. See <a href="https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html">MathJax Configuration Converter</a>.</p>
+
+<h2 id="some-examples">Some Examples</h2>
+<p>For inline math, we can write $f(x) = \log(x) + e^{2y}$ or \( f(x) = 3x + 2y \).</p>
+
+<p>For independent math equations, we can either use the <code class="language-plaintext highlighter-rouge">equation</code> environment or the <code class="language-plaintext highlighter-rouge">$$</code> environments:
+\begin{equation}
+\begin{split}
+	f(x) &amp;= ax^2 + \log(x) \ 
+	g(x) &amp;= kx+b
+\end{split}
+\end{equation}
+or</p>
+
+\[\begin{align}
+	f(x) &amp;= ax^2 + \log(x) \\ 
+	g(x) &amp;= kx+b
+\end{align}\]
+
+<p><strong>Note:</strong> we do not need to add additional <code class="language-plaintext highlighter-rouge">$$</code> before the <code class="language-plaintext highlighter-rouge">equation</code> environment. The two are the same</p>
+
+<p>We can also use <code class="language-plaintext highlighter-rouge">label</code> and <code class="language-plaintext highlighter-rouge">tag</code> to reference the equation in the same webpage.
+\begin{equation}
+\label{eq:1}
+\tag{1}
+f(x) = 1.
+\end{equation}
+We reference the equation \eqref{eq:1} here.</p>
+
+<p><strong>Note:</strong> the <code class="language-plaintext highlighter-rouge">label</code> and <code class="language-plaintext highlighter-rouge">tag</code> attributes should appear or disappear in the <code class="language-plaintext highlighter-rouge">equation</code> environment at the same time. If both of them are not used in the <code class="language-plaintext highlighter-rouge">equation</code> environment, the equation will act as the <code class="language-plaintext highlighter-rouge">equation*</code> environment.</p>
+
+<h3 id="display-in-a-separate-line">Display in a Separate Line</h3>
+<p>MathJax interprets the <code class="language-plaintext highlighter-rouge">$$</code> environment in the Markdown file to <code class="language-plaintext highlighter-rouge">\[ \]</code> and then display the content. It does not translate the <code class="language-plaintext highlighter-rouge">equation</code> environment. However, in Markdown we need a blank line to separate the content. Therefore, the equation in the following case will be treated as inline math:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is a beginning line without extra blank lines after.
+$$ f(x) = ax + by. $$
+This is an ending line with out extra blank lines before.
+</code></pre></div></div>
+
+<p>This is a beginning line without extra blank lines after.
+\(f(x) = ax + by.\)
+This is an ending line with out extra blank lines before.</p>
+
+<p><strong>Note:</strong> In Markdown files, we need an extra <strong>blank line</strong> before and after <code class="language-plaintext highlighter-rouge">$$</code> to display the formula in a separate line.</p>
+
+<p>However, if we write math equations directly in an HTML element, for example &lt;p&gt;, we do not need to worry about the extra blank lines because Markdown interpreter will not change the content. For example,</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>
+This a line before the equation.
+$$ f(x) = ax^2 + \log(x). $$
+and this is a line after the equation.
+<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p>
+This a line before the equation.
+$$
+	f(x) = ax^2 + \log(x).
+$$
+and this is a line after the equation.
+</p>
+
+<p>In the equation environment, we do not need to worry about extra blank lines in both cases.</p>
+<p>
+I have an equation here
+\begin{equation}
+	f(x) = ax^2 + \log(x)
+\end{equation}
+and this is a line after the equation.
+</p>
+
+<h3 id="some-notes">Some Notes</h3>
+<ol>
+  <li>
+    <p>MathJax does not support the <code class="language-plaintext highlighter-rouge">split</code> environment. Instead, we can use the <code class="language-plaintext highlighter-rouge">align</code> environments or <code class="language-plaintext highlighter-rouge">aligned</code> within the <code class="language-plaintext highlighter-rouge">equation</code> environment.</p>
+  </li>
+  <li>
+    <p>We use <code class="language-plaintext highlighter-rouge">code</code> environment to display LaTex code:</p>
+    <div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{equation}</span>
+ f(x) = ax<span class="p">^</span>2 + <span class="k">\log</span>(x)
+<span class="nt">\end{equation}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="useful-references">Useful References</h2>
+<p>[1] <a href="http://blog.lostinmyterminal.com/webpages/2015/01/09/math-support-in-jekyll.html">Math Support in Jekyll</a></p>
+
+<p>[2] <a href="http://zjuwhw.github.io/2017/06/04/MathJax.html">Use MathJax to write Equations in Jekyll blogs</a></p>
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/jekyll">jekyll,</a>
+                
+            
+                
+                <a href="/tags/html">html,</a>
+                
+            
+                
+                <a href="/tags/mathjax">mathjax</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2019/09/25/jekyll-2-template.html">Previous: Learning Jelly Part 2: Templating Language</a>
+    
+
+    
+        <a href="/2019/12/02/static-dynamic-web.html">Next: Static vs Dynamic Web Pages</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2026 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

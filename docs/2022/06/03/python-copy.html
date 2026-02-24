@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Python Copy">
+<title>Python Copy</title>
+<meta property="og:description" content="Quicks notes on Python and numpy copy functions.">
+<meta property="og:url" content="http://0.0.0.0:4000/2022/06/03/python-copy.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://0.0.0.0:4000/2022/06/03/python-copy.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://0.0.0.0:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+
+
+
+
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+                
+                    <li><a href="/tools">Tools</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Python Copy</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-06-03
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/programming">Programming</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;5 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#python">python</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h2"><a href="#shallow-vs-deep-copy">Shallow vs Deep Copy</a></li>
+<li class="toc-entry toc-h2"><a href="#built-in-copy-and-assignment">Built-In Copy and Assignment</a></li>
+<li class="toc-entry toc-h2"><a href="#numpy-copy">Numpy Copy</a></li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <h2 id="shallow-vs-deep-copy">Shallow vs Deep Copy</h2>
+<p>There are two types of copy operations in Python: <strong>shallow</strong> copy and <strong>deep</strong> copy. Generally speaking,</p>
+<ul>
+  <li>Shallow copy creates a reference of objects to the original memory and it reflects changes made to the new copied object in the original object. It is faster.</li>
+  <li>Deep copy copies the memory of objects and hence the object values. It does not reflect changes made to the new copied object in the original object and is comparatively slower.</li>
+</ul>
+
+<p>Shallow copy and deep copy can be called by the <code class="language-plaintext highlighter-rouge">copy</code> module. For example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">copy</span>
+<span class="n">copy</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>        <span class="c1"># return a shallow copy of x
+</span><span class="n">copy</span><span class="p">.</span><span class="nf">deepcopy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    <span class="c1"># return a deep copy of x
+</span></code></pre></div></div>
+
+<h2 id="built-in-copy-and-assignment">Built-In Copy and Assignment</h2>
+<p>Unless necessary, the most used copy operation is shallow copy. However, it is a bit cumbersome to call the <code class="language-plaintext highlighter-rouge">copy</code> module for copy operations every time. We can object built-in functions to perform <strong>shallow</strong> copy operations. Before that, we need to know what are mutable and immutable objects.</p>
+<ul>
+  <li>Mutable objects are thoes that can be changed after they are created. e.g., lists, dictionaries, class objects.</li>
+  <li>Immutable objects are thoes that cannot be changed after they are created. e.g., strings, integers, floats, tuples.</li>
+</ul>
+
+<p>To better understand copy operations, we see the following example. The same works for dictionaries.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">copy</span><span class="p">.</span><span class="nf">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># a = [1, [0,3], 'a']
+</span><span class="nf">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>    <span class="c1"># b = [0, [0,3], 'a']
+</span><span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>    <span class="c1"># c = [1, [2,3], 'a']
+</span></code></pre></div></div>
+
+<p>The built-in copy function makes a shallow copy of the list <code class="language-plaintext highlighter-rouge">a</code> and obtain a a new list with references to the same elements that were in the original list. Note that the elements of <code class="language-plaintext highlighter-rouge">a</code> were <strong>not</strong> copied. However, integers are immutable. Therefor, even though we change <code class="language-plaintext highlighter-rouge">b[0] = 1</code>, <code class="language-plaintext highlighter-rouge">a[0]</code> does not change because it is an integer. However, <code class="language-plaintext highlighter-rouge">b[1]</code> is a list which is mutable. Therefore, if we change <code class="language-plaintext highlighter-rouge">b[1][0]</code>, the same change reflects in <code class="language-plaintext highlighter-rouge">a</code>. A deep copy <code class="language-plaintext highlighter-rouge">c</code> does not have this issue since <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">c</code> have different memory locations. An execellent explanation can be found in <a href="https://discuss.python.org/t/can-someone-please-explain-why-below-shallow-copy-code-eg-are-not-working-as-expected-note-in-the-case-of-shallow-copy-a-reference-of-an-object-is-copied-into-another-object-means-any-changes-made-to-a-copy-of-an-object-do-reflect-in-the-original-object/37759">this discussion</a>.</p>
+
+<p>The asignment operator <code class="language-plaintext highlighter-rouge">=</code> also seems to perform a “copy”. In fact, it creates a reference to the old object, which is not a copy. For example,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>     <span class="c1"># a = 1, b = 2	
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>     <span class="c1"># a = [0,2,3], b = [0, 2, 3]
+</span></code></pre></div></div>
+
+<p>In the first example, since <code class="language-plaintext highlighter-rouge">a</code> is an integer and immutable, changing <code class="language-plaintext highlighter-rouge">b</code> does not affect <code class="language-plaintext highlighter-rouge">a</code>. In the second example, since <code class="language-plaintext highlighter-rouge">a</code> is a list and mutable, the changes in <code class="language-plaintext highlighter-rouge">b</code> reflects in <code class="language-plaintext highlighter-rouge">a</code>.</p>
+
+<p>We refer to the post <a href="https://medium.com/@thawsitt/assignment-vs-shallow-copy-vs-deep-copy-in-python-f70c2f0ebd86">Python: Assignment vs Shallow Copy vs Deep Copy</a> for more detailed information.</p>
+
+<h2 id="numpy-copy">Numpy Copy</h2>
+<p>For numpy arrays, the built-in <code class="language-plaintext highlighter-rouge">np.copy()</code> performs a shallow copy. The copy rule is similar as copying a list with all integers.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>     <span class="c1"># a = [1,2,3], b = [0,2,3]
+</span></code></pre></div></div>
+
+<p>For object arrays, they are similar to nested lists. Any modifications to the nested mutable objects will reflects to the original objects.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>	
+<span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>     <span class="c1"># a = [1, [0,3], 'a'], b = [0, [0,3], 'a']
+</span></code></pre></div></div>
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/python">python</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2022/05/22/python-exception.html">Previous: Python Exception Related</a>
+    
+
+    
+        <a href="/2022/06/08/numpy-scipy.html">Next: Numpy Tensordot</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2026 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

@@ -3,11 +3,11 @@
   <channel>
     <title>HuskyDev</title>
     <description>HuskDev is Yuhan&apos;s personal blog.</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 12 May 2024 13:15:11 -0400</pubDate>
-    <lastBuildDate>Sun, 12 May 2024 13:15:11 -0400</lastBuildDate>
-    <generator>Jekyll v4.3.2</generator>
+    <link>http://0.0.0.0:4000/</link>
+    <atom:link href="http://0.0.0.0:4000/zfeed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 24 Feb 2026 12:45:03 +0000</pubDate>
+    <lastBuildDate>Tue, 24 Feb 2026 12:45:03 +0000</lastBuildDate>
+    <generator>Jekyll v4.4.1</generator>
     
       <item>
         <title>Introduction to Koopman Operator</title>
@@ -24,9 +24,9 @@
     &lt;figcaption&gt;Fig. 1: Outline of Koopman operator theory slides.&lt;/figcaption&gt;
 &lt;/figure&gt;
 </description>
-        <pubDate>Fri, 28 Jul 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2023/07/intro-to-koopman.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2023/07/intro-to-koopman.html</guid>
+        <pubDate>Fri, 28 Jul 2023 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2023/07/28/intro-to-koopman.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2023/07/28/intro-to-koopman.html</guid>
         
         <category>optimization</category>
         
@@ -52,9 +52,9 @@
     &lt;figcaption&gt;Fig. 1: Outline of trajectory optimization slides.&lt;/figcaption&gt;
 &lt;/figure&gt;
 </description>
-        <pubDate>Mon, 10 Apr 2023 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2023/04/intro-to-trajopt.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2023/04/intro-to-trajopt.html</guid>
+        <pubDate>Mon, 10 Apr 2023 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2023/04/10/intro-to-trajopt.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2023/04/10/intro-to-trajopt.html</guid>
         
         <category>math</category>
         
@@ -86,9 +86,9 @@
 &lt;h2 id=&quot;some-notes&quot;&gt;Some Notes&lt;/h2&gt;
 &lt;p&gt;These two parallelization approaches can achieve similar functionalities. There are no strict rules to specify which one to use. The choice should depend on the specific project.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 12 Jul 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022/07/python-parallel.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/07/python-parallel.html</guid>
+        <pubDate>Tue, 12 Jul 2022 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2022/07/12/python-parallel.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022/07/12/python-parallel.html</guid>
         
         <category>python</category>
         
@@ -116,9 +116,9 @@
     &lt;figcaption&gt;Fig. 1: Outline of RL summary slides.&lt;/figcaption&gt;
 &lt;/figure&gt;
 </description>
-        <pubDate>Fri, 10 Jun 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022/06/intro-to-rl.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/06/intro-to-rl.html</guid>
+        <pubDate>Fri, 10 Jun 2022 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2022/06/10/intro-rl.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022/06/10/intro-rl.html</guid>
         
         <category>math</category>
         
@@ -130,77 +130,326 @@
       </item>
     
       <item>
-        <title>Introduction to MDP</title>
+        <title>Introduction to Markov Decision Processes</title>
         <description>&lt;h1 id=&quot;markov-decision-processes&quot;&gt;Markov Decision Processes&lt;/h1&gt;
 
-&lt;h3 id=&quot;definition&quot;&gt;Definition&lt;/h3&gt;
+&lt;p&gt;The Markov decision process (MDP) is a mathematical framework for making sequential decisions under uncertainty&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. It models how an intelligent agent selects actions to transition between states and accumulate corresponding rewards. The ultimate goal of the agent is to find the optimal policy—a strategy that dictates the best action to take in each state—to maximize the total reward over time.&lt;/p&gt;
 
-&lt;p&gt;Intuitively speaking, MDP is the extension of Markov chain. MDP adds the notion of control $a$, which means the transition from one state to another not only depends on the current state, but also depends on the control.&lt;/p&gt;
-
-&lt;p&gt;MDP is defined by a tuple $\langle \mathcal{S}, \mathcal{A}, T, \mathcal{R}, \gamma \rangle$, where&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;$\mathcal{S}$ is the set of all states. We denote the state $s \in \mathcal{S}$.&lt;/li&gt;
-  &lt;li&gt;$\mathcal{A}$ is the set of all actions. We denote the action $a \in \mathcal{A}$.&lt;/li&gt;
-  &lt;li&gt;$T: \mathcal{S} \times \mathcal{A} \times \mathcal{S} \mapsto [0,1]$ is the transition kernel. With the Markov property&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, it is the probability $p(s’ \vert s, a)$.&lt;/li&gt;
-  &lt;li&gt;$\mathcal{R}$  is the reward &lt;strong&gt;function&lt;/strong&gt;. It can be defined as the state reward function $\mathcal{R}: \mathcal{S} \mapsto \mathbb{R}$ or the state-action reward function $\mathcal{R}: \mathcal{S} \times \mathcal{A} \mapsto \mathbb{R}$. The definition depends on the specific literature.  &lt;strong&gt;It is simply a function not a random variable&lt;/strong&gt;. So we use $r(s)$ or $r(s,a)$ to denote the reward function. It is clear that $r(s’) = \sum_a r(s,a) p(s’\vert s, a)$.&lt;/li&gt;
-  &lt;li&gt;$\gamma \in [0,1]$ is the discounted factor.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We should be aware of the state reward and state-action reward. See the following figure. In MDP at time $t$, agent is in state $S_t$. When it chooses an action $A_t$, the agent can receive an immediate reward $r(s_t, a_t)$. It is more like the reward on the &lt;strong&gt;action&lt;/strong&gt;. We can compare it with the control cost $u_k^T u_k$ in the optimal control. Some literature do not define this immediate reward.&lt;/p&gt;
-
-&lt;p&gt;After the agent chooses the action, the environment will respond to it and &lt;strong&gt;generate the new state $S_{t+1}$ and the reward $R_{t+1}$&lt;/strong&gt;. Note that $R_{t+1}$ may not relate to the state and can be completely random. But to simplify the analysis, we assume that the generated reward $R_{t+1}$ is a function of $S_{t+1}$. This means that when the realization of $S_{t+1}$ is determined, the reward $R_{t+1}$ is also determined.&lt;/p&gt;
-
-&lt;p&gt;The above argument makes more sense when considering robotic applications. We can use MDP for high level planning. At time $t$, the robot is state $S_t = s$ and it chooses a action $A_t = a$, which gives an immediate action cost $c(s, a)$. After that, the mission status changes to $S_{t+1} = s’$. The robot will receive a reward $r(s’)$ based on the mission status, which can be either good or bad. Therefore, the utility of the robot is simply $u(s’, s, a) = r(s’) - c(s, a)$. It is very like the cost in optimal control: $x_{k+1}^T x_{k+1} + u_k^T u_k$. This shows that the state-reward function is &lt;strong&gt;not in the same time step&lt;/strong&gt; as the state-action reward. This is why in Sutton’s book, the objective of MDP is to maximize $R_{t+1}+\cdots$ while in Filar’s book, the objective is to maximize $R_t + R_{t+1} + \cdots$.&lt;/p&gt;
+&lt;p&gt;A motivating example is the decision-making process in a student’s study journey.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/blog/2022/2022-06-09-mdp_intro.png&quot; height=&quot;130&quot; /&gt;
-    &lt;figcaption&gt;Fig.1: Illustration of MDP.&lt;/figcaption&gt;
+    &lt;img src=&quot;/assets/images/blog/2022/mdp_example.png&quot; height=&quot;350&quot; /&gt;
+    &lt;figcaption&gt;Fig.1: Student MDP Example (from &lt;a href=&quot;https://www.davidsilver.uk/teaching/&quot;&gt;Silver&apos;s lecture slides&lt;/a&gt;).&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;Since MDP is a sequential decision making problem, we denote $S_t$ as the state at time $t$. So is $A_t$, $R_t$. Note that $S_t, A_t, R_t$ are actually &lt;strong&gt;random variables&lt;/strong&gt;. $S_t = s$ and $A_t = a$ are the realizations. The expectation of $R_t$ can be computed by $p$ and $r$.&lt;/p&gt;
+&lt;p&gt;In this scenario, states such as “sleep” or “class 1” represent different stages in the student’s learning process. From a given state—say, “class 1”—the student can choose an action like “study,” which may lead to another state like “class 2.” Each action yields a reward, typically represented by a score. The student’s objective is to develop a plan, or policy , that maximizes the cumulative reward throughout the learning process.&lt;/p&gt;
 
-&lt;p&gt;The transition kernel defines the dynamics of the MDP. It also indicates the environment model. For example, we can define $p(s’, r \vert s,a) = \Pr[S_{t+1} = s’, R_{t+1} = r \vert S_t = s, A_t = a]$, which means the environment is also MDP. See Chapter 3. We can also define state-transition probability $p(s’\vert s,a) = \Pr[S_{t+1} = s’ \vert S_t = s, A_t = a]$ which is simply $\sum_r p(s’,r \vert s,a)$. In this way, we assume each state corresponds to a unique immediate reward.&lt;/p&gt;
+&lt;p&gt;This kind of sequential decision-making can be naturally modeled using an MDP. MDPs provide a simple yet powerful abstraction that captures how agents interact with their environment and how the environment evolves in response. They also form the foundation of reinforcement learning (RL) (see &lt;a href=&quot;/2022/06/10/intro-rl.html&quot;&gt;Introduction to RL&lt;/a&gt;).&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The size of $\mathcal{S}$ usually equals the size of $\mathcal{R}$. The immediate reward does not necessarily corresponds to the current state unless we have a complete information of the environment. For example, at time $t$ we are in $S_t = s$, but the immediate reward does not have to be $R_t = r$. The environment may also do MDP, so there is a probability that the reward is $r$ when we reach state $s$. Usually people consider &lt;strong&gt;finite&lt;/strong&gt; MDP model, which means that the size of $\mathcal{S}$ and $\mathcal{A}$ are finite.&lt;/p&gt;
+&lt;p&gt;Below, we present the formal mathematical formulation of MDPs.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; the policy $\pi(a\vert s)$ is fact stationary. It does not change with the time horizon, which mean we do &lt;strong&gt;not&lt;/strong&gt; have $\pi_{t}(a\vert s), \pi_{t+1}(a\vert s)$.&lt;/p&gt;
+&lt;h2 id=&quot;mathematical-formulation&quot;&gt;Mathematical Formulation&lt;/h2&gt;
 
-&lt;p&gt;We define the return $G_t = R_{t+1} + \gamma R_{t+2} + \cdots = \sum_{k=0}^\infty \gamma^{k} R_{t+k+1}$.  We also define the state-value function $v_\pi(s) = \mathbb{E}_\pi [G_t \vert S_t = s]$. Note that different policy $\pi$ corresponds to different state-value functions. There is an optimal state-value function, which corresponds to the optimal policy $\pi^*$.&lt;/p&gt;
+&lt;p&gt;Intuitively, an MDP extends the concept of a Markov chain (see &lt;a href=&quot;/2020/11/13/notes-7.html&quot;&gt;Markov Chain&lt;/a&gt;) by incorporating actions and rewards. Formally, it is defined by the tuple $\langle \mathcal{S}, \mathcal{A}, T, r, \gamma \rangle$, where&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;$\mathcal{S}$: the set of all possible states. We denote a particular state by $s$.&lt;/li&gt;
+  &lt;li&gt;$\mathcal{A}$: the set of all possible actions. We denote a specific action by $a$.&lt;/li&gt;
+  &lt;li&gt;$T: \mathcal{S} \times \mathcal{A} \times \mathcal{S} \to [0,1]$: the transition kernel, defined as the conditional probability $p(s’ \vert s, a)$, representing the likelihood of transitioning to state $s’$ after taking action $a$ in state $s$.&lt;/li&gt;
+  &lt;li&gt;$r: \mathcal{S} \times \mathcal{A} \to \mathbb{R}$: the reward function denoted by $r(s,a)$, which returns the immediate scalar reward after taking action $a$ in state $s$.&lt;/li&gt;
+  &lt;li&gt;$\gamma \in [0,1]$: the discounted factor, which determines the present value of future rewards.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;The objective of MDP is to find the optimal policy $\pi^\ast$ such that the expected return $\mathbb{E}[G_t \vert S_t=s]$ is maximized. The corresponding state-value function is denoted as $v^*_\pi(s)$.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/blog/2022/mdp_illustration.png&quot; height=&quot;150&quot; /&gt;
+    &lt;figcaption&gt;Fig.2: Illustration of an MDP.&lt;/figcaption&gt;
+&lt;/figure&gt;
 
-&lt;p&gt;We derive the fundamental property of state-value functions which is similar to DP.&lt;/p&gt;
+&lt;p&gt;Some important points to note:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;MDPs satisfy the &lt;strong&gt;Markov property&lt;/strong&gt;: the next state depends only on the current state and action, not on the history of previous states or actions.&lt;/li&gt;
+  &lt;li&gt;States and actions can be either &lt;strong&gt;discrete&lt;/strong&gt; or &lt;strong&gt;continuous&lt;/strong&gt;, leading to discrete or continuous MDPs. Here, we discuss discrete MDPs, which are the most commonly stuided.&lt;/li&gt;
+  &lt;li&gt;Some literature (e.g., Sutton&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; ) define a state-action-state reward function $r(s,a,s’)$ to consider the transition effect. In that case, we have $r(s,a) = \sum_{s’} p(s’ \vert s,a)r(s,a,s’)$.&lt;/li&gt;
+&lt;/ul&gt;
 
-\[v_\pi(s) = \mathbb{E}[G_t\vert S_t = s] = \mathbb{E}_\pi[R_{t+1} + \gamma G_{t+1}\vert S_t = s] = \mathbb{E}_\pi[R_{t+1} \vert S_t = s] + \gamma \mathbb{E}_\pi[G_{t+1} \vert S_t = s].\]
+&lt;h3 id=&quot;probabilistic-transition-kernel&quot;&gt;Probabilistic Transition Kernel&lt;/h3&gt;
+&lt;p&gt;The transition kernel models the dynamics of the environment. There are two main reasons why transitions are often modeled probabilistically:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Generality : Probabilistic transitions generalize deterministic ones. Thus, even environments with deterministic dynamics, such as vehicle navigation systems, can be modeled using MDPs.&lt;/li&gt;
+  &lt;li&gt;Computational convenience : Probabilistic formulations allow us to use continuous optimization techniques rather than treating the problem as combinatorial.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;The first term tells&lt;/p&gt;
+&lt;p&gt;Under this probabilistic model, let random variables $S$ and $A$ represent the current state and action, respectively. Then the transition kernel is defined as&lt;/p&gt;
 
-\[\mathbb{E}_\pi[R_{t+1}\vert S_t = s] = \sum_{s&apos;}(r_{s&apos;} \sum_a p(s&apos;\vert s, a)\pi(a\vert s)).\]
+\[p(s&apos;\vert s,a) = \Pr[S&apos; = s&apos; \vert S = s, A = a], \text{ with } \sum_{s&apos;} p(s&apos; \vert s,a) = 1.\]
 
-&lt;p&gt;The summation is over $s’$ because we assume the reward and state has one-to-one correspondence. We denote the reward as $r_{s’}$. The second term tells&lt;/p&gt;
+&lt;h3 id=&quot;policy-and-objective&quot;&gt;Policy and Objective&lt;/h3&gt;
+&lt;p&gt;A &lt;strong&gt;policy&lt;/strong&gt; is a function to generate actions in some state. Here, it is defined as $\pi(a \vert s)$, which is a probability distribution over actions for each state, so that $\sum_a \pi(a\vert s) = 1$. Let $\Pi$ denote the set of all feasible policies.&lt;/p&gt;
 
-\[\mathbb{E}_\pi[G_{t+1} \vert S_t = t] = \sum_{s&apos;}(\sum_a p(s&apos;\vert s,a) \pi(a \vert s) \mathbb{E}_\pi[G_{t+1}\vert S_{t+1}=s&apos;]) = \sum_{s&apos;}(\sum_a p(s&apos;\vert s,a) \pi(a \vert s) v_\pi(s&apos;)).\]
+&lt;p&gt;The objective of an MDP is to find a policy $\pi$ that maximizes the &lt;strong&gt;expected cumulative reward&lt;/strong&gt; over time, which is&lt;/p&gt;
 
-&lt;p&gt;Therefore, putting them together, we have&lt;/p&gt;
+\[\max_{\pi \in \Pi} \quad \mathbf{E}_{p, \pi} \left[ \sum_{t=0}^\infty \gamma^t r(S_t, A_t) \vert S_0=s \text{ or } S_0 \sim \rho\right]. 
+\label{eq:mdp} \tag{MDP}\]
 
-\[v_\pi(s) = \sum_{a} \pi(a\vert s) \sum_{s&apos;} p(s&apos;\vert s,a) \left[ r_{s&apos;} + \gamma v_\pi(s&apos;) \right], \quad \forall s \in \mathcal{S}.\]
+&lt;p&gt;Here,&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;$S_t, A_t$ are random variables representing the state and action at time $t$.&lt;/li&gt;
+  &lt;li&gt;The initial state $S_0$ can be a fixed value $s$ or drawn from an initial distribution $\rho$.&lt;/li&gt;
+  &lt;li&gt;The discounted factor $\gamma$ ensures that the infinite sum remains finite.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;h3 id=&quot;solution-and-algorithm&quot;&gt;Solution and algorithm&lt;/h3&gt;
+&lt;p&gt;Depending on applications, several variants of this objective exist:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Finite-horizon MDP&lt;/strong&gt;: Limits the decision horizon to the finite length.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;value iteration, policy iteration, LP: &lt;a href=&quot;http://www.cs.cmu.edu/afs/cs/academic/class/15780-s16/www/slides/mdps.pdf&quot;&gt;15-780: Markov Decision Processes&lt;/a&gt;&lt;/p&gt;
+\[\max_{\pi \in \Pi} \quad \mathbf{E}_{p, \pi} \left[ \sum_{t=0}^\infty \gamma^t r(S_t, A_t) \vert S_0=s \text{ or } S_0 \sim \rho\right].\]
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Averaging MPD&lt;/strong&gt;: Focuses on the long-term average reward per step.&lt;/li&gt;
+&lt;/ul&gt;
+
+\[\max_{\pi \in \Pi} \quad \lim_{T \to \infty} \mathbf{E}_{p, \pi} \left[\frac{1}{T} \sum_{t=0}^T r(S_t, A_t) \vert S_0=s \text{ or } S_0 \sim \rho\right].\]
+
+&lt;p&gt;We explore solution methods for these variants in separate discussions.&lt;/p&gt;
+
+&lt;h3 id=&quot;finite-horizon-vs-infinite-horizon-other-posts&quot;&gt;Finite-Horizon vs Infinite-Horizon (other posts…)&lt;/h3&gt;
+&lt;p&gt;The decision horizon $T$, in fact, plays an important role in shaping the optimal policy of \eqref{eq:mdp}. If $T = \infty$, the optimal policy $\pi^\ast$ is &lt;strong&gt;stationary&lt;/strong&gt;; if $T &amp;lt; \infty$, the optimal policy is &lt;strong&gt;nonstationary&lt;/strong&gt;, meaning that we have different $\pi^*$ at each time, denoted by $\boldsymbol{\pi}^\ast = [ \pi^\ast_0, \pi^\ast_1, \dots, \pi^\ast_{T-1} ]$. The short explanation is that as $T \to \infty$, the MDP does not differentiate time steps since we will always solve the same MDP starting from any $t$. Thus, the policy is the same.&lt;/p&gt;
+
+&lt;p&gt;Infinite-horizon MDPs are common for researchers due to stationary policies. Note that if $T = \infty$, we need $\gamma &amp;lt; 1$ to ensure the accumulated reward is bounded.&lt;/p&gt;
+
+&lt;h3 id=&quot;mdp-finite-horizon-other-posts&quot;&gt;MDP finite horizon (other posts…)&lt;/h3&gt;
+&lt;p&gt;dp principles, derivation&lt;/p&gt;
+
+&lt;h3 id=&quot;mdp-avaraging-reward-infinite-horizon-other-posts&quot;&gt;MDP avaraging reward infinite horizon (other posts…)&lt;/h3&gt;
+&lt;p&gt;solution methods, derivation&lt;/p&gt;
+
+&lt;h2 id=&quot;value-functions&quot;&gt;Value Functions&lt;/h2&gt;
+&lt;p&gt;Value functions play a central role in solving MDPs. Their properties form the foundation of many solution methods used to find optimal policies. Two key types of value functions are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The $V$-function, or &lt;em&gt;state-value function&lt;/em&gt;, which evaluates the expected cumulative reward starting from a given state under a specific policy.&lt;/li&gt;
+  &lt;li&gt;The $Q$-function, or &lt;em&gt;action-value function&lt;/em&gt;. which evaluates the expected cumulative reward starting from a given state-action pair under a policy.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Below, we define and explore these functions for infinite-horizon MDPs. These definitions can be adapted to finite-horizon settings as well.&lt;/p&gt;
+
+&lt;h3 id=&quot;v-function&quot;&gt;$V$-Function&lt;/h3&gt;
+&lt;p&gt;The objective of an MDP is given by an infinite series. To simplify this, we introduce the value $v^\pi(s)$ as the expected total discounted reward starting from state s and following policy $\pi$ thereafter:&lt;/p&gt;
+
+\[v^\pi(s) = \mathbf{E}_{p, \pi} \left[ \sum_{t=0}^\infty \gamma^t r(S_t, A_t) \vert S_0=s \right].\]
+
+&lt;p&gt;We can derive a recursive relationship for $v^\pi(s)$ using a one-step expansion:&lt;/p&gt;
+
+\[\begin{align}
+v^\pi(s) &amp;amp;= \mathbf{E}_{p, \pi} \left[ r(S_0, A_0) + \sum_{t=1}^\infty \gamma^t r(S_t, A_t) \vert S_0 = s \right] \\
+&amp;amp;= \sum_a \pi(a\vert s) r(s,a) + \mathbf{E}_{p, \pi} \left[ \sum_{t=1}^\infty \gamma^t r(S_t, A_t) \vert S_0 = s \right].
+\end{align}\]
+
+&lt;p&gt;The second expectation term starts from $t=1$ and $S_1$ is a random variable. Since the random action $A_0$ is processed in the first term, the second term is eaiser to understand by writing it as \(\mathbf{E}_{p,\pi} \left[ \sum_{t=1}^\infty \gamma^t r(S_t, A_t) \vert S_1 \sim \rho&apos; \right]\) for some distribution $\rho’$. Since we start from $S_0=s$, the probability of reaching an arbitrary state $S_1=s_1$ is $\sum_{a} \pi(a\vert s) p(s’\vert s, a) := \rho’(s’)$. Assume $S_1 = s’$ is given, we have&lt;/p&gt;
+
+\[\mathbf{E}_{p,\pi} \left[ \sum_{t=1}^\infty \gamma r(S_1, A_1) \vert S_1 = s&apos; \right] = \gamma v^\pi(s_1)\]
+
+&lt;p&gt;because of the &lt;strong&gt;infinite summation&lt;/strong&gt;. Considering all possible $s_1$, we arrive at&lt;/p&gt;
+
+\[v^\pi(s) = \sum_{a} \pi(a\vert s) r(s,a) + \gamma \sum_{s&apos;, a} \pi(a \vert s) p(s&apos; \vert s,a) v^\pi(s&apos;), \quad \forall s \in \mathcal{S}, \forall \pi \in \Pi.
+\label{eq:bellman-v} \tag{1}\]
+
+&lt;p&gt;Equation \eqref{eq:bellman-v} is known as the &lt;strong&gt;Bellam equation&lt;/strong&gt; for the $V$-function. This recursive structure allows us to compute the value function iteratively. We define the &lt;strong&gt;Bellman operator&lt;/strong&gt; $B: \mathbb{R}^{\vert \mathcal{S} \vert} \to \mathbb{R}^{\vert \mathcal{S} \vert}$, which maps a value vector to another via the bellman update&lt;/p&gt;
+
+\[(B \boldsymbol{v})(s) := \sum_{a} \pi(a\vert s) r(s,a) + \gamma \sum_{s&apos;, a} \pi(a \vert s) p(s&apos; \vert s,a) \boldsymbol{v}(s&apos;).\]
+
+&lt;p&gt;Therefore, the vaule function $\boldsymbol{v}^\pi$ satisfies a fixed-point equation&lt;/p&gt;
+
+\[\boldsymbol{v}^\pi = B(\boldsymbol{v}^\pi).\]
+
+&lt;p&gt;Because the Bellman operator is a &lt;strong&gt;contraction mapping&lt;/strong&gt;&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;, we can compute $\boldsymbol{v}^\pi$ either by solving a linear system or through iterative updates such as&lt;/p&gt;
+
+\[\boldsymbol{v}_{k+1} \gets B(\boldsymbol{v}_k).\]
+
+&lt;p&gt;This forms the basis of many dynamic programming algorithms.&lt;/p&gt;
+
+&lt;h3 id=&quot;q-fucntion&quot;&gt;$Q$-Fucntion&lt;/h3&gt;
+&lt;p&gt;While the $V$-function evaluates the expected return from a state, the $Q$-function evaluates it from a state-action pair. This distinction becomes especially important when evaluating or improving policies, since the optimal policy often selects actions greedily based on the $Q$-value (discussed in &lt;a href=&quot;#properties-of-optimal-policy&quot;&gt;Properties of Optimal Policy&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;We define the $Q$-function under policy $\pi$ as&lt;/p&gt;
+
+\[Q^\pi(s,a) = \mathbf{E}_{p,\pi} \left[ \sum_{t=0}^\infty \gamma^t r(S_t, A_t) \vert S_0=s, A_0=a \right].\]
+
+&lt;p&gt;There is a direct relationship between the $V$-function and the $Q$-function:&lt;/p&gt;
+
+\[v^\pi(s) = \sum_{a} \pi(a \vert s) Q^\pi(s,a), \quad \forall s \in S.\]
+
+&lt;p&gt;Following a similar derivation, we obtain the Bellman equation for the $Q$-function:&lt;/p&gt;
+
+\[Q^\pi(s,a) = r(s,a) + \gamma \sum_{s&apos;,a&apos;} \pi(a&apos;\vert s&apos;)p(s&apos;\vert s,a)Q^\pi(s&apos;, a&apos;), \quad \forall (s,a) \in \mathcal{S} \times \mathcal{A}, \forall \pi \in \Pi.
+\label{eq:bellman-q} \tag{2}\]
+
+&lt;p&gt;Just like with the $V$-function, we can define the corresponding Bellman operator and uses fixed-point iteration to compute the $Q$-function under any given policy.&lt;/p&gt;
+
+&lt;p&gt;Note that the $Q$-function is particularly useful in model-free reinforcement learning, where knowledge of the environment dynamics $p(s’\vert s,a)$ is not required.&lt;/p&gt;
+
+&lt;h3 id=&quot;properties-of-optimal-policy&quot;&gt;Properties of Optimal Policy&lt;/h3&gt;
+&lt;p&gt;The Bellman equations \eqref{eq:bellman-v} and \eqref{eq:bellman-q} hold for any feasible policy $\pi$, including the &lt;strong&gt;optimal policy&lt;/strong&gt; $\pi^\ast$. It is a well-known result that for infinite-horizon MDPs, optimal policy $\pi^\ast$ is &lt;strong&gt;stationary&lt;/strong&gt; and &lt;strong&gt;deterministic&lt;/strong&gt; (Filar, Chap:2.3&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;). That is, $\pi^\ast(a\vert s)$ assigns full probability mass to a single action for each state.&lt;/p&gt;
+
+&lt;p&gt;Under the optimal policy, The bellman equation becomes&lt;/p&gt;
+
+\[v^{\pi^\ast}(s) = \max_{a} \left\{ r(s,a) + \gamma \sum_{s&apos;} p(s&apos; \vert s,a) v^{\pi^\ast}(s&apos;) \right\}, \quad \forall s \in \mathcal{S},
+\label{eq:bellman-vstar} \tag{3}\]
+
+\[Q^{\pi^\ast}(s,a) = r(s,a) + \gamma \sum_{s&apos;} p(s&apos;\vert s,a) \max_{a&apos;} Q^{\pi^\ast}(s&apos;, a&apos;), \quad \forall (s,a) \in \mathcal{S} \times \mathcal{A}.
+\label{eq:bellman-qstar} \tag{4}\]
+
+&lt;p&gt;Furthermore, the optimal $V$-function is related to the optimal $Q$-function by:&lt;/p&gt;
+
+\[v^\ast(s) = \max_a Q^\ast(s, a), \quad \forall s \in \mathcal{S}.\]
+
+&lt;p&gt;Equations \eqref{eq:bellman-vstar} and \eqref{eq:bellman-qstar} are at the heart of many MDP solution algorithms, including value iteration and policy iteration.&lt;/p&gt;
+
+&lt;h2 id=&quot;solution-methods&quot;&gt;Solution Methods&lt;/h2&gt;
+&lt;p&gt;For discrete MDPs, solution methods are often referred to as &lt;strong&gt;tabular methods&lt;/strong&gt;, because the $V$- and $Q$-functions can be represented as $\vert \mathcal{S} \vert \times 1$ and $\vert \mathcal{S} \vert \times \vert \mathcal{A} \vert$ tables, respectively.&lt;/p&gt;
+
+&lt;p&gt;Solution methods fall into two main categories:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Mathematical programming&lt;/strong&gt;: Formulates the problem as an optimization task.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Iterative methods&lt;/strong&gt;: Uses the Bellman operator iteratively to converge to the optimal value function.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Among iterative methods, common approaches include &lt;strong&gt;policy iteration&lt;/strong&gt;, &lt;strong&gt;value iteraion&lt;/strong&gt;, &lt;strong&gt;multistage lookahead policy iteration&lt;/strong&gt;, and $\lambda$-&lt;strong&gt;policy iteration&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;linear-programming&quot;&gt;Linear Programming&lt;/h3&gt;
+&lt;p&gt;Linear programming approach directly uses the Bellman equation \eqref{eq:bellman-vstar}. It treats the elements of $V$-functions as decision variables and solves the following LP:&lt;/p&gt;
+
+\[\begin{align}
+\min_v \quad &amp;amp; \sum_{s} \rho(s) v(s) \\ 
+\text{s.t.} \quad &amp;amp; v(s) \geq r(s, a) + \gamma \sum_{s&apos;} p(s&apos; \vert s, a) v(s&apos;), \quad \forall a \in \mathcal{A}, \forall s \in \mathcal{S}.
+\end{align}\]
+
+&lt;p&gt;Here, $\rho$ denotes the initial state distribution. A special example is $\rho \sim \operatorname{Uniform}$, which produces $\sum_s \rho(s) v(s) = \frac{1}{\vert \mathcal{S} \vert} \sum_s v(s)$. This formulation has $\vert \mathcal{S} \vert$ decision variables and $\vert \mathcal{S} \vert \times \vert \mathcal{A} \vert$ constraints. Each constraint upper bound the value function based on the Bellman equation, with equality holding only for optimal actions. Once the optimal value function $v^*$ is obtained, the optimal policy is recovered via:&lt;/p&gt;
+
+\[\pi^\ast(a \vert s) = \arg\max_a \left\{ r(s,a) +  \gamma \sum_{s&apos;} p(s&apos; \vert s, a) v^\ast(s&apos;) \right\}, \quad \forall s \in \mathcal{S}.
+\label{eq:primal} \tag{P}\]
+
+&lt;p&gt;We can find the dual problem of the primal LP \eqref{eq:primal}, which is&lt;/p&gt;
+
+\[\begin{align}
+\max_\mu \quad &amp;amp; \sum_{s,a} \mu(s,a) r(s,a) \\ 
+\text{s.t.} \quad &amp;amp; \sum_a \mu(s&apos;,a) - \gamma \sum_{s,a} \mu(s,a) p(s&apos;|s,a) = \rho(s&apos;), \quad \forall s&apos; \in \mathcal{S}, \\
+&amp;amp; \mu(s,a) \geq 0, \quad \forall s \in \mathcal{S}, \forall a \in \mathcal{A}.
+\end{align}
+\label{eq:dual} \tag{D}\]
+
+&lt;p&gt;The dual problem is interesting because it produces many important results.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Let $\pi$ be a feasible policy of the MDP and $\rho$ be the initial state distribution. We define the &lt;strong&gt;occupancy measure&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+\[\begin{align}
+\nu^\pi(s,a) &amp;amp;= \sum_{t=0}^\infty \gamma^t \operatorname{Pr}_{\pi,\rho}(S_t=s,A_t=a) \\ 
+&amp;amp;= \sum_{s_0 \in \mathcal{S}} p(s_0) \sum_{t=1}^\infty \gamma^{t}  \pi(a \vert s) \operatorname{Pr}(S_t = s, A_t = a \vert S_0 = s_0). \color{red}{??}
+\end{align}\]
+
+&lt;p&gt;which measures the culmulative probability of the event $S_t=s,A_t=a$. We can verify that $\nu^\pi$ is a feasible solution of the dual LP \eqref{eq:dual}.&lt;/p&gt;
+
+&lt;p&gt;2.Suppose $\mu(s,a)$ is a feasible solution of the dual LP \eqref{eq:dual}. Then for each $s \in \mathcal{S}$ such that $\sum_a \mu(s,a) &amp;gt; 0$, we can induce a stationary policy $\pi_\mu$ by&lt;/p&gt;
+
+\[\pi_\mu(a \vert s) = \frac{\mu(s,a)}{\sum_{a} \mu(s,a)}.\]
+
+&lt;p&gt;Then, the occupancy measure $\nu_{\pi_\mu}$ induce by $\pi_\mu$ is equal to $\mu$. i.e., $\mu(s,a) = \nu_{\pi_\mu}(s,a)$ for all $s \in \mathcal{S}$ and $a \in \mathcal{A}$.&lt;/p&gt;
+
+&lt;p&gt;3.If $\mu^\ast$ is the optimal solution of the dual LP \eqref{eq:dual}, then the induced policy $\pi_{\mu^\ast}$ is the optimal solution of the primal LP \eqref{eq:primal}. Besides, $\pi_{\mu^\ast}$ is deterministic.&lt;/p&gt;
+
+&lt;h3 id=&quot;policy-iteration&quot;&gt;Policy Iteration&lt;/h3&gt;
+&lt;p&gt;Policy iteration is the most typical method in iterative methods. It iteratively run the two processes: &lt;strong&gt;policy evaluation&lt;/strong&gt; and &lt;strong&gt;policy improvement&lt;/strong&gt;, to find the optimal policy and the optimal value function. Specifically,&lt;/p&gt;
+
+&lt;p&gt;In the policy evaluation (also called prediction):&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;compute the value function $v^\pi(s)$ or $q^\pi(s,a)$ using the current policy $\pi$.&lt;/li&gt;
+  &lt;li&gt;solve a linear system $v=B(v)$ or $q = B(q)$.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the policy improvement (also called update):&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;generate a new policy $\pi’$ using the current vaule function $v^\pi(s)$ or $q^\pi(s,a)$.&lt;/li&gt;
+  &lt;li&gt;greedy maximization (most common)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Other iterative methods follow the same two processes but differ in the policy evaluation process. We summarize the policy iteration algorithm in Fig. 3.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/blog/2022/mdp_policy_iter_v.png&quot; width=&quot;500&quot; /&gt;
+    &lt;figcaption&gt;Fig.3: Policy iteration algorithm.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Convergence? change iteration to $k$ in alg?&lt;/p&gt;
+
+&lt;h3 id=&quot;value-iteration&quot;&gt;Value Iteration&lt;/h3&gt;
+&lt;p&gt;Value iteration is a special case of policy iteration. It updates the value function only &lt;strong&gt;once&lt;/strong&gt; in the policy evaluation process instead of computing the real $v^\pi$. This operation is more concise when $\mathcal{S}$ is large because policy iteration needs to run an iterative loop for every state to obtain the value $v^\pi(s)$. However, the drawback of value iteration is that it may converge very slowly. This is true for many problems with large state space or with a discounted factor $\lambda$ close to 1.&lt;/p&gt;
+
+&lt;p&gt;v-funciton, q funciton.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/blog/2022/mdp_value_iter_v.png&quot; width=&quot;500&quot; /&gt;
+    &lt;figcaption&gt;Fig.3: Value iteration algorithm.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;convergence? change iteration to $k$ in alg?&lt;/p&gt;
+
+&lt;h3 id=&quot;multistage-lookahead-policy-iteration&quot;&gt;Multistage Lookahead Policy Iteration&lt;/h3&gt;
+&lt;p&gt;As we observe, when the state space is large, policy iteration methods will take a lot of time in the policy evaluation process, the for loop is terminated when the difference is smaller than a threshold. Although value iteration only evaluate one-step policy evaluation, it converges slowly. Therefore, a balance is to use a fixed step evaluation $m &amp;gt; 1$ in the policy evaluation process. which improves the convergence. The rest remains the same.&lt;/p&gt;
+
+&lt;h3 id=&quot;lambda-policy-iteration&quot;&gt;$\lambda$-Policy Iteration&lt;/h3&gt;
+&lt;p&gt;unifies two methods&lt;sup id=&quot;fnref:6:1&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. reduce the discounted factor to achieve faster decay, especially useful for large $\gamma$. The policy evaluation is different, changes to $v_{k+1} = v_k + \Delta_k$, where $\Delta_k \in \mathbb{R}^{\vert \mathcal{S} \vert}$ is the value vector of a $\gamma \lambda$-discounted MDP problem with transition probabilities $p^{\pi_{k+1}} = \sum_a \pi_{k+1}(a \vert s) p(s’ \vert s,a)$.&lt;/p&gt;
+
+\[\Delta_k(s) = \mathbf{E}_{p^{\pi_{k+1}}} \left[ \sum_{t=0}^\infty (\gamma \lambda)^t d_k(S_t, S_{t+1}) \vert S_0 = s \right], \quad \forall s \in \mathcal{S}.\]
+
+&lt;p&gt;where $d_k$ is the temporal difference at step $k$ under policy $\pi_{k+1}$&lt;/p&gt;
+
+\[d_k(s, s&apos;) = \sum_{a} \pi_{k+1}(a\vert s) r(s,a) + \gamma v_k(s&apos;) - v_k(s).\]
+
+&lt;p&gt;Computing $\Delta_k$ is not hard, same as iteration in policy iteration methods. We can also compute $m$ terms of $\Delta_k$ for approximation.&lt;/p&gt;
+
+&lt;p&gt;When $\lambda=0$, we have value iteration, when $\lambda=1$, we have policy iteration. When use iteration with $\lambda &amp;lt; 1$, policy evaluation converges faster compared with $\lambda=1$. However, small $\lambda$ does not perform well.&lt;/p&gt;
+
+&lt;p&gt;convergence? alg?&lt;/p&gt;
+
+&lt;p&gt;We should note that only PI compute $v^{\pi_k}$ given $\pi_k$. value iteration and multi-step lookahead, $\lambda$-policy with $\lambda &amp;lt; 1$ all finds an approximate value, i.e., $v_k$ not $v^{\pi_k}$.&lt;/p&gt;
+
+&lt;h1 id=&quot;short-summary&quot;&gt;Short Summary&lt;/h1&gt;
+&lt;p&gt;We have introduced the formulation, value functions, and solution methods for infinite-horizon Markov Decision Processes (MDPs). MDPs provide a general and powerful framework for sequential decision-making under uncertainty, and have enabled impactful applications across various domains, including robotics, transportation, and communication systems. Although domain-specific knowledge is often required to model real-world problems as MDPs, the underlying solution methods remain consistent across fields.&lt;/p&gt;
+
+&lt;p&gt;MDPs also have several variants. For example, finite-horizon MDPs are useful when decisions are made over a fixed time horizon, while average-reward MDPs are suitable for long-run average performance criteria. These variants extend the applicability of the framework to different types of sequential decision problems.&lt;/p&gt;
+
+&lt;h2 id=&quot;recommended-references&quot;&gt;Recommended References&lt;/h2&gt;
+&lt;p&gt;For a comprehensive and rigorous treatment of MDPs, including both discrete and continuous formulations, we highly recommend the textbook by Puterman&lt;sup id=&quot;fnref:1:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and Filar&lt;sup id=&quot;fnref:2:1&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;For an accessible introduction from a reinforcement learning perspective, Prof. Silver’s Lectures Slides on Reinforcement Learning&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;5&lt;/a&gt;&lt;/sup&gt; and Prof. Kolter’s slides on MDPs&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;6&lt;/a&gt;&lt;/sup&gt; would be a good starting point.&lt;/p&gt;
 
 &lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;Markov property (or Markov assumption): transitions only depend on current state and action, not past states/actions. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Puterman, Martin L. &lt;a href=&quot;https://www.wiley.com/en-us/Markov+Decision+Processes%3A+Discrete+Stochastic+Dynamic+Programming-p-9781118625873&quot;&gt;&lt;em&gt;Markov decision processes: discrete stochastic dynamic programming&lt;/em&gt;&lt;/a&gt;. 2014. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt; &lt;a href=&quot;#fnref:1:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot;&gt;
+      &lt;p&gt;Sutton, Richard S., and Andrew G. Barto. &lt;a href=&quot;http://incompleteideas.net/book/the-book-2nd.html&quot;&gt;&lt;em&gt;Reinforcement learning: An introduction&lt;/em&gt;&lt;/a&gt;. 2018. &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:6&quot;&gt;
+      &lt;p&gt;Bertsekas, Dimitri, and John N. Tsitsiklis. &lt;a href=&quot;http://athenasc.com/ndpbook.html&quot;&gt;&lt;em&gt;Neuro-dynamic programming&lt;/em&gt;&lt;/a&gt;. 1996. &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt; &lt;a href=&quot;#fnref:6:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;Filar, Jerzy, and Koos Vrieze. &lt;a href=&quot;https://link.springer.com/book/10.1007/978-1-4612-4054-9&quot;&gt;&lt;em&gt;Competitive Markov decision processes&lt;/em&gt;&lt;/a&gt;. 2012. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt; &lt;a href=&quot;#fnref:2:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;Silver, David. &lt;a href=&quot;https://www.davidsilver.uk/teaching/&quot;&gt;&lt;em&gt;Lectures on Reinforcement Learning&lt;/em&gt;&lt;/a&gt;. 2015. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;Kolter, Zico. &lt;a href=&quot;https://www.cs.cmu.edu/afs/cs/academic/class/15780-s16/www/slides/mdps.pdf&quot;&gt;&lt;em&gt;Markov Decision Processes&lt;/em&gt;&lt;/a&gt;. 2016. &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Fri, 10 Jun 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022/06/intro-mdp.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/06/intro-mdp.html</guid>
+        <pubDate>Thu, 09 Jun 2022 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2022/06/09/intro-mdp.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022/06/09/intro-mdp.html</guid>
         
         <category>math</category>
         
@@ -214,7 +463,7 @@
       </item>
     
       <item>
-        <title>Python Numpy and Scipy</title>
+        <title>Numpy Tensordot</title>
         <description>&lt;h1 id=&quot;numpy-related&quot;&gt;NumPy Related&lt;/h1&gt;
 
 &lt;p&gt;In NumPy, 1D array only have 1-d shape, and it can only be indexed  by one index. For example,&lt;/p&gt;
@@ -367,9 +616,9 @@
 
 &lt;p&gt;Note that SciPy optimization also provides other useful tools such as global optimization, root finding, least square fitting, linear programming, assignment problem. We can simply use existing APIs. There is no need to reformulate these problems to optimization problems and use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimize&lt;/code&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Wed, 08 Jun 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022/06/numpy-scipy.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/06/numpy-scipy.html</guid>
+        <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2022/06/08/numpy-scipy.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022/06/08/numpy-scipy.html</guid>
         
         <category>python</category>
         
@@ -384,63 +633,80 @@
     
       <item>
         <title>Python Copy</title>
-        <description>&lt;p&gt;There are two types of copy operations in Python: shallow copy and deep copy. Shallow copy create a reference to an object while deep copy copies the memory and hence two things are completely different.&lt;/p&gt;
-
-&lt;p&gt;Shallow copy are the most frequently used copy operation. It enables data sharing for immutable objects. There are some rules for shallow copy to remember.&lt;/p&gt;
-
+        <description>&lt;h2 id=&quot;shallow-vs-deep-copy&quot;&gt;Shallow vs Deep Copy&lt;/h2&gt;
+&lt;p&gt;There are two types of copy operations in Python: &lt;strong&gt;shallow&lt;/strong&gt; copy and &lt;strong&gt;deep&lt;/strong&gt; copy. Generally speaking,&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;for immutable objects, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;float&lt;/code&gt;, shallow copy will create a new memory section.&lt;/li&gt;
-  &lt;li&gt;for mutable objects, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;list&lt;/code&gt;, shallow copy will not affect the immutable elements in the list, but the nested elements will be affected.&lt;/li&gt;
+  &lt;li&gt;Shallow copy creates a reference of objects to the original memory and it reflects changes made to the new copied object in the original object. It is faster.&lt;/li&gt;
+  &lt;li&gt;Deep copy copies the memory of objects and hence the object values. It does not reflect changes made to the new copied object in the original object and is comparatively slower.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# not affect a, a = [1,2,3,&apos;a&apos;], b = [0,2,3,&apos;a&apos;]
+&lt;p&gt;Shallow copy and deep copy can be called by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copy&lt;/code&gt; module. For example,&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;# return a shallow copy of x
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;deepcopy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# return a deep copy of x
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;However,&lt;/p&gt;
+&lt;h2 id=&quot;built-in-copy-and-assignment&quot;&gt;Built-In Copy and Assignment&lt;/h2&gt;
+&lt;p&gt;Unless necessary, the most used copy operation is shallow copy. However, it is a bit cumbersome to call the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copy&lt;/code&gt; module for copy operations every time. We can object built-in functions to perform &lt;strong&gt;shallow&lt;/strong&gt; copy operations. Before that, we need to know what are mutable and immutable objects.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Mutable objects are thoes that can be changed after they are created. e.g., lists, dictionaries, class objects.&lt;/li&gt;
+  &lt;li&gt;Immutable objects are thoes that cannot be changed after they are created. e.g., strings, integers, floats, tuples.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To better understand copy operations, we see the following example. The same works for dictionaries.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;deepcopy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# affect a, a = [1, [0,3], &apos;a&apos;], b = [1, [0,3], &apos;a&apos;], c is not affected
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# a = [1, [0,3], &apos;a&apos;]
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# b = [0, [0,3], &apos;a&apos;]
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;# c = [1, [2,3], &apos;a&apos;]
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;In the above example, if the list element is a class object, it is treated as a nested object.&lt;/p&gt;
+&lt;p&gt;The built-in copy function makes a shallow copy of the list &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt; and obtain a a new list with references to the same elements that were in the original list. Note that the elements of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt; were &lt;strong&gt;not&lt;/strong&gt; copied. However, integers are immutable. Therefor, even though we change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b[0] = 1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a[0]&lt;/code&gt; does not change because it is an integer. However, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b[1]&lt;/code&gt; is a list which is mutable. Therefore, if we change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b[1][0]&lt;/code&gt;, the same change reflects in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;. A deep copy &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c&lt;/code&gt; does not have this issue since &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c&lt;/code&gt; have different memory locations. An execellent explanation can be found in &lt;a href=&quot;https://discuss.python.org/t/can-someone-please-explain-why-below-shallow-copy-code-eg-are-not-working-as-expected-note-in-the-case-of-shallow-copy-a-reference-of-an-object-is-copied-into-another-object-means-any-changes-made-to-a-copy-of-an-object-do-reflect-in-the-original-object/37759&quot;&gt;this discussion&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Note that the assign operator &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=&lt;/code&gt; performs shallow copy if the right object is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;float&lt;/code&gt;, etc. When the right object is mutable, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=&lt;/code&gt; is equivalent to reference.&lt;/p&gt;
+&lt;p&gt;The asignment operator &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=&lt;/code&gt; also seems to perform a “copy”. In fact, it creates a reference to the old object, which is not a copy. For example,&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;	
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# not affect a, a = 1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;However,&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# affect a, a = [0,2,3]
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# a = 1, b = 2	
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;For numpy array, if the array is not object array, the shallow copy operation &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.copy()&lt;/code&gt; is sufficient.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# a = [0,2,3], b = [0, 2, 3]
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;p&gt;In the first example, since &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt; is an integer and immutable, changing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt; does not affect &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;. In the second example, since &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt; is a list and mutable, the changes in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b&lt;/code&gt; reflects in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We refer to the post &lt;a href=&quot;https://medium.com/@thawsitt/assignment-vs-shallow-copy-vs-deep-copy-in-python-f70c2f0ebd86&quot;&gt;Python: Assignment vs Shallow Copy vs Deep Copy&lt;/a&gt; for more detailed information.&lt;/p&gt;
+
+&lt;h2 id=&quot;numpy-copy&quot;&gt;Numpy Copy&lt;/h2&gt;
+&lt;p&gt;For numpy arrays, the built-in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.copy()&lt;/code&gt; performs a shallow copy. The copy rule is similar as copying a list with all integers.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# not affect a, a = [1,2,3]
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# a = [1,2,3], b = [0,2,3]
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;However,&lt;/p&gt;
+&lt;p&gt;For object arrays, they are similar to nested lists. Any modifications to the nested mutable objects will reflects to the original objects.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;deepcopy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# affect a, a = [1, [0,3], &apos;a&apos;], not affect c
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;	
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# a = [1, [0,3], &apos;a&apos;], b = [0, [0,3], &apos;a&apos;]
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 </description>
-        <pubDate>Fri, 03 Jun 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022/06/python-copy.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/06/python-copy.html</guid>
+        <pubDate>Fri, 03 Jun 2022 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2022/06/03/python-copy.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022/06/03/python-copy.html</guid>
         
         <category>python</category>
         
@@ -499,7 +765,7 @@
       &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;InterruptedError&lt;/span&gt;
       &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;IsADirectoryError&lt;/span&gt;
       &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NotADirectoryError&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+--&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PermissionError&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;PermissionError&lt;/span&gt;
       &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ProcessLookupError&lt;/span&gt;
       &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;+--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;TimeoutError&lt;/span&gt;
       &lt;span class=&quot;o&quot;&gt;+--&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ReferenceError&lt;/span&gt;
@@ -642,9 +908,9 @@
 &lt;h2 id=&quot;user-defined-exception&quot;&gt;User-defined Exception&lt;/h2&gt;
 
 </description>
-        <pubDate>Sun, 22 May 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022/05/python-exception.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/05/python-exception.html</guid>
+        <pubDate>Sun, 22 May 2022 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2022/05/22/python-exception.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022/05/22/python-exception.html</guid>
         
         <category>python</category>
         
@@ -656,54 +922,147 @@
       </item>
     
       <item>
-        <title>Python Virtual Environments</title>
-        <description>&lt;p&gt;There are many packages that relates to python virtual environments. For example,&lt;/p&gt;
+        <title>Python Packaging</title>
+        <description>&lt;h1 id=&quot;brief-introduction-to-python-packages&quot;&gt;Brief Introduction to Python Packages&lt;/h1&gt;
+
+&lt;p&gt;A &lt;strong&gt;package&lt;/strong&gt; is a collection of Python modules that can be imported into Python scripts. Compared with general Python scripts, a package organizes the Python code in a structured way to achieve specific functionalities, e.g., image processing, machine learning algorithms. &lt;a href=&quot;https://numpy.org/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;https://scipy.org/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scipy&lt;/code&gt;&lt;/a&gt; and good examples of Python packages. The basic package usage of includes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;import ...&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;from ... import ...&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Packages has several advantages in developing and distributing Python code. It is the standard way to distribute the code and can be used as the building block for different projects. The version control also enables constant update and progress tracking. Some guidelines writing high-quality packages can be found &lt;a href=&quot;https://salishsea-meopar-tools.readthedocs.io/en/latest/python_packaging/library_code.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;writing-projects-as-a-package&quot;&gt;Writing Projects as a Package&lt;/h2&gt;
+&lt;p&gt;In general, it is hard complete a project (e.g., a ML project) with a single script. Therefore, we need to organize our code in a way such that they are easy to read, debug, and maintain. A package provide a good structure to organize the project code, which facilitates the development and possible distribution. It also favors the editable development. Of course, if we only need simple scripts for the project implementation, package structure is not necessary.&lt;/p&gt;
+
+&lt;p&gt;To do this, we need to analyze the project requirements and break the requirement into different functional modules. Each module can be further implemented by some functions or classes. Then, we pack all functional modules into a package and import the package to our example scripts to achieve various goals.&lt;/p&gt;
+
+&lt;p&gt;We take the &lt;a href=&quot;https://github.com/kingyiusuen/image-to-latex&quot;&gt;Image To Latex Project&lt;/a&gt; as a typical Python project example. In the project, the basic functions are organized in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;image_to_latex/&lt;/code&gt;, which serves as a package. Scripts that achieve different goals by calling the package are put in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scripts/&lt;/code&gt;. In this way, other users can directly use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;image-to-latex&lt;/code&gt; package to implement their projects by referring to the examples in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scripts/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;? Note that we could implement all requirements in a package. For example, we implement the training and UI inside the package and encapsulate it with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;run()&lt;/code&gt; function, so that we only need to call the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;run()&lt;/code&gt; function in the package to have a holistic Image-to-Latex recognition system. While it is doable, it may introduce extra complexity in the package. We should treat a package as a tool for the project. We import the functionalities of a package to build the project and achieve the requirements.&lt;/p&gt;
+
+&lt;p&gt;We refer to the post &lt;a href=&quot;/2022/01/01/python-project-practice.html&quot;&gt;Coding Practice for Python Projects&lt;/a&gt; for a reference structure for Python projects.&lt;/p&gt;
+
+&lt;h1 id=&quot;packaging-configuration&quot;&gt;Packaging Configuration&lt;/h1&gt;
+&lt;p&gt;If we want to distribute our Python code, we first need to package the code to make it into an agreed format and then ship it. The distributed package is also called the library. There are two types of distributions for Python packages: source and binary. Source distributions are suitable for small libraries. In practice, binary distributed are more common and are shipped in the &lt;a href=&quot;https://pythonwheels.com/&quot;&gt;wheel&lt;/a&gt;, a package format to ship libraries with compiled artifacts. Mature Python libraries can be uploaded to PyPI to be found and used by all Python users. We also refer to &lt;a href=&quot;https://packaging.python.org/en/latest/overview/&quot;&gt;Overview of Python Packaging&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are three configuration files related to Python packaging: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;. These files are used to package the Python code into distributable libraries. They are common but confusing. We use discuss their history for clarity.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-brief-history-of-python-build-tools&quot;&gt;A Brief History of Python Build Tools&lt;/h2&gt;
+&lt;p&gt;We need extra tools to covert our code to packages. This tool is called the Python build tool. Nowadays, there are many build tools available and we need different configuration file to configure these tools, which sometimes can be confusing. Therefore, it is benefitial to know some history of Python build tools. The following are based on the post &lt;a href=&quot;https://carpentries-incubator.github.io/python_packaging/instructor/04-history-of-packaging.html#:~:text=the%20latest%20standards.-,In%20the%20beginning%2C%20there%20was%20distutils,having%20been%20superceded%20by%20setuptools%20.&quot;&gt;Extra: A History of Python Build Tools&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As we see, especially for binary libraries, we need tools to compile it (build it) and then package it. People have developed many tools to achieve this. This tool is also called the Python build tool. At the very beginning, in Python 2.2, &lt;a href=&quot;https://docs.python.org/3.10/library/distutils.html#module-distutils&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distutils&lt;/code&gt;&lt;/a&gt; was a module of Python’s standard library that allowed users to install and distribute their own packages. Then, it is superseded by &lt;a href=&quot;https://setuptools.pypa.io/en/latest/&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt;&lt;/a&gt; and was deprecated in &lt;a href=&quot;https://peps.python.org/pep-0632/&quot;&gt;PEP 632&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; to build a Python project, we generally need &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup()&lt;/code&gt; functions in the module. What we do is that we create a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; script in the project which call functions &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt;, and run the script to build our python project. Until now, people have needed to write a Python script to build a project. If we want to change some building parameters to the project, we need to read and understand the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; script and change it, which is considered a good style since there is too much logic to configure a project. Therefore, to make the configuration more clear, people extract settings (or options) in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; (more specifically, settings in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup()&lt;/code&gt; function) to a new configuration file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;. Then, it is sufficient to change building options in the configuration file. There is a need to write complex code in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt;. See &lt;a href=&quot;https://stackoverflow.com/questions/39484863/whats-the-difference-between-setup-py-and-setup-cfg-in-python-projects&quot;&gt;What’s the difference between setup.py and setup.cfg in python projects&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; is not in the Python’s standard library. It means that if we want to package a Python project, we first need to install the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; package and use it to parse the required packages. For example, we create a python package &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;foo&lt;/code&gt; which uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt;. In order to build the package, we first meed to install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; and tell it the required package is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt;. In fact, we need both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numpy&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; to build my project. In the era of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distutils&lt;/code&gt;, this was not a problem for Python developers, as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;distutils&lt;/code&gt; was shipped as part of Python’s standard library. So can we use a configuration file to specify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; as a required package? Besides, there are other Python building tools, for example,  &lt;a href=&quot;https://packaging.python.org/en/latest/key_projects/#flit&quot;&gt;flit&lt;/a&gt;, &lt;a href=&quot;https://packaging.python.org/en/latest/key_projects/#hatch&quot;&gt;hatch&lt;/a&gt;, &lt;a href=&quot;https://packaging.python.org/en/latest/key_projects/#pdm&quot;&gt;pdm&lt;/a&gt;, &lt;a href=&quot;https://packaging.python.org/en/latest/key_projects/#poetry&quot;&gt;poetry&lt;/a&gt;,  &lt;a href=&quot;https://pypi.org/project/trampolim/&quot;&gt;trampolim&lt;/a&gt;, and &lt;a href=&quot;https://pypi.org/project/whey/&quot;&gt;whey&lt;/a&gt;. Can we also use a configuration file to specify which one to use?&lt;/p&gt;
+
+&lt;p&gt;This consideration is reflected in &lt;a href=&quot;https://peps.python.org/pep-0517/&quot;&gt;PEP 517&lt;/a&gt;/&lt;a href=&quot;https://peps.python.org/pep-0518/&quot;&gt;518&lt;/a&gt; in 2015, where people tried to use a standardized configuration file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; to specify the build configurations. Since majority of Python projects were built by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt;. First, two configuration files, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;, were used to specify built configurations, where the first specifies using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt; and the second specifies the setup options.&lt;/p&gt;
+
+&lt;p&gt;Now move to 2020, &lt;a href=&quot;https://peps.python.org/pep-0621/&quot;&gt;PEP 621&lt;/a&gt; decided to incorporate project metadata (build options) to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;. In this way, there is no need for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; since everything can be written into a single &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;.  With &lt;a href=&quot;https://peps.python.org/pep-0660/&quot;&gt;PEP 660&lt;/a&gt;, the Python community standardized a way to use wheel files to create editable installs, and therefore, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; is no longer required. Therefore, for the current Python project, we only need to include one &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; are no longer needed for build configurations. It is also recommended by PyPA that modern Python projects use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; for build configurations.&lt;/p&gt;
+
+&lt;h2 id=&quot;difference-between-three-files&quot;&gt;Difference Between Three Files&lt;/h2&gt;
+
+&lt;p&gt;From the history, we know that&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyenv&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pipenv&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Standard python library &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;venv&lt;/code&gt; module&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; is a Python script for building a Python project using utilities from the package &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setuptools&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; is a straightforward configuration file for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup()&lt;/code&gt; function in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt;. It is created to reduce the complex logic needed to set build configurations. People can modify configurations directly in this file.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.tmol&lt;/code&gt; is a new configuration file that unifies the build end selection and builds configurations. It is recommended to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; for build configuration.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;All the modules are python packages and can be installed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt; command. The standard &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;venv&lt;/code&gt; module is shipped with python. So we do not need to install it if we have python.&lt;/p&gt;
+&lt;p&gt;This post is helpful. &lt;a href=&quot;https://ianhopkinson.org.uk/2022/02/understanding-setup-py-setup-cfg-and-pyproject-toml-in-python/&quot;&gt;Understanding setup.py, setup.cfg and pyproject.toml in Python&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;See &lt;a href=&quot;https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe&quot;&gt;What is the difference between venv, pyvenv, pyenv, virtualenv, virtualenvwrapper, pipenv, etc?&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
 
-&lt;h2 id=&quot;difference&quot;&gt;Difference&lt;/h2&gt;
-
-&lt;p&gt;Standard &lt;a href=&quot;https://docs.python.org/3/library/venv.html&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;venv&lt;/code&gt;&lt;/a&gt; vs &lt;a href=&quot;https://virtualenv.pypa.io/en/latest/index.html&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-
+&lt;p&gt;Some useful references:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;venv&lt;/code&gt; module supports creating &lt;strong&gt;lightweight&lt;/strong&gt; “virtual environments”, each with their own independent set of Python packages installed in their &lt;a href=&quot;https://docs.python.org/3/library/site.html#module-site&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site&lt;/code&gt;&lt;/a&gt; directories. A virtual environment is created on top of an &lt;strong&gt;existing Python installation&lt;/strong&gt;, known as the virtual environment’s “base” Python, and may optionally be isolated from the packages in the base environment, so only those explicitly installed in the virtual environment are available.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; is a tool to create isolated Python environments. Since Python &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3.3&lt;/code&gt;, a subset of it has been &lt;strong&gt;integrated into the standard library&lt;/strong&gt; under the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;venv&lt;/code&gt; module. However, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;venv&lt;/code&gt; module does &lt;strong&gt;not&lt;/strong&gt; offer all features of this library. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;virtualenv&lt;/code&gt; can be installed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pip&lt;/code&gt;:&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://xebia.com/blog/a-practical-guide-to-using-setup-py/&quot;&gt;A Practical Guide to Using Setup.py&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://xebia.com/blog/a-practical-guide-to-setuptools-and-pyproject-toml/&quot;&gt;A Practical Guide to Setuptools and Pyproject.toml&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#writing-pyproject-toml&quot;&gt;Writing your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; Tutorial by PyPA&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html&quot;&gt;Configuring setuptools using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; files Tutorial by SETUPTOOLS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--user&lt;/span&gt; virtualenv
+&lt;h3 id=&quot;use-setuppy-only&quot;&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; Only&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setuptools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find_packages&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;my_proj&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;0.0.1&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;pip install test with setup.py only&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;packages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find_packages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;my_proj&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;my_proj.*&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;install_requires&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;numpy&amp;gt;=1.26.0&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;scipy&amp;gt;=1.13.0&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;extras_require&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;interactive&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;matplotlib&amp;gt;=3.6.0&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,],&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-</description>
-        <pubDate>Mon, 16 May 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022/05/python-virtualenv.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/05/python-virtualenv.html</guid>
-        
-        <category>python</category>
-        
-        <category>virtualenv</category>
-        
-        <category>venv</category>
-        
-        
-        <category>Programming</category>
-        
-      </item>
+&lt;h3 id=&quot;use-setuppy-and-setupcfg&quot;&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setuptools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find_packages&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-ini highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;[metadata]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;my_proj&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;0.0.1&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;pip install test with setup.cfg&lt;/span&gt;
     
-      <item>
-        <title>Requirements vs pyptoject</title>
-        <description>&lt;p&gt;Although there are repeated contents in two files, i.e., dependencies, we should understand that they serve completely different purposes. The same applies to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt;. See &lt;a href=&quot;https://packaging.python.org/en/latest/discussions/install-requires-vs-requirements/&quot;&gt;install_requires vs requirements files&lt;/a&gt;&lt;/p&gt;
+&lt;span class=&quot;nn&quot;&gt;[options]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;packages&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;find:&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;install_requires&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;1.26.0&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;scipy&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;1.13.0&lt;/span&gt;
+
+&lt;span class=&quot;nn&quot;&gt;[options.extras_require]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;interactive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;matplotlib&amp;gt;=3.6.0&lt;/span&gt;
+
+&lt;span class=&quot;nn&quot;&gt;[options.packages.find]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;my_proj, my_proj*&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can find more specifications of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; in &lt;a href=&quot;https://setuptools.pypa.io/en/latest/userguide/declarative_config.html&quot;&gt;Configuring setuptools using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; files&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We cannot use a single &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; for building. A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt; file containing a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup()&lt;/code&gt; function call is still required even if the configuration resides in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;. They need to be used together. See &lt;a href=&quot;https://setuptools.pypa.io/en/latest/userguide/declarative_config.html&quot;&gt;Configuring setuptools using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; files&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;use-pyprojecttoml-and-setupcfg&quot;&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.cfg&lt;/code&gt; remains the same as the previous approach.&lt;/p&gt;
+
+&lt;div class=&quot;language-toml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;[build-system]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;requires&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;setuptools&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;build-backend&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;setuptools.build_meta&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;use-pyprojecttoml-only&quot;&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyproject.toml&lt;/code&gt; Only&lt;/h3&gt;
+
+&lt;div class=&quot;language-toml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nn&quot;&gt;[build-system]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;requires&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;setuptools &amp;gt;= 61.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;build-backend&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;setuptools.build_meta&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nn&quot;&gt;[project]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my_proj&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0.0.1&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;pip install test with pyproject.toml only.&quot;&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;requires-python&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;&quot;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;py&quot;&gt;dependencies&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;py&quot;&gt;&quot;numpy&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.26&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;    &lt;span class=&quot;py&quot;&gt;&quot;scipy&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.13&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;,&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;nn&quot;&gt;[project.optional-dependencies]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;interactive&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;[&quot;matplotlib&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.6&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;
+&lt;span class=&quot;nn&quot;&gt;[tool.setuptools.packages.find]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my_proj&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;my_proj.*&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;requirementstxt-vs-pyprojecttoml&quot;&gt;requirements.txt vs pyproject.toml&lt;/h1&gt;
+&lt;p&gt;One for environments, one for building packages. Although overlaps in some cases, different purposes. Often cause confusions.&lt;/p&gt;
+
+&lt;p&gt;Although there are repeated contents in two files, i.e., dependencies, we should understand that they serve completely different purposes. The same applies to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setup.py&lt;/code&gt;. See &lt;a href=&quot;https://packaging.python.org/en/latest/discussions/install-requires-vs-requirements/&quot;&gt;install_requires vs requirements files&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyptoject.toml&lt;/code&gt; describes the dependency through &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;optional-dependencies&lt;/code&gt; tables. The dependencies are used to build the project. It is designed for build tools. We can think of it as a listing of “Abstract” requirements that a project needs to run correctly.&lt;/p&gt;
 
@@ -713,15 +1072,85 @@
 
 &lt;p&gt;If we simply write scripts and do not want to build a package, then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requirements.txt&lt;/code&gt; is sufficient. We simply install necessary packages and we can run the script. But we need to pay attention that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;import&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;from ... import ...&lt;/code&gt; for self-written scripts are not good practice if we do not organize scripts in a package structure.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 13 May 2022 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/2022/05/requirements-vs-pyproject.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2022/05/requirements-vs-pyproject.html</guid>
+        <pubDate>Wed, 11 May 2022 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2022/05/11/python-packaging.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022/05/11/python-packaging.html</guid>
         
         <category>python</category>
         
         <category>packaging</category>
         
-        <category>environment</category>
+        <category>requirements</category>
+        
+        <category>pyproject</category>
+        
+        <category>setuptools</category>
+        
+        
+        <category>Programming</category>
+        
+      </item>
+    
+      <item>
+        <title>Python String Format</title>
+        <description>&lt;p&gt;Python has three ways to format the string.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-use--operator&quot;&gt;1. Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;%&lt;/code&gt; Operator&lt;/h2&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;John&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;money&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;10.72&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Hello, %s. You are %d years old.&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Output: &quot;Hello, John. You are 30 years old.&quot;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can set different formats. For example,&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a: %2d, b: %5.2f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;05.333&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# a: 1, b: 5.33
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;%7.3o&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;           &lt;span class=&quot;c1&quot;&gt;# 031 (octal value)
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;%10.3e&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;356.08977&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# 3.561e+02 (exponential value)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2-use-format-method&quot;&gt;2. Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.format()&lt;/code&gt; method&lt;/h2&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;John&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Hello, {}. You are {} years old.&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Output: &quot;Hello, John. You are 30 years old.&quot;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can also set more detailed formats in the curly bracket, including print orders, number formats, and keywords. For example,&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{0} and {1}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# a and b
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{1} and {0}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# b and a
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a: {0:2d}, b: {1:8.2f}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;00.546&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# a: 12, b: 0.55
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;b: {1:3d}, a: {0:7.2f}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;47.42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# b: 11, a: 47.42
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;a: {x:5d},  b: {y:8.2f}&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;453&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;59.058&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;	&lt;span class=&quot;c1&quot;&gt;# a: 453,  b: 59.06
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3-use-f-string-python--36&quot;&gt;3. Use F-string (Python &amp;gt;= 3.6)&lt;/h2&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;John&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Hello, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;. You are &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; years old.&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Output: &quot;Hello, John. You are 30 years old.&quot;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;F-string literals are the most concise and easy-to-read way to format strings. It also accepts formats like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:8.2f&lt;/code&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2022/04/20/python-string-format.html</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022/04/20/python-string-format.html</guid>
+        
+        <category>python</category>
+        
+        <category>string</category>
         
         
         <category>Programming</category>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Python Playground">
+<title>Python Playground</title>
+<meta property="og:description" content="HuskDev is Yuhan's personal blog.">
+<meta property="og:url" content="http://0.0.0.0:4000/tools/python/">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://0.0.0.0:4000/tools/python/"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://0.0.0.0:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+
+
+
+
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+                
+                    <li><a href="/tools">Tools</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <a class="tool-back-link" href="/tools/">
+  <i class="fa-solid fa-arrow-left"></i> Tools
+</a>
+
+<h2 style="margin-top: 0;">Python Playground</h2>
+<p class="post-meta" id="py-meta">Python · powered by <a href="https://pyodide.org" target="_blank" rel="noopener">Pyodide</a> (real CPython via WebAssembly). Standard library only.</p>
+
+<div class="tool-workspace">
+
+  <!-- Editor -->
+  <div>
+    <div class="tool-label">
+      Python code
+      <span style="font-weight: normal; color: #888; margin-left: 8px;">Ctrl+Enter to run</span>
+    </div>
+    <div class="tool-editor">
+      <div class="tool-line-numbers" id="py-lines">1</div>
+      <textarea id="py-input" class="tool-textarea" style="min-height: 160px;"
+        placeholder="print('Hello, world!')" spellcheck="false" wrap="off"></textarea>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="tool-actions">
+    <button class="tool-btn" id="btn-run" disabled>
+      <i class="fa-solid fa-spinner fa-spin"></i>&nbsp; Loading Python&hellip;
+    </button>
+    <button class="tool-btn secondary" id="btn-clear">
+      <i class="fa-solid fa-xmark"></i>&nbsp; Clear
+    </button>
+  </div>
+
+  <!-- Output -->
+  <div>
+    <div class="tool-label">Output</div>
+    <pre id="py-output" class="tool-output"></pre>
+  </div>
+
+</div>
+
+
+<script>
+(function () {
+  'use strict';
+
+  var PYODIDE_URL = 'https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js';
+
+  var inputEl   = document.getElementById('py-input');
+  var outputEl  = document.getElementById('py-output');
+  var btnRun    = document.getElementById('btn-run');
+  var btnClear  = document.getElementById('btn-clear');
+  var lineNumEl = document.getElementById('py-lines');
+
+  var pyodide = null;
+
+  // ── Line numbers ──────────────────────────────────────────────────
+
+  function updateLineNumbers() {
+    var count = inputEl.value.split('\n').length;
+    var nums = '';
+    for (var i = 1; i <= count; i++) nums += (i < count ? i + '\n' : i);
+    lineNumEl.textContent = nums;
+    lineNumEl.scrollTop   = inputEl.scrollTop;
+  }
+
+  inputEl.addEventListener('input', updateLineNumbers);
+  inputEl.addEventListener('scroll', function () {
+    lineNumEl.scrollTop = inputEl.scrollTop;
+  });
+  updateLineNumbers();
+
+  // ── Load Pyodide asynchronously (avoids blocking page render) ────
+
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s    = document.createElement('script');
+      s.src    = src;
+      s.onload = resolve;
+      s.onerror = function () { reject(new Error('Failed to load ' + src)); };
+      document.head.appendChild(s);
+    });
+  }
+
+  loadScript(PYODIDE_URL)
+    .then(function () { return loadPyodide(); })
+    .then(function (py) {
+      pyodide          = py;
+      btnRun.disabled  = false;
+      btnRun.innerHTML = '<i class="fa-solid fa-play"></i>&nbsp; Run';
+      var version = pyodide.runPython('import sys; sys.version.split()[0]');
+      document.getElementById('py-meta').innerHTML =
+        'Python ' + version + ' &middot; powered by <a href="https://pyodide.org" target="_blank" rel="noopener">Pyodide</a>'
+        + ' (real CPython via WebAssembly). Standard library only.';
+    })
+    .catch(function (err) {
+      btnRun.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>&nbsp; Failed to load';
+      showOutput('Could not load Python runtime:\n' + err.message, true);
+    });
+
+  // ── Helpers ──────────────────────────────────────────────────────
+
+  function showOutput(text, isError) {
+    outputEl.textContent = text;
+    outputEl.className   = 'tool-output' + (isError ? ' tool-output-error' : '');
+  }
+
+  // ── Run ──────────────────────────────────────────────────────────
+
+  btnRun.addEventListener('click', function () {
+    if (!pyodide || btnRun.disabled) return;
+    var code = inputEl.value;
+    if (!code.trim()) return;
+
+    btnRun.disabled  = true;
+    btnRun.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>&nbsp; Running&hellip;';
+    showOutput('', false);
+
+    var output = '';
+    pyodide.setStdout({ batched: function (s) { output += s + '\n'; } });
+    pyodide.setStderr({ batched: function (s) { output += s + '\n'; } });
+
+    pyodide.runPythonAsync(code)
+      .then(function (result) {
+        // Show the return value of the last expression (like a REPL),
+        // but only when there is no stdout to avoid duplicating print() output.
+        var out = output.trimEnd();
+        if (!out && result !== undefined && result !== null) {
+          out = String(result);
+        }
+        showOutput(out || '(no output)', false);
+      })
+      .catch(function (err) {
+        var out = output.trimEnd();
+        showOutput(out ? out + '\n' + err.message : err.message, true);
+      })
+      .finally(function () {
+        btnRun.disabled  = false;
+        btnRun.innerHTML = '<i class="fa-solid fa-play"></i>&nbsp; Run';
+      });
+  });
+
+  // ── Keyboard shortcuts ───────────────────────────────────────────
+
+  inputEl.addEventListener('keydown', function (e) {
+    // Ctrl/Cmd+Enter → run
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      btnRun.click();
+    }
+    // Tab → insert 4 spaces instead of changing focus
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      var start = inputEl.selectionStart;
+      var end   = inputEl.selectionEnd;
+      inputEl.value = inputEl.value.slice(0, start) + '    ' + inputEl.value.slice(end);
+      inputEl.selectionStart = inputEl.selectionEnd = start + 4;
+      updateLineNumbers();
+    }
+  });
+
+  // ── Clear ────────────────────────────────────────────────────────
+
+  btnClear.addEventListener('click', function () {
+    inputEl.value        = '';
+    outputEl.textContent = '';
+    outputEl.className   = 'tool-output';
+    inputEl.focus();
+  });
+
+})();
+</script>
+
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2026 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="LaTeX to Image">
+<title>LaTeX to Image</title>
+<meta property="og:description" content="HuskDev is Yuhan's personal blog.">
+<meta property="og:url" content="http://0.0.0.0:4000/tools/latex/">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://0.0.0.0:4000/tools/latex/"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://0.0.0.0:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+                
+                    <li><a href="/tools">Tools</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <a class="tool-back-link" href="/tools/">
+  <i class="fa-solid fa-arrow-left"></i> Tools
+</a>
+
+<h2 style="margin-top: 0;">LaTeX to Image</h2>
+<p class="post-meta">Type a LaTeX expression below to render and export it as PNG or SVG.</p>
+
+<div class="tool-workspace">
+
+  <!-- Input -->
+  <div>
+    <div class="tool-label">LaTeX expression</div>
+    <textarea id="latex-input" class="tool-textarea"
+      placeholder="e.g.  \int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}"
+      spellcheck="false"></textarea>
+  </div>
+
+  <!-- Options -->
+  <div class="tool-options">
+    <label>
+      <input type="radio" name="display-mode" id="mode-display" value="display" checked>
+      Display mode
+    </label>
+    <label>
+      <input type="radio" name="display-mode" id="mode-inline" value="inline">
+      Inline mode
+    </label>
+    <label>
+      Font size:
+      <select id="font-size-select">
+        <option value="16">16 px</option>
+        <option value="20" selected>20 px</option>
+        <option value="24">24 px</option>
+        <option value="32">32 px</option>
+        <option value="40">40 px</option>
+      </select>
+    </label>
+    <label>
+      Background:
+      <select id="bg-select">
+        <option value="#ffffff" selected>White</option>
+        <option value="transparent">Transparent</option>
+      </select>
+    </label>
+    <label>
+      PNG resolution:
+      <select id="dpi-select">
+        <option value="1">1× (72 dpi)</option>
+        <option value="2" selected>2× (144 dpi)</option>
+        <option value="3">3× (216 dpi)</option>
+        <option value="4">4× (~300 dpi)</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- Preview -->
+  <div>
+    <div class="tool-label">Preview</div>
+    <div class="tool-preview tex2jax_ignore" id="latex-preview"></div>
+    <div class="tool-error" id="latex-error"></div>
+  </div>
+
+  <!-- Actions -->
+  <div class="tool-actions">
+    <button class="tool-btn" id="btn-png">
+      <i class="fa-solid fa-download"></i>&nbsp; Download PNG
+    </button>
+    <button class="tool-btn secondary" id="btn-copy-png">
+      <i class="fa-regular fa-copy"></i>&nbsp; Copy PNG
+    </button>
+    <button class="tool-btn" id="btn-svg">
+      <i class="fa-solid fa-file-code"></i>&nbsp; Download SVG
+    </button>
+    <button class="tool-btn secondary" id="btn-copy-latex">
+      <i class="fa-regular fa-copy"></i>&nbsp; Copy LaTeX
+    </button>
+  </div>
+
+</div>
+
+
+<script>
+(function () {
+  'use strict';
+
+  const inputEl    = document.getElementById('latex-input');
+  const previewEl  = document.getElementById('latex-preview');
+  const errorEl    = document.getElementById('latex-error');
+  const btnPng     = document.getElementById('btn-png');
+  const btnCopyPng = document.getElementById('btn-copy-png');
+  const btnSvg     = document.getElementById('btn-svg');
+  const btnCopy    = document.getElementById('btn-copy-latex');
+
+  // ── Helpers ──────────────────────────────────────────────────────
+
+  function isDisplayMode() {
+    return document.getElementById('mode-display').checked;
+  }
+
+  function getFontSize() {
+    return parseInt(document.getElementById('font-size-select').value, 10);
+  }
+
+  function getBg() {
+    return document.getElementById('bg-select').value;
+  }
+
+  function getScale() {
+    return parseInt(document.getElementById('dpi-select').value, 10);
+  }
+
+  function triggerDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a   = document.createElement('a');
+    a.href     = url;
+    a.download = filename;
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
+  }
+
+  function flashButton(btn, successHtml) {
+    const orig    = btn.innerHTML;
+    btn.innerHTML = successHtml;
+    btn.disabled  = true;
+    setTimeout(function () {
+      btn.innerHTML = orig;
+      btn.disabled  = false;
+    }, 2000);
+  }
+
+  function guardEmpty() {
+    if (!previewEl.children.length) {
+      alert('Nothing to export. Enter a LaTeX expression first.');
+      return true;
+    }
+    return false;
+  }
+
+  // Capture the formula as a canvas.
+  // Renders into a temporary off-screen element with no padding so the
+  // exported PNG is tightly cropped. The on-page preview keeps its padding.
+  function captureAsCanvas() {
+    var bg = getBg();
+
+    var tmp = document.createElement('div');
+    tmp.innerHTML = previewEl.innerHTML;
+    tmp.style.cssText =
+      'position:fixed;top:-9999px;left:-9999px;' +
+      'display:inline-block;' +
+      'font-size:' + getFontSize() + 'px;' +
+      (bg !== 'transparent' ? 'background:' + bg + ';' : '');
+    document.body.appendChild(tmp);
+
+    return html2canvas(tmp, {
+      scale:           getScale(),
+      useCORS:         true,
+      backgroundColor: bg === 'transparent' ? null : bg,
+      logging:         false,
+    }).then(function (canvas) {
+      document.body.removeChild(tmp);
+      return canvas;
+    });
+  }
+
+  // ── Render ───────────────────────────────────────────────────────
+
+  function render() {
+    const latex = inputEl.value.trim();
+    errorEl.style.display = 'none';
+
+    if (!latex) {
+      previewEl.innerHTML = '';
+      return;
+    }
+
+    try {
+      katex.render(latex, previewEl, {
+        displayMode:  isDisplayMode(),
+        throwOnError: true,
+        output:       'html',
+      });
+      previewEl.style.fontSize = getFontSize() + 'px';
+    } catch (e) {
+      previewEl.innerHTML   = '';
+      errorEl.textContent   = e.message;
+      errorEl.style.display = 'block';
+    }
+  }
+
+  let debounceTimer;
+  function debouncedRender() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(render, 300);
+  }
+
+  inputEl.addEventListener('input', debouncedRender);
+  document.querySelectorAll('input[name="display-mode"]').forEach(function (r) {
+    r.addEventListener('change', render);
+  });
+  document.getElementById('font-size-select').addEventListener('change', render);
+
+  // ── Download PNG ─────────────────────────────────────────────────
+
+  btnPng.addEventListener('click', function () {
+    if (guardEmpty()) return;
+    captureAsCanvas().then(function (canvas) {
+      canvas.toBlob(function (blob) {
+        triggerDownload(blob, 'formula.png');
+      }, 'image/png');
+    });
+  });
+
+  // ── Copy PNG ─────────────────────────────────────────────────────
+
+  btnCopyPng.addEventListener('click', function () {
+    if (guardEmpty()) return;
+    captureAsCanvas().then(function (canvas) {
+      canvas.toBlob(function (blob) {
+        if (!navigator.clipboard || !window.ClipboardItem) {
+          alert('Copying images is not supported in this browser. Use "Download PNG" instead.');
+          return;
+        }
+        var item = new ClipboardItem({ 'image/png': blob });
+        navigator.clipboard.write([item]).then(function () {
+          flashButton(btnCopyPng, '<i class="fa-solid fa-check"></i>&nbsp; Copied!');
+        }).catch(function () {
+          alert('Could not copy to clipboard. The page must be served over HTTPS.');
+        });
+      }, 'image/png');
+    });
+  });
+
+  // ── Download SVG ─────────────────────────────────────────────────
+
+  btnSvg.addEventListener('click', function () {
+    if (guardEmpty()) return;
+
+    var katexCSS = '';
+    try {
+      var katexSheet = Array.from(document.styleSheets).find(function (s) {
+        return s.href && s.href.includes('katex');
+      });
+      if (katexSheet) {
+        katexCSS = Array.from(katexSheet.cssRules).map(function (r) { return r.cssText; }).join('\n');
+      }
+    } catch (e) {
+      // Cross-origin CSS access blocked — reference the CDN instead
+      katexCSS = '@import url("https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css");';
+    }
+
+    var fontSize  = getFontSize();
+    var bg        = getBg();
+    var innerHTML = previewEl.innerHTML;
+    var rect      = previewEl.getBoundingClientRect();
+    var w         = Math.ceil(rect.width)  || 600;
+    var h         = Math.ceil(rect.height) || 120;
+
+    var svg = [
+      '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '">',
+      '<defs><style>' + katexCSS + '</style></defs>',
+      bg !== 'transparent' ? '<rect width="100%" height="100%" fill="' + bg + '"/>' : '',
+      '<foreignObject width="' + w + '" height="' + h + '">',
+      '<div xmlns="http://www.w3.org/1999/xhtml"',
+      '  style="font-size:' + fontSize + 'px;display:flex;align-items:center;' +
+        'justify-content:center;width:' + w + 'px;height:' + h + 'px;' +
+        'box-sizing:border-box;padding:16px;">',
+      innerHTML,
+      '</div>',
+      '</foreignObject>',
+      '</svg>',
+    ].join('\n');
+
+    var blob = new Blob([svg], { type: 'image/svg+xml;charset=utf-8' });
+    triggerDownload(blob, 'formula.svg');
+  });
+
+  // ── Copy LaTeX ───────────────────────────────────────────────────
+
+  btnCopy.addEventListener('click', function () {
+    var latex = inputEl.value;
+    if (!latex) return;
+
+    navigator.clipboard.writeText(latex).then(function () {
+      flashButton(btnCopy, '<i class="fa-solid fa-check"></i>&nbsp; Copied!');
+    }).catch(function () {
+      inputEl.select();
+      document.execCommand('copy');
+    });
+  });
+
+  if (inputEl.value.trim()) render();
+
+})();
+</script>
+
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2026 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

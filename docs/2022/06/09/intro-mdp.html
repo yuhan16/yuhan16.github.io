@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width initial-scale=1">
+
+<meta property="og:title" content="Introduction to Markov Decision Processes">
+<title>Introduction to Markov Decision Processes</title>
+<meta property="og:description" content="We introduction the formulation, value functions and solution methods for infinite-horizon MDPs.">
+<meta property="og:url" content="http://0.0.0.0:4000/2022/06/09/intro-mdp.html">
+<meta property="og:site_name" content="HuskyDev">
+<meta property="og:locale" content="">
+
+<meta name="keywords" content="YuhanHuskyDev">
+
+<link rel="icon" href="/assets/images/favicon.ico"/>
+<link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/assets/css/main.css"/>
+<link rel="canonical" href="http://0.0.0.0:4000/2022/06/09/intro-mdp.html"/>
+<link rel="alternate" type="application/atom+xml" title="HuskyDev" href="http://0.0.0.0:4000/feed.xml" />
+
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script-->
+<script src="https://kit.fontawesome.com/e49cc00366.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css">
+
+
+<link rel="stylesheet" href="/assets/css/github.min.css">
+<script src="/assets/js/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+<!--script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+        displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      },
+      "HTML-CSS": { scale: 90 }
+    });
+</script-->
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script-->
+<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML"></script-->
+
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    displayMath: [ ['$$', '$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  chtml: {
+    scale: 0.9
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  } 
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script src="/assets/js/myjavascript.js"></script>
+
+
+
+
+</head>
+
+
+
+
+<body>
+    
+    <nav class="navbar">
+    <div class="navbar-container">
+        <!--Navbar logo-->
+        <a href="/"><img src="/assets/images/husky_logo.png" class="navbar-logo"></a>
+
+        <!--Navbar menu-->
+        <ul class="main-menu">
+            
+                
+                    <li><a href="/">Home</a></li>
+                
+            
+                
+                    <li><a href="/blog">Blog</a></li>
+                
+            
+                
+                    <li><a href="/publications">Publications</a></li>
+                
+            
+                
+                    <li><a href="/archives">Archives</a></li>
+                
+            
+                
+                    <li><a href="/tools">Tools</a></li>
+                
+            
+            
+            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+        </ul>
+    </div>
+    </nav>
+
+
+	<div class="card-container"><!--default_1 is single card layout, sutiable for pages like aboutme, tags, categories, require only one card to display content-->
+        <div class="card">
+            <div class="post">
+    <h1 class="post-title">Introduction to Markov Decision Processes</h1>
+	
+	<!--pose meta data-->
+	<div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+		<span class="post-meta">
+			<i class="fa-regular fa-calendar-check">&nbsp;</i>2022-06-09
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-folder-open"></i>&nbsp;<a href="/categories/optimization">Optimization</a>
+		</span>
+
+		<span class="post-meta">
+			<i class="fa-regular fa-clock"></i>&nbsp;20 minutes
+		</span>
+
+        <!--span class="post-meta">
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/#math">math,</a>
+                
+            
+                
+                <a href="/tags/#MDP">MDP,</a>
+                
+            
+                
+                <a href="/tags/#RL">RL</a>
+                
+            
+		</span-->
+	</div>
+
+	<!--table of content-->
+	<div class="toc">
+		<p class="toc-meta">Table of Contents</p>
+		<div class="toc-content">
+			<ul id="toc-list" class="toc-list">
+<li class="toc-entry toc-h1"><a href="#markov-decision-processes">Markov Decision Processes</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#mathematical-formulation">Mathematical Formulation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#probabilistic-transition-kernel">Probabilistic Transition Kernel</a></li>
+<li class="toc-entry toc-h3"><a href="#policy-and-objective">Policy and Objective</a></li>
+<li class="toc-entry toc-h3"><a href="#finite-horizon-vs-infinite-horizon-other-posts">Finite-Horizon vs Infinite-Horizon (other posts…)</a></li>
+<li class="toc-entry toc-h3"><a href="#mdp-finite-horizon-other-posts">MDP finite horizon (other posts…)</a></li>
+<li class="toc-entry toc-h3"><a href="#mdp-avaraging-reward-infinite-horizon-other-posts">MDP avaraging reward infinite horizon (other posts…)</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#value-functions">Value Functions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#v-function">$V$-Function</a></li>
+<li class="toc-entry toc-h3"><a href="#q-fucntion">$Q$-Fucntion</a></li>
+<li class="toc-entry toc-h3"><a href="#properties-of-optimal-policy">Properties of Optimal Policy</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#solution-methods">Solution Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#linear-programming">Linear Programming</a></li>
+<li class="toc-entry toc-h3"><a href="#policy-iteration">Policy Iteration</a></li>
+<li class="toc-entry toc-h3"><a href="#value-iteration">Value Iteration</a></li>
+<li class="toc-entry toc-h3"><a href="#multistage-lookahead-policy-iteration">Multistage Lookahead Policy Iteration</a></li>
+<li class="toc-entry toc-h3"><a href="#lambda-policy-iteration">$\lambda$-Policy Iteration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#short-summary">Short Summary</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#recommended-references">Recommended References</a></li>
+</ul>
+</li>
+</ul>
+		</div>
+	</div>
+    
+	<!--post content-->
+    <article class="post-content">
+        <h1 id="markov-decision-processes">Markov Decision Processes</h1>
+
+<p>The Markov decision process (MDP) is a mathematical framework for making sequential decisions under uncertainty<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>. It models how an intelligent agent selects actions to transition between states and accumulate corresponding rewards. The ultimate goal of the agent is to find the optimal policy—a strategy that dictates the best action to take in each state—to maximize the total reward over time.</p>
+
+<p>A motivating example is the decision-making process in a student’s study journey.</p>
+
+<figure>
+    <img src="/assets/images/blog/2022/mdp_example.png" height="350" />
+    <figcaption>Fig.1: Student MDP Example (from <a href="https://www.davidsilver.uk/teaching/">Silver's lecture slides</a>).</figcaption>
+</figure>
+
+<p>In this scenario, states such as “sleep” or “class 1” represent different stages in the student’s learning process. From a given state—say, “class 1”—the student can choose an action like “study,” which may lead to another state like “class 2.” Each action yields a reward, typically represented by a score. The student’s objective is to develop a plan, or policy , that maximizes the cumulative reward throughout the learning process.</p>
+
+<p>This kind of sequential decision-making can be naturally modeled using an MDP. MDPs provide a simple yet powerful abstraction that captures how agents interact with their environment and how the environment evolves in response. They also form the foundation of reinforcement learning (RL) (see <a href="/2022/06/10/intro-rl.html">Introduction to RL</a>).</p>
+
+<p>Below, we present the formal mathematical formulation of MDPs.</p>
+
+<h2 id="mathematical-formulation">Mathematical Formulation</h2>
+
+<p>Intuitively, an MDP extends the concept of a Markov chain (see <a href="/2020/11/13/notes-7.html">Markov Chain</a>) by incorporating actions and rewards. Formally, it is defined by the tuple $\langle \mathcal{S}, \mathcal{A}, T, r, \gamma \rangle$, where</p>
+<ul>
+  <li>$\mathcal{S}$: the set of all possible states. We denote a particular state by $s$.</li>
+  <li>$\mathcal{A}$: the set of all possible actions. We denote a specific action by $a$.</li>
+  <li>$T: \mathcal{S} \times \mathcal{A} \times \mathcal{S} \to [0,1]$: the transition kernel, defined as the conditional probability $p(s’ \vert s, a)$, representing the likelihood of transitioning to state $s’$ after taking action $a$ in state $s$.</li>
+  <li>$r: \mathcal{S} \times \mathcal{A} \to \mathbb{R}$: the reward function denoted by $r(s,a)$, which returns the immediate scalar reward after taking action $a$ in state $s$.</li>
+  <li>$\gamma \in [0,1]$: the discounted factor, which determines the present value of future rewards.</li>
+</ul>
+
+<figure>
+    <img src="/assets/images/blog/2022/mdp_illustration.png" height="150" />
+    <figcaption>Fig.2: Illustration of an MDP.</figcaption>
+</figure>
+
+<p>Some important points to note:</p>
+<ul>
+  <li>MDPs satisfy the <strong>Markov property</strong>: the next state depends only on the current state and action, not on the history of previous states or actions.</li>
+  <li>States and actions can be either <strong>discrete</strong> or <strong>continuous</strong>, leading to discrete or continuous MDPs. Here, we discuss discrete MDPs, which are the most commonly stuided.</li>
+  <li>Some literature (e.g., Sutton<sup id="fnref:5"><a href="#fn:5" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> ) define a state-action-state reward function $r(s,a,s’)$ to consider the transition effect. In that case, we have $r(s,a) = \sum_{s’} p(s’ \vert s,a)r(s,a,s’)$.</li>
+</ul>
+
+<h3 id="probabilistic-transition-kernel">Probabilistic Transition Kernel</h3>
+<p>The transition kernel models the dynamics of the environment. There are two main reasons why transitions are often modeled probabilistically:</p>
+<ol>
+  <li>Generality : Probabilistic transitions generalize deterministic ones. Thus, even environments with deterministic dynamics, such as vehicle navigation systems, can be modeled using MDPs.</li>
+  <li>Computational convenience : Probabilistic formulations allow us to use continuous optimization techniques rather than treating the problem as combinatorial.</li>
+</ol>
+
+<p>Under this probabilistic model, let random variables $S$ and $A$ represent the current state and action, respectively. Then the transition kernel is defined as</p>
+
+\[p(s'\vert s,a) = \Pr[S' = s' \vert S = s, A = a], \text{ with } \sum_{s'} p(s' \vert s,a) = 1.\]
+
+<h3 id="policy-and-objective">Policy and Objective</h3>
+<p>A <strong>policy</strong> is a function to generate actions in some state. Here, it is defined as $\pi(a \vert s)$, which is a probability distribution over actions for each state, so that $\sum_a \pi(a\vert s) = 1$. Let $\Pi$ denote the set of all feasible policies.</p>
+
+<p>The objective of an MDP is to find a policy $\pi$ that maximizes the <strong>expected cumulative reward</strong> over time, which is</p>
+
+\[\max_{\pi \in \Pi} \quad \mathbf{E}_{p, \pi} \left[ \sum_{t=0}^\infty \gamma^t r(S_t, A_t) \vert S_0=s \text{ or } S_0 \sim \rho\right]. 
+\label{eq:mdp} \tag{MDP}\]
+
+<p>Here,</p>
+<ol>
+  <li>$S_t, A_t$ are random variables representing the state and action at time $t$.</li>
+  <li>The initial state $S_0$ can be a fixed value $s$ or drawn from an initial distribution $\rho$.</li>
+  <li>The discounted factor $\gamma$ ensures that the infinite sum remains finite.</li>
+</ol>
+
+<p>Depending on applications, several variants of this objective exist:</p>
+<ul>
+  <li><strong>Finite-horizon MDP</strong>: Limits the decision horizon to the finite length.</li>
+</ul>
+
+\[\max_{\pi \in \Pi} \quad \mathbf{E}_{p, \pi} \left[ \sum_{t=0}^\infty \gamma^t r(S_t, A_t) \vert S_0=s \text{ or } S_0 \sim \rho\right].\]
+
+<ul>
+  <li><strong>Averaging MPD</strong>: Focuses on the long-term average reward per step.</li>
+</ul>
+
+\[\max_{\pi \in \Pi} \quad \lim_{T \to \infty} \mathbf{E}_{p, \pi} \left[\frac{1}{T} \sum_{t=0}^T r(S_t, A_t) \vert S_0=s \text{ or } S_0 \sim \rho\right].\]
+
+<p>We explore solution methods for these variants in separate discussions.</p>
+
+<h3 id="finite-horizon-vs-infinite-horizon-other-posts">Finite-Horizon vs Infinite-Horizon (other posts…)</h3>
+<p>The decision horizon $T$, in fact, plays an important role in shaping the optimal policy of \eqref{eq:mdp}. If $T = \infty$, the optimal policy $\pi^\ast$ is <strong>stationary</strong>; if $T &lt; \infty$, the optimal policy is <strong>nonstationary</strong>, meaning that we have different $\pi^*$ at each time, denoted by $\boldsymbol{\pi}^\ast = [ \pi^\ast_0, \pi^\ast_1, \dots, \pi^\ast_{T-1} ]$. The short explanation is that as $T \to \infty$, the MDP does not differentiate time steps since we will always solve the same MDP starting from any $t$. Thus, the policy is the same.</p>
+
+<p>Infinite-horizon MDPs are common for researchers due to stationary policies. Note that if $T = \infty$, we need $\gamma &lt; 1$ to ensure the accumulated reward is bounded.</p>
+
+<h3 id="mdp-finite-horizon-other-posts">MDP finite horizon (other posts…)</h3>
+<p>dp principles, derivation</p>
+
+<h3 id="mdp-avaraging-reward-infinite-horizon-other-posts">MDP avaraging reward infinite horizon (other posts…)</h3>
+<p>solution methods, derivation</p>
+
+<h2 id="value-functions">Value Functions</h2>
+<p>Value functions play a central role in solving MDPs. Their properties form the foundation of many solution methods used to find optimal policies. Two key types of value functions are:</p>
+<ul>
+  <li>The $V$-function, or <em>state-value function</em>, which evaluates the expected cumulative reward starting from a given state under a specific policy.</li>
+  <li>The $Q$-function, or <em>action-value function</em>. which evaluates the expected cumulative reward starting from a given state-action pair under a policy.</li>
+</ul>
+
+<p>Below, we define and explore these functions for infinite-horizon MDPs. These definitions can be adapted to finite-horizon settings as well.</p>
+
+<h3 id="v-function">$V$-Function</h3>
+<p>The objective of an MDP is given by an infinite series. To simplify this, we introduce the value $v^\pi(s)$ as the expected total discounted reward starting from state s and following policy $\pi$ thereafter:</p>
+
+\[v^\pi(s) = \mathbf{E}_{p, \pi} \left[ \sum_{t=0}^\infty \gamma^t r(S_t, A_t) \vert S_0=s \right].\]
+
+<p>We can derive a recursive relationship for $v^\pi(s)$ using a one-step expansion:</p>
+
+\[\begin{align}
+v^\pi(s) &amp;= \mathbf{E}_{p, \pi} \left[ r(S_0, A_0) + \sum_{t=1}^\infty \gamma^t r(S_t, A_t) \vert S_0 = s \right] \\
+&amp;= \sum_a \pi(a\vert s) r(s,a) + \mathbf{E}_{p, \pi} \left[ \sum_{t=1}^\infty \gamma^t r(S_t, A_t) \vert S_0 = s \right].
+\end{align}\]
+
+<p>The second expectation term starts from $t=1$ and $S_1$ is a random variable. Since the random action $A_0$ is processed in the first term, the second term is eaiser to understand by writing it as \(\mathbf{E}_{p,\pi} \left[ \sum_{t=1}^\infty \gamma^t r(S_t, A_t) \vert S_1 \sim \rho' \right]\) for some distribution $\rho’$. Since we start from $S_0=s$, the probability of reaching an arbitrary state $S_1=s_1$ is $\sum_{a} \pi(a\vert s) p(s’\vert s, a) := \rho’(s’)$. Assume $S_1 = s’$ is given, we have</p>
+
+\[\mathbf{E}_{p,\pi} \left[ \sum_{t=1}^\infty \gamma r(S_1, A_1) \vert S_1 = s' \right] = \gamma v^\pi(s_1)\]
+
+<p>because of the <strong>infinite summation</strong>. Considering all possible $s_1$, we arrive at</p>
+
+\[v^\pi(s) = \sum_{a} \pi(a\vert s) r(s,a) + \gamma \sum_{s', a} \pi(a \vert s) p(s' \vert s,a) v^\pi(s'), \quad \forall s \in \mathcal{S}, \forall \pi \in \Pi.
+\label{eq:bellman-v} \tag{1}\]
+
+<p>Equation \eqref{eq:bellman-v} is known as the <strong>Bellam equation</strong> for the $V$-function. This recursive structure allows us to compute the value function iteratively. We define the <strong>Bellman operator</strong> $B: \mathbb{R}^{\vert \mathcal{S} \vert} \to \mathbb{R}^{\vert \mathcal{S} \vert}$, which maps a value vector to another via the bellman update</p>
+
+\[(B \boldsymbol{v})(s) := \sum_{a} \pi(a\vert s) r(s,a) + \gamma \sum_{s', a} \pi(a \vert s) p(s' \vert s,a) \boldsymbol{v}(s').\]
+
+<p>Therefore, the vaule function $\boldsymbol{v}^\pi$ satisfies a fixed-point equation</p>
+
+\[\boldsymbol{v}^\pi = B(\boldsymbol{v}^\pi).\]
+
+<p>Because the Bellman operator is a <strong>contraction mapping</strong><sup id="fnref:6"><a href="#fn:6" class="footnote" rel="footnote" role="doc-noteref">3</a></sup>, we can compute $\boldsymbol{v}^\pi$ either by solving a linear system or through iterative updates such as</p>
+
+\[\boldsymbol{v}_{k+1} \gets B(\boldsymbol{v}_k).\]
+
+<p>This forms the basis of many dynamic programming algorithms.</p>
+
+<h3 id="q-fucntion">$Q$-Fucntion</h3>
+<p>While the $V$-function evaluates the expected return from a state, the $Q$-function evaluates it from a state-action pair. This distinction becomes especially important when evaluating or improving policies, since the optimal policy often selects actions greedily based on the $Q$-value (discussed in <a href="#properties-of-optimal-policy">Properties of Optimal Policy</a>).</p>
+
+<p>We define the $Q$-function under policy $\pi$ as</p>
+
+\[Q^\pi(s,a) = \mathbf{E}_{p,\pi} \left[ \sum_{t=0}^\infty \gamma^t r(S_t, A_t) \vert S_0=s, A_0=a \right].\]
+
+<p>There is a direct relationship between the $V$-function and the $Q$-function:</p>
+
+\[v^\pi(s) = \sum_{a} \pi(a \vert s) Q^\pi(s,a), \quad \forall s \in S.\]
+
+<p>Following a similar derivation, we obtain the Bellman equation for the $Q$-function:</p>
+
+\[Q^\pi(s,a) = r(s,a) + \gamma \sum_{s',a'} \pi(a'\vert s')p(s'\vert s,a)Q^\pi(s', a'), \quad \forall (s,a) \in \mathcal{S} \times \mathcal{A}, \forall \pi \in \Pi.
+\label{eq:bellman-q} \tag{2}\]
+
+<p>Just like with the $V$-function, we can define the corresponding Bellman operator and uses fixed-point iteration to compute the $Q$-function under any given policy.</p>
+
+<p>Note that the $Q$-function is particularly useful in model-free reinforcement learning, where knowledge of the environment dynamics $p(s’\vert s,a)$ is not required.</p>
+
+<h3 id="properties-of-optimal-policy">Properties of Optimal Policy</h3>
+<p>The Bellman equations \eqref{eq:bellman-v} and \eqref{eq:bellman-q} hold for any feasible policy $\pi$, including the <strong>optimal policy</strong> $\pi^\ast$. It is a well-known result that for infinite-horizon MDPs, optimal policy $\pi^\ast$ is <strong>stationary</strong> and <strong>deterministic</strong> (Filar, Chap:2.3<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>). That is, $\pi^\ast(a\vert s)$ assigns full probability mass to a single action for each state.</p>
+
+<p>Under the optimal policy, The bellman equation becomes</p>
+
+\[v^{\pi^\ast}(s) = \max_{a} \left\{ r(s,a) + \gamma \sum_{s'} p(s' \vert s,a) v^{\pi^\ast}(s') \right\}, \quad \forall s \in \mathcal{S},
+\label{eq:bellman-vstar} \tag{3}\]
+
+\[Q^{\pi^\ast}(s,a) = r(s,a) + \gamma \sum_{s'} p(s'\vert s,a) \max_{a'} Q^{\pi^\ast}(s', a'), \quad \forall (s,a) \in \mathcal{S} \times \mathcal{A}.
+\label{eq:bellman-qstar} \tag{4}\]
+
+<p>Furthermore, the optimal $V$-function is related to the optimal $Q$-function by:</p>
+
+\[v^\ast(s) = \max_a Q^\ast(s, a), \quad \forall s \in \mathcal{S}.\]
+
+<p>Equations \eqref{eq:bellman-vstar} and \eqref{eq:bellman-qstar} are at the heart of many MDP solution algorithms, including value iteration and policy iteration.</p>
+
+<h2 id="solution-methods">Solution Methods</h2>
+<p>For discrete MDPs, solution methods are often referred to as <strong>tabular methods</strong>, because the $V$- and $Q$-functions can be represented as $\vert \mathcal{S} \vert \times 1$ and $\vert \mathcal{S} \vert \times \vert \mathcal{A} \vert$ tables, respectively.</p>
+
+<p>Solution methods fall into two main categories:</p>
+<ul>
+  <li><strong>Mathematical programming</strong>: Formulates the problem as an optimization task.</li>
+  <li><strong>Iterative methods</strong>: Uses the Bellman operator iteratively to converge to the optimal value function.</li>
+</ul>
+
+<p>Among iterative methods, common approaches include <strong>policy iteration</strong>, <strong>value iteraion</strong>, <strong>multistage lookahead policy iteration</strong>, and $\lambda$-<strong>policy iteration</strong>.</p>
+
+<h3 id="linear-programming">Linear Programming</h3>
+<p>Linear programming approach directly uses the Bellman equation \eqref{eq:bellman-vstar}. It treats the elements of $V$-functions as decision variables and solves the following LP:</p>
+
+\[\begin{align}
+\min_v \quad &amp; \sum_{s} \rho(s) v(s) \\ 
+\text{s.t.} \quad &amp; v(s) \geq r(s, a) + \gamma \sum_{s'} p(s' \vert s, a) v(s'), \quad \forall a \in \mathcal{A}, \forall s \in \mathcal{S}.
+\end{align}\]
+
+<p>Here, $\rho$ denotes the initial state distribution. A special example is $\rho \sim \operatorname{Uniform}$, which produces $\sum_s \rho(s) v(s) = \frac{1}{\vert \mathcal{S} \vert} \sum_s v(s)$. This formulation has $\vert \mathcal{S} \vert$ decision variables and $\vert \mathcal{S} \vert \times \vert \mathcal{A} \vert$ constraints. Each constraint upper bound the value function based on the Bellman equation, with equality holding only for optimal actions. Once the optimal value function $v^*$ is obtained, the optimal policy is recovered via:</p>
+
+\[\pi^\ast(a \vert s) = \arg\max_a \left\{ r(s,a) +  \gamma \sum_{s'} p(s' \vert s, a) v^\ast(s') \right\}, \quad \forall s \in \mathcal{S}.
+\label{eq:primal} \tag{P}\]
+
+<p>We can find the dual problem of the primal LP \eqref{eq:primal}, which is</p>
+
+\[\begin{align}
+\max_\mu \quad &amp; \sum_{s,a} \mu(s,a) r(s,a) \\ 
+\text{s.t.} \quad &amp; \sum_a \mu(s',a) - \gamma \sum_{s,a} \mu(s,a) p(s'|s,a) = \rho(s'), \quad \forall s' \in \mathcal{S}, \\
+&amp; \mu(s,a) \geq 0, \quad \forall s \in \mathcal{S}, \forall a \in \mathcal{A}.
+\end{align}
+\label{eq:dual} \tag{D}\]
+
+<p>The dual problem is interesting because it produces many important results.</p>
+
+<ol>
+  <li>Let $\pi$ be a feasible policy of the MDP and $\rho$ be the initial state distribution. We define the <strong>occupancy measure</strong></li>
+</ol>
+
+\[\begin{align}
+\nu^\pi(s,a) &amp;= \sum_{t=0}^\infty \gamma^t \operatorname{Pr}_{\pi,\rho}(S_t=s,A_t=a) \\ 
+&amp;= \sum_{s_0 \in \mathcal{S}} p(s_0) \sum_{t=1}^\infty \gamma^{t}  \pi(a \vert s) \operatorname{Pr}(S_t = s, A_t = a \vert S_0 = s_0). \color{red}{??}
+\end{align}\]
+
+<p>which measures the culmulative probability of the event $S_t=s,A_t=a$. We can verify that $\nu^\pi$ is a feasible solution of the dual LP \eqref{eq:dual}.</p>
+
+<p>2.Suppose $\mu(s,a)$ is a feasible solution of the dual LP \eqref{eq:dual}. Then for each $s \in \mathcal{S}$ such that $\sum_a \mu(s,a) &gt; 0$, we can induce a stationary policy $\pi_\mu$ by</p>
+
+\[\pi_\mu(a \vert s) = \frac{\mu(s,a)}{\sum_{a} \mu(s,a)}.\]
+
+<p>Then, the occupancy measure $\nu_{\pi_\mu}$ induce by $\pi_\mu$ is equal to $\mu$. i.e., $\mu(s,a) = \nu_{\pi_\mu}(s,a)$ for all $s \in \mathcal{S}$ and $a \in \mathcal{A}$.</p>
+
+<p>3.If $\mu^\ast$ is the optimal solution of the dual LP \eqref{eq:dual}, then the induced policy $\pi_{\mu^\ast}$ is the optimal solution of the primal LP \eqref{eq:primal}. Besides, $\pi_{\mu^\ast}$ is deterministic.</p>
+
+<h3 id="policy-iteration">Policy Iteration</h3>
+<p>Policy iteration is the most typical method in iterative methods. It iteratively run the two processes: <strong>policy evaluation</strong> and <strong>policy improvement</strong>, to find the optimal policy and the optimal value function. Specifically,</p>
+
+<p>In the policy evaluation (also called prediction):</p>
+<ul>
+  <li>compute the value function $v^\pi(s)$ or $q^\pi(s,a)$ using the current policy $\pi$.</li>
+  <li>solve a linear system $v=B(v)$ or $q = B(q)$.</li>
+</ul>
+
+<p>In the policy improvement (also called update):</p>
+<ul>
+  <li>generate a new policy $\pi’$ using the current vaule function $v^\pi(s)$ or $q^\pi(s,a)$.</li>
+  <li>greedy maximization (most common)</li>
+</ul>
+
+<p>Other iterative methods follow the same two processes but differ in the policy evaluation process. We summarize the policy iteration algorithm in Fig. 3.</p>
+
+<figure>
+    <img src="/assets/images/blog/2022/mdp_policy_iter_v.png" width="500" />
+    <figcaption>Fig.3: Policy iteration algorithm.</figcaption>
+</figure>
+
+<p>Convergence? change iteration to $k$ in alg?</p>
+
+<h3 id="value-iteration">Value Iteration</h3>
+<p>Value iteration is a special case of policy iteration. It updates the value function only <strong>once</strong> in the policy evaluation process instead of computing the real $v^\pi$. This operation is more concise when $\mathcal{S}$ is large because policy iteration needs to run an iterative loop for every state to obtain the value $v^\pi(s)$. However, the drawback of value iteration is that it may converge very slowly. This is true for many problems with large state space or with a discounted factor $\lambda$ close to 1.</p>
+
+<p>v-funciton, q funciton.</p>
+
+<figure>
+    <img src="/assets/images/blog/2022/mdp_value_iter_v.png" width="500" />
+    <figcaption>Fig.3: Value iteration algorithm.</figcaption>
+</figure>
+
+<p>convergence? change iteration to $k$ in alg?</p>
+
+<h3 id="multistage-lookahead-policy-iteration">Multistage Lookahead Policy Iteration</h3>
+<p>As we observe, when the state space is large, policy iteration methods will take a lot of time in the policy evaluation process, the for loop is terminated when the difference is smaller than a threshold. Although value iteration only evaluate one-step policy evaluation, it converges slowly. Therefore, a balance is to use a fixed step evaluation $m &gt; 1$ in the policy evaluation process. which improves the convergence. The rest remains the same.</p>
+
+<h3 id="lambda-policy-iteration">$\lambda$-Policy Iteration</h3>
+<p>unifies two methods<sup id="fnref:6:1"><a href="#fn:6" class="footnote" rel="footnote" role="doc-noteref">3</a></sup>. reduce the discounted factor to achieve faster decay, especially useful for large $\gamma$. The policy evaluation is different, changes to $v_{k+1} = v_k + \Delta_k$, where $\Delta_k \in \mathbb{R}^{\vert \mathcal{S} \vert}$ is the value vector of a $\gamma \lambda$-discounted MDP problem with transition probabilities $p^{\pi_{k+1}} = \sum_a \pi_{k+1}(a \vert s) p(s’ \vert s,a)$.</p>
+
+\[\Delta_k(s) = \mathbf{E}_{p^{\pi_{k+1}}} \left[ \sum_{t=0}^\infty (\gamma \lambda)^t d_k(S_t, S_{t+1}) \vert S_0 = s \right], \quad \forall s \in \mathcal{S}.\]
+
+<p>where $d_k$ is the temporal difference at step $k$ under policy $\pi_{k+1}$</p>
+
+\[d_k(s, s') = \sum_{a} \pi_{k+1}(a\vert s) r(s,a) + \gamma v_k(s') - v_k(s).\]
+
+<p>Computing $\Delta_k$ is not hard, same as iteration in policy iteration methods. We can also compute $m$ terms of $\Delta_k$ for approximation.</p>
+
+<p>When $\lambda=0$, we have value iteration, when $\lambda=1$, we have policy iteration. When use iteration with $\lambda &lt; 1$, policy evaluation converges faster compared with $\lambda=1$. However, small $\lambda$ does not perform well.</p>
+
+<p>convergence? alg?</p>
+
+<p>We should note that only PI compute $v^{\pi_k}$ given $\pi_k$. value iteration and multi-step lookahead, $\lambda$-policy with $\lambda &lt; 1$ all finds an approximate value, i.e., $v_k$ not $v^{\pi_k}$.</p>
+
+<h1 id="short-summary">Short Summary</h1>
+<p>We have introduced the formulation, value functions, and solution methods for infinite-horizon Markov Decision Processes (MDPs). MDPs provide a general and powerful framework for sequential decision-making under uncertainty, and have enabled impactful applications across various domains, including robotics, transportation, and communication systems. Although domain-specific knowledge is often required to model real-world problems as MDPs, the underlying solution methods remain consistent across fields.</p>
+
+<p>MDPs also have several variants. For example, finite-horizon MDPs are useful when decisions are made over a fixed time horizon, while average-reward MDPs are suitable for long-run average performance criteria. These variants extend the applicability of the framework to different types of sequential decision problems.</p>
+
+<h2 id="recommended-references">Recommended References</h2>
+<p>For a comprehensive and rigorous treatment of MDPs, including both discrete and continuous formulations, we highly recommend the textbook by Puterman<sup id="fnref:1:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> and Filar<sup id="fnref:2:1"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>.</p>
+
+<p>For an accessible introduction from a reinforcement learning perspective, Prof. Silver’s Lectures Slides on Reinforcement Learning<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">5</a></sup> and Prof. Kolter’s slides on MDPs<sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">6</a></sup> would be a good starting point.</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Puterman, Martin L. <a href="https://www.wiley.com/en-us/Markov+Decision+Processes%3A+Discrete+Stochastic+Dynamic+Programming-p-9781118625873"><em>Markov decision processes: discrete stochastic dynamic programming</em></a>. 2014. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:5">
+      <p>Sutton, Richard S., and Andrew G. Barto. <a href="http://incompleteideas.net/book/the-book-2nd.html"><em>Reinforcement learning: An introduction</em></a>. 2018. <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>Bertsekas, Dimitri, and John N. Tsitsiklis. <a href="http://athenasc.com/ndpbook.html"><em>Neuro-dynamic programming</em></a>. 1996. <a href="#fnref:6" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:6:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:2">
+      <p>Filar, Jerzy, and Koos Vrieze. <a href="https://link.springer.com/book/10.1007/978-1-4612-4054-9"><em>Competitive Markov decision processes</em></a>. 2012. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:2:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:3">
+      <p>Silver, David. <a href="https://www.davidsilver.uk/teaching/"><em>Lectures on Reinforcement Learning</em></a>. 2015. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p>Kolter, Zico. <a href="https://www.cs.cmu.edu/afs/cs/academic/class/15780-s16/www/slides/mdps.pdf"><em>Markov Decision Processes</em></a>. 2016. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </article>
+
+    <!--additional addons-->
+    <hr style="height: 1px; margin: 1rem 0">
+    <!--span class="level-item"><i class="far fa-clock"></i>&nbsp;8 minutes read (About 1210 words)</span-->
+	<div class="post-meta" style="display: flex; justify-content: space-between; align-items: center;">
+		<span>
+			<i class="fas fa-tags"></i>&nbsp;
+            
+                
+                <a href="/tags/math">math,</a>
+                
+            
+                
+                <a href="/tags/mdp">MDP,</a>
+                
+            
+                
+                <a href="/tags/rl">RL</a>
+                
+            
+		</span>
+	</div>
+
+</div>
+
+
+<section class="post-pagination">
+    
+        <a href="/2022/06/08/numpy-scipy.html">Previous: Numpy Tensordot</a>
+    
+
+    
+        <a href="/2022/06/10/intro-rl.html">Next: Introduction to Reinforcement Learning</a>
+    
+</section>
+  
+
+<a onclick="topFunction()" id="back-top-button"><i class="fa-solid fa-chevron-up fa-2x"></i></a>
+
+
+<script>
+let mybutton = document.getElementById("back-top-button");	// get the button
+window.onscroll = function() {scrollFunction()};	// show the button when scrolls down 200px from the top
+
+function scrollFunction() {
+  	if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    	mybutton.style.display = "block";
+  	} 
+	else {
+    	mybutton.style.display = "none";
+  	}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+<script>
+    var coll = document.getElementsByClassName("toc-meta");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("toc-active");
+        var content = this.nextElementSibling;  	// Note the collapsible content should right after the collapsible class.
+        if (content.style.maxHeight){
+          	content.style.maxHeight = null;
+        } else {
+        	content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    </script>
+        </div>
+	</div>
+
+    <footer class="footerbar">
+    <div class="footerbar-container footerbar-content">
+        &copy; 2026 <a href="/">HuskyDev</a> 
+        <span style="padding-left:30px"></span>
+        Powered by <a href="https://jekyllrb.com/">Jekyll</a>
+    </div>
+</footer>
+</body>
+
+</html>

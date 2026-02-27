@@ -110,7 +110,7 @@ function addIconClickEvent(){
 
 
 async function fetchPubJSON() {
-	let response = await fetch("/assets/js/pub.json");
+	let response = await fetch("/assets/pub.json");
 	let data = await response.json();
     let promise = new Promise(function(resolve, reject) {
         generatePubDiv(data.published, "published");
@@ -124,7 +124,7 @@ async function fetchPubJSON() {
 fetchPubJSON();
 
 /*
-fetch("/assets/js/pub.json")
+fetch("/assets/pub.json")
     .then(response => response.json())
     .then(data => {
         // generate publication content

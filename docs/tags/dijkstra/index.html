@@ -71,6 +71,7 @@ MathJax = {
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script src="/assets/js/myjavascript.js"></script>
+<script src="/assets/js/search.js" defer></script>
 
 
 
@@ -111,10 +112,26 @@ MathJax = {
                 
             
             
-            <li><a href="javascript:void(0)"><i class="fa fa-search"></i></a></li>
+            <li><a href="javascript:void(0)" id="search-toggle"><i class="fa fa-search"></i></a></li>
         </ul>
     </div>
     </nav>
+
+<!-- Search modal -->
+<div id="search-overlay" class="search-overlay" style="display:none;">
+    <div class="search-modal">
+        <div class="search-modal-header">
+            <i class="fa fa-search"></i>
+            <input type="text" id="search-input" class="search-input"
+                   placeholder="Search posts and publications&hellip;"
+                   autocomplete="off">
+            <button id="search-close" class="search-close" aria-label="Close search">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div id="search-results" class="search-results"></div>
+    </div>
+</div>
 
 
 	<div class="card-container"><!--default_2 only defines card-container, suitable for multiple cards pages like post.-->

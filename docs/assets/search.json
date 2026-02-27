@@ -1,0 +1,366 @@
+[
+  
+  {
+    "id":       "post-1",
+    "type":     "post",
+    "title":    "Introduction to Koopman Operator",
+    "url":      "/2023/07/28/intro-to-koopman.html",
+    "date":     "Jul 2023",
+    "category": "Optimization",
+    "tags":     "optimization math control",
+    "excerpt":  "Koopman operator theory provides a linear model of a dynamical system in the infinite dimensional space. In this post, I have summarized some basics of the Koopman operator and its extention to control systems.\n\n"
+  },
+  
+  {
+    "id":       "post-2",
+    "type":     "post",
+    "title":    "Introduction to Trajectory Optimization",
+    "url":      "/2023/04/10/intro-to-trajopt.html",
+    "date":     "Apr 2023",
+    "category": "Optimization",
+    "tags":     "math collocation trajectory optimization",
+    "excerpt":  "Trajectory optimization has been widely used in robotics for various tasks such as navigation and manipulation. In this post, I have summarized related mathematical background and common computational approaches in trajectory optimization.\n\n"
+  },
+  
+  {
+    "id":       "post-3",
+    "type":     "post",
+    "title":    "Python Parallelization",
+    "url":      "/2022/07/12/python-parallel.html",
+    "date":     "Jul 2022",
+    "category": "",
+    "tags":     "python parallelization parallel computing",
+    "excerpt":  "Approaches to achieve Python parallelization."
+  },
+  
+  {
+    "id":       "post-4",
+    "type":     "post",
+    "title":    "Introduction to Reinforcement Learning",
+    "url":      "/2022/06/10/intro-rl.html",
+    "date":     "Jun 2022",
+    "category": "Machine Learning",
+    "tags":     "math RL",
+    "excerpt":  "Reinforcement Learning (RL) has been a hot research area in the past two decades. It refers to the learning paradigm that an intelligent agent learns the optimal policy to take actions by interacting with the environments. In this post, I..."
+  },
+  
+  {
+    "id":       "post-5",
+    "type":     "post",
+    "title":    "Introduction to Markov Decision Processes",
+    "url":      "/2022/06/09/intro-mdp.html",
+    "date":     "Jun 2022",
+    "category": "Optimization",
+    "tags":     "math MDP RL",
+    "excerpt":  "We introduction the formulation, value functions and solution methods for infinite-horizon MDPs."
+  },
+  
+  {
+    "id":       "post-6",
+    "type":     "post",
+    "title":    "Numpy Tensordot",
+    "url":      "/2022/06/08/numpy-scipy.html",
+    "date":     "Jun 2022",
+    "category": "",
+    "tags":     "python numpy scipy",
+    "excerpt":  "Quicks notes on numpy tensordot functions."
+  },
+  
+  {
+    "id":       "post-7",
+    "type":     "post",
+    "title":    "Python Copy",
+    "url":      "/2022/06/03/python-copy.html",
+    "date":     "Jun 2022",
+    "category": "",
+    "tags":     "python",
+    "excerpt":  "Quicks notes on Python and numpy copy functions."
+  },
+  
+  {
+    "id":       "post-8",
+    "type":     "post",
+    "title":    "Python Exception Related",
+    "url":      "/2022/05/22/python-exception.html",
+    "date":     "May 2022",
+    "category": "",
+    "tags":     "python exception",
+    "excerpt":  "Python exception related notes."
+  },
+  
+  {
+    "id":       "post-9",
+    "type":     "post",
+    "title":    "Python Packaging",
+    "url":      "/2022/05/11/python-packaging.html",
+    "date":     "May 2022",
+    "category": "",
+    "tags":     "python packaging requirements pyproject setuptools",
+    "excerpt":  "Introduction to Python packages and packaging configurations."
+  },
+  
+  {
+    "id":       "post-10",
+    "type":     "post",
+    "title":    "Python String Format",
+    "url":      "/2022/04/20/python-string-format.html",
+    "date":     "Apr 2022",
+    "category": "",
+    "tags":     "python string",
+    "excerpt":  "Three ways to format Python strings."
+  },
+  
+  {
+    "id":       "post-11",
+    "type":     "post",
+    "title":    "Python pip Cheatsheet",
+    "url":      "/2022/03/14/pip-cheatsheet.html",
+    "date":     "Mar 2022",
+    "category": "",
+    "tags":     "python pip",
+    "excerpt":  "Useful Python pip commands for quick reference."
+  },
+  
+  {
+    "id":       "post-12",
+    "type":     "post",
+    "title":    "Git Cheatsheet",
+    "url":      "/2022/03/12/git-cheatsheet.html",
+    "date":     "Mar 2022",
+    "category": "",
+    "tags":     "git",
+    "excerpt":  "Useful git commands for quick reference."
+  },
+  
+  {
+    "id":       "post-13",
+    "type":     "post",
+    "title":    "Python  Installation and Virtual Environments",
+    "url":      "/2022/03/11/python-install.html",
+    "date":     "Mar 2022",
+    "category": "",
+    "tags":     "python venv virtualenv",
+    "excerpt":  "Install Python from source in Linux environments. Common virtual environments for Python."
+  },
+  
+  {
+    "id":       "post-14",
+    "type":     "post",
+    "title":    "Coding Practice for Python Projects",
+    "url":      "/2022/01/01/python-project-practice.html",
+    "date":     "Jan 2022",
+    "category": "",
+    "tags":     "python practice",
+    "excerpt":  "Some coding practice for better code readability and maintenance."
+  },
+  
+  {
+    "id":       "post-15",
+    "type":     "post",
+    "title":    "Recursive Least Squares",
+    "url":      "/2021/11/13/recursive-least-square.html",
+    "date":     "Nov 2021",
+    "category": "Optimization",
+    "tags":     "math RLS",
+    "excerpt":  "Recursive least squares (RLS), an adaptative filtering algorithm."
+  },
+  
+  {
+    "id":       "post-16",
+    "type":     "post",
+    "title":    "Random Walk",
+    "url":      "/2020/11/27/notes-9.html",
+    "date":     "Nov 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "Random walk\nBasic defitions\n\nOne of the simplest random processes is so-called “simple random walk”.\n\n"
+  },
+  
+  {
+    "id":       "post-17",
+    "type":     "post",
+    "title":    "Markov Chain 2",
+    "url":      "/2020/11/20/notes-8.html",
+    "date":     "Nov 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "This note reviews the irrducible and regular markov chains."
+  },
+  
+  {
+    "id":       "post-18",
+    "type":     "post",
+    "title":    "Markov Chain",
+    "url":      "/2020/11/13/notes-7.html",
+    "date":     "Nov 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "This note reviews the basics of Markov chains."
+  },
+  
+  {
+    "id":       "post-19",
+    "type":     "post",
+    "title":    "Generating Functions",
+    "url":      "/2020/11/07/notes-6-1.html",
+    "date":     "Nov 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "This notes reviews the generating function."
+  },
+  
+  {
+    "id":       "post-20",
+    "type":     "post",
+    "title":    "Sum of Random Variables",
+    "url":      "/2020/11/06/notes-6.html",
+    "date":     "Nov 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "This notes reviews the property of the sum of random variables."
+  },
+  
+  {
+    "id":       "post-21",
+    "type":     "post",
+    "title":    "LLN and conditional probability",
+    "url":      "/2020/10/30/notes-5.html",
+    "date":     "Oct 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "This note reviews the concepts of law of large numbers and conditional probability."
+  },
+  
+  {
+    "id":       "post-22",
+    "type":     "post",
+    "title":    "Expectation and Dependence",
+    "url":      "/2020/10/23/notes-4.html",
+    "date":     "Oct 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "This note reviews the concepts of expectation and dependence of random variables."
+  },
+  
+  {
+    "id":       "post-23",
+    "type":     "post",
+    "title":    "Continuous Randon Variables",
+    "url":      "/2020/10/16/notes-3.html",
+    "date":     "Oct 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "This note reviews the concepts of continuous random variables."
+  },
+  
+  {
+    "id":       "post-24",
+    "type":     "post",
+    "title":    "Random Variables",
+    "url":      "/2020/10/09/notes-2.html",
+    "date":     "Oct 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "This note reviews the definition of random variables."
+  },
+  
+  {
+    "id":       "post-25",
+    "type":     "post",
+    "title":    "Sets and Probability Measures",
+    "url":      "/2020/10/02/notes-1.html",
+    "date":     "Oct 2020",
+    "category": "Probability",
+    "tags":     "notes math",
+    "excerpt":  "This note reviews the definition of probability measures using the set theory. It also reviews the concept of conditional probability."
+  },
+  
+  {
+    "id":       "post-26",
+    "type":     "post",
+    "title":    "Shortest Path Problem",
+    "url":      "/2020/08/14/shorest-path.html",
+    "date":     "Aug 2020",
+    "category": "Optimization",
+    "tags":     "math shortest path Dijkstra",
+    "excerpt":  "We introduce the shortest path problem and summarize some common algorihtms."
+  },
+  
+  {
+    "id":       "post-27",
+    "type":     "post",
+    "title":    "Static Site Generators",
+    "url":      "/2019/12/03/static-site-generators.html",
+    "date":     "Dec 2019",
+    "category": "",
+    "tags":     "SSG static site generator html css github pages",
+    "excerpt":  "I have discussed the difference between static and dynamic web pages in the previous post. In this post, I will write some of my understanding of Jekyll and static site generators.\n\n"
+  },
+  
+  {
+    "id":       "post-28",
+    "type":     "post",
+    "title":    "Static vs Dynamic Web Pages",
+    "url":      "/2019/12/02/static-dynamic-web.html",
+    "date":     "Dec 2019",
+    "category": "",
+    "tags":     "tutorial static web dynamic web php",
+    "excerpt":  "When we send HTTP requests to the web server, the web server responds to the request and sends the page file (usually with a .html extension) back so that we can view the entire web page in the browser. The..."
+  },
+  
+  {
+    "id":       "post-29",
+    "type":     "post",
+    "title":    "Mathjax in Jekyll Notes",
+    "url":      "/2019/11/03/mathjax-notes.html",
+    "date":     "Nov 2019",
+    "category": "Web",
+    "tags":     "jekyll html mathjax",
+    "excerpt":  "Basic usage of MathJax in Jekyll notes and examples of writing math equations."
+  },
+  
+  {
+    "id":       "post-30",
+    "type":     "post",
+    "title":    "Learning Jelly Part 2: Templating Language",
+    "url":      "/2019/09/25/jekyll-2-template.html",
+    "date":     "Sep 2019",
+    "category": "",
+    "tags":     "web jekyll templating",
+    "excerpt":  "This post introduces the concept of templating languages and the Liquid templating language used in Jekyll. We also introduce how to define templating variables in the front matter to control the page layout.\n\n"
+  },
+  
+  {
+    "id":       "post-31",
+    "type":     "post",
+    "title":    "Learning Jelly Part 1: Structure",
+    "url":      "/2019/09/24/jekyll-1-structure.html",
+    "date":     "Sep 2019",
+    "category": "",
+    "tags":     "web jekyll templating",
+    "excerpt":  "This post introduces the directory structure of Jekyll to help people understand the Jekyll project environments. We also discuss some basic concepts such as templates and includes.\n\n"
+  },
+  
+  {
+    "id":       "post-32",
+    "type":     "post",
+    "title":    "Jekyll Notes",
+    "url":      "/2019/09/12/jekyll-notes.html",
+    "date":     "Sep 2019",
+    "category": "",
+    "tags":     "jekyll",
+    "excerpt":  "Quick notes and tips for using Jekyll."
+  },
+  
+  {
+    "id":       "post-33",
+    "type":     "post",
+    "title":    "misc tests",
+    "url":      "/2019/09/01/misc-tests.html",
+    "date":     "Sep 2019",
+    "category": "Miscellaneous",
+    "tags":     "jekyll test",
+    "excerpt":  "This post is for miscellaneous tests and quick notes. Ignore all the contents"
+  }
+  
+]

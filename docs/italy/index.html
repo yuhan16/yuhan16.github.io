@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#163c53">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="查看每日行程、切换备选方案，旅行资料保存在当前设备。">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>意大利 · 随身行程</title>
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到行程</a>
+  <header class="topbar"><a href="./" class="brand"><span class="brand-icon" aria-hidden="true">旅</span><span>意大利<span class="brand-small">随身行程</span></span></a><button id="settings-button" class="quiet">备份与设置</button></header>
+  <div id="storage-warning" class="notice error" role="alert" hidden></div>
+  <main id="main" tabindex="-1"><div class="loading">正在打开行程…</div></main>
+  <nav class="bottom-nav" aria-label="主要功能"><button data-view="day" aria-current="page">当天行程</button><button data-view="candidates">当天候选</button><button data-view="places">地点库</button></nav>
+  <dialog id="dialog"><div id="dialog-content"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <input id="import-file" type="file" accept="application/json,.json" hidden>
+  <noscript>请启用 JavaScript 以打开行程。所有编辑均在当前设备完成。</noscript>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

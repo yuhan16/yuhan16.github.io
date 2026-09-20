@@ -5,6 +5,16 @@ export const uid = () => crypto.randomUUID();
 export function requireDay(state,id) { const day=state.days.find(d=>d.id===id); if(!day) throw Error('没有找到这一天。'); return day; }
 export function selectedPlan(day,id) { const p=id==='latest'?day.latest:day.plans.find(p=>p.id===id); if(!p) throw Error('没有找到这个方案。'); return p; }
 export function defaultPlanId(day) { return day.latest?'latest':day.plans[0].id; }
+export function canDeletePlan(day,planId) {return planId!=='latest'&&planId!==day.plans[0].id&&day.plans.some(p=>p.id===planId);}
+export function deletePlan(day,planId) {
+  if(!canDeletePlan(day,planId))throw Error('只能删除备选方案，规划和最新调整会保留。');
+  day.plans=day.plans.filter(p=>p.id!==planId);
+}
+export function nextBackupLabel(day) {
+  const labels=new Set(day.plans.map(p=>p.label));let number=1;
+  while(labels.has(`备选${number}`))number++;
+  return `备选${number}`;
+}
 export function fixedKind(event) {
   const kind=event.kind.trim().toLowerCase();
   if(/住宿|酒店|旅馆|民宿|入住|退房|hotel|accommodation|stay/.test(kind))return 'stay';

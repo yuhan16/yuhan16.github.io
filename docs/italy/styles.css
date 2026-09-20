@@ -5,6 +5,8 @@
 @media(max-width:430px){h1{font-size:1.75rem}.topbar{padding:16px}.topbar>button{font-size:.875rem;padding:8px}main{margin:0 16px}.day-top{display:block;margin-bottom:18px}.date-controls{max-width:none;justify-content:flex-start;margin-top:16px}.date-controls select{width:auto;flex:1}.toolbar{display:block}.toolbar-actions{margin-top:10px}.event-card{grid-template-columns:1fr;gap:4px}.event-time{display:flex;gap:10px;align-items:center}.event-time span{display:inline;margin:0}.event-actions{gap:3px}.action-group{gap:2px}.dialog-head,.dialog-body,.dialog-foot{padding:16px}.form-grid{grid-template-columns:1fr}.detail-row{grid-template-columns:80px minmax(0,1fr);gap:10px}.brand-small{font-size:.75rem}.notice.error{margin-left:16px;margin-right:16px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 .day-schedule,.booking-body{min-width:0}
+.suggested-field{min-width:0}
+.field-hint{font-size:.875rem;line-height:1.6;color:var(--muted);margin:-8px 0 16px;overflow-wrap:anywhere}
 .stay-list{display:grid;gap:12px;margin-bottom:16px}
 .stay-summary{background:#edf5f3;border:1px solid #cbded8;border-radius:12px;padding:16px 18px;min-width:0}
 .stay-empty{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;background:#f5f8fa;border-color:var(--line)}
